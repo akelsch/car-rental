@@ -1,25 +1,21 @@
 package de.htwsaar.prog3.autoverwaltung;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class CarTests {
-	private Car car;
+    private Car car;
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+    @BeforeAll
+    void setUp() {
+    }
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+    @AfterAll
+    void tearDown() {
+    }
 
-	@Test
-	void test() {
-
-	}
-
+    @Test
+    void test() {
+    }
 }
