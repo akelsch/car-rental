@@ -1,6 +1,6 @@
 package de.htwsaar.prog3.autoverwaltung;
 
-public enum Producer {
+public enum Manufacturer {
     AUDI,
     BMW,
     FIAT,

@@ -7,17 +7,17 @@ package de.htwsaar.prog3.autoverwaltung;
  */
 public class Car {
     private Color color;
-    private Producer producer;
+    private Manufacturer manufacturer;
 
     /**
      * Constructor for a car object.
      *
      * @param color    this cars color
-     * @param producer this cars producer
+     * @param manufacturer this cars manufacturer
      */
-    public Car(Color color, Producer producer) {
+    public Car(Color color, Manufacturer manufacturer) {
         setColor(color);
-        setProducer(producer);
+        setManufacturer(manufacturer);
     }
 
     public Color getColor() {
@@ -28,11 +28,11 @@ public class Car {
         this.color = color;
     }
 
-    public Producer getProducer() {
-        return this.producer;
+    public Manufacturer getManufacturer() {
+        return this.manufacturer;
     }
 
-    private void setProducer(Producer producer) {
-        this.producer = producer;
+    private void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }
