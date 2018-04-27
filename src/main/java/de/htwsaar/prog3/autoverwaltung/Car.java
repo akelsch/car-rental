@@ -12,7 +12,7 @@ public class Car {
     /**
      * Constructor for a car object.
      *
-     * @param color    this cars color
+     * @param color        this cars color
      * @param manufacturer this cars manufacturer
      */
     public Car(Color color, Manufacturer manufacturer) {
