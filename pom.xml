@@ -43,6 +43,7 @@
                             <configLocation>${project.basedir}/src/test/resources/checkstyle.xml</configLocation>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         </configuration>
                         <goals>
                             <goal>check</goal>
