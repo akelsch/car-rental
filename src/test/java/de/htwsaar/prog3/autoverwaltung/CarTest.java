@@ -1,25 +1,21 @@
 package de.htwsaar.prog3.autoverwaltung;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CarTests {
-    private Car car;
-
-    @BeforeAll
+class CarTest {
+    @BeforeEach
     void setUp() {
     }
 
-    @AfterAll
+    @AfterEach
     void tearDown() {
     }
 
     @Test
-    void testCarColorManufacturer() {
-        car = new Car(Color.BLACK, Manufacturer.BMW);
+    void testCarColorAndManufacturer() {
+        Car car = new Car(Color.BLACK, Manufacturer.BMW);
 
         assertEquals(Color.BLACK, car.getColor());
         assertEquals(Manufacturer.BMW, car.getManufacturer());
