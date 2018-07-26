@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.autoverwaltung;
+package de.htwsaar.prog3.carrental;
 
 public enum Color {
     BLACK,

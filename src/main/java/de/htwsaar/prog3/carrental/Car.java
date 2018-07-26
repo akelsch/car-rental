@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.autoverwaltung;
+package de.htwsaar.prog3.carrental;
 
 /**
  * This class is used to create Car Objects that this software will use.
