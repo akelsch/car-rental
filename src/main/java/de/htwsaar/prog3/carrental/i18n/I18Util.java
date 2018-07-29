@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.i18n;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -32,9 +33,9 @@ public class I18Util {
      * Initialization of the ResourceBundles.
      */
     static {
-        resourceBundleStrings = ResourceBundle.getBundle(I18N_BASENAME_STRINGS);
-        resourceBundleMessages = ResourceBundle.getBundle(I18N_BASENAME_MESSAGES);
-        resourceBundleComponents = ResourceBundle.getBundle(I18N_BASENAME_COMPONENTS);
+        resourceBundleStrings = ResourceBundle.getBundle(I18N_BASENAME_STRINGS, Locale.getDefault());
+        resourceBundleMessages = ResourceBundle.getBundle(I18N_BASENAME_MESSAGES, Locale.getDefault());
+        resourceBundleComponents = ResourceBundle.getBundle(I18N_BASENAME_COMPONENTS, Locale.getDefault());
     }
 
     public static ResourceBundle getStringsResourceBundle() {
