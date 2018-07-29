@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.carrental;
+package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
