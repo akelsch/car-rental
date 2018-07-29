@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
  */
 public class I18nComponentsUtil {
     /**
-     * Definition of all available Strings in strings_*.properties.
+     * Definition of all available Strings in components_*.properties.
      */
     private static final String STAGE_TITLE = "stage-title";
 
@@ -19,7 +19,7 @@ public class I18nComponentsUtil {
      * Initialization of the ResourceBundle.
      */
     static {
-        resourceBundle = I18Util.getComponentsResourceBundle();
+        resourceBundle = I18Util.getResourceBundleComponents();
     }
 
     /**
