@@ -9,14 +9,16 @@ import java.util.ResourceBundle;
  */
 public class I18nMessagesUtil {
     /**
-     * Definition of all available Strings in strings_*.properties.
+     * Definition of all available Strings in messages_*.properties.
      */
+    // private static final String...
+
     private static ResourceBundle resourceBundle;
 
     /**
      * Initialization of the ResourceBundle.
      */
     static {
-        resourceBundle = I18Util.getMessagesResourceBundle();
+        resourceBundle = I18Util.getResourceBundleMessages();
     }
 }

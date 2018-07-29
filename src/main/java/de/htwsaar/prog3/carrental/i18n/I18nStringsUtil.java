@@ -11,6 +11,7 @@ public class I18nStringsUtil {
     /**
      * Definition of all available Strings in strings_*.properties.
      */
+    // private static final String...
 
     private static ResourceBundle resourceBundle;
 
@@ -18,6 +19,6 @@ public class I18nStringsUtil {
      * Initialization of the ResourceBundle.
      */
     static {
-        resourceBundle = I18Util.getStringsResourceBundle();
+        resourceBundle = I18Util.getResourceBundleStrings();
     }
 }
