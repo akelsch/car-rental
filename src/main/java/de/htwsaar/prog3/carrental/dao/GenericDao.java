@@ -9,12 +9,13 @@ import java.io.Serializable;
  * @param <ID> the type of the primary key
  * @author Arthur Kelsch
  */
-public interface CarDao<T, ID extends Serializable> {
+public interface GenericDao<T, ID extends Serializable> {
     // Create
     void persist(T entity);
 
     // Read
     T findById(ID id);
+    // List<T> findAll();
 
     // Update
     void update(T entity);

@@ -1,6 +1,6 @@
 package de.htwsaar.prog3.carrental.service;
 
-import de.htwsaar.prog3.carrental.dao.CarDao;
+import de.htwsaar.prog3.carrental.dao.GenericDao;
 import de.htwsaar.prog3.carrental.dao.CarDaoImpl;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.PersistenceUtil;
@@ -11,7 +11,7 @@ import de.htwsaar.prog3.carrental.util.PersistenceUtil;
  * @author Arthur Kelsch
  */
 public class CarService {
-    private CarDao<Car, Long> carDao = new CarDaoImpl();
+    private GenericDao<Car, Long> carDao = new CarDaoImpl();
 
     public CarService() {
     }

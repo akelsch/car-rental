@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
  *
  * @author Arthur Kelsch
  */
-public class CarDaoImpl implements CarDao<Car, Long> {
+public class CarDaoImpl implements GenericDao<Car, Long> {
     private static final String PERSISTENCE_UNIT_NAME = "car";
     private static EntityManager entityManager = PersistenceUtil.getEntityManager(PERSISTENCE_UNIT_NAME);
 
@@ -29,8 +29,7 @@ public class CarDaoImpl implements CarDao<Car, Long> {
 
     @Override
     public void update(Car entity) {
-        // TODO
-        throw new UnsupportedOperationException();
+        entityManager.merge(entity);
     }
 
     @Override
