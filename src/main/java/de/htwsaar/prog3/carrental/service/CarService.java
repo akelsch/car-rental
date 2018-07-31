@@ -5,6 +5,8 @@ import de.htwsaar.prog3.carrental.dao.GenericDao;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.PersistenceUtil;
 
+import java.util.List;
+
 /**
  * Car service layer providing methods for working with the Car model.
  *
@@ -28,6 +30,14 @@ public class CarService {
         PersistenceUtil.commitTransaction();
 
         return car;
+    }
+
+    public List<Car> findAll() {
+        PersistenceUtil.beginTransaction();
+        List<Car> cars = carDao.findAll();
+        PersistenceUtil.commitTransaction();
+
+        return cars;
     }
 
     public void update(Car entity) {

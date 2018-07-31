@@ -1,14 +1,16 @@
 package de.htwsaar.prog3.carrental.dao;
 
+import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.util.PersistenceUtil;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  * DAO implementation for the Rental model.
  *
- * @author Julian Quint
+ * @author Julian Quint, Arthur Kelsch
  */
 public class RentalDaoImpl implements GenericDao<Rental, Long> {
     private static final String PERSISTENCE_UNIT_NAME = "rental";
@@ -25,6 +27,12 @@ public class RentalDaoImpl implements GenericDao<Rental, Long> {
     @Override
     public Rental findById(Long id) {
         return entityManager.find(Rental.class, id);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Rental> findAll() {
+        return (List<Rental>) entityManager.createQuery("SELECT e FROM Rental e").getResultList();
     }
 
     @Override

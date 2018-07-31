@@ -4,6 +4,7 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.PersistenceUtil;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  * DAO implementation for the Car model.
@@ -25,6 +26,12 @@ public class CarDaoImpl implements GenericDao<Car, Long> {
     @Override
     public Car findById(Long id) {
         return entityManager.find(Car.class, id);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Car> findAll() {
+        return (List<Car>) entityManager.createQuery("SELECT c FROM Car c").getResultList();
     }
 
     @Override

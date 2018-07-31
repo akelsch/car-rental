@@ -1,6 +1,7 @@
 package de.htwsaar.prog3.carrental.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Interface for Data Access Objects. Defines basic CRUD methods.
@@ -26,7 +27,13 @@ public interface GenericDao<T, ID extends Serializable> {
      * @return the found entity instance or null if the entity does not exist
      */
     T findById(ID id);
-    // List<T> findAll();
+
+    /**
+     * Finds all entities (Read).
+     *
+     * @return a list of found entity instances or null if no entity does not exist
+     */
+    List<T> findAll();
 
     /**
      * Updates a given entity (Update).
