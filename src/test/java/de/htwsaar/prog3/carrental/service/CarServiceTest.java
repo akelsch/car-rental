@@ -10,6 +10,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
+/**
+ * @author Arthur Kelsch
+ */
 class CarServiceTest {
     private CarService carService;
     private Car expectedCar;

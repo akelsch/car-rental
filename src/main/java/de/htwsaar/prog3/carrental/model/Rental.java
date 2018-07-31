@@ -21,7 +21,7 @@ public class Rental {
     @Column
     private Long id;
 
-   @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;
 
@@ -42,6 +42,6 @@ public class Rental {
     @Column
     private String note;
 
-    @Column(name = "extra_costs",nullable = false)
+    @Column(name = "extra_costs", nullable = false)
     private String extraCosts;
 }

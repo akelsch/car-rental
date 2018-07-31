@@ -1,7 +1,7 @@
 package de.htwsaar.prog3.carrental.service;
 
-import de.htwsaar.prog3.carrental.dao.GenericDao;
 import de.htwsaar.prog3.carrental.dao.CarDaoImpl;
+import de.htwsaar.prog3.carrental.dao.GenericDao;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.PersistenceUtil;
 

@@ -14,7 +14,7 @@ public class EmployeeDaoImpl implements GenericDao<Employee, Long> {
     private static final String PERSISTENCE_UNIT_NAME = "employee";
     private static EntityManager entityManager = PersistenceUtil.getEntityManager(PERSISTENCE_UNIT_NAME);
 
-    public  EmployeeDaoImpl() {
+    public EmployeeDaoImpl() {
     }
 
     @Override
