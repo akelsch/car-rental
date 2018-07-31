@@ -27,7 +27,7 @@ public class Rental {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Costumer costumer;
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")

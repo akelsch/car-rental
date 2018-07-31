@@ -5,15 +5,15 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * Costumer model for Hibernate.
+ * Customer model for Hibernate.
  *
  * @author Julian Quint
  */
 @Entity
 @Table
 @Data
-public class Costumer {
-    public Costumer() {
+public class Customer {
+    public Customer() {
     }
 
     @Id

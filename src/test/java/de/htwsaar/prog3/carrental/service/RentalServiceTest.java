@@ -2,7 +2,7 @@ package de.htwsaar.prog3.carrental.service;
 
 
 import de.htwsaar.prog3.carrental.model.Car;
-import de.htwsaar.prog3.carrental.model.Costumer;
+import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import org.junit.jupiter.api.AfterEach;
@@ -42,18 +42,18 @@ class RentalServiceTest {
         rentedCar.setVin("1FTJX35G4RKA95915");
         carService.persist(rentedCar);
 
-        CostumerService costumerService = new CostumerService();
-        Costumer costumer = new Costumer();
-        costumer.setDateOfBirth("01.01.1970");
-        costumer.setDriverLicenseId("31415926535");
-        costumer.setEmailAddress("wbraun@htwsaar.de");
-        costumer.setHouseNumber("141");
-        costumer.setName("Braun");
-        costumer.setPhoneNumber("+492718281828");
-        costumer.setResidence("Saarbrücken");
-        costumer.setStreet("Otto-Hahn Straße");
-        costumer.setSurname("Wolfgang");
-        costumerService.persist(costumer);
+        CustomerService customerService = new CustomerService();
+        Customer customer = new Customer();
+        customer.setDateOfBirth("01.01.1970");
+        customer.setDriverLicenseId("31415926535");
+        customer.setEmailAddress("wbraun@htwsaar.de");
+        customer.setHouseNumber("141");
+        customer.setName("Braun");
+        customer.setPhoneNumber("+492718281828");
+        customer.setResidence("Saarbrücken");
+        customer.setStreet("Otto-Hahn Straße");
+        customer.setSurname("Wolfgang");
+        customerService.persist(customer);
 
         EmployeeService employeeService = new EmployeeService();
         Employee employee = new Employee();
@@ -66,7 +66,7 @@ class RentalServiceTest {
         this.expectedRental = new Rental();
 
         expectedRental.setCar(rentedCar);
-        expectedRental.setCostumer(costumer);
+        expectedRental.setCustomer(customer);
         expectedRental.setEmployee(employee);
         expectedRental.setExtraCosts("42");
         expectedRental.setNote("a");

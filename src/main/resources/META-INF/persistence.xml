@@ -19,10 +19,10 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="costumer">
-        <description>This persistence unit manages Costumer objects.</description>
+    <persistence-unit name="customer">
+        <description>This persistence unit manages Customer objects.</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>de.htwsaar.prog3.carrental.model.Costumer</class>
+        <class>de.htwsaar.prog3.carrental.model.Customer</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>

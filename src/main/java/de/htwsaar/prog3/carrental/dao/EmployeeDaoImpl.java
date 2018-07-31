@@ -1,6 +1,5 @@
 package de.htwsaar.prog3.carrental.dao;
 
-import de.htwsaar.prog3.carrental.model.Costumer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.PersistenceUtil;
 
