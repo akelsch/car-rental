@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 /**
- * DAO implementation for the Car model.
+ * DAO layer implementation for the {@link Car Car model}.
  *
  * @author Arthur Kelsch
  */

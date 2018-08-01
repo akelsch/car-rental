@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 /**
- * DAO implementation for the Employee model.
+ * DAO layer implementation for the {@link Employee Employee model}.
  *
  * @author Julian Quint, Arthur Kelsch
  */

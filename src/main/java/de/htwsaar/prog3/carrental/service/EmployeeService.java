@@ -7,17 +7,18 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import java.util.List;
 
 /**
- * Employee service layer providing methods for working with the Employee model.
+ * Service layer implementation for the {@link EmployeeDaoImpl Employee DAO}.
  *
  * @author Julian Quint, Arthur Kelsch
  */
-public class EmployeeService {
+public class EmployeeService implements GenericService<Employee, Long> {
     private EmployeeDaoImpl employeeDao;
 
     public EmployeeService() {
         this.employeeDao = new EmployeeDaoImpl();
     }
 
+    @Override
     public void persist(Employee entity) {
         employeeDao.createEntityManager();
         employeeDao.beginTransaction();
@@ -26,6 +27,7 @@ public class EmployeeService {
         employeeDao.closeEntityManager();
     }
 
+    @Override
     public Employee findById(Long id) {
         employeeDao.createEntityManager();
         Employee employee = employeeDao.findById(id);
@@ -34,6 +36,7 @@ public class EmployeeService {
         return employee;
     }
 
+    @Override
     public List<Employee> findAll() {
         employeeDao.createEntityManager();
         List<Employee> employees = employeeDao.findAll();
@@ -42,6 +45,7 @@ public class EmployeeService {
         return employees;
     }
 
+    @Override
     public void update(Employee entity) {
         employeeDao.createEntityManager();
         employeeDao.beginTransaction();
@@ -50,6 +54,7 @@ public class EmployeeService {
         employeeDao.closeEntityManager();
     }
 
+    @Override
     public void deleteById(Long id) {
         employeeDao.createEntityManager();
         employeeDao.beginTransaction();
@@ -59,6 +64,7 @@ public class EmployeeService {
         employeeDao.closeEntityManager();
     }
 
+    @Override
     public void deleteAll() {
         employeeDao.createEntityManager();
         employeeDao.beginTransaction();

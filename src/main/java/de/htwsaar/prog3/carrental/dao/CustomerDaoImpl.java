@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 /**
- * DAO implementation for the Customer model.
+ * DAO layer implementation for the {@link Customer Customer model}.
  *
  * @author Julian Quint, Arthur Kelsch
  */

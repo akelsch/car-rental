@@ -6,17 +6,18 @@ import de.htwsaar.prog3.carrental.model.Rental;
 import java.util.List;
 
 /**
- * Rental service layer providing methods for working with the Rental model.
+ * Service layer implementation for the {@link RentalDaoImpl Rental DAO}.
  *
  * @author Julian Quint, Arthur Kelsch
  */
-public class RentalService {
+public class RentalService implements GenericService<Rental, Long> {
     private RentalDaoImpl rentalDao;
 
     public RentalService() {
         this.rentalDao = new RentalDaoImpl();
     }
 
+    @Override
     public void persist(Rental entity) {
         rentalDao.createEntityManager();
         rentalDao.beginTransaction();
@@ -25,6 +26,7 @@ public class RentalService {
         rentalDao.closeEntityManager();
     }
 
+    @Override
     public Rental findById(Long id) {
         rentalDao.createEntityManager();
         Rental rental = rentalDao.findById(id);
@@ -33,6 +35,7 @@ public class RentalService {
         return rental;
     }
 
+    @Override
     public List<Rental> findAll() {
         rentalDao.createEntityManager();
         List<Rental> employees = rentalDao.findAll();
@@ -41,6 +44,7 @@ public class RentalService {
         return employees;
     }
 
+    @Override
     public void update(Rental entity) {
         rentalDao.createEntityManager();
         rentalDao.beginTransaction();
@@ -49,6 +53,7 @@ public class RentalService {
         rentalDao.closeEntityManager();
     }
 
+    @Override
     public void deleteById(Long id) {
         rentalDao.createEntityManager();
         rentalDao.beginTransaction();
@@ -58,6 +63,7 @@ public class RentalService {
         rentalDao.closeEntityManager();
     }
 
+    @Override
     public void deleteAll() {
         rentalDao.createEntityManager();
         rentalDao.beginTransaction();

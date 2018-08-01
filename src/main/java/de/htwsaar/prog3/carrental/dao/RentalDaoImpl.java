@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 /**
- * DAO implementation for the Rental model.
+ * DAO layer implementation for the {@link Rental Rental model}.
  *
  * @author Julian Quint, Arthur Kelsch
  */

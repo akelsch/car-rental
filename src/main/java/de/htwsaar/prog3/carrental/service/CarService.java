@@ -6,17 +6,18 @@ import de.htwsaar.prog3.carrental.model.Car;
 import java.util.List;
 
 /**
- * Car service layer providing methods for working with the Car model.
+ * Service layer implementation for the {@link CarDaoImpl Car DAO}.
  *
  * @author Arthur Kelsch
  */
-public class CarService {
+public class CarService implements GenericService<Car, Long> {
     private CarDaoImpl carDao;
 
     public CarService() {
         this.carDao = new CarDaoImpl();
     }
 
+    @Override
     public void persist(Car entity) {
         carDao.createEntityManager();
         carDao.beginTransaction();
@@ -25,6 +26,7 @@ public class CarService {
         carDao.closeEntityManager();
     }
 
+    @Override
     public Car findById(Long id) {
         carDao.createEntityManager();
         Car car = carDao.findById(id);
@@ -33,6 +35,7 @@ public class CarService {
         return car;
     }
 
+    @Override
     public List<Car> findAll() {
         carDao.createEntityManager();
         List<Car> cars = carDao.findAll();
@@ -41,6 +44,7 @@ public class CarService {
         return cars;
     }
 
+    @Override
     public void update(Car entity) {
         carDao.createEntityManager();
         carDao.beginTransaction();
@@ -49,6 +53,7 @@ public class CarService {
         carDao.closeEntityManager();
     }
 
+    @Override
     public void deleteById(Long id) {
         carDao.createEntityManager();
         carDao.beginTransaction();
@@ -58,6 +63,7 @@ public class CarService {
         carDao.closeEntityManager();
     }
 
+    @Override
     public void deleteAll() {
         carDao.createEntityManager();
         carDao.beginTransaction();

@@ -6,17 +6,18 @@ import de.htwsaar.prog3.carrental.model.Customer;
 import java.util.List;
 
 /**
- * Customer service layer providing methods for working with the Customer model.
+ * Service layer implementation for the {@link CustomerDaoImpl Customer DAO}.
  *
  * @author Julian Quint, Arthur Kelsch
  */
-public class CustomerService {
+public class CustomerService implements GenericService<Customer, Long> {
     private CustomerDaoImpl customerDao;
 
     public CustomerService() {
         this.customerDao = new CustomerDaoImpl();
     }
 
+    @Override
     public void persist(Customer entity) {
         customerDao.createEntityManager();
         customerDao.beginTransaction();
@@ -25,6 +26,7 @@ public class CustomerService {
         customerDao.closeEntityManager();
     }
 
+    @Override
     public Customer findById(Long id) {
         customerDao.createEntityManager();
         Customer customer = customerDao.findById(id);
@@ -33,6 +35,7 @@ public class CustomerService {
         return customer;
     }
 
+    @Override
     public List<Customer> findAll() {
         customerDao.createEntityManager();
         List<Customer> customers = customerDao.findAll();
@@ -41,6 +44,7 @@ public class CustomerService {
         return customers;
     }
 
+    @Override
     public void update(Customer entity) {
         customerDao.createEntityManager();
         customerDao.beginTransaction();
@@ -49,6 +53,7 @@ public class CustomerService {
         customerDao.closeEntityManager();
     }
 
+    @Override
     public void deleteById(Long id) {
         customerDao.createEntityManager();
         customerDao.beginTransaction();
@@ -58,6 +63,7 @@ public class CustomerService {
         customerDao.closeEntityManager();
     }
 
+    @Override
     public void deleteAll() {
         customerDao.createEntityManager();
         customerDao.beginTransaction();

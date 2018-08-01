@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Interface for Data Access Objects.
- *
+ * Interface for the Data Access Object (DAO) layer.
+ * <p>
  * Defines basic CRUD methods as well as methods for handling entity managers and transactions.
  *
  * @param <T>  the type of the entity
