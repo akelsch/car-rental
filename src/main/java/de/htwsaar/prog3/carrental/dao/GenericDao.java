@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Interface for Data Access Objects. Defines basic CRUD methods.
+ * Interface for Data Access Objects.
+ *
+ * Defines basic CRUD methods as well as methods for handling entity managers and transactions.
  *
  * @param <T>  the type of the entity
  * @param <ID> the type of the primary key
@@ -53,4 +55,24 @@ public interface GenericDao<T, ID extends Serializable> {
      * Deletes all entities (Delete).
      */
     void deleteAll();
+
+    /**
+     * Creates an entity manager.
+     */
+    void createEntityManager();
+
+    /**
+     * Closes an entity manager.
+     */
+    void closeEntityManager();
+
+    /**
+     * Begins a transaction.
+     */
+    void beginTransaction();
+
+    /**
+     * Commits a transaction.
+     */
+    void commitTransaction();
 }

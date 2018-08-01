@@ -51,18 +51,22 @@ public class RentalDaoImpl implements GenericDao<Rental, Long> {
         entityManager.createQuery("DELETE FROM Rental").executeUpdate();
     }
 
+    @Override
     public void createEntityManager() {
         entityManager = entityManagerFactory.createEntityManager();
     }
 
+    @Override
     public void closeEntityManager() {
         entityManager.close();
     }
 
+    @Override
     public void beginTransaction() {
         entityManager.getTransaction().begin();
     }
 
+    @Override
     public void commitTransaction() {
         entityManager.getTransaction().commit();
     }
