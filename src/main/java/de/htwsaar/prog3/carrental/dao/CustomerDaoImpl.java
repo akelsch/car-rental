@@ -1,6 +1,6 @@
 package de.htwsaar.prog3.carrental.dao;
 
-import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,47 +8,47 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 /**
- * DAO layer implementation for the {@link Car Car model}.
+ * DAO layer implementation for the {@link Customer Customer model}.
  *
- * @author Arthur Kelsch
+ * @author Julian Quint, Arthur Kelsch
  */
-public class CarDaoImpl implements GenericDao<Car, Long> {
+public class CustomerDaoImpl implements GenericDao<Customer, Long> {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
 
-    public CarDaoImpl() {
+    public CustomerDaoImpl() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("car-rental");
     }
 
     @Override
-    public void persist(Car entity) {
+    public void persist(Customer entity) {
         entityManager.persist(entity);
     }
 
     @Override
-    public Car findById(Long id) {
-        return entityManager.find(Car.class, id);
+    public Customer findById(Long id) {
+        return entityManager.find(Customer.class, id);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Car> findAll() {
-        return (List<Car>) entityManager.createQuery("SELECT c FROM Car c").getResultList();
+    public List<Customer> findAll() {
+        return (List<Customer>) entityManager.createQuery("SELECT c FROM Customer c").getResultList();
     }
 
     @Override
-    public void update(Car entity) {
+    public void update(Customer entity) {
         entityManager.merge(entity);
     }
 
     @Override
-    public void delete(Car entity) {
+    public void delete(Customer entity) {
         entityManager.remove(entity);
     }
 
     @Override
     public void deleteAll() {
-        entityManager.createQuery("DELETE FROM Car").executeUpdate();
+        entityManager.createQuery("DELETE FROM Customer").executeUpdate();
     }
 
     @Override

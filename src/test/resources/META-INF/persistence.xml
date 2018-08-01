@@ -5,21 +5,20 @@
              version="2.2">
 
     <persistence-unit name="car-rental">
-        <description>This persistence unit manages the production database.</description>
+        <description>This persistence unit manages the test database.</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>de.htwsaar.prog3.carrental.model.Car</class>
         <class>de.htwsaar.prog3.carrental.model.Customer</class>
         <class>de.htwsaar.prog3.carrental.model.Employee</class>
-        <class>de.htwsaar.prog3.carrental.model.Rental</class>
+        <!--<class>de.htwsaar.prog3.carrental.model.Rental</class>-->
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:hsqldb:file:db/proddb;shutdown=true;hsqldb.write_delay=false"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:devdb"/>
             <property name="javax.persistence.jdbc.user" value="SA"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
     </persistence-unit>
 </persistence>

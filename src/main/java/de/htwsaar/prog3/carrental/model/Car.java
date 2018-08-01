@@ -17,7 +17,7 @@ public class Car {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
@@ -57,7 +57,7 @@ public class Car {
     @Column(nullable = false)
     private String gearbox;
 
-    @Column(name = "license_number", nullable = false)
+    @Column(name = "license_number", nullable = false, unique = true)
     private String licenseNumber;
 
     @Column(nullable = false)
@@ -72,6 +72,6 @@ public class Car {
     @Column(nullable = false)
     private String tires;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String vin;
 }

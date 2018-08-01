@@ -1,6 +1,6 @@
 package de.htwsaar.prog3.carrental.dao;
 
-import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.Employee;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,47 +8,47 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 /**
- * DAO layer implementation for the {@link Car Car model}.
+ * DAO layer implementation for the {@link Employee Employee model}.
  *
- * @author Arthur Kelsch
+ * @author Julian Quint, Arthur Kelsch
  */
-public class CarDaoImpl implements GenericDao<Car, Long> {
+public class EmployeeDaoImpl implements GenericDao<Employee, Long> {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
 
-    public CarDaoImpl() {
+    public EmployeeDaoImpl() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("car-rental");
     }
 
     @Override
-    public void persist(Car entity) {
+    public void persist(Employee entity) {
         entityManager.persist(entity);
     }
 
     @Override
-    public Car findById(Long id) {
-        return entityManager.find(Car.class, id);
+    public Employee findById(Long id) {
+        return entityManager.find(Employee.class, id);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Car> findAll() {
-        return (List<Car>) entityManager.createQuery("SELECT c FROM Car c").getResultList();
+    public List<Employee> findAll() {
+        return (List<Employee>) entityManager.createQuery("SELECT e FROM Employee e").getResultList();
     }
 
     @Override
-    public void update(Car entity) {
+    public void update(Employee entity) {
         entityManager.merge(entity);
     }
 
     @Override
-    public void delete(Car entity) {
+    public void delete(Employee entity) {
         entityManager.remove(entity);
     }
 
     @Override
     public void deleteAll() {
-        entityManager.createQuery("DELETE FROM Car").executeUpdate();
+        entityManager.createQuery("DELETE FROM Employee").executeUpdate();
     }
 
     @Override
