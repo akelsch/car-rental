@@ -79,7 +79,7 @@ class RentalServiceTest {
 
     @Test
     void testRead() {
-        Rental actualRental = rentalService.findById(4L);
+        Rental actualRental = rentalService.findById(1L);
 
         assertThat(actualRental, is(equalTo(expectedRental)));
     }
