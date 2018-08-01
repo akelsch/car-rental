@@ -19,11 +19,12 @@ public class I18nComponentsUtil {
      * Initialization of the ResourceBundle.
      */
     static {
-        resourceBundle = I18Util.getResourceBundleComponents();
+        resourceBundle = I18nUtil.getResourceBundleComponents();
     }
 
     /**
-     * Access methods to get a internationalized String for the needed value.
+     * Returns the internationalized String of the key defined in STAGE_TITLE.
+     * @return the internationalized String
      */
     public static String getStageTitleString() {
         return resourceBundle.getString(STAGE_TITLE);

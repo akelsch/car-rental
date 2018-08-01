@@ -19,6 +19,6 @@ public class I18nStringsUtil {
      * Initialization of the ResourceBundle.
      */
     static {
-        resourceBundle = I18Util.getResourceBundleStrings();
+        resourceBundle = I18nUtil.getResourceBundleStrings();
     }
 }
