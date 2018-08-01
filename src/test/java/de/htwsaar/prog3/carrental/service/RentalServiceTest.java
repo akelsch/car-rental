@@ -79,8 +79,8 @@ class RentalServiceTest {
 
     @Test
     void testRead() {
-        Rental actualCar = rentalService.findById(4L);
+        Rental actualRental = rentalService.findById(4L);
 
-        assertThat(actualCar, is(equalTo(expectedRental)));
+        assertThat(actualRental, is(equalTo(expectedRental)));
     }
 }
