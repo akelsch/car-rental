@@ -1,7 +1,6 @@
 package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.model.Customer;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,11 +31,6 @@ class CustomerServiceTest {
         expectedCustomer.setSurname("Wolfgang");
 
         customerService.persist(expectedCustomer);
-    }
-
-    @AfterEach
-    void tearDown() {
-        customerService.remove(expectedCustomer);
     }
 
     @Test

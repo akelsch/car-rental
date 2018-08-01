@@ -1,9 +1,10 @@
 package de.htwsaar.prog3.carrental.dao;
 
 import de.htwsaar.prog3.carrental.model.Car;
-import de.htwsaar.prog3.carrental.util.PersistenceUtil;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 /**
@@ -12,10 +13,11 @@ import java.util.List;
  * @author Arthur Kelsch
  */
 public class CarDaoImpl implements GenericDao<Car, Long> {
-    private static final String PERSISTENCE_UNIT_NAME = "car";
-    private static EntityManager entityManager = PersistenceUtil.getEntityManager(PERSISTENCE_UNIT_NAME);
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
     public CarDaoImpl() {
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("car-rental");
     }
 
     @Override
@@ -40,7 +42,29 @@ public class CarDaoImpl implements GenericDao<Car, Long> {
     }
 
     @Override
-    public void remove(Car entity) {
-        entityManager.remove(entity);
+    public void deleteById(Long id) {
+        Car car = findById(id);
+        entityManager.remove(car);
+    }
+
+    @Override
+    public void deleteAll() {
+        entityManager.createQuery("DELETE FROM Car").executeUpdate();
+    }
+
+    public void createEntityManager() {
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    public void closeEntityManager() {
+        entityManager.close();
+    }
+
+    public void beginTransaction() {
+        entityManager.getTransaction().begin();
+    }
+
+    public void commitTransaction() {
+        entityManager.getTransaction().commit();
     }
 }

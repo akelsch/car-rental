@@ -2,44 +2,67 @@ package de.htwsaar.prog3.carrental.service;
 
 
 import de.htwsaar.prog3.carrental.dao.EmployeeDaoImpl;
-import de.htwsaar.prog3.carrental.dao.GenericDao;
 import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.util.PersistenceUtil;
+
+import java.util.List;
 
 /**
  * Employee service layer providing methods for working with the Employee model.
  *
- * @author Julian Quint
+ * @author Julian Quint, Arthur Kelsch
  */
 public class EmployeeService {
-    private GenericDao<Employee, Long> employeeDao = new EmployeeDaoImpl();
+    private EmployeeDaoImpl employeeDao;
 
     public EmployeeService() {
+        this.employeeDao = new EmployeeDaoImpl();
     }
 
     public void persist(Employee entity) {
-        PersistenceUtil.beginTransaction();
+        employeeDao.createEntityManager();
+        employeeDao.beginTransaction();
         employeeDao.persist(entity);
-        PersistenceUtil.commitTransaction();
+        employeeDao.commitTransaction();
+        employeeDao.closeEntityManager();
     }
 
     public Employee findById(Long id) {
-        PersistenceUtil.beginTransaction();
+        employeeDao.createEntityManager();
         Employee employee = employeeDao.findById(id);
-        PersistenceUtil.commitTransaction();
+        employeeDao.closeEntityManager();
 
         return employee;
     }
 
-    public void update(Employee entity) {
-        PersistenceUtil.beginTransaction();
-        employeeDao.update(entity);
-        PersistenceUtil.commitTransaction();
+    public List<Employee> findAll() {
+        employeeDao.createEntityManager();
+        List<Employee> employees = employeeDao.findAll();
+        employeeDao.closeEntityManager();
+
+        return employees;
     }
 
-    public void remove(Employee entity) {
-        PersistenceUtil.beginTransaction();
-        employeeDao.remove(entity);
-        PersistenceUtil.commitTransaction();
+    public void update(Employee entity) {
+        employeeDao.createEntityManager();
+        employeeDao.beginTransaction();
+        employeeDao.update(entity);
+        employeeDao.commitTransaction();
+        employeeDao.closeEntityManager();
+    }
+
+    public void deleteById(Long id) {
+        employeeDao.createEntityManager();
+        employeeDao.beginTransaction();
+        employeeDao.deleteById(id);
+        employeeDao.commitTransaction();
+        employeeDao.closeEntityManager();
+    }
+
+    public void deleteAll() {
+        employeeDao.createEntityManager();
+        employeeDao.beginTransaction();
+        employeeDao.deleteAll();
+        employeeDao.commitTransaction();
+        employeeDao.closeEntityManager();
     }
 }

@@ -5,8 +5,8 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -16,6 +16,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 /**
  * @author Julian Quint
  */
+@Disabled
 class RentalServiceTest {
     private RentalService rentalService;
     private Rental expectedRental;
@@ -74,11 +75,6 @@ class RentalServiceTest {
         expectedRental.setEnd("19.01.2038");
 
         rentalService.persist(expectedRental);
-    }
-
-    @AfterEach
-    void tearDown() {
-        rentalService.remove(expectedRental);
     }
 
     @Test

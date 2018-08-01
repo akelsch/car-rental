@@ -1,7 +1,6 @@
 package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.model.Employee;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,11 +25,6 @@ class EmployeeServiceTest {
         expectedEmployee.setPosition("CEO");
 
         employeeService.persist(expectedEmployee);
-    }
-
-    @AfterEach
-    void tearDown() {
-        employeeService.remove(expectedEmployee);
     }
 
     @Test

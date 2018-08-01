@@ -1,9 +1,7 @@
 package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.dao.CarDaoImpl;
-import de.htwsaar.prog3.carrental.dao.GenericDao;
 import de.htwsaar.prog3.carrental.model.Car;
-import de.htwsaar.prog3.carrental.util.PersistenceUtil;
 
 import java.util.List;
 
@@ -13,42 +11,57 @@ import java.util.List;
  * @author Arthur Kelsch
  */
 public class CarService {
-    private GenericDao<Car, Long> carDao = new CarDaoImpl();
+    private CarDaoImpl carDao;
 
     public CarService() {
+        this.carDao = new CarDaoImpl();
     }
 
     public void persist(Car entity) {
-        PersistenceUtil.beginTransaction();
+        carDao.createEntityManager();
+        carDao.beginTransaction();
         carDao.persist(entity);
-        PersistenceUtil.commitTransaction();
+        carDao.commitTransaction();
+        carDao.closeEntityManager();
     }
 
     public Car findById(Long id) {
-        PersistenceUtil.beginTransaction();
+        carDao.createEntityManager();
         Car car = carDao.findById(id);
-        PersistenceUtil.commitTransaction();
+        carDao.closeEntityManager();
 
         return car;
     }
 
     public List<Car> findAll() {
-        PersistenceUtil.beginTransaction();
+        carDao.createEntityManager();
         List<Car> cars = carDao.findAll();
-        PersistenceUtil.commitTransaction();
+        carDao.closeEntityManager();
 
         return cars;
     }
 
     public void update(Car entity) {
-        PersistenceUtil.beginTransaction();
+        carDao.createEntityManager();
+        carDao.beginTransaction();
         carDao.update(entity);
-        PersistenceUtil.commitTransaction();
+        carDao.commitTransaction();
+        carDao.closeEntityManager();
     }
 
-    public void remove(Car entity) {
-        PersistenceUtil.beginTransaction();
-        carDao.remove(entity);
-        PersistenceUtil.commitTransaction();
+    public void deleteById(Long id) {
+        carDao.createEntityManager();
+        carDao.beginTransaction();
+        carDao.deleteById(id);
+        carDao.commitTransaction();
+        carDao.closeEntityManager();
+    }
+
+    public void deleteAll() {
+        carDao.createEntityManager();
+        carDao.beginTransaction();
+        carDao.deleteAll();
+        carDao.commitTransaction();
+        carDao.closeEntityManager();
     }
 }

@@ -31,7 +31,7 @@ public interface GenericDao<T, ID extends Serializable> {
     /**
      * Finds all entities (Read).
      *
-     * @return a list of found entity instances or null if no entity does not exist
+     * @return a list of found entity instances or a empty list if no entities exist
      */
     List<T> findAll();
 
@@ -43,9 +43,14 @@ public interface GenericDao<T, ID extends Serializable> {
     void update(T entity);
 
     /**
-     * Removes a given entity (Delete).
+     * Deletes a single entity by its ID (Delete).
      *
-     * @param entity entity instance
+     * @param id primary key
      */
-    void remove(T entity);
+    void deleteById(ID id);
+
+    /**
+     * Deletes all entities (Delete).
+     */
+    void deleteAll();
 }

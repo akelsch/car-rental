@@ -1,68 +1,172 @@
 package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.model.Car;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
+ * Unit tests for the {@link CarService} class.
+ *
  * @author Arthur Kelsch
  */
 class CarServiceTest {
     private CarService carService;
-    private Car expectedCar;
 
     @BeforeEach
     void setUp() {
         this.carService = new CarService();
-
-        this.expectedCar = new Car();
-        expectedCar.setDailyRate(120);
-        expectedCar.setDoorCount(5);
-        expectedCar.setDrivenDistance(25000);
-        expectedCar.setHorsepower(303);
-        expectedCar.setBrand("BMW");
-        expectedCar.setCategory("Sedan");
-        expectedCar.setColor("Black");
-        expectedCar.setConstructionYear("2016");
-        expectedCar.setFuel("Gasoline");
-        expectedCar.setGearbox("Manual");
-        expectedCar.setLicenseNumber("HD GG 1234");
-        expectedCar.setModel("335i");
-        expectedCar.setNextInspection("04-2020");
-        expectedCar.setParkingLot("2A");
-        expectedCar.setTires("Summer Tires");
-        expectedCar.setVin("1FTJX35G4RKA95915");
-
-        carService.persist(expectedCar);
-    }
-
-    @AfterEach
-    void tearDown() {
-        carService.remove(expectedCar);
     }
 
     @Test
-    void testRead() {
+    void testFindById() {
+        // Persist a car
+        Car expectedCar = createTestCar1();
+        carService.persist(expectedCar);
+
+        // Fetch it from the database
         Car actualCar = carService.findById(1L);
 
+        // Assert that the two cars are identical
         assertThat(actualCar, is(equalTo(expectedCar)));
     }
 
     @Test
-    @Disabled("Not working together with testRead(), only on its own")
+    void testFindAll() {
+        // Persist two cars
+        Car car1 = createTestCar1();
+        carService.persist(car1);
+
+        Car car2 = createTestCar2();
+        carService.persist(car2);
+
+        // Add them to a list
+        List<Car> expectedCars = new ArrayList<>();
+        expectedCars.add(car1);
+        expectedCars.add(car2);
+
+        // Fetch them from the database
+        List<Car> actualCars = carService.findAll();
+
+        // Assert that the two lists are identical
+        assertThat(actualCars, is(equalTo(expectedCars)));
+    }
+
+    @Test
     void testUpdate() {
+        // Persist a car
+        Car expectedCar = createTestCar1();
+        carService.persist(expectedCar);
+
+        // Update the persisted car
         Car actualCar = carService.findById(1L);
         actualCar.setColor("White");
         carService.update(actualCar);
 
+        // Fetch it from the database
         Car updatedCar = carService.findById(1L);
 
+        // Assert that the new car got updated
         assertThat(actualCar, is(equalTo(updatedCar)));
+    }
+
+    @Test
+    void testDeleteById() {
+        // Persist two cars
+        Car car1 = createTestCar1();
+        carService.persist(car1);
+
+        Car car2 = createTestCar2();
+        carService.persist(car2);
+
+        // Fetch them from the database
+        List<Car> actualCars = carService.findAll();
+
+        // Assert that there are two cars in the database
+        assertThat(actualCars.size(), is(equalTo(2)));
+
+        // Delete one car
+        carService.deleteById(1L);
+
+        // Fetch all cars from the database again
+        actualCars = carService.findAll();
+
+        // Assert that only one car is left in the database
+        assertThat(actualCars.size(), is(equalTo(1)));
+    }
+
+    @Test
+    void testDeleteAll() {
+        // Persist two cars
+        Car car1 = createTestCar1();
+        carService.persist(car1);
+
+        Car car2 = createTestCar2();
+        carService.persist(car2);
+
+        // Fetch them from the database
+        List<Car> actualCars = carService.findAll();
+
+        // Assert that there are two cars in the database
+        assertThat(actualCars.size(), is(equalTo(2)));
+
+        // Delete all cars
+        carService.deleteAll();
+
+        // Fetch all cars from the database again
+        actualCars = carService.findAll();
+
+        // Assert that there is no car left in the database
+        assertThat(actualCars.size(), is(equalTo(0)));
+    }
+
+    private static Car createTestCar1() {
+        Car car = new Car();
+        car.setDailyRate(120);
+        car.setDoorCount(5);
+        car.setDrivenDistance(25000);
+        car.setHorsepower(303);
+        car.setBrand("BMW");
+        car.setCategory("Sedan");
+        car.setColor("Black");
+        car.setConstructionYear("2016");
+        car.setFuel("Gasoline");
+        car.setGearbox("Manual");
+        car.setLicenseNumber("HD GG 1234");
+        car.setModel("335i");
+        car.setNextInspection("04-2020");
+        car.setParkingLot("2A");
+        car.setTires("Summer Tires");
+        car.setVin("1FTJX35G4RKA95915");
+
+        return car;
+    }
+
+    private static Car createTestCar2() {
+        Car car = new Car();
+        car.setDailyRate(150);
+        car.setDoorCount(3);
+        car.setDrivenDistance(10000);
+        car.setHorsepower(333);
+        car.setBrand("Mercedes");
+        car.setCategory("Coupe");
+        car.setColor("Grey");
+        car.setConstructionYear("2017");
+        car.setFuel("Gasoline");
+        car.setGearbox("Automatic");
+        car.setLicenseNumber("SB AB 2018");
+        car.setModel("C 400");
+        car.setNextInspection("08-2021");
+        car.setParkingLot("2C");
+        car.setTires("Summer Tires");
+        car.setVin("JKAEXEA128A066488");
+
+        return car;
     }
 }
