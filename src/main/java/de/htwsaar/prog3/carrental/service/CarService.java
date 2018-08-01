@@ -52,7 +52,8 @@ public class CarService {
     public void deleteById(Long id) {
         carDao.createEntityManager();
         carDao.beginTransaction();
-        carDao.deleteById(id);
+        Car car = carDao.findById(id);
+        carDao.delete(car);
         carDao.commitTransaction();
         carDao.closeEntityManager();
     }

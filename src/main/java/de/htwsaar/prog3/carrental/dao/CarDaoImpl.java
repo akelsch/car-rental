@@ -42,9 +42,8 @@ public class CarDaoImpl implements GenericDao<Car, Long> {
     }
 
     @Override
-    public void deleteById(Long id) {
-        Car car = findById(id);
-        entityManager.remove(car);
+    public void delete(Car entity) {
+        entityManager.remove(entity);
     }
 
     @Override

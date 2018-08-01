@@ -42,9 +42,8 @@ public class RentalDaoImpl implements GenericDao<Rental, Long> {
     }
 
     @Override
-    public void deleteById(Long id) {
-        Rental rental = findById(id);
-        entityManager.remove(rental);
+    public void delete(Rental entity) {
+        entityManager.remove(entity);
     }
 
     @Override

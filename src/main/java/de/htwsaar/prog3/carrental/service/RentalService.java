@@ -52,7 +52,8 @@ public class RentalService {
     public void deleteById(Long id) {
         rentalDao.createEntityManager();
         rentalDao.beginTransaction();
-        rentalDao.deleteById(id);
+        Rental rental = rentalDao.findById(id);
+        rentalDao.delete(rental);
         rentalDao.commitTransaction();
         rentalDao.closeEntityManager();
     }

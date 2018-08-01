@@ -42,9 +42,8 @@ public class CustomerDaoImpl implements GenericDao<Customer, Long> {
     }
 
     @Override
-    public void deleteById(Long id) {
-        Customer customer = findById(id);
-        entityManager.remove(customer);
+    public void delete(Customer entity) {
+        entityManager.remove(entity);
     }
 
     @Override

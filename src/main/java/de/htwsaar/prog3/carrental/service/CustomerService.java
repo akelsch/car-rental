@@ -52,7 +52,8 @@ public class CustomerService {
     public void deleteById(Long id) {
         customerDao.createEntityManager();
         customerDao.beginTransaction();
-        customerDao.deleteById(id);
+        Customer customer = customerDao.findById(id);
+        customerDao.delete(customer);
         customerDao.commitTransaction();
         customerDao.closeEntityManager();
     }

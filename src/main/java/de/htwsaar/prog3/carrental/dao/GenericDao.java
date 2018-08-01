@@ -43,11 +43,11 @@ public interface GenericDao<T, ID extends Serializable> {
     void update(T entity);
 
     /**
-     * Deletes a single entity by its ID (Delete).
+     * Deletes a given entity (Delete).
      *
-     * @param id primary key
+     * @param entity entity instance
      */
-    void deleteById(ID id);
+    void delete(T entity);
 
     /**
      * Deletes all entities (Delete).

@@ -42,9 +42,8 @@ public class EmployeeDaoImpl implements GenericDao<Employee, Long> {
     }
 
     @Override
-    public void deleteById(Long id) {
-        Employee employee = findById(id);
-        entityManager.remove(employee);
+    public void delete(Employee entity) {
+        entityManager.remove(entity);
     }
 
     @Override

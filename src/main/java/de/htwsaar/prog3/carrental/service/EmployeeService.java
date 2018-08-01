@@ -53,7 +53,8 @@ public class EmployeeService {
     public void deleteById(Long id) {
         employeeDao.createEntityManager();
         employeeDao.beginTransaction();
-        employeeDao.deleteById(id);
+        Employee employee = employeeDao.findById(id);
+        employeeDao.delete(employee);
         employeeDao.commitTransaction();
         employeeDao.closeEntityManager();
     }
