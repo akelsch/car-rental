@@ -1,63 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:controller="de.htwsaar.prog3.carrental.controller.CarTableViewController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <TableView fx:id="carTableView" onMouseClicked="#handleTableViewClickedAction" prefHeight="400.0" prefWidth="487.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn text="%table-view-header-id" />
-          <TableColumn text="%table-view-header-brand" />
-          <TableColumn text="%table-view-header-horsepower" />
-          <TableColumn text="%table-view-header-dailyRate" />
-          <TableColumn text="%table-view-header-doorCount" />
-          <TableColumn text="%table-view-header-drivenDistance" />
-          <TableColumn text="%table-view-header-category" />
-          <TableColumn text="%table-view-header-color" />
-          <TableColumn text="%table-view-header-constructionYear" />
-          <TableColumn text="%table-view-header-defects" />
-          <TableColumn text="%table-view-header-fuel" />
-          <TableColumn text="%table-view-header-gearbox" />
-          <TableColumn text="%table-view-header-licenseNumber" />
-          <TableColumn text="%table-view-header-model" />
-          <TableColumn text="%table-view-header-nextInspection" />
-          <TableColumn text="%table-view-header-parkingLot" />
-          <TableColumn text="%table-view-header-tires" />
-          <TableColumn text="%table-view-header-vin" />        
-        </columns>
-      </TableView>
-   </center>
-   <top>
-      <MenuBar prefHeight="14.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="true" text="%menubar-view-file">
-            <items>
-              <MenuItem mnemonicParsing="false" text="%menubar-operation-close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="true" text="%menubar-view-edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="%menubar-operation-delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="true" text="%menubar-view-help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="%menubar-operation-about" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <bottom>
-      <FlowPane alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" fx:id="editSelectedCarButton" text="%button-edit-label" />
-            <Button mnemonicParsing="false" fx:id="createNewCarButton" text="%button-new-label" />
-            <Button mnemonicParsing="false" fx:id="deleteSelectedCarButton" text="%button-delete-label" />
-         </children>
-      </FlowPane>
-   </bottom>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.prog3.carrental.controller.CarTableViewController">
+	<center>
+		<TableView fx:id="carTableView" onMouseClicked="#handleTableViewClickedAction" prefHeight="400.0" prefWidth="487.0" BorderPane.alignment="CENTER">
+			<columns>
+				<TableColumn text="%table-view-header-id" />
+				<TableColumn text="%table-view-header-brand" />
+				<TableColumn text="%table-view-header-horsepower" />
+				<TableColumn text="%table-view-header-dailyRate" />
+				<TableColumn text="%table-view-header-doorCount" />
+				<TableColumn text="%table-view-header-drivenDistance" />
+				<TableColumn text="%table-view-header-category" />
+				<TableColumn text="%table-view-header-color" />
+				<TableColumn text="%table-view-header-constructionYear" />
+				<TableColumn text="%table-view-header-defects" />
+				<TableColumn text="%table-view-header-fuel" />
+				<TableColumn text="%table-view-header-gearbox" />
+				<TableColumn text="%table-view-header-licenseNumber" />
+				<TableColumn text="%table-view-header-model" />
+				<TableColumn text="%table-view-header-nextInspection" />
+				<TableColumn text="%table-view-header-parkingLot" />
+				<TableColumn text="%table-view-header-tires" />
+				<TableColumn text="%table-view-header-vin" />
+			</columns>
+		</TableView>
+	</center>
+	<top>
+		<MenuBar prefHeight="14.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="true" text="%menubar-view-file">
+					<items>
+						<MenuItem mnemonicParsing="false" text="%menubar-operation-close" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="true" text="%menubar-view-edit">
+					<items>
+						<MenuItem mnemonicParsing="false" text="%menubar-operation-delete" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="true" text="%menubar-view-help">
+					<items>
+						<MenuItem mnemonicParsing="false" text="%menubar-operation-about" />
+					</items>
+				</Menu>
+			</menus>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+		</MenuBar>
+	</top>
+	<bottom>
+		<BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<right>
+				<Button fx:id="editSelectedCarButton" mnemonicParsing="false" onAction="#handleEditButtonCllicked" text="%button-edit-label" textAlignment="CENTER" />
+			</right>
+			<center>
+				<Button fx:id="createNewCarButton" mnemonicParsing="false" onAction="#handleNewButtonCllicked" text="%button-new-label" textAlignment="CENTER" />
+			</center>
+			<left>
+				<Button fx:id="deleteSelectedCarButton" mnemonicParsing="false" onAction="#handleDeleteButtonCllicked" text="%button-delete-label" textAlignment="CENTER" />
+            </left>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+		</BorderPane>
+	</bottom>
 </BorderPane>
