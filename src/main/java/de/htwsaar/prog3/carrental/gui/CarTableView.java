@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author Lukas Raubuch
  */
-public class Main extends Application {
+public class CarTableView extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

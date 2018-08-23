@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane fx:controller="de.htwsaar.prog3.carrental.controller.CarTableViewController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <TableView prefHeight="767.0" prefWidth="639.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="carTableView" onMouseClicked="#handleTableViewClickedAction" prefHeight="400.0" prefWidth="487.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn text="%table-view-header-id" />
           <TableColumn text="%table-view-header-brand" />
@@ -32,11 +31,11 @@
       </TableView>
    </center>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="14.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="true" text="%menubar-view-file">
             <items>
-              <MenuItem mnemonicParsing="false" text="menubar-operation-close" />
+              <MenuItem mnemonicParsing="false" text="%menubar-operation-close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="true" text="%menubar-view-edit">
@@ -52,4 +51,13 @@
         </menus>
       </MenuBar>
    </top>
+   <bottom>
+      <FlowPane alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" fx:id="editSelectedCarButton" text="%button-edit-label" />
+            <Button mnemonicParsing="false" fx:id="createNewCarButton" text="%button-new-label" />
+            <Button mnemonicParsing="false" fx:id="deleteSelectedCarButton" text="%button-delete-label" />
+         </children>
+      </FlowPane>
+   </bottom>
 </BorderPane>
