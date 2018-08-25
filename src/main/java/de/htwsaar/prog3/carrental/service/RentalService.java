@@ -54,6 +54,11 @@ public class RentalService implements GenericService<Rental, Long> {
     }
 
     @Override
+    public void delete(Rental entity) {
+        deleteById(entity.getId());
+    }
+
+    @Override
     public void deleteById(Long id) {
         rentalDao.createEntityManager();
         rentalDao.beginTransaction();

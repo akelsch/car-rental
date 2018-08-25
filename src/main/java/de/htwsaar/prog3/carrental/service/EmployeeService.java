@@ -55,6 +55,11 @@ public class EmployeeService implements GenericService<Employee, Long> {
     }
 
     @Override
+    public void delete(Employee entity) {
+        deleteById(entity.getId());
+    }
+
+    @Override
     public void deleteById(Long id) {
         employeeDao.createEntityManager();
         employeeDao.beginTransaction();

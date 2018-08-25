@@ -31,7 +31,7 @@ class CarServiceTest {
         carService.persist(expectedCar);
 
         // Fetch it from the database
-        Car actualCar = carService.findById(1L);
+        Car actualCar = carService.findById(expectedCar.getId());
 
         // Assert that the two cars are identical
         assertThat(actualCar, is(equalTo(expectedCar)));
@@ -65,15 +65,40 @@ class CarServiceTest {
         carService.persist(expectedCar);
 
         // Update the persisted car
-        Car actualCar = carService.findById(1L);
+        Car actualCar = carService.findById(expectedCar.getId());
         actualCar.setColor("White");
         carService.update(actualCar);
 
         // Fetch it from the database
-        Car updatedCar = carService.findById(1L);
+        Car updatedCar = carService.findById(expectedCar.getId());
 
         // Assert that the new car got updated
         assertThat(actualCar, is(equalTo(updatedCar)));
+    }
+
+    @Test
+    void testDelete() {
+        // Persist two cars
+        Car car1 = createTestCar1();
+        carService.persist(car1);
+
+        Car car2 = createTestCar2();
+        carService.persist(car2);
+
+        // Fetch them from the database
+        List<Car> actualCars = carService.findAll();
+
+        // Assert that there are two cars in the database
+        assertThat(actualCars.size(), is(equalTo(2)));
+
+        // Delete one car
+        carService.delete(car1);
+
+        // Fetch all cars from the database again
+        actualCars = carService.findAll();
+
+        // Assert that only one car is left in the database
+        assertThat(actualCars.size(), is(equalTo(1)));
     }
 
     @Test
@@ -92,7 +117,7 @@ class CarServiceTest {
         assertThat(actualCars.size(), is(equalTo(2)));
 
         // Delete one car
-        carService.deleteById(1L);
+        carService.deleteById(car1.getId());
 
         // Fetch all cars from the database again
         actualCars = carService.findAll();

@@ -54,6 +54,11 @@ public class CustomerService implements GenericService<Customer, Long> {
     }
 
     @Override
+    public void delete(Customer entity) {
+        deleteById(entity.getId());
+    }
+
+    @Override
     public void deleteById(Long id) {
         customerDao.createEntityManager();
         customerDao.beginTransaction();
