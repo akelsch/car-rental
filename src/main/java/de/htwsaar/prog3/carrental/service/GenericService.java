@@ -49,7 +49,7 @@ public interface GenericService<T, ID extends Serializable> {
     void update(T entity);
 
     /**
-     * Deletes Updates a given entity.
+     * Deletes a given entity.
      *
      * @param entity entity instance
      * @see GenericDao#delete(Object)
