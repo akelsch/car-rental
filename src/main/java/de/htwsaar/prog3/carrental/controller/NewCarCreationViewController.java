@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
@@ -31,19 +32,19 @@ public class NewCarCreationViewController {
     private TextField colorTextField;
 
     @FXML
-    private TextField constructionYearTextField; // dropdown?
+    private TextField constructionYearTextField; // ChoiceBox?
 
     @FXML
     private TextField drivenDistanceTextField;
 
     @FXML
-    private TextField gearBoxTextField; // dropdown?
+    private ChoiceBox<String> gearBoxChoiceBox;
 
     @FXML
     private TextField horsePowerTextField;
 
     @FXML
-    private TextField fuelTextField; // dropdown?
+    private ChoiceBox<String> fuelChoiceBox;
 
     @FXML
     private TextField doorCountTextField;
@@ -103,5 +104,4 @@ public class NewCarCreationViewController {
     protected void handleApplyButtonClicked(ActionEvent event) {
       //TODO implement show Overview of the newly created car and confirmation 
     }
-
 }
