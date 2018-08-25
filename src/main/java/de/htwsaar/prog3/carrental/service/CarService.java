@@ -54,6 +54,11 @@ public class CarService implements GenericService<Car, Long> {
     }
 
     @Override
+    public void delete(Car entity) {
+        deleteById(entity.getId());
+    }
+
+    @Override
     public void deleteById(Long id) {
         carDao.createEntityManager();
         carDao.beginTransaction();

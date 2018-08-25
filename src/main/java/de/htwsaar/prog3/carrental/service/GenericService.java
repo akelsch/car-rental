@@ -33,7 +33,7 @@ public interface GenericService<T, ID extends Serializable> {
     T findById(ID id);
 
     /**
-     * Finds all entitie.
+     * Finds all entities.
      *
      * @return a list of found entity instances or a empty list if no entities exist
      * @see GenericDao#findAll()
@@ -47,6 +47,14 @@ public interface GenericService<T, ID extends Serializable> {
      * @see GenericDao#update(Object)
      */
     void update(T entity);
+
+    /**
+     * Deletes Updates a given entity.
+     *
+     * @param entity entity instance
+     * @see GenericDao#delete(Object)
+     */
+    void delete(T entity);
 
     /**
      * Deletes a single entity by its ID.
