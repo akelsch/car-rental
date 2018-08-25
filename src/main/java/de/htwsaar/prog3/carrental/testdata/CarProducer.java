@@ -13,7 +13,7 @@ import java.util.List;
 public class CarProducer {
     public static void main(String[] args){
         CarService carService = new CarService();
-        /*carService.persist(createCar(250,3,6000,570,"Nissan","Coupe","Blue","2017","Gasoline","Automatic","N ISM 0",
+        carService.persist(createCar(250,3,6000,570,"Nissan","Coupe","Blue","2017","Gasoline","Automatic","N ISM 0",
                 "GT-R","10-2019","2C","Summer Tires","1G2ZF57B584174326"));
         carService.persist(createCar(120,5,25000,303,"BMW","Sedan","Black","2016","Gasoline","Manual","HD GG 1234",
                 "335i","04-2020","2A","Summer Tires","1FTJX35G4RKA95915"));
@@ -42,7 +42,7 @@ public class CarProducer {
         carService.persist(createCar(205,5,8000,370,"Kia","Sedan","Red","2017","Gasoline","Automatic","SB ST 33",
                 "Stinger","06-2021","3B","Summer Tires","1FAHP2EW0CG105260"));
         carService.persist(createCar(250,3,20000,431,"BMW","Coupe","Blue","2015","Gasoline","Manual","SB JP 317",
-                "M4","02-2020","2F","Summer Tires","JTEGP21A050066614"));*/
+                "M4","02-2020","2F","Summer Tires","JTEGP21A050066614"));
         List<Car> list = carService.findAll();
         for (Car c: list){
             System.out.println(c);
