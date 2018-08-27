@@ -2,7 +2,6 @@ package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.dao.GenericDao;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,11 +9,11 @@ import java.util.List;
  * <p>
  * Besides using methods from the DAO layer, the Service layer also manages entity managers and transactions.
  *
- * @param <T>  the type of the entity
- * @param <ID> the type of the primary key
+ * @param <T> the type of the entity
  * @author Arthur Kelsch
+ * @see GenericDao
  */
-public interface GenericService<T, ID extends Serializable> {
+interface GenericService<T> {
     /**
      * Persists a given entity.
      *
@@ -28,9 +27,9 @@ public interface GenericService<T, ID extends Serializable> {
      *
      * @param id primary key
      * @return the found entity instance or null if the entity does not exist
-     * @see GenericDao#findById(Serializable)
+     * @see GenericDao#findById(Long)
      */
-    T findById(ID id);
+    T findById(Long id);
 
     /**
      * Finds all entities.
@@ -62,7 +61,7 @@ public interface GenericService<T, ID extends Serializable> {
      * @param id primary key
      * @see GenericDao#delete(Object)
      */
-    void deleteById(ID id);
+    void deleteById(Long id);
 
     /**
      * Deletes all entities.

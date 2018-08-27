@@ -1,6 +1,8 @@
 package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,12 @@ class CarServiceTest {
 
     @BeforeEach
     void setUp() {
-        this.carService = new CarService();
+        carService = new CarService();
+    }
+
+    @AfterEach
+    void tearDown() {
+        EntityManagerUtil.closeEntityManagerFactory();
     }
 
     @Test

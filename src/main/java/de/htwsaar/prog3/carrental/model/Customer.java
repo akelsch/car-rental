@@ -1,8 +1,10 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Customer model for Hibernate.
@@ -11,40 +13,37 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-@Data
-public class Customer {
-    public Customer() {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long id;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String surname;
+@Getter
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer extends BaseEntity {
+    @Column(name = "date_of_birth", nullable = false)
+    private String dateOfBirth;
 
     @Column(name = "driver_license_id", nullable = false, unique = true, length = 11)
     private String driverLicenseId;
+
+    @Column(name = "email_address", nullable = false)
+    private String emailAddress;
+
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "house_number", nullable = false)
+    private String houseNumber;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
 
     @Column(nullable = false)
     private String residence;
 
     @Column(nullable = false)
     private String street;
-
-    @Column(name = "house_number", nullable = false)
-    private String houseNumber;
-
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
-
-    @Column(name = "email_address", nullable = false)
-    private String emailAddress;
-
-    @Column(name = "date_of_birth", nullable = false)
-    private String dateOfBirth;
 }

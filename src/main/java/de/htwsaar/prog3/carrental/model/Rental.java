@@ -1,6 +1,6 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,15 +11,15 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-@Data
-public class Rental {
-    public Rental() {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long id;
+@Getter
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class Rental extends BaseEntity {
+    @Column(nullable = false)
+    private String begin;
 
     @ManyToOne
     @JoinColumn(name = "car_id")
@@ -34,14 +34,11 @@ public class Rental {
     private Employee employee;
 
     @Column(nullable = false)
-    private String begin;
-
-    @Column(nullable = false)
     private String end;
-
-    @Column
-    private String note;
 
     @Column(name = "extra_costs", nullable = false)
     private String extraCosts;
+
+    @Column
+    private String note;
 }

@@ -15,7 +15,7 @@
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:hsqldb:file:db/proddb;shutdown=true;hsqldb.write_delay=false"/>
+                      value="jdbc:hsqldb:file:db/production;shutdown=true;hsqldb.write_delay=false"/>
             <property name="javax.persistence.jdbc.user" value="SA"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="hibernate.show_sql" value="true"/>

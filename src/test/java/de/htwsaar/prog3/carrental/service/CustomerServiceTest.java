@@ -24,11 +24,11 @@ class CustomerServiceTest {
         expectedCustomer.setDriverLicenseId("31415926535");
         expectedCustomer.setEmailAddress("wbraun@htwsaar.de");
         expectedCustomer.setHouseNumber("141");
-        expectedCustomer.setName("Braun");
+        expectedCustomer.setFirstName("Wolfgang");
         expectedCustomer.setPhoneNumber("+492718281828");
         expectedCustomer.setResidence("Saarbrücken");
         expectedCustomer.setStreet("Otto-Hahn Straße");
-        expectedCustomer.setSurname("Wolfgang");
+        expectedCustomer.setLastName("Braun");
 
         customerService.persist(expectedCustomer);
     }
