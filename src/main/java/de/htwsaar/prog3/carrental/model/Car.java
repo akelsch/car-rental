@@ -13,25 +13,10 @@ import javax.persistence.*;
 @Table
 @Data
 public class Car {
-    public Car() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-
-    @Column(name = "daily_rate", nullable = false)
-    private int dailyRate;
-
-    @Column(name = "door_count", nullable = false)
-    private int doorCount;
-
-    @Column(name = "driven_distance", nullable = false)
-    private int drivenDistance;
-
-    @Column(nullable = false)
-    private int horsepower;
 
     @Column(nullable = false)
     private String brand;
@@ -45,8 +30,17 @@ public class Car {
     @Column(name = "construction_year", nullable = false)
     private String constructionYear;
 
+    @Column(name = "daily_rate", nullable = false)
+    private int dailyRate;
+
     @Column
     private String defects;
+
+    @Column(name = "door_count", nullable = false)
+    private int doorCount;
+
+    @Column(name = "driven_distance", nullable = false)
+    private int drivenDistance;
 
     @Column
     private String equipment;
@@ -56,6 +50,9 @@ public class Car {
 
     @Column(nullable = false)
     private String gearbox;
+
+    @Column(nullable = false)
+    private int horsepower;
 
     @Column(name = "license_number", nullable = false, unique = true)
     private String licenseNumber;

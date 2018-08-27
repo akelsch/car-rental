@@ -13,9 +13,6 @@ import javax.persistence.*;
 @Table
 @Data
 public class Employee {
-    public Employee() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -25,8 +22,8 @@ public class Employee {
     private String name;
 
     @Column(nullable = false)
-    private String surname;
+    private String position;
 
     @Column(nullable = false)
-    private String position;
+    private String surname;
 }

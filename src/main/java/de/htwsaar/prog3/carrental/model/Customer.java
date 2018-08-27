@@ -13,22 +13,28 @@ import javax.persistence.*;
 @Table
 @Data
 public class Customer {
-    public Customer() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String surname;
+    @Column(name = "date_of_birth", nullable = false)
+    private String dateOfBirth;
 
     @Column(name = "driver_license_id", nullable = false, unique = true, length = 11)
     private String driverLicenseId;
+
+    @Column(name = "email_address", nullable = false)
+    private String emailAddress;
+
+    @Column(name = "house_number", nullable = false)
+    private String houseNumber;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
 
     @Column(nullable = false)
     private String residence;
@@ -36,15 +42,6 @@ public class Customer {
     @Column(nullable = false)
     private String street;
 
-    @Column(name = "house_number", nullable = false)
-    private String houseNumber;
-
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
-
-    @Column(name = "email_address", nullable = false)
-    private String emailAddress;
-
-    @Column(name = "date_of_birth", nullable = false)
-    private String dateOfBirth;
+    @Column(nullable = false)
+    private String surname;
 }
