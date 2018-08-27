@@ -1,6 +1,5 @@
 package de.htwsaar.prog3.carrental.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,13 +7,10 @@ import java.util.List;
  * <p>
  * Defines basic CRUD methods as well as methods for handling entity managers and transactions.
  *
- * @param <T>  the type of the entity
- * @param <ID> the type of the primary key
+ * @param <T> the type of the entity
  * @author Arthur Kelsch
- * @see <a href="https://bit.ly/2vlJaS0">EntityManager</a>
- * @see <a href="https://bit.ly/2vnoGs2">CrudRepository</a>
  */
-public interface GenericDao<T, ID extends Serializable> {
+public interface GenericDao<T> {
     /**
      * Persists a given entity (Create).
      *
@@ -28,7 +24,7 @@ public interface GenericDao<T, ID extends Serializable> {
      * @param id primary key
      * @return the found entity instance or null if the entity does not exist
      */
-    T findById(ID id);
+    T findById(Long id);
 
     /**
      * Finds all entities (Read).
