@@ -1,9 +1,6 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +17,8 @@ import javax.persistence.Table;
 @Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Car extends BaseEntity {
     @Column(nullable = false)
     private String brand;

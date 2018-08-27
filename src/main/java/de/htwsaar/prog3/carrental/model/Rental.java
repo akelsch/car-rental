@@ -1,9 +1,6 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -18,6 +15,8 @@ import javax.persistence.*;
 @Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Rental extends BaseEntity {
     @Column(nullable = false)
     private String begin;
