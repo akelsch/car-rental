@@ -1,10 +1,11 @@
 package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.dao.GenericDao;
+import de.htwsaar.prog3.carrental.model.BaseEntity;
 
 import java.util.List;
 
-public class GenericServiceImpl<T> implements GenericService<T> {
+public class GenericServiceImpl<T extends BaseEntity> implements GenericService<T> {
     GenericDao<T> dao;
 
     @Override
@@ -45,8 +46,7 @@ public class GenericServiceImpl<T> implements GenericService<T> {
 
     @Override
     public void delete(T entity) {
-        // TODO
-        // deleteById(entity.getId());
+        deleteById(entity.getId());
     }
 
     @Override

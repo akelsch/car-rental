@@ -1,8 +1,13 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Car model for Hibernate.
@@ -11,13 +16,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-@Data
-public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long id;
-
+@Getter
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Car extends BaseEntity {
     @Column(nullable = false)
     private String brand;
 
