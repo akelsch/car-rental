@@ -49,17 +49,17 @@ class RentalServiceTest {
         customer.setDriverLicenseId("31415926535");
         customer.setEmailAddress("wbraun@htwsaar.de");
         customer.setHouseNumber("141");
-        customer.setName("Braun");
+        customer.setFirstName("Wolfgang");
         customer.setPhoneNumber("+492718281828");
         customer.setResidence("Saarbrücken");
         customer.setStreet("Otto-Hahn Straße");
-        customer.setSurname("Wolfgang");
+        customer.setLastName("Braun");
         customerService.persist(customer);
 
         EmployeeService employeeService = new EmployeeService();
         Employee employee = new Employee();
-        employee.setName("Elon");
-        employee.setSurname("Musk");
+        employee.setFirstName("Elon");
+        employee.setLastName("Musk");
         employee.setPosition("CEO");
         employeeService.persist(employee);
 

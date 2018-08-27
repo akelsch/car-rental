@@ -18,12 +18,12 @@ public class Employee {
     @Column
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
     @Column(nullable = false)
     private String position;
-
-    @Column(nullable = false)
-    private String surname;
 }

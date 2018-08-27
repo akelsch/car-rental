@@ -27,11 +27,14 @@ public class Customer {
     @Column(name = "email_address", nullable = false)
     private String emailAddress;
 
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
     @Column(name = "house_number", nullable = false)
     private String houseNumber;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
@@ -41,7 +44,4 @@ public class Customer {
 
     @Column(nullable = false)
     private String street;
-
-    @Column(nullable = false)
-    private String surname;
 }

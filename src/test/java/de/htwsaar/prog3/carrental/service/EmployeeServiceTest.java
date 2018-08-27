@@ -20,8 +20,8 @@ class EmployeeServiceTest {
         this.employeeService = new EmployeeService();
 
         this.expectedEmployee = new Employee();
-        expectedEmployee.setName("Elon");
-        expectedEmployee.setSurname("Musk");
+        expectedEmployee.setFirstName("Elon");
+        expectedEmployee.setLastName("Musk");
         expectedEmployee.setPosition("CEO");
 
         employeeService.persist(expectedEmployee);
