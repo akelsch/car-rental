@@ -5,13 +5,13 @@ import java.util.Optional;
 import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
+import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 
 /**
  * This is the Controller for the Main View of the Carrental Application
@@ -21,7 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 public class CarTableViewController {
 
 	private CarService service;
-	
+
 	@FXML
 	private TableView<Car> carTableView;
 
@@ -53,7 +53,7 @@ public class CarTableViewController {
 	protected void handleEditButtonCllicked(ActionEvent event) {
 		// TODO: Implement
 	}
-	
+
 	@FXML
 	/**
 	 * Handle Clicking the New Button
@@ -61,7 +61,7 @@ public class CarTableViewController {
 	 * @param event
 	 */
 	protected void handleNewButtonCllicked(ActionEvent event) {
-		// TODO: Implement 
+		// TODO: Implement
 	}
 
 	@FXML
@@ -72,13 +72,17 @@ public class CarTableViewController {
 	 */
 	protected void handleDeleteButtonCllicked(ActionEvent event) {
 		Car toDelete = carTableView.getSelectionModel().getSelectedItem();
-		Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-		confirmationDialog.setTitle(I18nComponentsUtil.getDeleteConfirmationDialogTitleString());
-		confirmationDialog.setHeaderText(I18nComponentsUtil.getDeleteConfirmationDialogHeaderString());
+		if (null == toDelete) {
+			Alert informationDialog = GUIDialogUtil
+					.createInformationDialog(I18nComponentsUtil.getInformationDialogHeaderNoCarSelected());
+			informationDialog.show();
+			return;
+		}
+		Alert confirmationDialog = GUIDialogUtil.createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
 		if (result.get() == ButtonType.OK) {
 			service = new CarService();
-			service.deleteById(toDelete.getId());
+			service.delete(toDelete);
 		}
 	}
 }
