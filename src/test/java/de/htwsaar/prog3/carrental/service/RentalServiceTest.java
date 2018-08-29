@@ -1,6 +1,5 @@
 package de.htwsaar.prog3.carrental.service;
 
-
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
@@ -8,7 +7,6 @@ import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -60,7 +58,7 @@ class RentalServiceTest {
 
         assertThat(actualRental, is(equalTo(expectedRental)));
     }
-    
+
     @Test
     void testFindAll() {
         Rental rental1 = createTestRental1();
@@ -151,9 +149,9 @@ class RentalServiceTest {
         assertThat(actualRentals.size(), is(equalTo(0)));
     }
 
-    private static Car createCar(){
-        return new Car("Nissan", "Coupe", "Blue", "2017", 250, null, 3, 6000, null, "Gasoline", "Automatic", 570, "N ISM 0",
-                "GT-R", "10-2019", "2C", "Summer Tires", "1G2ZF57B584174326");
+    private static Car createCar() {
+        return new Car("Nissan", "Coupe", "Blue", "2017", 250, null, 3, 6000, null, "Gasoline", "Automatic", 570,
+                "N ISM 0", "GT-R", "10-2019", "2C", "Summer Tires", "1G2ZF57B584174326");
     }
 
     private static Customer createCustomer() {
@@ -166,10 +164,10 @@ class RentalServiceTest {
     }
 
     private static Rental createTestRental1() {
-        return new Rental("01.01.1970",rentedCar,customer,employee,"19.01.2038","42",null);
+        return new Rental("01.01.1970", rentedCar, customer, employee, "19.01.2038", "42", null);
     }
 
     private static Rental createTestRental2() {
-        return new Rental("05.06.2010",rentedCar,customer,employee,"14.10.2011","42",null);
+        return new Rental("05.06.2010", rentedCar, customer, employee, "14.10.2011", "42", null);
     }
 }
