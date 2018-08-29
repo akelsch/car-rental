@@ -10,24 +10,24 @@
 	<center>
 		<TableView fx:id="carTableView" onMouseClicked="#handleTableViewClickedAction" prefHeight="400.0" prefWidth="487.0" BorderPane.alignment="CENTER">
 			<columns>
-				<TableColumn text="%table-view-header-id" />
-				<TableColumn text="%table-view-header-brand" />
-				<TableColumn text="%table-view-header-horsepower" />
-				<TableColumn text="%table-view-header-dailyRate" />
-				<TableColumn text="%table-view-header-doorCount" />
-				<TableColumn text="%table-view-header-drivenDistance" />
-				<TableColumn text="%table-view-header-category" />
-				<TableColumn text="%table-view-header-color" />
-				<TableColumn text="%table-view-header-constructionYear" />
-				<TableColumn text="%table-view-header-defects" />
-				<TableColumn text="%table-view-header-fuel" />
-				<TableColumn text="%table-view-header-gearbox" />
-				<TableColumn text="%table-view-header-licenseNumber" />
-				<TableColumn text="%table-view-header-model" />
-				<TableColumn text="%table-view-header-nextInspection" />
-				<TableColumn text="%table-view-header-parkingLot" />
-				<TableColumn text="%table-view-header-tires" />
-				<TableColumn text="%table-view-header-vin" />
+				<TableColumn fx:id="id" text="%table-view-header-id" />
+				<TableColumn fx:id="brand" text="%table-view-header-brand" />
+				<TableColumn fx:id="horsepower" text="%table-view-header-horsepower" />
+				<TableColumn fx:id="dailyRate" text="%table-view-header-dailyRate" />
+				<TableColumn fx:id="doorCount" text="%table-view-header-doorCount" />
+				<TableColumn fx:id="drivenDistance" text="%table-view-header-drivenDistance" />
+				<TableColumn fx:id="category" text="%table-view-header-category" />
+				<TableColumn fx:id="color" text="%table-view-header-color" />
+				<TableColumn fx:id="constructionYear" text="%table-view-header-constructionYear" />
+				<TableColumn fx:id="defects" text="%table-view-header-defects" />
+				<TableColumn fx:id="fuel" text="%table-view-header-fuel" />
+				<TableColumn fx:id="gearbox" text="%table-view-header-gearbox" />
+				<TableColumn fx:id="licenseNumber" text="%table-view-header-licenseNumber" />
+				<TableColumn fx:id="model" text="%table-view-header-model" />
+				<TableColumn fx:id="nextInspection" text="%table-view-header-nextInspection" />
+				<TableColumn fx:id="parkingLot" text="%table-view-header-parkingLot" />
+				<TableColumn fx:id="tires" text="%table-view-header-tires" />
+				<TableColumn fx:id="vin" text="%table-view-header-vin" />
 			</columns>
 		</TableView>
 	</center>
