@@ -20,11 +20,10 @@ import static org.hamcrest.core.IsEqual.equalTo;
  */
 class EmployeeServiceTest {
     private EmployeeService employeeService;
-    private Employee expectedEmployee;
 
     @BeforeEach
     void setUp() {
-        this.employeeService = new EmployeeService();
+        employeeService = new EmployeeService();
     }
 
     @AfterEach

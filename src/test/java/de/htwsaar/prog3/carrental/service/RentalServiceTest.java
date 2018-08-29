@@ -41,7 +41,7 @@ class RentalServiceTest {
         employee = createEmployee();
         employeeService.persist(employee);
 
-        this.rentalService = new RentalService();
+        rentalService = new RentalService();
     }
 
     @AfterEach

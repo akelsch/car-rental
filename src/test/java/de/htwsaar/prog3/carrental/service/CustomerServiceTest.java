@@ -23,7 +23,7 @@ class CustomerServiceTest {
 
     @BeforeEach
     void setUp() {
-        this.customerService = new CustomerService();
+        customerService = new CustomerService();
     }
 
     @AfterEach
