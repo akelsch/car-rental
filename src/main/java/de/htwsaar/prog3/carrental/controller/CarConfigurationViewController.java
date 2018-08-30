@@ -1,26 +1,22 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * This is the Controller for the "Car Configuration" of the Carrental Application
- * 
- * @author Jens Thewes
  *
+ * @author Jens Thewes
  */
 public class CarConfigurationViewController implements Initializable {
 
@@ -86,11 +82,9 @@ public class CarConfigurationViewController implements Initializable {
     @FXML
     private Button applyButton;
 
-
-
     /**
      * Initialize all content fields with the current car configuration
-     * 
+     *
      * @param location
      * @param resources
      */
@@ -118,7 +112,7 @@ public class CarConfigurationViewController implements Initializable {
 
     /**
      * Handle clicking the Cancel Button
-     * 
+     *
      * @param event
      */
     @FXML
@@ -136,7 +130,7 @@ public class CarConfigurationViewController implements Initializable {
 
     /**
      * Handle clicking the Apply Button
-     * 
+     *
      * @param event
      */
     @FXML

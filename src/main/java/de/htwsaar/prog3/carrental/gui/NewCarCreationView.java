@@ -11,15 +11,14 @@ import javafx.stage.Stage;
 
 /**
  * Entry Point of the New Car Creation Dialog.
- * 
- * @author Jens Thewes
  *
+ * @author Jens Thewes
  */
 public class NewCarCreationView {
 
     /**
      * start the New Car Creation Dialog in a modal Window
-     * 
+     *
      * @param parentStage
      * @throws Exception
      */

@@ -27,7 +27,7 @@ public class I18nStringsUtil {
 
     /**
      * Returns the internationalized String of the key defined in STAGE_TITLE.
-     * 
+     *
      * @return the internationalized String
      */
     public static String getCarTableViewURL() {
@@ -36,7 +36,7 @@ public class I18nStringsUtil {
 
     /**
      * Returns the internationalized String of the key
-     * 
+     *
      * @return the internationalized String
      */
     public static String getNewCarCreationViewURL() {
@@ -45,7 +45,7 @@ public class I18nStringsUtil {
 
     /**
      * Returns the internationalized String of the key
-     * 
+     *
      * @return the internationalized String
      */
     public static String getCarConfigurationViewURL() {
