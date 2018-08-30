@@ -82,10 +82,7 @@ class RentalServiceTest {
         Rental expectedRental = createTestRental1();
         rentalService.persist(expectedRental);
 
-        expectedRental.setExtraCosts("24");
-
         Rental actualRental = rentalService.findById(expectedRental.getId());
-        actualRental.setExtraCosts("24");
         rentalService.update(actualRental);
 
         actualRental = rentalService.findById(expectedRental.getId());
@@ -157,7 +154,6 @@ class RentalServiceTest {
         rental.setCustomer(customer);
         rental.setEmployee(employee);
         rental.setEnd("19.01.2038");
-        rental.setExtraCosts("42");
 
         return rental;
     }
@@ -169,7 +165,6 @@ class RentalServiceTest {
         rental.setCustomer(customer);
         rental.setEmployee(employee);
         rental.setEnd("14.10.2011");
-        rental.setExtraCosts("42");
 
         return rental;
     }

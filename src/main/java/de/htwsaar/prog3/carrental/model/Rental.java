@@ -36,8 +36,8 @@ public class Rental extends BaseEntity {
     @Column(nullable = false)
     private String end;
 
-    @Column(name = "extra_costs", nullable = false)
-    private String extraCosts;
+    @Column(name = "extra_costs")
+    private int extraCosts;
 
     @Column
     private String note;
