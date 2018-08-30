@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.collections.*?>
+
+<?import java.lang.*?>
+<?import java.util.HashMap ?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.prog3.carrental.controller.NewCarCreationViewController">
+	<top>
+		<MenuBar prefHeight="14.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="true" text="Spaceholder">
+				</Menu>
+			</menus>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+			<BorderPane.margin>
+				<Insets top="5.0" />
+			</BorderPane.margin>
+		</MenuBar>
+	</top>
+	<center>
+		<BorderPane prefHeight="1000.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<center>
+				<GridPane alignment="center" hgap="10" vgap="10">
+					<Label text="%car-brand-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+					<TextField fx:id="brandTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+					<Label text="%car-model-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+					<TextField fx:id="modelTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+					<Label text="%car-category-label" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+					<TextField fx:id="categoryTextField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+					<Label text="%car-color-label" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+					<TextField fx:id="colorTextField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+					<Label text="%car-constructionYear-label" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+					<TextField fx:id="constructionYearTextField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+					<Label text="%car-drivenDistance-label" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+					<TextField fx:id="drivenDistanceTextField" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+
+					<Label text="%car-gearBox-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+					<fx:define>
+						<HashMap fx:id="gearboxBundle" manual="%car-gearBox-manual" semiautomatic="%car-gearBox-semiautomatic" automatic="%car-gearBox-automatic" />
+					</fx:define>
+					<ChoiceBox fx:id="gearBoxChoiceBox" GridPane.columnIndex="0" GridPane.rowIndex="3">
+						<items>
+							<FXCollections fx:factory="observableArrayList">
+								<fx:reference source="gearboxBundle.manual" />
+								<fx:reference source="gearboxBundle.semiautomatic" />
+								<fx:reference source="gearboxBundle.automatic" />
+							</FXCollections>
+						</items>
+					</ChoiceBox>
+					<Label text="%car-horsePower-label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+					<TextField fx:id="horsePowerTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+					<Label text="%car-fuel-label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+					<fx:define>
+						<HashMap fx:id="fuelBundle" petrol="%car-fuel-petrol" diesel="%car-fuel-diesel" electric="%car-fuel-electric" />
+					</fx:define>
+					<ChoiceBox fx:id="fuelChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="3">
+						<items>
+							<FXCollections fx:factory="observableArrayList">
+								<fx:reference source="fuelBundle.petrol" />
+								<fx:reference source="fuelBundle.diesel" />
+								<fx:reference source="fuelBundle.electric" />
+							</FXCollections>
+						</items>
+					</ChoiceBox>
+					<Label text="%car-doorCount-label" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+					<TextField fx:id="doorCountTextField" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+					<Label text="%car-tires-label" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+					<TextField fx:id="tiresTextField" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+					<Label text="%car-nextInspection-label" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+					<TextField fx:id="nextInspectionTextField" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+
+					<Label text="%car-vin-label" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+					<TextField fx:id="vinTextField" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+					<Label text="%car-equipment-label" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+					<TextField fx:id="equipmentTextField" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="6" />
+					<Label text="%car-defects-label" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+					<TextField fx:id="defectsTextField" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="6" />
+
+					<Label text="%car-licenceNumber-label" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+					<TextField fx:id="licenceNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+					<Label text="%car-parkingLot-label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+					<TextField fx:id="parkingLotTextField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+					<Label text="%car-dailyRate-label" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+					<TextField fx:id="dailyRateTextField" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+					<padding>
+						<Insets top="25" right="25" bottom="25" left="25" />
+					</padding>
+				</GridPane>
+			</center>
+		</BorderPane>
+	</center>
+	<bottom>
+		<BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<right>
+				<GridPane alignment="center" hgap="10" vgap="10">
+					<Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%car-cancel-button" textAlignment="CENTER" GridPane.columnIndex="0"
+						GridPane.rowIndex="0" />
+					<Button fx:id="applyButton" mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%car-apply-button" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+				</GridPane>
+			</right>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+			<BorderPane.margin>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</BorderPane.margin>
+		</BorderPane>
+	</bottom>
+</BorderPane>
