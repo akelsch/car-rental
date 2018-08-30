@@ -155,8 +155,8 @@ class RentalServiceTest {
     }
 
     private static Customer createCustomer() {
-        return new Customer("01.01.1970", "31415926535", "wbraun@htwsaar.de", "Wolfgang", "141",
-                "4077722104D580209241090826", "Braun", "+492718281828", "Saarbrücken", "Otto-Hahn Straße");
+        return new Customer("Saarbrücken", "01.01.1970", "31415926535", "wbraun@htwsaar.de", "Wolfgang", "141",
+                "4077722104D580209241090826", "Braun", "+492718281828", "Otto-Hahn Straße", 66111);
     }
 
     private static Employee createEmployee() {

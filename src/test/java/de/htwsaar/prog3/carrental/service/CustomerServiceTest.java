@@ -132,12 +132,12 @@ class CustomerServiceTest {
     }
 
     private static Customer createTestCustomer1() {
-        return new Customer("01.01.1970", "31415926535", "wbraun@htwsaar.de", "Wolfgang", "141",
-                "4077722104D580209241090826", "Braun", "+492718281828", "Saarbrücken", "Otto-Hahn Straße");
+        return new Customer("Saarbrücken", "01.01.1970", "31415926535", "wbraun@htwsaar.de", "Wolfgang", "141",
+                "4077722104D580209241090826", "Braun", "+492718281828", "Otto-Hahn Straße", 66111);
     }
 
     private static Customer createTestCustomer2() {
-        return new Customer("24.02.1955", "14142135623", "sjobs@mac.os", "Steve", "42",
-                "593559443", "Jobs", "+4918686302002", "Saarbrücken", "Otto-Hahn Straße");
+        return new Customer("Saarbrücken", "24.02.1955", "14142135623", "sjobs@mac.os", "Steve", "42",
+                "593559443", "Jobs", "+4918686302002", "Otto-Hahn Straße", 66132);
     }
 }

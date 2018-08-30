@@ -20,6 +20,9 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer extends BaseEntity {
+    @Column(nullable = false)
+    private String city;
+
     @Column(name = "date_of_birth", nullable = false)
     private String dateOfBirth;
 
@@ -45,8 +48,8 @@ public class Customer extends BaseEntity {
     private String phoneNumber;
 
     @Column(nullable = false)
-    private String residence;
-
-    @Column(nullable = false)
     private String street;
+
+    @Column(name = "zip_code", nullable = false)
+    private int zipCode;
 }
