@@ -35,6 +35,9 @@ public class Customer extends BaseEntity {
     @Column(name = "house_number", nullable = false)
     private String houseNumber;
 
+    @Column(name = "id_number", nullable = false)
+    private String idNumber;
+
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
