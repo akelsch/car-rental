@@ -131,13 +131,37 @@ class CustomerServiceTest {
         assertThat(actualCustomers.size(), is(equalTo(0)));
     }
 
-    private static Customer createTestCustomer1() {
-        return new Customer("Saarbrücken", "01.01.1970", "31415926535", "wbraun@htwsaar.de", "Wolfgang", "141",
-                "4077722104D580209241090826", "Braun", "+492718281828", "Otto-Hahn Straße", 66111);
+    static Customer createTestCustomer1() {
+        Customer customer = new Customer();
+        customer.setCity("Saarbrücken");
+        customer.setDateOfBirth("01.01.1970");
+        customer.setDriverLicenseId("31415926535");
+        customer.setEmailAddress("wbraun@htwsaar.de");
+        customer.setFirstName("Wolfgang");
+        customer.setHouseNumber("141");
+        customer.setIdNumber("4077722104D580209241090826");
+        customer.setLastName("Braun");
+        customer.setPhoneNumber("+492718281828");
+        customer.setStreet("Otto-Hahn Straße");
+        customer.setZipCode(66111);
+
+        return customer;
     }
 
     private static Customer createTestCustomer2() {
-        return new Customer("Saarbrücken", "24.02.1955", "14142135623", "sjobs@mac.os", "Steve", "42",
-                "593559443", "Jobs", "+4918686302002", "Otto-Hahn Straße", 66132);
+        Customer customer = new Customer();
+        customer.setCity("Saarbrücken");
+        customer.setDateOfBirth("24.02.1955");
+        customer.setDriverLicenseId("14142135623");
+        customer.setEmailAddress("sjobs@mac.os");
+        customer.setFirstName("Steve");
+        customer.setHouseNumber("42");
+        customer.setIdNumber("593559443");
+        customer.setLastName("Jobs");
+        customer.setPhoneNumber("+4918686302002");
+        customer.setStreet("Otto-Hahn Straße");
+        customer.setZipCode(66132);
+
+        return customer;
     }
 }

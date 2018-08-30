@@ -158,18 +158,18 @@ class CarServiceTest {
         assertThat(actualCars.size(), is(equalTo(0)));
     }
 
-    private static Car createTestCar1() {
+    static Car createTestCar1() {
         Car car = new Car();
-        car.setDailyRate(120);
-        car.setDoorCount(5);
-        car.setDrivenDistance(25000);
-        car.setHorsepower(303);
         car.setBrand("BMW");
         car.setCategory("Sedan");
         car.setColor("Black");
         car.setConstructionYear("2016");
+        car.setDailyRate(120);
+        car.setDoorCount(5);
+        car.setDrivenDistance(25000);
         car.setFuel("Gasoline");
         car.setGearbox("Manual");
+        car.setHorsepower(303);
         car.setLicenseNumber("HD GG 1234");
         car.setModel("335i");
         car.setNextInspection("04-2020");
@@ -182,16 +182,16 @@ class CarServiceTest {
 
     private static Car createTestCar2() {
         Car car = new Car();
-        car.setDailyRate(150);
-        car.setDoorCount(3);
-        car.setDrivenDistance(10000);
-        car.setHorsepower(333);
         car.setBrand("Mercedes");
         car.setCategory("Coupe");
         car.setColor("Grey");
         car.setConstructionYear("2017");
+        car.setDailyRate(150);
+        car.setDoorCount(3);
+        car.setDrivenDistance(10000);
         car.setFuel("Gasoline");
         car.setGearbox("Automatic");
+        car.setHorsepower(333);
         car.setLicenseNumber("SB AB 2018");
         car.setModel("C 400");
         car.setNextInspection("08-2021");
