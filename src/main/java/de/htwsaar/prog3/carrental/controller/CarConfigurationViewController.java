@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.service.CarService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,8 +23,8 @@ import javafx.scene.control.TextField;
  *
  */
 public class CarConfigurationViewController implements Initializable {
-    
-    private Car car; //TODO get car
+
+    private Car car; // TODO get car
 
     @FXML
     private TextField brandTextField;
@@ -140,6 +141,27 @@ public class CarConfigurationViewController implements Initializable {
      */
     @FXML
     protected void handleApplyButtonClicked(ActionEvent event) {
-        // TODO implement show Overview of the edited car and confirmation
+        // TODO show details + confirmation + valid data check
+        // TODO only update data that has changed?
+        CarService service = new CarService();
+        car.setBrand(brandTextField.getText());
+        car.setModel(modelTextField.getText());
+        car.setCategory(categoryTextField.getText());
+        car.setColor(colorTextField.getText());
+        car.setConstructionYear(constructionYearTextField.getText());
+        car.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
+        car.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
+        car.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
+        car.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
+        car.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
+        car.setTires(tiresTextField.getText());
+        car.setNextInspection(nextInspectionTextField.getText());
+        car.setVin(vinTextField.getText());
+        car.setEquipment(equipmentTextField.getText());
+        car.setDefects(defectsTextField.getText());
+        car.setLicenseNumber(licenceNumberTextField.getText());
+        car.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
+        car.setParkingLot(parkingLotTextField.getText());
+        service.update(car);
     }
 }
