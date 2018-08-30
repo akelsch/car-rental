@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
- * Generic Data Access Object (DAO) layer implementation.
+ * {@link GenericDao} implementation.
  *
  * @param <T> the type of the entity
  * @author Arthur Kelsch, Julian Quint

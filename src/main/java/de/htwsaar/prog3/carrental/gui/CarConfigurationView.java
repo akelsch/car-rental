@@ -10,14 +10,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Entry Point of the Car Configuration Dialog
+ * Entry Point of the Car Configuration Dialog.
  *
  * @author Jens Thewes
  */
 public class CarConfigurationView {
 
     /**
-     * start the Car Configuration View Dialog in a modal Window in order to edit a existing car
+     * Start the Car Configuration View Dialog in a modal Window in order to edit a existing car.
      *
      * @param parentStage
      * @throws Exception

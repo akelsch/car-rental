@@ -21,14 +21,14 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * This is the Controller for the Main View of the Carrental Application
+ * This is the Controller for the Main View of the Carrental Application.
  *
  * @author Lukas Raubuch
  * @see CarTableView
  */
 public class CarTableViewController implements Initializable {
 
-    private static final Logger log = LoggerFactory.getLogger(CarTableViewController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CarTableViewController.class);
 
     private CarService service = new CarService();
     private ObservableList<Car> cars = FXCollections.observableArrayList(service.findAll());
@@ -97,43 +97,43 @@ public class CarTableViewController implements Initializable {
     @FXML
     private Button buttonRemoveCurrentFilter;
 
-    @FXML
     /**
-     * Handles Clicking on the TableView
+     * Handles Clicking on the TableView.
      *
      * @param event
      */
+    @FXML
     protected void handleTableViewClickedAction(ActionEvent event) {
         // TODO: Implement
     }
 
-    @FXML
     /**
-     * Handle Clicking the Edit Button
+     * Handle Clicking the Edit Button.
      *
      * @param event
      */
-    protected void handleEditButtonCllicked(ActionEvent event) {
-        // TODO: Implement
-    }
-
     @FXML
-    /**
-     * Handle Clicking the New Button
-     *
-     * @param event
-     */
-    protected void handleNewButtonCllicked(ActionEvent event) {
+    protected void handleEditButtonClicked(ActionEvent event) {
         // TODO: Implement
     }
 
     /**
-     * Handle Clicking the Delete Button
+     * Handle Clicking the New Button.
      *
      * @param event
      */
     @FXML
-    protected void handleDeleteButtonCllicked(ActionEvent event) {
+    protected void handleNewButtonClicked(ActionEvent event) {
+        // TODO: Implement
+    }
+
+    /**
+     * Handle Clicking the Delete Button.
+     *
+     * @param event
+     */
+    @FXML
+    protected void handleDeleteButtonClicked(ActionEvent event) {
         Car toDelete = carTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
             Alert informationDialog = GUIDialogUtil
@@ -145,19 +145,19 @@ public class CarTableViewController implements Initializable {
                 .createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
-            log.info("OK Button pressed. Deleting Car...");
+            logger.info("OK Button pressed. Deleting Car...");
             service.delete(toDelete);
             cars.remove(toDelete);
         }
     }
 
     /**
-     * Initialize the CarTableView with data from the database
+     * Initialize the CarTableView with data from the database.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Associate data with Columns
-        log.info("Associating TableColumns with model data");
+        logger.info("Associating TableColumns with model data");
         id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
         category.setCellValueFactory(new PropertyValueFactory<>("Category"));
@@ -180,7 +180,7 @@ public class CarTableViewController implements Initializable {
         carTableView.setItems(cars);
 
         // Initialize searchComboBox
-        log.info("Initializing Search Comobox");
+        logger.info("Initializing Search Combobox");
         ObservableList<String> searchComboBoxFieldValues = FXCollections.observableArrayList();
         searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxId());
         searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxBrand());
@@ -221,9 +221,9 @@ public class CarTableViewController implements Initializable {
      */
     @FXML
     public void closeApplication() {
-        log.info("Closing EntityManagerFactory");
+        logger.info("Closing EntityManagerFactory");
         EntityManagerUtil.closeEntityManagerFactory();
-        log.info("Shutting Down");
+        logger.info("Shutting Down");
         System.exit(0);
     }
 }

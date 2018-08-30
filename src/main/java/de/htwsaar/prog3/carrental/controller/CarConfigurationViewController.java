@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * This is the Controller for the "Car Configuration" of the Carrental Application
+ * This is the Controller for the "Car Configuration" of the Carrental Application.
  *
  * @author Jens Thewes
  */
@@ -83,7 +83,7 @@ public class CarConfigurationViewController implements Initializable {
     private Button applyButton;
 
     /**
-     * Initialize all content fields with the current car configuration
+     * Initialize all content fields with the current car configuration.
      *
      * @param location
      * @param resources
@@ -111,7 +111,7 @@ public class CarConfigurationViewController implements Initializable {
     }
 
     /**
-     * Handle clicking the Cancel Button
+     * Handle clicking the Cancel Button.
      *
      * @param event
      */
@@ -129,7 +129,7 @@ public class CarConfigurationViewController implements Initializable {
     }
 
     /**
-     * Handle clicking the Apply Button
+     * Handle clicking the Apply Button.
      *
      * @param event
      */

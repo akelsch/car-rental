@@ -11,7 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import java.util.Optional;
 
 /**
- * This is the Controller for the "New Car Creation View" of the Carrental Application
+ * This is the Controller for the "New Car Creation View" of the Carrental Application.
  *
  * @author Jens Thewes
  */
@@ -78,7 +78,7 @@ public class NewCarCreationViewController {
     private Button applyButton;
 
     /**
-     * Handle clicking the Cancel Button
+     * Handle clicking the Cancel Button.
      *
      * @param event
      */
@@ -96,7 +96,7 @@ public class NewCarCreationViewController {
     }
 
     /**
-     * Handle clicking the Apply Button
+     * Handle clicking the Apply Button.
      *
      * @param event
      */

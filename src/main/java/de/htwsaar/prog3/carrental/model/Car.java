@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Car model for Hibernate.
+ * Car object model (JPA entity).
  *
  * @author Arthur Kelsch
  */

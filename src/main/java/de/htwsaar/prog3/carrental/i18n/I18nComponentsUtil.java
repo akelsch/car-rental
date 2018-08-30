@@ -8,9 +8,7 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch, Jens Thewes
  */
 public class I18nComponentsUtil {
-    /**
-     * Definition of all available Strings in components_*.properties.
-     */
+    // Keys in components_*.properties
     private static final String STAGE_TITLE = "stage-title";
     private static final String DELETE_CONFIRMATION_DIALOG_TITLE = "dialog-delete-confirmation-title";
     private static final String DELETE_CONFIRMATION_DIALOG_HEADER = "dialog-delete-confirmation-header";
@@ -42,18 +40,11 @@ public class I18nComponentsUtil {
 
     private static ResourceBundle resourceBundle;
 
-    /**
-     * Initialization of the ResourceBundle.
-     */
     static {
         resourceBundle = I18nUtil.getResourceBundleComponents();
     }
 
-    /**
-     * Returns the internationalized String of the key defined in STAGE_TITLE.
-     *
-     * @return the internationalized String
-     */
+    // Internationalized values
     public static String getStageTitleString() {
         return resourceBundle.getString(STAGE_TITLE);
     }
@@ -78,7 +69,7 @@ public class I18nComponentsUtil {
         return resourceBundle.getString(DIALOG_INFORMATION_NO_CAR_SELECTED_HEADER);
     }
 
-    public static String getConfirmaionDialogTitle() {
+    public static String getConfirmationDialogTitle() {
         return resourceBundle.getString(DIALOG_CONFIRMATION_TITLE);
     }
 

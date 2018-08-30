@@ -13,7 +13,7 @@ import java.util.List;
  * @author Arthur Kelsch
  * @see GenericDao
  */
-interface GenericService<T> {
+public interface GenericService<T> {
     /**
      * Persists a given entity.
      *

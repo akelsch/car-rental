@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Employee model for Hibernate.
+ * Employee object model (JPA entity).
  *
  * @author Julian Quint
  */

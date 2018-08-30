@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Customer model for Hibernate.
+ * Customer object model (JPA entity).
  *
  * @author Julian Quint
  */

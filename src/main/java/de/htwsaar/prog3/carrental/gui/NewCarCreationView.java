@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class NewCarCreationView {
 
     /**
-     * start the New Car Creation Dialog in a modal Window
+     * Start the New Car Creation Dialog in a modal Window.
      *
      * @param parentStage
      * @throws Exception

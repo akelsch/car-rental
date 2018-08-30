@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 /**
- * Rental model for Hibernate.
+ * Rental object model (JPA entity).
  *
  * @author Julian Quint
  */

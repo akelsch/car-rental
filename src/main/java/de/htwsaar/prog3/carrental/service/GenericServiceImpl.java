@@ -5,6 +5,15 @@ import de.htwsaar.prog3.carrental.model.BaseEntity;
 
 import java.util.List;
 
+/**
+ * {@link GenericService} implementation.
+ * <p>
+ * This class serves as a super class for all other implementations.
+ * The only difference between the services is their DAO implementation.
+ *
+ * @param <T> the type of the entity
+ * @author Arthur Kelsch
+ */
 public class GenericServiceImpl<T extends BaseEntity> implements GenericService<T> {
     GenericDao<T> dao;
 
