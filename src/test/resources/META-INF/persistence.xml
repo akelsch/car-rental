@@ -10,7 +10,7 @@
         <class>de.htwsaar.prog3.carrental.model.Car</class>
         <class>de.htwsaar.prog3.carrental.model.Customer</class>
         <class>de.htwsaar.prog3.carrental.model.Employee</class>
-        <!--<class>de.htwsaar.prog3.carrental.model.Rental</class>-->
+        <class>de.htwsaar.prog3.carrental.model.Rental</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>

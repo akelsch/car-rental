@@ -1,8 +1,10 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Employee model for Hibernate.
@@ -11,21 +13,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-@Data
-public class Employee {
-    public Employee() {
-    }
+@Getter
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class Employee extends BaseEntity {
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long id;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String surname;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
     @Column(nullable = false)
     private String position;
