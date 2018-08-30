@@ -13,6 +13,7 @@ public class I18nStringsUtil {
      */
     private static final String CAR_TABLE_VIEW_URL = "car-tableview-fxml-file";
     private static final String NEW_CAR_CREATION_VIEW_URL = "new-car-creationview-fxml-file";
+    private static final String CAR_CONFIGURATION_VIEW_IRL = "car-configurationview-fxml-file";
     // private static final String...
 
     private static ResourceBundle resourceBundle;
@@ -34,11 +35,20 @@ public class I18nStringsUtil {
     }
 
     /**
-     * Returns the internationalized String of the key defined in
+     * Returns the internationalized String of the key
      * 
      * @return the internationalized String
      */
     public static String getNewCarCreationViewURL() {
         return resourceBundle.getString(NEW_CAR_CREATION_VIEW_URL);
+    }
+
+    /**
+     * Returns the internationalized String of the key
+     * 
+     * @return the internationalized String
+     */
+    public static String getCarConfigurationViewURL() {
+        return resourceBundle.getString(CAR_CONFIGURATION_VIEW_IRL);
     }
 }
