@@ -4,9 +4,14 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.htwsaar.prog3.carrental.gui.CarTableView;
 import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
+import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,19 +21,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * This is the Controller for the Main View of the Carrental Application
  * 
  * @author Lukas Raubuch
+ * @see CarTableView
  */
 public class CarTableViewController implements Initializable {
 
+	private static final Logger log = LoggerFactory.getLogger(CarTableViewController.class); 
+			
 	private CarService service = new CarService();
-	private ObservableList<Car> data = FXCollections.observableArrayList(service.findAll());
+	private ObservableList<Car> cars = FXCollections.observableArrayList(service.findAll());
 
 	@FXML
 	private TableView<Car> carTableView;
@@ -70,6 +80,18 @@ public class CarTableViewController implements Initializable {
 	@FXML
 	private TableColumn<Car, String> vin;
 
+	@FXML 
+	ComboBox<String> searchComboBoxField;
+	
+	@FXML
+	ComboBox<String> searchComboBoxComparator;
+	
+	@FXML 
+	TextField searchTextField;
+	
+	@FXML
+	Button buttonApplyCurrentFilter;
+	
 	@FXML
 	private Button editSelectedCarButton;
 
@@ -78,6 +100,9 @@ public class CarTableViewController implements Initializable {
 
 	@FXML
 	private Button deleteSelectedCarButton;
+	
+	@FXML 
+	private Button buttonRemoveCurrentFilter;
 
 	@FXML
 	/**
@@ -109,12 +134,12 @@ public class CarTableViewController implements Initializable {
 		// TODO: Implement
 	}
 
-	@FXML
 	/**
 	 * Handle Clicking the Delete Button
 	 * 
 	 * @param event
 	 */
+	@FXML
 	protected void handleDeleteButtonCllicked(ActionEvent event) {
 		Car toDelete = carTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
@@ -127,17 +152,19 @@ public class CarTableViewController implements Initializable {
 				.createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
 		if (result.get() == ButtonType.OK) {
-			service = new CarService();
+			log.info("OK Button pressed. Deleting Car...");
 			service.delete(toDelete);
-			data.remove(toDelete);
+			cars.remove(toDelete);
 		}
 	}
 
-	@Override
 	/**
 	 * Initialize the CarTableView with data from the database
 	 */
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// Associate data with Columns
+		log.info("Associating TableColumns with model data");
 		id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
 		category.setCellValueFactory(new PropertyValueFactory<>("Category"));
@@ -156,8 +183,55 @@ public class CarTableViewController implements Initializable {
 		parkingLot.setCellValueFactory(new PropertyValueFactory<>("ParkingLot"));
 		tires.setCellValueFactory(new PropertyValueFactory<>("Tires"));
 		vin.setCellValueFactory(new PropertyValueFactory<>("Vin"));
+		
+		carTableView.setItems(cars);
 
-		carTableView.setItems(data);
+		// Initialize searchComboBox
+		log.info("Initializing Search Comobox");
+		ObservableList<String> searchComboBoxFieldValues = FXCollections.observableArrayList();
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxId());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxBrand());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxHorsepower());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxDailyRate());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxDoorCount());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxDrivenDistance());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxCategory());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxColor());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxConstructionYear());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxDefects());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxFuel());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxGearbox());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxLicenseNumber());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxModel());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxNextInspection());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxParkingLot());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxTires());
+		searchComboBoxFieldValues.add(I18nComponentsUtil.getSearchComboBoxVin());
+		
+		searchComboBoxField.setItems(searchComboBoxFieldValues);
+	}
 
+	@FXML 
+	public void handleApplyCurrentFilterButtonClicked() {
+		//TODO: Implement
+	}
+
+	@FXML 
+	public void handleRemoveCurrentFilterButtonClicked() {
+		//TODO: Implement
+	}
+
+
+	/**
+	 * Closes the application.
+	 * 
+	 * @see CarTableView#stop()
+	 */
+	@FXML
+	public void closeApplication() {
+		log.info("Closing EntityManagerFactory");
+		EntityManagerUtil.closeEntityManagerFactory();
+		log.info("Shutting Down");
+		System.exit(0);
 	}
 }
