@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.service.CarService;
+import de.htwsaar.prog3.carrental.model.Car;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +22,8 @@ import javafx.scene.control.TextField;
  *
  */
 public class CarConfigurationViewController implements Initializable {
+    
+    private Car car; //TODO get car
 
     @FXML
     private TextField brandTextField;
@@ -93,7 +95,24 @@ public class CarConfigurationViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // get the current car configuration and fill the textfields with content
+        brandTextField.setText(car.getBrand());
+        modelTextField.setText(car.getModel());
+        categoryTextField.setText(car.getCategory());
+        colorTextField.setText(car.getColor());
+        constructionYearTextField.setText(car.getConstructionYear());
+        drivenDistanceTextField.setText(Integer.toString(car.getDrivenDistance()));
+        gearBoxChoiceBox.setValue(car.getGearbox());
+        horsePowerTextField.setText(Integer.toString(car.getHorsepower()));
+        fuelChoiceBox.setValue(car.getFuel());
+        doorCountTextField.setText(Integer.toString(car.getDoorCount()));
+        tiresTextField.setText(car.getTires());
+        nextInspectionTextField.setText(car.getNextInspection());
+        vinTextField.setText(car.getVin());
+        equipmentTextField.setText(car.getEquipment());
+        defectsTextField.setText(car.getDefects());
+        licenceNumberTextField.setText(car.getLicenseNumber());
+        dailyRateTextField.setText(Integer.toString(car.getDailyRate()));
+        parkingLotTextField.setText(car.getParkingLot());
     }
 
     /**

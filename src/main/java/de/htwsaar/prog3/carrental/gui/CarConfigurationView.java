@@ -3,7 +3,6 @@ package de.htwsaar.prog3.carrental.gui;
 import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.i18n.I18nStringsUtil;
 import de.htwsaar.prog3.carrental.i18n.I18nUtil;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +15,7 @@ import javafx.stage.Stage;
  * @author Jens Thewes
  *
  */
-public class CarConfigurationView extends Application {
+public class CarConfigurationView {
 
     /**
      * start the Car Configuration View Dialog in a modal Window in order to edit a existing car
@@ -38,9 +37,5 @@ public class CarConfigurationView extends Application {
         modalWindow.initOwner(parentStage);
         modalWindow.initModality(Modality.WINDOW_MODAL);
         modalWindow.show();
-    }
-    
-    public static void main(String[] args) {
-        launch(args);
     }
 }
