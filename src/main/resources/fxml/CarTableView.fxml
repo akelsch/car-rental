@@ -1,108 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.collections.*?>
+<?import java.lang.String?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.prog3.carrental.controller.CarTableViewController">
-	<center>
-		<TableView fx:id="carTableView" onMouseClicked="#handleTableViewClickedAction" prefHeight="400.0" prefWidth="487.0" BorderPane.alignment="CENTER">
-			<columns>
-				<TableColumn fx:id="id" text="%table-view-header-id" />
-				<TableColumn fx:id="brand" text="%table-view-header-brand" />
-				<TableColumn fx:id="horsepower" text="%table-view-header-horsepower" />
-				<TableColumn fx:id="dailyRate" text="%table-view-header-dailyRate" />
-				<TableColumn fx:id="doorCount" text="%table-view-header-doorCount" />
-				<TableColumn fx:id="drivenDistance" text="%table-view-header-drivenDistance" />
-				<TableColumn fx:id="category" text="%table-view-header-category" />
-				<TableColumn fx:id="color" text="%table-view-header-color" />
-				<TableColumn fx:id="constructionYear" text="%table-view-header-constructionYear" />
-				<TableColumn fx:id="defects" text="%table-view-header-defects" />
-				<TableColumn fx:id="fuel" text="%table-view-header-fuel" />
-				<TableColumn fx:id="gearbox" text="%table-view-header-gearbox" />
-				<TableColumn fx:id="licenseNumber" text="%table-view-header-licenseNumber" />
-				<TableColumn fx:id="model" text="%table-view-header-model" />
-				<TableColumn fx:id="nextInspection" text="%table-view-header-nextInspection" />
-				<TableColumn fx:id="parkingLot" text="%table-view-header-parkingLot" />
-				<TableColumn fx:id="tires" text="%table-view-header-tires" />
-				<TableColumn fx:id="vin" text="%table-view-header-vin" />
-			</columns>
-		</TableView>
-	</center>
-	<bottom>
-		<BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
-			<right>
-				<Button fx:id="editSelectedCarButton" mnemonicParsing="false" onAction="#handleEditButtonClicked" text="%button-edit-label" textAlignment="CENTER" />
-			</right>
-			<center>
-				<Button fx:id="createNewCarButton" mnemonicParsing="false" onAction="#handleNewButtonClicked" text="%button-new-label" textAlignment="CENTER" />
-			</center>
-			<left>
-				<Button fx:id="deleteSelectedCarButton" mnemonicParsing="false" onAction="#handleDeleteButtonClicked" text="%button-delete-label" textAlignment="CENTER" />
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.htwsaar.prog3.carrental.controller.CarTableViewController">
+    <center>
+        <TableView fx:id="carTableView" onMouseClicked="#handleTableViewClickedAction" prefHeight="400.0"
+                   prefWidth="487.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="id" text="%table-view-header-id"/>
+                <TableColumn fx:id="brand" text="%table-view-header-brand"/>
+                <TableColumn fx:id="horsepower" text="%table-view-header-horsepower"/>
+                <TableColumn fx:id="dailyRate" text="%table-view-header-dailyRate"/>
+                <TableColumn fx:id="doorCount" text="%table-view-header-doorCount"/>
+                <TableColumn fx:id="drivenDistance" text="%table-view-header-drivenDistance"/>
+                <TableColumn fx:id="category" text="%table-view-header-category"/>
+                <TableColumn fx:id="color" text="%table-view-header-color"/>
+                <TableColumn fx:id="constructionYear" text="%table-view-header-constructionYear"/>
+                <TableColumn fx:id="defects" text="%table-view-header-defects"/>
+                <TableColumn fx:id="fuel" text="%table-view-header-fuel"/>
+                <TableColumn fx:id="gearbox" text="%table-view-header-gearbox"/>
+                <TableColumn fx:id="licenseNumber" text="%table-view-header-licenseNumber"/>
+                <TableColumn fx:id="model" text="%table-view-header-model"/>
+                <TableColumn fx:id="nextInspection" text="%table-view-header-nextInspection"/>
+                <TableColumn fx:id="parkingLot" text="%table-view-header-parkingLot"/>
+                <TableColumn fx:id="tires" text="%table-view-header-tires"/>
+                <TableColumn fx:id="vin" text="%table-view-header-vin"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+            <right>
+                <Button fx:id="editSelectedCarButton" mnemonicParsing="false" onAction="#handleEditButtonClicked"
+                        text="%button-edit-label" textAlignment="CENTER"/>
+            </right>
+            <center>
+                <Button fx:id="createNewCarButton" mnemonicParsing="false" onAction="#handleNewButtonClicked"
+                        text="%button-new-label" textAlignment="CENTER"/>
+            </center>
+            <left>
+                <Button fx:id="deleteSelectedCarButton" mnemonicParsing="false" onAction="#handleDeleteButtonClicked"
+                        text="%button-delete-label" textAlignment="CENTER"/>
             </left>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-		</BorderPane>
-	</bottom>
-   <top>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-      		<MenuBar prefHeight="10.0" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="0">
-      			<menus>
-      				<Menu mnemonicParsing="true" text="%menubar-view-file">
-      					<items>
-      						<MenuItem mnemonicParsing="false" text="%menubar-operation-close" onAction="#closeApplication"/>
-      					</items>
-      				</Menu>
-      				<Menu mnemonicParsing="true" text="%menubar-view-edit">
-      					<items>
-      						<MenuItem mnemonicParsing="false" text="%menubar-operation-delete" />
-      					</items>
-      				</Menu>
-      				<Menu mnemonicParsing="true" text="%menubar-view-help">
-      					<items>
-      						<MenuItem mnemonicParsing="false" text="%menubar-operation-about" />
-      					</items>
-      				</Menu>
-      			</menus>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-      		</MenuBar>
-            <ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0" promptText="%prompt-search-ComboBoxField" prefWidth="Infinity" />
-            <ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity" >
-            	<items>
-            		<FXCollections fx:factory="observableArrayList">
-            			<String fx:value="=" />
-               			<String fx:value=">" />
-               			<String fx:value="!>" />
-               			<String fx:value="LIKE" />
-            		</FXCollections>
-               	</items>
-            </ComboBox>
-            <TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2" promptText="%prompt-search-TextField"/>
-            <Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false" onAction="#handleApplyCurrentFilterButtonClicked" text="%button-applyCurrentFilter-label" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity" />
-            <Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false" onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-removeCurrentFilter-label" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity" />
-         </children>
-      </GridPane>
-   </top>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </BorderPane.margin>
+        </BorderPane>
+    </bottom>
+    <top>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <MenuBar prefHeight="10.0" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="0">
+                    <menus>
+                        <Menu mnemonicParsing="true" text="%menubar-view-file">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="%menubar-operation-close"
+                                          onAction="#closeApplication"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="true" text="%menubar-view-edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="%menubar-operation-delete"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="true" text="%menubar-view-help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="%menubar-operation-about"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </padding>
+                </MenuBar>
+                <ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                          promptText="%prompt-search-ComboBoxField" prefWidth="Infinity"/>
+                <ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                          promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="="/>
+                            <String fx:value=">"/>
+                            <String fx:value="!>"/>
+                            <String fx:value="LIKE"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
+                           promptText="%prompt-search-TextField"/>
+                <Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false"
+                        onAction="#handleApplyCurrentFilterButtonClicked" text="%button-applyCurrentFilter-label"
+                        textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"/>
+                <Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false"
+                        onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-removeCurrentFilter-label"
+                        textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"/>
+            </children>
+        </GridPane>
+    </top>
 </BorderPane>
