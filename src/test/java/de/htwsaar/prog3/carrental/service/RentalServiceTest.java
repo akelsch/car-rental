@@ -23,22 +23,23 @@ import static org.hamcrest.core.IsEqual.equalTo;
  */
 class RentalServiceTest {
     private RentalService rentalService;
-    private static Car rentedCar;
+
+    private static Car car;
     private static Customer customer;
     private static Employee employee;
 
     @BeforeEach
     void setUp() {
         CarService carService = new CarService();
-        rentedCar = createCar();
-        carService.persist(rentedCar);
+        car = CarServiceTest.createTestCar1();
+        carService.persist(car);
 
         CustomerService customerService = new CustomerService();
-        customer = createCustomer();
+        customer = CustomerServiceTest.createTestCustomer1();
         customerService.persist(customer);
 
         EmployeeService employeeService = new EmployeeService();
-        employee = createEmployee();
+        employee = EmployeeServiceTest.createTestEmployee1();
         employeeService.persist(employee);
 
         rentalService = new RentalService();
@@ -81,10 +82,7 @@ class RentalServiceTest {
         Rental expectedRental = createTestRental1();
         rentalService.persist(expectedRental);
 
-        expectedRental.setExtraCosts("24");
-
         Rental actualRental = rentalService.findById(expectedRental.getId());
-        actualRental.setExtraCosts("24");
         rentalService.update(actualRental);
 
         actualRental = rentalService.findById(expectedRental.getId());
@@ -149,25 +147,25 @@ class RentalServiceTest {
         assertThat(actualRentals.size(), is(equalTo(0)));
     }
 
-    private static Car createCar() {
-        return new Car("Nissan", "Coupe", "Blue", "2017", 250, null, 3, 6000, null, "Gasoline", "Automatic", 570,
-                "N ISM 0", "GT-R", "10-2019", "2C", "Summer Tires", "1G2ZF57B584174326");
-    }
-
-    private static Customer createCustomer() {
-        return new Customer("01.01.1970", "31415926535", "wbraun@htwsaar.de", "Wolfgang", "141", "Braun",
-                "+492718281828", "Saarbrücken", "Otto-Hahn Straße");
-    }
-
-    private static Employee createEmployee() {
-        return new Employee("Elon", "Musk", "CEO");
-    }
-
     private static Rental createTestRental1() {
-        return new Rental("01.01.1970", rentedCar, customer, employee, "19.01.2038", "42", null);
+        Rental rental = new Rental();
+        rental.setBegin("01.01.1970");
+        rental.setCar(car);
+        rental.setCustomer(customer);
+        rental.setEmployee(employee);
+        rental.setEnd("19.01.2038");
+
+        return rental;
     }
 
     private static Rental createTestRental2() {
-        return new Rental("05.06.2010", rentedCar, customer, employee, "14.10.2011", "42", null);
+        Rental rental = new Rental();
+        rental.setBegin("05.06.2010");
+        rental.setCar(car);
+        rental.setCustomer(customer);
+        rental.setEmployee(employee);
+        rental.setEnd("14.10.2011");
+
+        return rental;
     }
 }

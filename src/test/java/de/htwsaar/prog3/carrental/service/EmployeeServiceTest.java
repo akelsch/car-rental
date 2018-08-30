@@ -131,11 +131,21 @@ class EmployeeServiceTest {
         assertThat(actualEmployees.size(), is(equalTo(0)));
     }
 
-    private static Employee createTestEmployee1() {
-        return new Employee("Elon", "Musk", "CEO");
+    static Employee createTestEmployee1() {
+        Employee employee = new Employee();
+        employee.setFirstName("Elon");
+        employee.setLastName("Musk");
+        employee.setPosition("CEO");
+
+        return employee;
     }
 
     private static Employee createTestEmployee2() {
-        return new Employee("Niklas", "Reinhard", "Caretaker");
+        Employee employee = new Employee();
+        employee.setFirstName("Niklas");
+        employee.setLastName("Reinhard");
+        employee.setPosition("Caretaker");
+
+        return employee;
     }
 }
