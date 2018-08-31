@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.gui;
 
+import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.util.I18nStringsUtil;
 import de.htwsaar.prog3.carrental.util.I18nUtil;
@@ -15,6 +16,9 @@ import javafx.stage.Stage;
  * @author Jens Thewes
  */
 public class CarConfigurationView {
+    
+    private static Stage modalWindow = new Stage();
+    private static Car car;
 
     /**
      * Start the Car Configuration View Dialog in a modal Window in order to edit a existing car.
@@ -22,8 +26,9 @@ public class CarConfigurationView {
      * @param parentStage
      * @throws Exception
      */
-    public void start(Stage parentStage) throws Exception {
+    public void start(Stage parentStage, Car car) throws Exception {
         Stage modalWindow = new Stage();
+        CarConfigurationView.car = car;
         // Load FXML document for the car configuration view wit the needed resource bundle
         Parent scene =
                 FXMLLoader.load(getClass().getResource(I18nStringsUtil.getCarConfigurationViewURL()),
@@ -36,5 +41,22 @@ public class CarConfigurationView {
         modalWindow.initOwner(parentStage);
         modalWindow.initModality(Modality.WINDOW_MODAL);
         modalWindow.show();
+    }
+
+    /**
+     * close the modal window
+     * 
+     */
+    public static void closeModalWindow() {
+        modalWindow.close();
+    }
+    
+    /**
+     * get the car to edit
+     * 
+     * @return
+     */
+    public static Car getCar() {
+        return car;
     }
 }

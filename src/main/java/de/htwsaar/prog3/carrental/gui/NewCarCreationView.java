@@ -15,6 +15,8 @@ import javafx.stage.Stage;
  * @author Jens Thewes
  */
 public class NewCarCreationView {
+    
+    private static Stage modalWindow = new Stage();
 
     /**
      * Start the New Car Creation Dialog in a modal Window.
@@ -23,7 +25,6 @@ public class NewCarCreationView {
      * @throws Exception
      */
     public void start(Stage parentStage) throws Exception {
-        Stage modalWindow = new Stage();
         // Load FXML document for the car configuration view wit the needed resource bundle
         Parent scene =
                 FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCarCreationViewURL()),
@@ -36,5 +37,13 @@ public class NewCarCreationView {
         modalWindow.initOwner(parentStage);
         modalWindow.initModality(Modality.WINDOW_MODAL);
         modalWindow.show();
+    }
+    
+    /**
+     * close the modal window
+     * 
+     */
+    public static void closeModalWindow() {
+        modalWindow.close();
     }
 }

@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import de.htwsaar.prog3.carrental.gui.CarConfigurationView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
@@ -20,7 +21,8 @@ import java.util.ResourceBundle;
  */
 public class CarConfigurationViewController implements Initializable {
 
-    private Car car; // TODO get car
+    private CarService service = new CarService();
+    private Car car = CarConfigurationView.getCar();
 
     @FXML
     private TextField brandTextField;
@@ -124,7 +126,7 @@ public class CarConfigurationViewController implements Initializable {
                 I18nComponentsUtil.getCancelCreationConfirmationDialogHeaderString());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // TODO Implement close modal window
+            CarConfigurationView.closeModalWindow();
         }
     }
 
@@ -137,7 +139,6 @@ public class CarConfigurationViewController implements Initializable {
     protected void handleApplyButtonClicked(ActionEvent event) {
         // TODO show details + confirmation + valid data check
         // TODO only update data that has changed?
-        CarService service = new CarService();
         car.setBrand(brandTextField.getText());
         car.setModel(modelTextField.getText());
         car.setCategory(categoryTextField.getText());
@@ -157,5 +158,6 @@ public class CarConfigurationViewController implements Initializable {
         car.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
         car.setParkingLot(parkingLotTextField.getText());
         service.update(car);
+        CarConfigurationView.closeModalWindow();
     }
 }
