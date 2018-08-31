@@ -13,8 +13,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +39,11 @@ public class CarTableViewController implements Initializable {
 
 	private CarService service = new CarService();
 	private ObservableList<Car> cars = FXCollections.observableArrayList(service.findAll());
+	private Scene employeeScene;
+	
+	public void setEmployeeScene(Scene scene) {
+		employeeScene = scene;
+	}
 
 	@FXML
 	private TableView<Car> carTableView;
@@ -113,6 +122,7 @@ public class CarTableViewController implements Initializable {
 		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
 		try {
 			new CarConfigurationView().start(CarTableView.getPrimaryStage(), toEdit);
+			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 		} catch (Exception e) {
 			logger.error("Error while editing selected car");
 		}
@@ -232,8 +242,9 @@ public class CarTableViewController implements Initializable {
 	 * @throws IOException 
 	 */
 	@FXML
-	public void switchToEmployeesView() throws IOException {
-		CarTableView.setEmployeeView();
+	public void switchToEmployeesView(ActionEvent event) {
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        primaryStage.setScene(employeeScene);
 	}
 
 	/**
