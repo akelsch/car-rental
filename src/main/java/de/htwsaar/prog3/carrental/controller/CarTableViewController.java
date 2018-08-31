@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -212,5 +213,35 @@ public class CarTableViewController implements Initializable {
 	public void handleAboutButtonClicked() {
 		Alert aboutDialog = GUIDialogUtil.createInformationDialog(I18nComponentsUtil.getDialogInformationHeaderAbout());
 		aboutDialog.show();
+	}
+
+	/**
+	 * Load FXML for employees view and set the scene with the loaded FXML
+	 * @throws IOException 
+	 */
+	@FXML
+	public void switchToEmployeesView() throws IOException {
+		CarTableView.setEmployeeView();
+	}
+
+	/**
+	 * Load FXML for rentals view and set the scene with the loaded FXML
+	 */
+	@FXML
+	public void switchToRentalsView() {
+	}
+
+	/**
+	 * Load FXML for customers view and set the scene with the loaded FXML
+	 */
+	@FXML
+	public void switchToCustomersView() {
+	}
+
+	/**
+	 * Already in cars view. Nothing to do
+	 */
+	@FXML
+	public void switchToCarsView() {
 	}
 }

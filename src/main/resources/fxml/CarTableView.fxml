@@ -38,6 +38,17 @@
 						<Menu mnemonicParsing="true" text="%menubar-view-file">
 							<items>
 								<MenuItem mnemonicParsing="false"
+									text="%menubar-operation-employees"
+									onAction="#switchToEmployeesView" />
+								<MenuItem mnemonicParsing="false"
+									text="%menubar-operation-rentals"
+									onAction="#switchToRentalsView" />
+								<MenuItem mnemonicParsing="false"
+									text="%menubar-operation-customers"
+									onAction="#switchToCustomersView" />
+								<MenuItem mnemonicParsing="false"
+									text="%menubar-operation-cars" onAction="#switchToCarsView" />
+								<MenuItem mnemonicParsing="false"
 									text="%menubar-operation-close" onAction="#closeApplication" />
 							</items>
 						</Menu>
@@ -54,7 +65,8 @@
 						<Menu mnemonicParsing="true" text="%menubar-view-help">
 							<items>
 								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-about" onAction="#handleAboutButtonClicked"/>
+									text="%menubar-operation-about"
+									onAction="#handleAboutButtonClicked" />
 							</items>
 						</Menu>
 					</menus>
