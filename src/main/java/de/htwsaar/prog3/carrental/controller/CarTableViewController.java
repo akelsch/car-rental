@@ -1,6 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.gui.CarTableView;
+import de.htwsaar.prog3.carrental.gui.NewCarCreationView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
@@ -118,7 +119,12 @@ public class CarTableViewController implements Initializable {
 	 */
 	@FXML
 	protected void handleNewButtonClicked(ActionEvent event) {
-		// TODO: Implement with Jens
+		try {
+			new NewCarCreationView().start(CarTableView.getPrimaryStage());
+			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+		} catch (Exception e) {
+			logger.error("Error while creating a new Car");
+		}
 	}
 
 	/**
