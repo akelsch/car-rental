@@ -3,6 +3,8 @@ package de.htwsaar.prog3.carrental.i18n;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
+
 import java.util.Locale;
 
 import static org.hamcrest.CoreMatchers.is;

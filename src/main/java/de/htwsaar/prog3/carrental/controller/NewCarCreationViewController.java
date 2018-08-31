@@ -1,8 +1,9 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.gui.NewCarCreationView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
+import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,6 +17,9 @@ import java.util.Optional;
  * @author Jens Thewes
  */
 public class NewCarCreationViewController {
+    
+    private CarService service = new CarService();
+    private Car car = new Car();
 
     @FXML
     private TextField brandTextField;
@@ -91,7 +95,7 @@ public class NewCarCreationViewController {
                 I18nComponentsUtil.getCancelCreationConfirmationDialogHeaderString());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // TODO Implement close modal window
+            NewCarCreationView.closeModalWindow();
         }
     }
 
@@ -103,8 +107,6 @@ public class NewCarCreationViewController {
     @FXML
     protected void handleApplyButtonClicked(ActionEvent event) {
         // TODO show details + confirmation + valid data check
-        CarService service = new CarService();
-        Car car = new Car();
         car.setBrand(brandTextField.getText());
         car.setModel(modelTextField.getText());
         car.setCategory(categoryTextField.getText());
@@ -124,5 +126,6 @@ public class NewCarCreationViewController {
         car.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
         car.setParkingLot(parkingLotTextField.getText());
         service.persist(car);
+        NewCarCreationView.closeModalWindow();
     }
 }

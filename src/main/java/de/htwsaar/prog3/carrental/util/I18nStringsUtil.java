@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.carrental.i18n;
+package de.htwsaar.prog3.carrental.util;
 
 import java.util.ResourceBundle;
 
@@ -12,7 +12,10 @@ public class I18nStringsUtil {
     private static final String CAR_TABLE_VIEW_URL = "car-tableview-fxml-file";
     private static final String NEW_CAR_CREATION_VIEW_URL = "new-car-creationview-fxml-file";
     private static final String CAR_CONFIGURATION_VIEW_IRL = "car-configurationview-fxml-file";
-
+    private static final String EMPLOYEE_TABLE_VIEW_URL = "employee-tableview-fxml-file";
+    private static final String RENTAL_TABLE_VIEW_URL = "rental-tableview-fxml-file";
+    private static final String CUSTOMER_TABLE_VIEW_URL = "customer-tableview-fxml-file";
+    
     private static ResourceBundle resourceBundle;
 
     static {
@@ -31,4 +34,16 @@ public class I18nStringsUtil {
     public static String getCarConfigurationViewURL() {
         return resourceBundle.getString(CAR_CONFIGURATION_VIEW_IRL);
     }
+
+	public static String getEmployeeTableViewURL() {
+		return resourceBundle.getString(EMPLOYEE_TABLE_VIEW_URL);
+	}
+
+	public static String getRentalTableViewURL() {
+		return resourceBundle.getString(RENTAL_TABLE_VIEW_URL);
+	}
+
+	public static String getCustomerTableViewURL() {
+		return resourceBundle.getString(CUSTOMER_TABLE_VIEW_URL);
+	}
 }
