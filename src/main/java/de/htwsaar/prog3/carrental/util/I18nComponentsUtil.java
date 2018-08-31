@@ -16,8 +16,8 @@ public class I18nComponentsUtil {
             "-header";
     private static final String DIALOG_CONFIRMATION_TITLE = "dialog-confirmation-title";
     private static final String DIALOG_INFORMATION_TITLE = "dialog-information-title";
-    private static final String DIALOG_CONFIRMATION_DELETE_CAR_HEADER = "dialog-confirmation-header-delete";
-    private static final String DIALOG_INFORMATION_NO_CAR_SELECTED_HEADER = "dialog-information-header-no-car-selected";
+    private static final String DIALOG_CONFIRMATION_DELETE_OBJECT_HEADER = "dialog-confirmation-header-delete";
+    private static final String DIALOG_INFORMATION_NO_OBJECT_SELECTED_HEADER = "dialog-information-header-no-object-selected";
     private static final String DIALOG_INFORMATION_ABOUT_HEADER = "dialog-information-header-about";
 
     private static ResourceBundle resourceBundle;
@@ -37,15 +37,15 @@ public class I18nComponentsUtil {
     }
 
     public static String getConfirmationDialogHeaderDelete() {
-        return resourceBundle.getString(DIALOG_CONFIRMATION_DELETE_CAR_HEADER);
+        return resourceBundle.getString(DIALOG_CONFIRMATION_DELETE_OBJECT_HEADER);
     }
 
     public static String getInformationDialogTitle() {
         return resourceBundle.getString(DIALOG_INFORMATION_TITLE);
     }
 
-    public static String getInformationDialogHeaderNoCarSelected() {
-        return resourceBundle.getString(DIALOG_INFORMATION_NO_CAR_SELECTED_HEADER);
+    public static String getInformationDialogHeaderNoObjectSelected() {
+        return resourceBundle.getString(DIALOG_INFORMATION_NO_OBJECT_SELECTED_HEADER);
     }
 
     public static String getConfirmationDialogTitle() {
