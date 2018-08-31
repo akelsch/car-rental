@@ -1,10 +1,9 @@
 package de.htwsaar.prog3.carrental.gui;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Locale;
 
-import de.htwsaar.prog3.carrental.controller.CarTableViewController;
+import de.htwsaar.prog3.carrental.controller.TableViewController;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.util.I18nStringsUtil;
@@ -46,20 +45,50 @@ public class CarTableView extends Application {
 		primaryStage.show();
 	}
 
+	/**
+	 * Load scenes and add them to the controllers
+	 * 
+	 * @throws IOException
+	 */
 	private void initScenes() throws IOException {
+		// Car View
 		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewURL()),
 				I18nUtil.getResourceBundleComponents());
 		Parent carParent = loaderCarScene.load();
 		carScene = new Scene(carParent);
-		
+
 		// Employee View
-		FXMLLoader loaderEmployeeScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getEmployeeTableViewURL()),
+		FXMLLoader loaderEmployeeScene = new FXMLLoader(
+				getClass().getResource(I18nStringsUtil.getEmployeeTableViewURL()),
 				I18nUtil.getResourceBundleComponents());
 		Parent employeeParent = loaderEmployeeScene.load();
 		employeeScene = new Scene(employeeParent);
-		
-		CarTableViewController carsController = (CarTableViewController) loaderCarScene.getController();
-		carsController.setEmployeeScene(employeeScene);
+
+		// Rental View
+		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewURL()),
+				I18nUtil.getResourceBundleComponents());
+		Parent rentalParent = loaderRentalScene.load();
+		rentalScene = new Scene(rentalParent);
+
+		// Customer View
+		FXMLLoader loaderCustomerScene = new FXMLLoader(
+				getClass().getResource(I18nStringsUtil.getCustomerTableViewURL()),
+				I18nUtil.getResourceBundleComponents());
+		Parent customerParent = loaderCustomerScene.load();
+		customerScene = new Scene(customerParent);
+
+		addScenesToController(loaderCarScene);
+		addScenesToController(loaderEmployeeScene);
+		addScenesToController(loaderRentalScene);
+		addScenesToController(loaderCustomerScene);
+	}
+
+	private void addScenesToController(FXMLLoader loader) {
+		TableViewController controller = (TableViewController) loader.getController();
+		controller.setCarScene(carScene);
+		controller.setCustomerScene(customerScene);
+		controller.setEmployeeScene(employeeScene);
+		controller.setRentalScene(rentalScene);
 	}
 
 	/**
