@@ -5,24 +5,17 @@ import de.htwsaar.prog3.carrental.gui.CarTableView;
 import de.htwsaar.prog3.carrental.gui.NewCarCreationView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
-import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -33,21 +26,16 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  * @see CarTableView
  */
-public class CarTableViewController implements Initializable {
+public class CarTableViewController extends TableViewController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CarTableViewController.class);
 
 	private CarService service = new CarService();
 	private ObservableList<Car> cars = FXCollections.observableArrayList(service.findAll());
-	private Scene employeeScene;
-	
-	public void setEmployeeScene(Scene scene) {
-		employeeScene = scene;
-	}
 
 	@FXML
 	private TableView<Car> carTableView;
-	// TableColumns to associate Data with columns
+	// TableColumns to associate data with columns
 	@FXML
 	private TableColumn<Car, Integer> id;
 	@FXML
@@ -85,75 +73,16 @@ public class CarTableViewController implements Initializable {
 	@FXML
 	private TableColumn<Car, String> vin;
 
-	@FXML
-	private ComboBox<String> searchComboBoxField;
-
-	@FXML
-	private ComboBox<String> searchComboBoxComparator;
-
-	@FXML
-	private TextField searchTextField;
-
-	@FXML
-	private Button buttonApplyCurrentFilter;
-
-	@FXML
-	private Button buttonRemoveCurrentFilter;
-
-	@FXML
-	private Button editSelectedCarButton;
-
-	@FXML
-	private Button createNewCarButton;
-
-	@FXML
-	private Button deleteSelectedCarButton;
-
-	@FXML
-	private Button rentSelectedCarButton;
-
-	/**
-	 * Handle Clicking the Edit Button.
-	 *
-	 * @param event
-	 */
-	@FXML
-	protected void handleEditButtonClicked(ActionEvent event) {
-		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
-		try {
-			new CarConfigurationView().start(CarTableView.getPrimaryStage(), toEdit);
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while editing selected car");
-		}
-	}
-
-	/**
-	 * Handle Clicking the New Button.
-	 *
-	 * @param event
-	 */
-	@FXML
-	protected void handleNewButtonClicked(ActionEvent event) {
-		try {
-			new NewCarCreationView().start(CarTableView.getPrimaryStage());
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while creating a new Car");
-		}
-	}
-
 	/**
 	 * Handle Clicking the Delete Button.
-	 *
-	 * @param event
 	 */
 	@FXML
-	protected void handleDeleteButtonClicked(ActionEvent event) {
+	@Override
+	protected void handleDeleteButtonClicked() {
 		Car toDelete = carTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
 			Alert informationDialog = GUIDialogUtil
-					.createInformationDialog(I18nComponentsUtil.getInformationDialogHeaderNoCarSelected());
+					.createInformationDialog(I18nComponentsUtil.getInformationDialogHeaderNoObjectSelected());
 			informationDialog.show();
 			return;
 		}
@@ -168,11 +97,46 @@ public class CarTableViewController implements Initializable {
 	}
 
 	/**
+	 * Handle Clicking the Edit Button.
+	 *
+	 * @param event
+	 */
+	@FXML
+	@Override
+	protected void handleEditButtonClicked() {
+		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
+		try {
+			new CarConfigurationView().start(primaryStage, toEdit);
+			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+		} catch (Exception e) {
+			logger.error("Error while editing selected car");
+		}
+	}
+
+	/**
+	 * Handle Clicking the New Button.
+	 */
+	@FXML
+	private void handleNewButtonClicked() {
+		try {
+			new NewCarCreationView().start(primaryStage);
+			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+		} catch (Exception e) {
+			logger.error("Error while creating a new Car");
+		}
+	}
+
+	@FXML
+	public void handleRentButtonClicked() {
+		// TODO: Implement with Michael
+	}
+
+	/**
 	 * Initialize the CarTableView with data from the database.
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Associate data with Columns
+		// Associate data with columns
 		logger.info("Associating TableColumns with model data");
 		id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
@@ -206,65 +170,9 @@ public class CarTableViewController implements Initializable {
 	 * the filter. Just set all cars list in the {@code carTableView}
 	 */
 	@FXML
+	@Override
 	public void handleRemoveCurrentFilterButtonClicked() {
 		carTableView.setItems(cars);
 	}
 
-	/**
-	 * Closes the application.
-	 *
-	 * @see CarTableView#stop()
-	 */
-	@FXML
-	public void closeApplication() {
-		logger.info("Closing EntityManagerFactory");
-		EntityManagerUtil.closeEntityManagerFactory();
-		logger.info("Shutting Down");
-		System.exit(0);
-	}
-
-	@FXML
-	public void handleRentButtonClicked() {
-		// TODO: Implement with Michael
-	}
-
-	/**
-	 * Displays a dialog containing information about this software project.
-	 */
-	@FXML
-	public void handleAboutButtonClicked() {
-		Alert aboutDialog = GUIDialogUtil.createInformationDialog(I18nComponentsUtil.getDialogInformationHeaderAbout());
-		aboutDialog.show();
-	}
-
-	/**
-	 * Load FXML for employees view and set the scene with the loaded FXML
-	 * @throws IOException 
-	 */
-	@FXML
-	public void switchToEmployeesView(ActionEvent event) {
-        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        primaryStage.setScene(employeeScene);
-	}
-
-	/**
-	 * Load FXML for rentals view and set the scene with the loaded FXML
-	 */
-	@FXML
-	public void switchToRentalsView() {
-	}
-
-	/**
-	 * Load FXML for customers view and set the scene with the loaded FXML
-	 */
-	@FXML
-	public void switchToCustomersView() {
-	}
-
-	/**
-	 * Already in cars view. Nothing to do
-	 */
-	@FXML
-	public void switchToCarsView() {
-	}
 }
