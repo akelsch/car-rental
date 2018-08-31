@@ -60,6 +60,9 @@
 								<MenuItem mnemonicParsing="false"
 									text="%menubar-operation-edit"
 									onAction="#handleEditButtonClicked" />
+								<MenuItem mnemonicParsing="false"
+                                    text="%menubar-operation-new"
+                                    onAction="#handleNewButtonClicked" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-help">
@@ -134,7 +137,7 @@
 		</GridPane>
 	</top>
 	<center>
-		<TableView fx:id="carTableView" prefHeight="400.0"
+		<TableView fx:id="employeeTableView" prefHeight="400.0"
 			prefWidth="487.0" BorderPane.alignment="CENTER">
 			<columns>
 				<TableColumn fx:id="id" text="%table-view-header-id" />
@@ -142,7 +145,7 @@
 					text="%table-view-employee-header-firstName" />
 				<TableColumn fx:id="lastName"
 					text="%table-view-employee-header-lastName" />
-				<TableColumn fx:id="dailyRate"
+				<TableColumn fx:id="position"
 					text="%table-view-employee-header-position" />
 			</columns>
 		</TableView>
@@ -157,34 +160,27 @@
 					prefWidth="100.0" />
 				<ColumnConstraints hgrow="SOMETIMES" minWidth="10"
 					prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10"
-					prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints minHeight="10.0" prefHeight="30.0"
 					vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="editSelectedCarButton" mnemonicParsing="false"
+				<Button fx:id="buttonEditSelectedObject" mnemonicParsing="false"
 					onAction="#handleEditButtonClicked" text="%button-edit-label"
 					textAlignment="CENTER" GridPane.columnIndex="0"
 					GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER" />
-				<Button fx:id="createNewCarButton" mnemonicParsing="false"
+				<Button fx:id="buttonCreateNewEmployee" mnemonicParsing="false"
 					onAction="#handleNewButtonClicked" text="%button-new-label"
 					textAlignment="CENTER" GridPane.columnIndex="1"
 					GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER" />
-				<Button fx:id="deleteSelectedCarButton"
+				<Button fx:id="buttonDeleteSelectedObject"
 					mnemonicParsing="false" onAction="#handleDeleteButtonClicked"
 					text="%button-delete-label" textAlignment="CENTER"
 					GridPane.columnIndex="2" GridPane.rowIndex="0"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-				<Button fx:id="rentSelectedCarButton" mnemonicParsing="false"
-					onAction="#handleRentButtonClicked" text="%button-rent-label"
-					textAlignment="CENTER" GridPane.columnIndex="3"
-					GridPane.rowIndex="0" GridPane.halignment="CENTER"
-					GridPane.valignment="CENTER" />
 			</children>
 		</GridPane>
 	</bottom>

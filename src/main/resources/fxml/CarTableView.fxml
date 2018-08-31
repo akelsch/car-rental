@@ -60,6 +60,12 @@
 								<MenuItem mnemonicParsing="false"
 									text="%menubar-operation-edit"
 									onAction="#handleEditButtonClicked" />
+								<MenuItem mnemonicParsing="false"
+                                    text="%menubar-operation-new"
+                                    onAction="#handleNewButtonClicked" />
+                                <MenuItem mnemonicParsing="false"
+                                    text="%menubar-operation-rent"
+                                    onAction="#handleRentButtonClicked" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-help">
@@ -235,22 +241,22 @@
 					vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="editSelectedCarButton" mnemonicParsing="false"
+				<Button fx:id="buttonEditSelectedObject" mnemonicParsing="false"
 					onAction="#handleEditButtonClicked" text="%button-edit-label"
 					textAlignment="CENTER" GridPane.columnIndex="0"
 					GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER" />
-				<Button fx:id="createNewCarButton" mnemonicParsing="false"
+				<Button fx:id="buttonCreateNewCar" mnemonicParsing="false"
 					onAction="#handleNewButtonClicked" text="%button-new-label"
 					textAlignment="CENTER" GridPane.columnIndex="1"
 					GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER" />
-				<Button fx:id="deleteSelectedCarButton"
+				<Button fx:id="buttonDeleteSelectedObject"
 					mnemonicParsing="false" onAction="#handleDeleteButtonClicked"
 					text="%button-delete-label" textAlignment="CENTER"
 					GridPane.columnIndex="2" GridPane.rowIndex="0"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-				<Button fx:id="rentSelectedCarButton" mnemonicParsing="false"
+				<Button fx:id="buttonRentSelectedCar" mnemonicParsing="false"
 					onAction="#handleRentButtonClicked" text="%button-rent-label"
 					textAlignment="CENTER" GridPane.columnIndex="3"
 					GridPane.rowIndex="0" GridPane.halignment="CENTER"
