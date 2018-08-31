@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import de.htwsaar.prog3.carrental.gui.CarConfigurationView;
 import de.htwsaar.prog3.carrental.gui.CarTableView;
 import de.htwsaar.prog3.carrental.gui.NewCarCreationView;
 import de.htwsaar.prog3.carrental.model.Car;
@@ -109,7 +110,12 @@ public class CarTableViewController implements Initializable {
 	 */
 	@FXML
 	protected void handleEditButtonClicked(ActionEvent event) {
-		// TODO: Implement with Jens
+		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
+		try {
+			new CarConfigurationView().start(CarTableView.getPrimaryStage(), toEdit);
+		} catch (Exception e) {
+			logger.error("Error while editing selected car");
+		}
 	}
 
 	/**
