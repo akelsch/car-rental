@@ -1,8 +1,8 @@
 package de.htwsaar.prog3.carrental.gui;
 
-import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.i18n.I18nStringsUtil;
-import de.htwsaar.prog3.carrental.i18n.I18nUtil;
+import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.I18nStringsUtil;
+import de.htwsaar.prog3.carrental.util.I18nUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

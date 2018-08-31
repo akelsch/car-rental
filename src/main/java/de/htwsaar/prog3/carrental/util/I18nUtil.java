@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.carrental.i18n;
+package de.htwsaar.prog3.carrental.util;
 
 import lombok.Getter;
 
@@ -16,21 +16,16 @@ import java.util.ResourceBundle;
 public class I18nUtil {
     // Bundle base names
     private static final String I18N_BASENAME_STRINGS = "strings";
-    private static final String I18N_BASENAME_MESSAGES = "messages";
     private static final String I18N_BASENAME_COMPONENTS = "components";
 
     @Getter
     private static ResourceBundle resourceBundleStrings;
 
     @Getter
-    private static ResourceBundle resourceBundleMessages;
-
-    @Getter
     private static ResourceBundle resourceBundleComponents;
 
     static {
         resourceBundleStrings = ResourceBundle.getBundle(I18N_BASENAME_STRINGS);
-        resourceBundleMessages = ResourceBundle.getBundle(I18N_BASENAME_MESSAGES);
         resourceBundleComponents = ResourceBundle.getBundle(I18N_BASENAME_COMPONENTS);
     }
 }

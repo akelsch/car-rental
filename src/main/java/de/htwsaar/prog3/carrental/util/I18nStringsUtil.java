@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.carrental.i18n;
+package de.htwsaar.prog3.carrental.util;
 
 import java.util.ResourceBundle;
 

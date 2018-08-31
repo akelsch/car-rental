@@ -1,8 +1,8 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
+import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
