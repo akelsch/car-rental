@@ -26,6 +26,12 @@ public final class GUIDialogUtil {
         return informationDialog;
     }
 
+    /**
+     * Creates an confirmation dialog that can be displayed to the user.
+     * 
+     * @param headerText the text that will be displayed in the information dialog
+     * @return an Alert object that represents the dialog that can be displayed
+     */
     public static Alert createConfirmationDialog(String headerText) {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog.setTitle(I18nComponentsUtil.getConfirmationDialogTitle());

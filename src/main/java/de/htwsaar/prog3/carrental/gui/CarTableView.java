@@ -1,5 +1,7 @@
 package de.htwsaar.prog3.carrental.gui;
 
+import java.util.Locale;
+
 import de.htwsaar.prog3.carrental.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.i18n.I18nStringsUtil;
 import de.htwsaar.prog3.carrental.i18n.I18nUtil;
@@ -18,7 +20,8 @@ import javafx.stage.Stage;
  */
 public class CarTableView extends Application {
 
-    private Stage primaryStage;
+	// Has to be static to enable modal dialogs
+    private static Stage primaryStage;
 
     /**
      * Entry Point for the main view of the program.
@@ -51,14 +54,15 @@ public class CarTableView extends Application {
      * @param args commandline arguments
      */
     public static void main(String[] args) {
+    	Locale.setDefault(new Locale("en"));
         launch(args);
     }
 
-    public Stage getPrimaryStage() {
+    public static Stage getPrimaryStage() {
         return primaryStage;
     }
 
     private void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+        CarTableView.primaryStage = primaryStage;
     }
 }
