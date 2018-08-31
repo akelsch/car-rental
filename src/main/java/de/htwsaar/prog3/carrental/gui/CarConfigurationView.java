@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  */
 public class CarConfigurationView {
     
-    private static Stage modalWindow = new Stage();
+    private static Stage modalWindow;
     private static Car car;
 
     /**
@@ -27,7 +27,7 @@ public class CarConfigurationView {
      * @throws Exception
      */
     public void start(Stage parentStage, Car car) throws Exception {
-        Stage modalWindow = new Stage();
+        modalWindow  = new Stage();
         CarConfigurationView.car = car;
         // Load FXML document for the car configuration view wit the needed resource bundle
         Parent scene =
@@ -36,7 +36,8 @@ public class CarConfigurationView {
         modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
-        modalWindow.setMaximized(true);
+        modalWindow.setMaxHeight(600);
+        modalWindow.setMaxWidth(900);
         // set the Owner of the modal window and the Modality of the new Stage (Modal Window)
         modalWindow.initOwner(parentStage);
         modalWindow.initModality(Modality.WINDOW_MODAL);
