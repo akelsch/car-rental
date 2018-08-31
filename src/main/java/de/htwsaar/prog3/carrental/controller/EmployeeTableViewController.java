@@ -17,6 +17,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Controller for EmployeeTableView
+ * @author Lukas Raubuch
+ */
 public class EmployeeTableViewController extends TableViewController{
 	
 	private EmployeeService service = new EmployeeService();

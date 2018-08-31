@@ -17,6 +17,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Controller for RentalTableView
+ * @author Lukas Raubuch
+ */
 public class RentalTableViewController extends TableViewController {
 
 	private RentalService service = new RentalService();

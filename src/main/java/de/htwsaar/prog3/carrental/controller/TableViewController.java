@@ -15,61 +15,65 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
+ * Super Controller that is used to keep the remaining controllers small enough
+ * to be easy to read
  * 
  * @author Lukas Raubuch
  */
-public abstract class TableViewController implements Initializable{
+public abstract class TableViewController implements Initializable {
 	private Scene carScene;
 	private Scene employeeScene;
 	private Scene rentalScene;
 	private Scene customerScene;
 	protected final Stage primaryStage = CarTableView.getPrimaryStage();
-	
+
 	@FXML
 	protected Button buttonApplyCurrentFilter;
-	
+
 	@FXML
 	protected Button buttonRemoveCurrentFilter;
-	
+
 	@FXML
 	protected Button buttonEditSelectedObject;
-	
+
 	@FXML
 	protected Button buttonDeleteSelectedObject;
-	
+
 	@FXML
 	protected TextField searchTextField;
-	
+
 	@FXML
 	protected ComboBox<String> searchComboBoxField;
 
 	@FXML
 	protected ComboBox<String> searchComboBoxComparator;
-	
+
 	/**
 	 * Handle Clicking the Edit Button.
 	 */
 	@FXML
 	protected abstract void handleEditButtonClicked();
+
 	/**
 	 * Handle Clicking the Delete Button.
 	 */
 	@FXML
 	protected abstract void handleDeleteButtonClicked();
+
 	/**
 	 * Handle Clicking the Clear Filter Button
 	 */
 	@FXML
 	protected abstract void handleRemoveCurrentFilterButtonClicked();
+
 	/**
 	 * Handle Clicking the Apply Filter Button
 	 */
 	@FXML
 	protected abstract void handleApplyCurrentFilterButtonClicked();
 
-
 	// Menubar Operations
-	
+
 	/**
 	 * Displays a dialog containing information about this software project.
 	 */
@@ -78,7 +82,7 @@ public abstract class TableViewController implements Initializable{
 		Alert aboutDialog = GUIDialogUtil.createInformationDialog(I18nComponentsUtil.getDialogInformationHeaderAbout());
 		aboutDialog.show();
 	}
-	
+
 	/**
 	 * Closes the application.
 	 *
@@ -89,15 +93,15 @@ public abstract class TableViewController implements Initializable{
 		EntityManagerUtil.closeEntityManagerFactory();
 		System.exit(0);
 	}
-	
-	//Switching between Scenes
-	
+
+	// Switching between Scenes
+
 	/**
 	 * Load FXML for employees view and set the scene with the loaded FXML
 	 */
 	@FXML
 	public void switchToEmployeesView(ActionEvent event) {
-        primaryStage.setScene(employeeScene);
+		primaryStage.setScene(employeeScene);
 	}
 
 	/**
@@ -105,7 +109,7 @@ public abstract class TableViewController implements Initializable{
 	 */
 	@FXML
 	public void switchToRentalsView() {
-        primaryStage.setScene(rentalScene);
+		primaryStage.setScene(rentalScene);
 	}
 
 	/**
@@ -113,7 +117,7 @@ public abstract class TableViewController implements Initializable{
 	 */
 	@FXML
 	public void switchToCustomersView() {
-        primaryStage.setScene(customerScene);
+		primaryStage.setScene(customerScene);
 	}
 
 	/**
@@ -121,18 +125,21 @@ public abstract class TableViewController implements Initializable{
 	 */
 	@FXML
 	public void switchToCarsView() {
-        primaryStage.setScene(carScene);
+		primaryStage.setScene(carScene);
 	}
-	
+
 	public void setCarScene(Scene scene) {
 		carScene = scene;
 	}
+
 	public void setEmployeeScene(Scene scene) {
 		employeeScene = scene;
 	}
+
 	public void setCustomerScene(Scene scene) {
 		customerScene = scene;
 	}
+
 	public void setRentalScene(Scene scene) {
 		rentalScene = scene;
 	}
