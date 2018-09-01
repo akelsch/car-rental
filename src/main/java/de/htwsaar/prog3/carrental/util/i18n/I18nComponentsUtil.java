@@ -13,6 +13,8 @@ public class I18nComponentsUtil {
     private static final String DELETE_CONFIRMATION_DIALOG_HEADER = "dialog-delete-confirmation-header";
     private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-cancel-creation-confirmation-title";
     private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-cancel-creation-confirmation-header";
+    private static final String APPLY_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-apply-creation-confirmation-title";
+    private static final String APPLY_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-apply-creation-confirmation-header"; 
     private static final String DIALOG_CONFIRMATION_TITLE = "dialog-confirmation-title";
     private static final String DIALOG_INFORMATION_TITLE = "dialog-information-title";
     private static final String DIALOG_CONFIRMATION_DELETE_OBJECT_HEADER = "dialog-confirmation-header-delete";
@@ -61,5 +63,13 @@ public class I18nComponentsUtil {
     
     public static String getDialogInformationHeaderAbout() {
     	return resourceBundle.getString(DIALOG_INFORMATION_ABOUT_HEADER);
+    }
+    
+    public static String getApplyCreationConfirmationDialogTitleString() {
+        return resourceBundle.getString(APPLY_CREATION_CONFIRMATION_DIALOG_TITLE);
+    }
+    
+    public static String getApplyCreationConfirmationDialogHeaderString() {
+        return resourceBundle.getString(APPLY_CREATION_CONFIRMATION_DIALOG_HEADER);
     }
 }
