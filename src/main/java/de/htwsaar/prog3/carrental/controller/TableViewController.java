@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.gui.CarTableView;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
-import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

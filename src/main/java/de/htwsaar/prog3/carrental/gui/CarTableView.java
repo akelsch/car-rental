@@ -5,9 +5,9 @@ import java.util.Locale;
 
 import de.htwsaar.prog3.carrental.controller.TableViewController;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
-import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.util.I18nStringsUtil;
-import de.htwsaar.prog3.carrental.util.I18nUtil;
+import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
+import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
-import de.htwsaar.prog3.carrental.util.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
