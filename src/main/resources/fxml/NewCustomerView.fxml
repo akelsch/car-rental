@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="de.htwsaar.prog3.carrental.controller.NewCustomerViewController">
+	<top>
+		<MenuBar prefHeight="14.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="true" text="Spaceholder">
+				</Menu>
+			</menus>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+			<BorderPane.margin>
+				<Insets top="5.0" />
+			</BorderPane.margin>
+		</MenuBar>
+	</top>
+	<center>
+		<GridPane alignment="center" hgap="10" vgap="10">
+			<Label text="%first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			<TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+			<Label text="%last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			<TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+			
+			<Label text="%email-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+			<TextField fx:id="emailAddressTextField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+			<Label text="%phonenumber-label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+			<TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+			<Label text="%dateofbrith-label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+			<TextField fx:id="dateOfBirthTextField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+			
+			<Label text="%street-label" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+			<TextField fx:id="streetTextField" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+			<Label text="%housenumber-label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+			<TextField fx:id="houseNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+			<Label text="%city-label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+			<TextField fx:id="cityTextField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+			<Label text="%zipcode-label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+			<TextField fx:id="zipCodeTextField" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+			
+			<Label text="%idnumber-label" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+			<TextField fx:id="idNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+			<Label text="%driverlicenseid-label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+			<TextField fx:id="driverLicenseIdTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+		</GridPane>
+	</center>
+	<bottom>
+		<BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<right>
+				<GridPane alignment="center" hgap="10" vgap="10">
+					<Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%cancel-button" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+					<Button fx:id="applyButton" mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%apply-button" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+				</GridPane>
+			</right>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+			<BorderPane.margin>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</BorderPane.margin>
+		</BorderPane>
+	</bottom>
+</BorderPane>
