@@ -111,7 +111,7 @@ public class NewCarViewController {
         car.setModel(modelTextField.getText());
         car.setCategory(categoryTextField.getText());
         car.setColor(colorTextField.getText());
-        car.setConstructionYear(constructionYearTextField.getText());
+        car.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
         car.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
         car.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
         car.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));

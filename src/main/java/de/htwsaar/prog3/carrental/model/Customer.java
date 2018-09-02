@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Table
 @Getter
 @Setter
-@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -52,4 +51,9 @@ public class Customer extends BaseEntity {
 
     @Column(name = "zip_code", nullable = false)
     private int zipCode;
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", firstName, lastName);
+    }
 }

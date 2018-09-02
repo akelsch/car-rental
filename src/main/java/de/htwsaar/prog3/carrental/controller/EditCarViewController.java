@@ -96,7 +96,7 @@ public class EditCarViewController implements Initializable {
         modelTextField.setText(car.getModel());
         categoryTextField.setText(car.getCategory());
         colorTextField.setText(car.getColor());
-        constructionYearTextField.setText(car.getConstructionYear());
+        constructionYearTextField.setText(Integer.toString(car.getConstructionYear()));
         drivenDistanceTextField.setText(Integer.toString(car.getDrivenDistance()));
         gearBoxChoiceBox.setValue(car.getGearbox());
         horsePowerTextField.setText(Integer.toString(car.getHorsepower()));
@@ -143,7 +143,7 @@ public class EditCarViewController implements Initializable {
         car.setModel(modelTextField.getText());
         car.setCategory(categoryTextField.getText());
         car.setColor(colorTextField.getText());
-        car.setConstructionYear(constructionYearTextField.getText());
+        car.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
         car.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
         car.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
         car.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));

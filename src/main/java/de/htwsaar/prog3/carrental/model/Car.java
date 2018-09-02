@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Table
 @Getter
 @Setter
-@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +29,7 @@ public class Car extends BaseEntity {
     private String color;
 
     @Column(name = "construction_year", nullable = false)
-    private String constructionYear;
+    private int constructionYear;
 
     @Column(name = "daily_rate", nullable = false)
     private int dailyRate;
@@ -73,4 +72,9 @@ public class Car extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String vin;
+
+    @Override
+    public String toString() {
+        return String.format("%d %s %s", constructionYear, brand, model);
+    }
 }
