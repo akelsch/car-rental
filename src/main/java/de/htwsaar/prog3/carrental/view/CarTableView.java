@@ -84,7 +84,7 @@ public class CarTableView extends Application {
 	}
 
 	private void addScenesToController(FXMLLoader loader) {
-		TableViewController controller = (TableViewController) loader.getController();
+		TableViewController controller = loader.getController();
 		controller.setCarScene(carScene);
 		controller.setCustomerScene(customerScene);
 		controller.setEmployeeScene(employeeScene);

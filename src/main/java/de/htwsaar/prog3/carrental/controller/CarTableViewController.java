@@ -98,8 +98,6 @@ public class CarTableViewController extends TableViewController {
 
 	/**
 	 * Handle Clicking the Edit Button.
-	 *
-	 * @param event
 	 */
 	@FXML
 	@Override

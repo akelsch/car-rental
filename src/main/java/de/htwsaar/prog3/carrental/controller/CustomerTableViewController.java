@@ -111,7 +111,7 @@ public class CustomerTableViewController extends TableViewController {
     public void initialize(URL location, ResourceBundle resources) {
         id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
-        driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DirverLicenseId"));
+        driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DriverLicenseId"));
         emailAddress.setCellValueFactory(new PropertyValueFactory<>("EmailAddress"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         houseNumber.setCellValueFactory(new PropertyValueFactory<>("HouseNumber"));

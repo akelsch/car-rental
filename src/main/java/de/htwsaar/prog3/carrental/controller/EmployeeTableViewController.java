@@ -62,8 +62,6 @@ public class EmployeeTableViewController extends TableViewController {
 
     /**
      * Handle Clicking the Edit Button.
-     *
-     * @param event
      */
     @Override
     protected void handleEditButtonClicked() {
