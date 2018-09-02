@@ -38,16 +38,17 @@
 						<Menu mnemonicParsing="true" text="%menubar-view-file">
 							<items>
 								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-employees"
-									onAction="#switchToEmployeesView" />
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-rentals"
-									onAction="#switchToRentalsView" />
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-customers"
-									onAction="#switchToCustomersView" />
-								<MenuItem mnemonicParsing="false"
 									text="%menubar-operation-cars" onAction="#switchToCarsView" />
+								<MenuItem mnemonicParsing="false"
+										  text="%menubar-operation-customers"
+										  onAction="#switchToCustomersView" />
+								<MenuItem mnemonicParsing="false"
+										  text="%menubar-operation-employees"
+										  onAction="#switchToEmployeesView" />
+								<MenuItem mnemonicParsing="false"
+										  text="%menubar-operation-rentals"
+										  onAction="#switchToRentalsView" />
+								<SeparatorMenuItem mnemonicParsing="false" />
 								<MenuItem mnemonicParsing="false"
 									text="%menubar-operation-close" onAction="#closeApplication" />
 							</items>
@@ -55,14 +56,14 @@
 						<Menu mnemonicParsing="true" text="%menubar-view-edit">
 							<items>
 								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-delete"
-									onAction="#handleDeleteButtonClicked" />
-								<MenuItem mnemonicParsing="false"
 									text="%menubar-operation-edit"
 									onAction="#handleEditButtonClicked" />
 								<MenuItem mnemonicParsing="false"
                                     text="%menubar-operation-new"
                                     onAction="#handleNewButtonClicked" />
+								<MenuItem mnemonicParsing="false"
+										  text="%menubar-operation-delete"
+										  onAction="#handleDeleteButtonClicked" />
                                 <MenuItem mnemonicParsing="false"
                                     text="%menubar-operation-rent"
                                     onAction="#handleRentButtonClicked" />
