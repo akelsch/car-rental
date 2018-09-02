@@ -5,15 +5,14 @@ import lombok.Getter;
 import java.util.ResourceBundle;
 
 /**
- * Internationalization utility class used in this project mainly to keep code clean of String objects.
- * <p>
- * Use strings if it is something you need but don't want the user to see as a message.
- * Use messages if it is message that you want to show to the user, e.g. a dialog message.
- * Use components if it is something you want to display inside of your components.
+ * Internationalization utility class providing different resource bundles.
  *
  * @author Lukas Raubuch
  */
-public class I18nUtil {
+public final class I18nUtil {
+    private I18nUtil() {
+    }
+
     // Bundle base names
     private static final String I18N_BASENAME_STRINGS = "bundles/strings";
     private static final String I18N_BASENAME_COMPONENTS = "bundles/components";

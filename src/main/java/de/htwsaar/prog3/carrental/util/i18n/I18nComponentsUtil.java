@@ -3,35 +3,38 @@ package de.htwsaar.prog3.carrental.util.i18n;
 import java.util.ResourceBundle;
 
 /**
- * Internationalization utility class for components file.
+ * Internationalization utility class for {@code components.properties}.
+ * <p>
+ * Provides strings that are visible to the end user.
  *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class I18nComponentsUtil {
-    // Keys in components_*.properties
+public final class I18nComponentsUtil {
+    private I18nComponentsUtil() {
+    }
+
+    // Keys
     private static final String STAGE_TITLE = "stage-title";
     private static final String DELETE_CONFIRMATION_DIALOG_HEADER = "dialog-delete-confirmation-header";
     private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-cancel-creation-confirmation-title";
-    private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-cancel-creation-confirmation-header";
+    private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-cancel-creation-confirmation" +
+            "-header";
     private static final String APPLY_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-apply-creation-confirmation-title";
-    private static final String APPLY_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-apply-creation-confirmation-header"; 
+    private static final String APPLY_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-apply-creation-confirmation-header";
     private static final String DIALOG_CONFIRMATION_TITLE = "dialog-confirmation-title";
     private static final String DIALOG_INFORMATION_TITLE = "dialog-information-title";
     private static final String DIALOG_CONFIRMATION_DELETE_OBJECT_HEADER = "dialog-confirmation-header-delete";
-    private static final String DIALOG_INFORMATION_NO_OBJECT_SELECTED_HEADER = "dialog-information-header-no-object-selected";
+    private static final String DIALOG_INFORMATION_NO_OBJECT_SELECTED_HEADER = "dialog-information-header-no-object" +
+            "-selected";
     private static final String DIALOG_INFORMATION_ABOUT_HEADER = "dialog-information-header-about";
 
-    private static ResourceBundle resourceBundle;
+    // Resource bundle
+    private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleComponents();
 
-    static {
-        resourceBundle = I18nUtil.getResourceBundleComponents();
-    }
-
-    // Internationalized values
+    // Values
     public static String getStageTitleString() {
         return resourceBundle.getString(STAGE_TITLE);
     }
-
 
     public static String getDeleteConfirmationDialogHeaderString() {
         return resourceBundle.getString(DELETE_CONFIRMATION_DIALOG_HEADER);
@@ -60,15 +63,15 @@ public class I18nComponentsUtil {
     public static String getCancelCreationConfirmationDialogHeaderString() {
         return resourceBundle.getString(CANCEL_CREATION_CONFIRMATION_DIALOG_HEADER);
     }
-    
+
     public static String getDialogInformationHeaderAbout() {
-    	return resourceBundle.getString(DIALOG_INFORMATION_ABOUT_HEADER);
+        return resourceBundle.getString(DIALOG_INFORMATION_ABOUT_HEADER);
     }
-    
+
     public static String getApplyCreationConfirmationDialogTitleString() {
         return resourceBundle.getString(APPLY_CREATION_CONFIRMATION_DIALOG_TITLE);
     }
-    
+
     public static String getApplyCreationConfirmationDialogHeaderString() {
         return resourceBundle.getString(APPLY_CREATION_CONFIRMATION_DIALOG_HEADER);
     }
