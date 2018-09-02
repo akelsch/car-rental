@@ -1,8 +1,8 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.gui.CarConfigurationView;
+import de.htwsaar.prog3.carrental.gui.EditCarView;
 import de.htwsaar.prog3.carrental.gui.CarTableView;
-import de.htwsaar.prog3.carrental.gui.NewCarCreationView;
+import de.htwsaar.prog3.carrental.gui.NewCarView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
@@ -106,7 +106,7 @@ public class CarTableViewController extends TableViewController {
 	protected void handleEditButtonClicked() {
 		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
 		try {
-			new CarConfigurationView().start(primaryStage, toEdit);
+			new EditCarView().start(primaryStage, toEdit);
 			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 		} catch (Exception e) {
 			logger.error("Error while editing selected car");
@@ -119,7 +119,7 @@ public class CarTableViewController extends TableViewController {
 	@FXML
 	private void handleNewButtonClicked() {
 		try {
-			new NewCarCreationView().start(primaryStage);
+			new NewCarView().start(primaryStage);
 			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 		} catch (Exception e) {
 			logger.error("Error while creating a new Car");
