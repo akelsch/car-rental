@@ -4,6 +4,7 @@ import de.htwsaar.prog3.carrental.view.CarTableView;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
 /**
  * Super Controller that is used to keep the remaining controllers small enough
  * to be easy to read
- * 
+ *
  * @author Lukas Raubuch
  */
 public abstract class TableViewController implements Initializable {
@@ -90,8 +91,7 @@ public abstract class TableViewController implements Initializable {
 	 */
 	@FXML
 	public void closeApplication() {
-		EntityManagerUtil.closeEntityManagerFactory();
-		System.exit(0);
+		Platform.exit();
 	}
 
 	// Switching between Scenes
