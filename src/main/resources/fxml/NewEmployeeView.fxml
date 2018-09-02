@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="de.htwsaar.prog3.carrental.controller.NewEmployeeViewController">
+	<top>
+		<MenuBar prefHeight="14.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="true" text="Spaceholder">
+				</Menu>
+			</menus>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+			<BorderPane.margin>
+				<Insets top="5.0" />
+			</BorderPane.margin>
+		</MenuBar>
+	</top>
+	<center>
+		<GridPane alignment="center" hgap="10" vgap="10">
+			<Label text="%first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			<TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+			<Label text="%last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			<TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+			<Label text="%position-label" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+			<TextField fx:id="positionTextField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+		</GridPane>
+	</center>
+	<bottom>
+		<BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+			<right>
+				<GridPane alignment="center" hgap="10" vgap="10">
+					<Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%cancel-button" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+					<Button fx:id="applyButton" mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%apply-button" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+				</GridPane>
+			</right>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+			<BorderPane.margin>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</BorderPane.margin>
+		</BorderPane>
+	</bottom>
+</BorderPane>
+

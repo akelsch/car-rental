@@ -17,6 +17,8 @@ public class I18nStringsUtil {
     private static final String CUSTOMER_TABLE_VIEW_URL = "customer-tableview-fxml-file";
     private static final String NEW_CUSTOMER_VIEW_URL = "new-customerview-fxml-file";
     private static final String EDIT_CUSTOMER_VIEW_URL = "edit-customerview-fxml-file";
+    private static final String NEW_EMPLOYEE_VIEW_URL ="new-employeeview-fxml-file";
+    private static final String EDIT_EMPLOYEE_VIEW_URL ="edit-employeeview-fxml-file";
 
     private static ResourceBundle resourceBundle;
 
@@ -55,5 +57,13 @@ public class I18nStringsUtil {
 
     public static String getEditCustomerViewURL() {
         return resourceBundle.getString(EDIT_CUSTOMER_VIEW_URL);
+    }
+   
+    public static String getNewEmployeeViewURL() {
+	    return resourceBundle.getString(NEW_EMPLOYEE_VIEW_URL);
+	  }
+
+    public static String getEditEmployeeViewURL() {
+        return resourceBundle.getString(EDIT_EMPLOYEE_VIEW_URL);
     }
 }
