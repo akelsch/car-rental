@@ -1,7 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import java.util.Optional;
-import de.htwsaar.prog3.carrental.gui.NewEmployeeView;
+import de.htwsaar.prog3.carrental.view.NewEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;

@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Table
 @Getter
 @Setter
-@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,4 +27,9 @@ public class Employee extends BaseEntity {
 
     @Column(nullable = false)
     private String position;
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", firstName, lastName);
+    }
 }

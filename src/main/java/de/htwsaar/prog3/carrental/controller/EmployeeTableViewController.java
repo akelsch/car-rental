@@ -3,8 +3,8 @@ package de.htwsaar.prog3.carrental.controller;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.gui.EditEmployeeView;
-import de.htwsaar.prog3.carrental.gui.NewEmployeeView;
+import de.htwsaar.prog3.carrental.view.EditEmployeeView;
+import de.htwsaar.prog3.carrental.view.NewEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
@@ -62,8 +62,6 @@ public class EmployeeTableViewController extends TableViewController {
 
     /**
      * Handle Clicking the Edit Button.
-     *
-     * @param event
      */
     @Override
     protected void handleEditButtonClicked() {

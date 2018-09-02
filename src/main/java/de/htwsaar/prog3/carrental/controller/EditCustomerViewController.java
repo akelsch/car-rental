@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.gui.EditCustomerView;
+import de.htwsaar.prog3.carrental.view.EditCustomerView;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;

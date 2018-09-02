@@ -163,7 +163,7 @@ class CarServiceTest {
         car.setBrand("BMW");
         car.setCategory("Sedan");
         car.setColor("Black");
-        car.setConstructionYear("2016");
+        car.setConstructionYear(2016);
         car.setDailyRate(120);
         car.setDoorCount(5);
         car.setDrivenDistance(25000);
@@ -185,7 +185,7 @@ class CarServiceTest {
         car.setBrand("Mercedes");
         car.setCategory("Coupe");
         car.setColor("Grey");
-        car.setConstructionYear("2017");
+        car.setConstructionYear(2017);
         car.setDailyRate(150);
         car.setDoorCount(3);
         car.setDrivenDistance(10000);

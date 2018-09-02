@@ -3,8 +3,8 @@ package de.htwsaar.prog3.carrental.controller;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.gui.EditCustomerView;
-import de.htwsaar.prog3.carrental.gui.NewCustomerView;
+import de.htwsaar.prog3.carrental.view.EditCustomerView;
+import de.htwsaar.prog3.carrental.view.NewCustomerView;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
@@ -111,7 +111,7 @@ public class CustomerTableViewController extends TableViewController {
     public void initialize(URL location, ResourceBundle resources) {
         id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
-        driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DirverLicenseId"));
+        driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DriverLicenseId"));
         emailAddress.setCellValueFactory(new PropertyValueFactory<>("EmailAddress"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         houseNumber.setCellValueFactory(new PropertyValueFactory<>("HouseNumber"));
