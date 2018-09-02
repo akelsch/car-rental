@@ -18,7 +18,7 @@ public class CustomerProducer {
     private static void produce() {
         List<Customer> list = new ArrayList<>();
 
-        list.add(new Customer("SaarbrÜcken", "01.01.1970", "L52C006JE96", "wbraun@htwsaar.de", "Wolfgang", "141",
+        list.add(new Customer("Saarbrücken", "01.01.1970", "L52C006JE96", "wbraun@htwsaar.de", "Wolfgang", "141",
                 "4077722104D580209241090826", "Braun", "+492718281828", "Otto-Hahn Straße", 66111));
         list.add(new Customer("Saarbrücken", "24.02.1955", "E12G064UE75", "sjobs@mac.os", "Steve", "42",
                 "5082135064D730803739021052", "Jobs", "+4918686302002", "Geisberg", 66132));
