@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.carrental.gui;
+package de.htwsaar.prog3.carrental.view;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;

@@ -1,8 +1,8 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.gui.EditCarView;
-import de.htwsaar.prog3.carrental.gui.CarTableView;
-import de.htwsaar.prog3.carrental.gui.NewCarView;
+import de.htwsaar.prog3.carrental.view.EditCarView;
+import de.htwsaar.prog3.carrental.view.CarTableView;
+import de.htwsaar.prog3.carrental.view.NewCarView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
