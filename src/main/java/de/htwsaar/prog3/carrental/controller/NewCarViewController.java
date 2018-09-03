@@ -11,7 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import java.util.Optional;
 
 /**
- * This is the Controller for the "New Car Creation View" of the Carrental Application.
+ * This is the Controller for the "New Car View" of the Carrental Application.
  *
  * @author Jens Thewes
  */

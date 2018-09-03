@@ -10,10 +10,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Dialog to create a new Customer
- * 
- * @author Jens Thewes
+ * Entry Point of the "New Customer" Dialog.
  *
+ * @author Jens Thewes
+ * 
  */
 public class NewCustomerView {
 

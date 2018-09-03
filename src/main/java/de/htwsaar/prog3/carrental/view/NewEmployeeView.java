@@ -10,10 +10,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Dialog to create a new Employee
- * 
- * @author Jens Thewes
+ * Entry Point of the "New Employee" Dialog.
  *
+ * @author Jens Thewes
+ * 
  */
 public class NewEmployeeView {
 

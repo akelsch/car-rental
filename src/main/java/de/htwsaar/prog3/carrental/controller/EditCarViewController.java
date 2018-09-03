@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * This is the Controller for the "Car Configuration" of the Carrental Application.
+ * This is the Controller for the "Edit Car View" of the Carrental Application.
  *
  * @author Jens Thewes
  */

@@ -10,9 +10,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Entry Point of the New Car Creation Dialog.
+ * Entry Point of the "New Car" Dialog.
  *
  * @author Jens Thewes
+ * 
  */
 public class NewCarView {
 
