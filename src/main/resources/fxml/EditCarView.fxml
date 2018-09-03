@@ -59,7 +59,7 @@
 					<fx:define>
 						<HashMap fx:id="fuelBundle" gasoline="%car-fuel-gasoline-label"
 							diesel="%car-fuel-diesel-label" electric="%car-fuel-electric-label"
-							hybrid=%car-fuel-hyrbid-label " />
+							hybrid="%car-fuel-hyrbid-label" />
 					</fx:define>
 					<ChoiceBox fx:id="fuelChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="3">
 						<items>

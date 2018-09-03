@@ -41,8 +41,8 @@
 						GridPane.rowIndex="1" />
 					<Label text="%car-gearBox-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 					<fx:define>
-						<HashMap fx:id="gearboxBundle" manual="%car-gearBox-manual"
-							semiautomatic="%car-gearBox-semiautomatic" automatic="%car-gearBox-automatic" />
+						<HashMap fx:id="gearboxBundle" manual="%car-gearBox-manual-label"
+							semiautomatic="%car-gearBox-semiAutomatic-label" automatic="%car-gearBox-automatic-label" />
 					</fx:define>
 					<ChoiceBox fx:id="gearBoxChoiceBox" GridPane.columnIndex="0" GridPane.rowIndex="3">
 						<items>
@@ -59,7 +59,7 @@
 					<fx:define>
 						<HashMap fx:id="fuelBundle" gasoline="%car-fuel-gasoline-label"
 							diesel="%car-fuel-diesel-label" electric="%car-fuel-electric-label"
-							hybrid=%car-fuel-hyrbid-label " />
+							hybrid="%car-fuel-hyrbid-label" />
 					</fx:define>
 					<ChoiceBox fx:id="fuelChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="3">
 						<items>
@@ -106,10 +106,10 @@
 			<right>
 				<GridPane alignment="center" hgap="10" vgap="10">
 					<Button fx:id="cancelButton" mnemonicParsing="false"
-						onAction="#handleCancelButtonClicked" text="%car-cancel-button" textAlignment="CENTER"
+						onAction="#handleCancelButtonClicked" text="%button-cancel-label" textAlignment="CENTER"
 						GridPane.columnIndex="0" GridPane.rowIndex="0" />
 					<Button fx:id="applyButton" mnemonicParsing="false" onAction="#handleApplyButtonClicked"
-						text="%car-apply-button" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+						text="%button-apply-label" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 				</GridPane>
 			</right>
 			<padding>
