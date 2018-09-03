@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -137,27 +136,35 @@ public class EditCarViewController implements Initializable {
      */
     @FXML
     protected void handleApplyButtonClicked(ActionEvent event) {
-        // TODO show details + confirmation + valid data check
+        // TODO show details valid data check
         // TODO only update data that has changed?
-        car.setBrand(brandTextField.getText());
-        car.setModel(modelTextField.getText());
-        car.setCategory(categoryTextField.getText());
-        car.setColor(colorTextField.getText());
-        car.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
-        car.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
-        car.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
-        car.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
-        car.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
-        car.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
-        car.setTires(tiresTextField.getText());
-        car.setNextInspection(nextInspectionTextField.getText());
-        car.setVin(vinTextField.getText());
-        car.setEquipment(equipmentTextField.getText());
-        car.setDefects(defectsTextField.getText());
-        car.setLicenseNumber(licenceNumberTextField.getText());
-        car.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
-        car.setParkingLot(parkingLotTextField.getText());
-        service.update(car);
-        EditCarView.closeModalWindow();
+        Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
+        confirmationDialog
+                .setTitle(I18nComponentsUtil.getApplyCreationConfirmationDialogTitleString());
+        confirmationDialog
+                .setHeaderText(I18nComponentsUtil.getApplyCreationConfirmationDialogHeaderString());
+        Optional<ButtonType> result = confirmationDialog.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            car.setBrand(brandTextField.getText());
+            car.setModel(modelTextField.getText());
+            car.setCategory(categoryTextField.getText());
+            car.setColor(colorTextField.getText());
+            car.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
+            car.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
+            car.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
+            car.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
+            car.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
+            car.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
+            car.setTires(tiresTextField.getText());
+            car.setNextInspection(nextInspectionTextField.getText());
+            car.setVin(vinTextField.getText());
+            car.setEquipment(equipmentTextField.getText());
+            car.setDefects(defectsTextField.getText());
+            car.setLicenseNumber(licenceNumberTextField.getText());
+            car.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
+            car.setParkingLot(parkingLotTextField.getText());
+            service.update(car);
+            EditCarView.closeModalWindow();
+        }
     }
 }
