@@ -147,14 +147,14 @@
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="buttonEditSelectedObject" mnemonicParsing="false"
-					onAction="#handleEditButtonClicked" text="%button-edit-label" textAlignment="CENTER"
-					GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
-					GridPane.valignment="CENTER" />
 				<Button fx:id="buttonCreateNewCustomer" mnemonicParsing="false"
 					onAction="#handleNewButtonClicked" text="%button-new-label" textAlignment="CENTER"
-					GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"
+					GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER" />
+				<Button fx:id="buttonEditSelectedObject" mnemonicParsing="false"
+						onAction="#handleEditButtonClicked" text="%button-edit-label" textAlignment="CENTER"
+						GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"
+						GridPane.valignment="CENTER" />
 				<Button fx:id="buttonDeleteSelectedObject" mnemonicParsing="false"
 					onAction="#handleDeleteButtonClicked" text="%button-delete-label" textAlignment="CENTER"
 					GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER"
