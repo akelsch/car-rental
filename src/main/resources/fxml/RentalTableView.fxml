@@ -42,10 +42,10 @@
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-edit">
 							<items>
-								<MenuItem mnemonicParsing="false" text="%menubar-operation-delete"
-									onAction="#handleDeleteButtonClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-edit"
 									onAction="#handleEditButtonClicked" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-delete"
+									onAction="#handleDeleteButtonClicked" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-help">
