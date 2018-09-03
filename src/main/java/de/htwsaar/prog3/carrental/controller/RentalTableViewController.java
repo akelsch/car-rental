@@ -21,10 +21,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * Controller for RentalTableView
  * @author Lukas Raubuch
  */
-public class RentalTableViewController extends TableViewController {
+public class RentalTableViewController extends BaseTableViewController {
 
 	private RentalService service = new RentalService();
-	private ObservableList<Rental> rentals = FXCollections.observableArrayList(service.findAll());
+	private ObservableList<Rental> rentals = FXCollections.observableList(service.findAll());
 
 	@FXML
 	private TableView<Rental> rentalTableView;
@@ -47,7 +47,30 @@ public class RentalTableViewController extends TableViewController {
 	private TableColumn<Rental, String> note;
 
 	@Override
-	protected void handleDeleteButtonClicked() {
+	public void handleApplyCurrentFilterButtonClicked() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void handleRemoveCurrentFilterButtonClicked() {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see CarTableViewController#handleRentButtonClicked()
+	 */
+	@Override
+	public void handleNewButtonClicked() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void handleEditButtonClicked() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void handleDeleteButtonClicked() {
 		Rental toDelete = rentalTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
 			Alert informationDialog = GUIDialogUtil
@@ -65,16 +88,8 @@ public class RentalTableViewController extends TableViewController {
 	}
 
 	@Override
-	protected void handleEditButtonClicked() {
-		// TODO Auto-generated method stub
-
-	}
-	
-	/**
-	 * Initialize the RentalTableView with data from the database.
-	 */
-	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// Associate data with columns
 		id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		begin.setCellValueFactory(new PropertyValueFactory<>("Begin"));
 		car.setCellValueFactory(new PropertyValueFactory<>("Car"));
@@ -86,17 +101,4 @@ public class RentalTableViewController extends TableViewController {
 		
 		rentalTableView.setItems(rentals);
 	}
-
-	@Override
-	protected void handleRemoveCurrentFilterButtonClicked() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void handleApplyCurrentFilterButtonClicked() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

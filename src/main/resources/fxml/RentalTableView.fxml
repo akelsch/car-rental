@@ -28,30 +28,31 @@
 					<menus>
 						<Menu mnemonicParsing="true" text="%menubar-view-file">
 							<items>
-								<MenuItem mnemonicParsing="false" text="%menubar-operation-employees"
-									onAction="#switchToEmployeesView" />
-								<MenuItem mnemonicParsing="false" text="%menubar-operation-rentals"
-									onAction="#switchToRentalsView" />
-								<MenuItem mnemonicParsing="false" text="%menubar-operation-customers"
-									onAction="#switchToCustomersView" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-cars"
-									onAction="#switchToCarsView" />
+									onAction="#handleCarMenuItemClicked" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-customers"
+									onAction="#handleCustomerMenuItemClicked" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-employees"
+									onAction="#handleEmployeeMenuItemClicked" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-rentals"
+									onAction="#handleRentalMenuItemClicked" />
+								<SeparatorMenuItem mnemonicParsing="false" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-close"
-									onAction="#closeApplication" />
+									onAction="#handleCloseMenuItemClicked" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-edit">
 							<items>
-								<MenuItem mnemonicParsing="false" text="%menubar-operation-delete"
-									onAction="#handleDeleteButtonClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-edit"
 									onAction="#handleEditButtonClicked" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-delete"
+									onAction="#handleDeleteButtonClicked" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-help">
 							<items>
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-about"
-									onAction="#handleAboutButtonClicked" />
+									onAction="#handleAboutMenuItemClicked" />
 							</items>
 						</Menu>
 					</menus>

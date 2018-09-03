@@ -23,11 +23,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * 
  * @author Lukas Raubuch, Jens Thewes
  */
-public class EmployeeTableViewController extends TableViewController {
+public class EmployeeTableViewController extends BaseTableViewController {
 
     private EmployeeService service = new EmployeeService();
-    private ObservableList<Employee> employees =
-            FXCollections.observableArrayList(service.findAll());
+    private ObservableList<Employee> employees = FXCollections.observableList(service.findAll());
 
     @FXML
     private TableView<Employee> employeeTableView;
@@ -41,9 +40,39 @@ public class EmployeeTableViewController extends TableViewController {
     @FXML
     private TableColumn<Employee, String> position;
 
+    @Override
+    public void handleApplyCurrentFilterButtonClicked() {
+        // TODO Auto-generated method stub
+    }
 
     @Override
-    protected void handleDeleteButtonClicked() {
+    public void handleRemoveCurrentFilterButtonClicked() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void handleNewButtonClicked() {
+        try {
+            new NewEmployeeView().start(primaryStage);
+            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        } catch (Exception e) {
+            // TODO Logger?
+        }
+    }
+
+    @Override
+    public void handleEditButtonClicked() {
+        Employee toEdit = employeeTableView.getSelectionModel().getSelectedItem();
+        try {
+            new EditEmployeeView().start(primaryStage, toEdit);
+            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        } catch (Exception e) {
+            // TODO Logger?
+        }
+    }
+
+    @Override
+    public void handleDeleteButtonClicked() {
         Employee toDelete = employeeTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
             Alert informationDialog = GUIDialogUtil.createInformationDialog(
@@ -60,36 +89,6 @@ public class EmployeeTableViewController extends TableViewController {
         }
     }
 
-    /**
-     * Handle Clicking the Edit Button.
-     */
-    @Override
-    protected void handleEditButtonClicked() {
-        Employee toEdit = employeeTableView.getSelectionModel().getSelectedItem();
-        try {
-            new EditEmployeeView().start(primaryStage, toEdit);
-            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
-    }
-
-    /**
-     * Handle Clicking the New Button.
-     */
-    @FXML
-    private void handleNewButtonClicked() {
-        try {
-            new NewEmployeeView().start(primaryStage);
-            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
-    }
-
-    /**
-     * Initialize the EmployeeTableView with data from the database.
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Associate data with columns
@@ -99,19 +98,5 @@ public class EmployeeTableViewController extends TableViewController {
         position.setCellValueFactory(new PropertyValueFactory<>("Position"));
 
         employeeTableView.setItems(employees);
-
     }
-
-    @Override
-    protected void handleRemoveCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void handleApplyCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
-
-    }
-
 }

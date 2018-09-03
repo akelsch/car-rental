@@ -24,11 +24,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * 
  * @author Lukas Raubuch, Jens Thewes
  */
-public class CustomerTableViewController extends TableViewController {
+public class CustomerTableViewController extends BaseTableViewController {
 
     private CustomerService service = new CustomerService();
-    private ObservableList<Customer> customers =
-            FXCollections.observableArrayList(service.findAll());
+    private ObservableList<Customer> customers = FXCollections.observableList(service.findAll());
 
     @FXML
     private TableView<Customer> customerTableView;
@@ -58,11 +57,39 @@ public class CustomerTableViewController extends TableViewController {
     @FXML
     private TableColumn<Customer, String> zipCode;
 
-    @FXML
-    private Button buttonCreateNewCustomer;
+    @Override
+    public void handleApplyCurrentFilterButtonClicked() {
+        // TODO Auto-generated method stub
+    }
 
     @Override
-    protected void handleDeleteButtonClicked() {
+    public void handleRemoveCurrentFilterButtonClicked() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void handleNewButtonClicked() {
+        try {
+            new NewCustomerView().start(primaryStage);
+            customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        } catch (Exception e) {
+            // TODO Logger?
+        }
+    }
+
+    @Override
+    public void handleEditButtonClicked() {
+        Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
+        try {
+            new EditCustomerView().start(primaryStage, toEdit);
+            customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        } catch (Exception e) {
+            // TODO Logger?
+        }
+    }
+
+    @Override
+    public void handleDeleteButtonClicked() {
         Customer toDelete = customerTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
             Alert informationDialog = GUIDialogUtil.createInformationDialog(
@@ -79,36 +106,9 @@ public class CustomerTableViewController extends TableViewController {
         }
     }
 
-    /**
-     * Handle Clicking the Edit Button.
-     *
-     */
-    @Override
-    protected void handleEditButtonClicked() {
-        Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
-        try {
-            new EditCustomerView().start(primaryStage, toEdit);
-            customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
-    }
-
-    /**
-     * Handle Clicking the New Button.
-     */
-    @FXML
-    private void handleNewButtonClicked() {
-        try {
-            new NewCustomerView().start(primaryStage);
-            customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Associate data with columns
         id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
         driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DriverLicenseId"));
@@ -124,17 +124,4 @@ public class CustomerTableViewController extends TableViewController {
 
         customerTableView.setItems(customers);
     }
-
-    @Override
-    protected void handleRemoveCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    protected void handleApplyCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
-
-    }
-
 }

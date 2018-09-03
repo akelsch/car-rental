@@ -26,12 +26,11 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  * @see CarTableView
  */
-public class CarTableViewController extends TableViewController {
-
+public class CarTableViewController extends BaseTableViewController {
 	private static final Logger logger = LoggerFactory.getLogger(CarTableViewController.class);
 
 	private CarService service = new CarService();
-	private ObservableList<Car> cars = FXCollections.observableArrayList(service.findAll());
+	private ObservableList<Car> cars = FXCollections.observableList(service.findAll());
 
 	@FXML
 	private TableView<Car> carTableView;
@@ -73,12 +72,39 @@ public class CarTableViewController extends TableViewController {
 	@FXML
 	private TableColumn<Car, String> vin;
 
-	/**
-	 * Handle Clicking the Delete Button.
-	 */
-	@FXML
 	@Override
-	protected void handleDeleteButtonClicked() {
+	public void handleApplyCurrentFilterButtonClicked() {
+		// TODO: Implement with Arthur and Julian
+	}
+
+	@Override
+	public void handleRemoveCurrentFilterButtonClicked() {
+		carTableView.setItems(cars);
+	}
+
+	@Override
+	public void handleNewButtonClicked() {
+		try {
+			new NewCarView().start(primaryStage);
+			carTableView.setItems(FXCollections.observableList(service.findAll()));
+		} catch (Exception e) {
+			logger.error("Error while creating a new Car");
+		}
+	}
+
+	@Override
+	public void handleEditButtonClicked() {
+		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
+		try {
+			new EditCarView().start(primaryStage, toEdit);
+			carTableView.setItems(FXCollections.observableList(service.findAll()));
+		} catch (Exception e) {
+			logger.error("Error while editing selected car");
+		}
+	}
+
+	@Override
+	public void handleDeleteButtonClicked() {
 		Car toDelete = carTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
 			Alert informationDialog = GUIDialogUtil
@@ -97,41 +123,12 @@ public class CarTableViewController extends TableViewController {
 	}
 
 	/**
-	 * Handle Clicking the Edit Button.
+	 * Handle pressing the "Rent..." button.
 	 */
-	@FXML
-	@Override
-	protected void handleEditButtonClicked() {
-		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
-		try {
-			new EditCarView().start(primaryStage, toEdit);
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while editing selected car");
-		}
-	}
-
-	/**
-	 * Handle Clicking the New Button.
-	 */
-	@FXML
-	private void handleNewButtonClicked() {
-		try {
-			new NewCarView().start(primaryStage);
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while creating a new Car");
-		}
-	}
-
-	@FXML
 	public void handleRentButtonClicked() {
 		// TODO: Implement with Michael
 	}
 
-	/**
-	 * Initialize the CarTableView with data from the database.
-	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Associate data with columns
@@ -157,20 +154,4 @@ public class CarTableViewController extends TableViewController {
 
 		carTableView.setItems(cars);
 	}
-
-	@FXML
-	public void handleApplyCurrentFilterButtonClicked() {
-		// TODO: Implement with Arthur and Julian
-	}
-
-	/**
-	 * Remove the filtering to display all cars again and not only those matching
-	 * the filter. Just set all cars list in the {@code carTableView}
-	 */
-	@FXML
-	@Override
-	public void handleRemoveCurrentFilterButtonClicked() {
-		carTableView.setItems(cars);
-	}
-
 }
