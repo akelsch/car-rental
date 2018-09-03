@@ -28,14 +28,15 @@
 					<menus>
 						<Menu mnemonicParsing="true" text="%menubar-view-file">
 							<items>
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-cars"
+									onAction="#handleCarMenuItemClicked" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-customers"
+									onAction="#handleCustomerMenuItemClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-employees"
 									onAction="#handleEmployeeMenuItemClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-rentals"
 									onAction="#handleRentalMenuItemClicked" />
-								<MenuItem mnemonicParsing="false" text="%menubar-operation-customers"
-									onAction="#handleCustomerMenuItemClicked" />
-								<MenuItem mnemonicParsing="false" text="%menubar-operation-cars"
-									onAction="#handleCarMenuItemClicked" />
+								<SeparatorMenuItem mnemonicParsing="false" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-close"
 									onAction="#handleCloseMenuItemClicked" />
 							</items>
