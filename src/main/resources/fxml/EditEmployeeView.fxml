@@ -21,11 +21,11 @@
 	</top>
 	<center>
 		<GridPane alignment="center" hgap="10" vgap="10">
-			<Label text="%first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			<Label text="%employee-firstName-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 			<TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-			<Label text="%last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			<Label text="%employee-lastName-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 			<TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-			<Label text="%position-label" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+			<Label text="%employee-position-label" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 			<TextField fx:id="positionTextField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 		</GridPane>
 	</center>
@@ -33,8 +33,8 @@
 		<BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
 			<right>
 				<GridPane alignment="center" hgap="10" vgap="10">
-					<Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%cancel-button" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-					<Button fx:id="applyButton" mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%apply-button" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+					<Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button-cancel-label" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+					<Button fx:id="applyButton" mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button-apply-label" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 				</GridPane>
 			</right>
 			<padding>

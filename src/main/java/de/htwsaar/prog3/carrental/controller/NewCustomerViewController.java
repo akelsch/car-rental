@@ -13,6 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
+/**
+ * This is the Controller for the "New Customer View" of the Carrental Application.
+ *
+ * @author Jens Thewes
+ */
 public class NewCustomerViewController {
 
     private CustomerService service = new CustomerService();
@@ -105,5 +110,4 @@ public class NewCustomerViewController {
             NewCustomerView.closeModalWindow();
         }
     }
-
 }

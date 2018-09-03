@@ -7,68 +7,52 @@
 <?import java.lang.String?>
 <?import java.util.HashMap?>
 <?import javafx.scene.layout.ColumnConstraints?>
-
-<BorderPane xmlns="http://javafx.com/javafx"
-	xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
 	fx:controller="de.htwsaar.prog3.carrental.controller.CustomerTableViewController">
 	<top>
 		<GridPane BorderPane.alignment="CENTER">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES"
-					minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES"
-					minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES"
-					minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES"
-					minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES"
-					minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<MenuBar prefHeight="10.0" GridPane.columnIndex="0"
-					GridPane.columnSpan="5" GridPane.rowIndex="0">
+				<MenuBar prefHeight="10.0" GridPane.columnIndex="0" GridPane.columnSpan="5"
+					GridPane.rowIndex="0">
 					<menus>
 						<Menu mnemonicParsing="true" text="%menubar-view-file">
 							<items>
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-employees"
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-employees"
 									onAction="#switchToEmployeesView" />
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-rentals"
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-rentals"
 									onAction="#switchToRentalsView" />
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-customers"
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-customers"
 									onAction="#switchToCustomersView" />
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-cars" onAction="#switchToCarsView" />
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-close" onAction="#closeApplication" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-cars"
+									onAction="#switchToCarsView" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-close"
+									onAction="#closeApplication" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-edit">
 							<items>
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-delete"
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-delete"
 									onAction="#handleDeleteButtonClicked" />
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-edit"
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-edit"
 									onAction="#handleEditButtonClicked" />
-								<MenuItem mnemonicParsing="false"
-                                    text="%menubar-operation-new"
-                                    onAction="#handleNewButtonClicked" />
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-new"
+									onAction="#handleNewButtonClicked" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-help">
 							<items>
-								<MenuItem mnemonicParsing="false"
-									text="%menubar-operation-about"
+								<MenuItem mnemonicParsing="false" text="%menubar-operation-about"
 									onAction="#handleAboutButtonClicked" />
 							</items>
 						</Menu>
@@ -78,148 +62,103 @@
 					</padding>
 				</MenuBar>
 				<fx:define>
-					<HashMap fx:id="searchComboBoxFieldStrings"
-						id="%search-customer-combobox-id"
-						dateOfBirth="%search-customer-combobox-dateOfBirth"
-						driverLicenseId="%search-customer-combobox-driverLicenseId"
-						emailAddress="%search-customer-combobox-emailAddress"
-						firstName="%search-customer-combobox-firstName"
-						houseNumber="%search-customer-combobox-houseNumber"
-						lastName="%search-customer-combobox-lastName"
-						phoneNumber="%search-customer-combobox-phoneNumber"
-						street="%search-customer-combobox-street"
-						city="%search-customer-combobox-city"
-						idNumber="%search-customer-combobox-idNumber"
-						zipCode="%search-customer-combobox-zipCode" />
+					<HashMap fx:id="searchComboBoxFieldStrings" id="%customer-id-label"
+						dateOfBirth="%customer-dateOfBirth-label" driverLicenseId="%customer-driverLicenseId-label"
+						emailAddress="%customer-email-label" firstName="%customer-firstName-label"
+						houseNumber="%customer-houseNumber-label" lastName="%customer-lastName-label"
+						phoneNumber="%customer-phoneNumber-label" street="%customer-street-label"
+						city="%customer-city-label" idNumber="%customer-idNumber-label"
+						zipCode="%customer-zipCode-label" />
 				</fx:define>
-				<ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1"
-					GridPane.columnIndex="0" promptText="%prompt-search-ComboBoxField"
-					prefWidth="Infinity" GridPane.halignment="CENTER"
+				<ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
+					promptText="%prompt-search-ComboBoxField" prefWidth="Infinity" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxFieldStrings.id" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.dateOfBirth" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.driverLicenseId" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.emailAddress" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.firstName" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.houseNumber" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.lastName" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.phoneNumber" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.street" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.city" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.idNumber" />
-							<fx:reference
-								source="searchComboBoxFieldStrings.zipCode" />
+							<fx:reference source="searchComboBoxFieldStrings.dateOfBirth" />
+							<fx:reference source="searchComboBoxFieldStrings.driverLicenseId" />
+							<fx:reference source="searchComboBoxFieldStrings.emailAddress" />
+							<fx:reference source="searchComboBoxFieldStrings.firstName" />
+							<fx:reference source="searchComboBoxFieldStrings.houseNumber" />
+							<fx:reference source="searchComboBoxFieldStrings.lastName" />
+							<fx:reference source="searchComboBoxFieldStrings.phoneNumber" />
+							<fx:reference source="searchComboBoxFieldStrings.street" />
+							<fx:reference source="searchComboBoxFieldStrings.city" />
+							<fx:reference source="searchComboBoxFieldStrings.idNumber" />
+							<fx:reference source="searchComboBoxFieldStrings.zipCode" />
 						</FXCollections>
 					</items>
 				</ComboBox>
 				<fx:define>
-					<HashMap fx:id="searchComboBoxComparatorStrings"
-						equals="%search-combobox-equals" like="%search-combobox-like" />
+					<HashMap fx:id="searchComboBoxComparatorStrings" equals="%search-combobox-equals"
+						like="%search-combobox-like" />
 				</fx:define>
-				<ComboBox fx:id="searchComboBoxComparator"
-					GridPane.rowIndex="1" GridPane.columnIndex="1"
-					promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity"
+				<ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1"
+					GridPane.columnIndex="1" promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<fx:reference
-								source="searchComboBoxComparatorStrings.equals" />
-							<fx:reference
-								source="searchComboBoxComparatorStrings.like" />
+							<fx:reference source="searchComboBoxComparatorStrings.equals" />
+							<fx:reference source="searchComboBoxComparatorStrings.like" />
 						</FXCollections>
 					</items>
 				</ComboBox>
-				<TextField fx:id="searchTextField" GridPane.rowIndex="1"
-					GridPane.columnIndex="2" promptText="%prompt-search-TextField"
+				<TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
+					promptText="%prompt-search-TextField" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+				<Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false"
+					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-applyCurrentFilter-label"
+					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-				<Button fx:id="buttonApplyCurrentFilter"
-					mnemonicParsing="false"
-					onAction="#handleApplyCurrentFilterButtonClicked"
-					text="%button-applyCurrentFilter-label" textAlignment="CENTER"
-					GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"
-					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-				<Button fx:id="buttonRemoveCurrentFilter"
-					mnemonicParsing="false"
-					onAction="#handleRemoveCurrentFilterButtonClicked"
-					text="%button-removeCurrentFilter-label" textAlignment="CENTER"
-					GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"
+				<Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false"
+					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-removeCurrentFilter-label"
+					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 			</children>
 		</GridPane>
 	</top>
 	<center>
-		<TableView fx:id="customerTableView" prefHeight="400.0"
-			prefWidth="487.0" BorderPane.alignment="CENTER">
+		<TableView fx:id="customerTableView" prefHeight="400.0" prefWidth="487.0"
+			BorderPane.alignment="CENTER">
 			<columns>
-				<TableColumn fx:id="id" text="%table-view-header-id" />
-				<TableColumn fx:id="dateOfBirth"
-					text="%table-view-customer-header-dateOfBirth" />
-				<TableColumn fx:id="driverLicenseId"
-					text="%table-view-customer-header-driverLicenseId" />
-				<TableColumn fx:id="emailAddress"
-					text="%table-view-customer-header-emailAddress" />
-				<TableColumn fx:id="firstName"
-					text="%table-view-customer-header-firstName" />
-				<TableColumn fx:id="lastName"
-                    text="%table-view-customer-header-lastName" />
-                <TableColumn fx:id="phoneNumber"
-                    text="%table-view-customer-header-phoneNumber" />
-				<TableColumn fx:id="houseNumber"
-					text="%table-view-customer-header-houseNumber" />
-				<TableColumn fx:id="street"
-					text="%table-view-customer-header-street" />
-				<TableColumn fx:id="city"
-					text="%table-view-customer-header-city" />
-				<TableColumn fx:id="idNumber"
-					text="%table-view-customer-header-idNumber" />
-				<TableColumn fx:id="zipCode"
-					text="%table-view-customer-header-zipCode" />
+				<TableColumn fx:id="id" text="%customer-id-label" />
+				<TableColumn fx:id="dateOfBirth" text="%customer-dateOfBirth-label" />
+				<TableColumn fx:id="driverLicenseId" text="%customer-driverLicenseId-label" />
+				<TableColumn fx:id="emailAddress" text="%customer-email-label" />
+				<TableColumn fx:id="firstName" text="%customer-firstName-label" />
+				<TableColumn fx:id="lastName" text="%customer-lastName-label" />
+				<TableColumn fx:id="phoneNumber" text="%customer-phoneNumber-label" />
+				<TableColumn fx:id="houseNumber" text="%customer-houseNumber-label" />
+				<TableColumn fx:id="street" text="%customer-street-label" />
+				<TableColumn fx:id="city" text="%customer-city-label" />
+				<TableColumn fx:id="idNumber" text="%customer-idNumber-label" />
+				<TableColumn fx:id="zipCode" text="%customer-zipCode-label" />
 			</columns>
 		</TableView>
 	</center>
 	<bottom>
-		<GridPane BorderPane.alignment="CENTER" prefHeight="25.0"
-			prefWidth="1442.0">
+		<GridPane BorderPane.alignment="CENTER" prefHeight="25.0" prefWidth="1442.0">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10"
-					prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10"
-					prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10"
-					prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
 				<Button fx:id="buttonEditSelectedObject" mnemonicParsing="false"
-					onAction="#handleEditButtonClicked" text="%button-edit-label"
-					textAlignment="CENTER" GridPane.columnIndex="0"
-					GridPane.rowIndex="0" GridPane.halignment="CENTER"
+					onAction="#handleEditButtonClicked" text="%button-edit-label" textAlignment="CENTER"
+					GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER" />
 				<Button fx:id="buttonCreateNewCustomer" mnemonicParsing="false"
-					onAction="#handleNewButtonClicked" text="%button-new-label"
-					textAlignment="CENTER" GridPane.columnIndex="1"
-					GridPane.rowIndex="0" GridPane.halignment="CENTER"
+					onAction="#handleNewButtonClicked" text="%button-new-label" textAlignment="CENTER"
+					GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER" />
-				<Button fx:id="buttonDeleteSelectedObject"
-					mnemonicParsing="false" onAction="#handleDeleteButtonClicked"
-					text="%button-delete-label" textAlignment="CENTER"
-					GridPane.columnIndex="2" GridPane.rowIndex="0"
-					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+				<Button fx:id="buttonDeleteSelectedObject" mnemonicParsing="false"
+					onAction="#handleDeleteButtonClicked" text="%button-delete-label" textAlignment="CENTER"
+					GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER"
+					GridPane.valignment="CENTER" />
 			</children>
 		</GridPane>
 	</bottom>

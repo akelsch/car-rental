@@ -30,6 +30,6 @@ class I18nComponentsUtilTest {
         Locale englishLocale = new Locale("en");
         Locale.setDefault(englishLocale);
 
-        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Carrental")));
+        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Car Rental")));
     }
 }

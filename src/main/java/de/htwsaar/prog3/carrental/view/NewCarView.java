@@ -10,12 +10,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Entry Point of the New Car Creation Dialog.
+ * Entry Point of the "New Car" Dialog.
  *
  * @author Jens Thewes
+ * 
  */
 public class NewCarView {
-    
+
     private static Stage modalWindow;
 
     /**
@@ -25,11 +26,10 @@ public class NewCarView {
      * @throws Exception
      */
     public void start(Stage parentStage) throws Exception {
-        modalWindow  = new Stage();
+        modalWindow = new Stage();
         // Load FXML document for the car configuration view wit the needed resource bundle
-        Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCarViewURL()),
-                        I18nUtil.getResourceBundleComponents());
+        Parent scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCarViewURL()),
+                I18nUtil.getResourceBundleComponents());
         modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
@@ -40,7 +40,7 @@ public class NewCarView {
         modalWindow.initModality(Modality.WINDOW_MODAL);
         modalWindow.show();
     }
-    
+
     /**
      * close the modal window
      * 

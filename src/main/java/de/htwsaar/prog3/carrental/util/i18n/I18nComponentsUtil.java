@@ -16,10 +16,10 @@ public final class I18nComponentsUtil {
     // Keys
     private static final String STAGE_TITLE = "stage-title";
     private static final String DELETE_CONFIRMATION_DIALOG_HEADER = "dialog-delete-confirmation-header";
-    private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-cancel-creation-confirmation-title";
+    private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-confirmation-title";
     private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-cancel-creation-confirmation" +
             "-header";
-    private static final String APPLY_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-apply-creation-confirmation-title";
+    private static final String APPLY_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-confirmation-title";
     private static final String APPLY_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-apply-creation-confirmation-header";
     private static final String DIALOG_CONFIRMATION_TITLE = "dialog-confirmation-title";
     private static final String DIALOG_INFORMATION_TITLE = "dialog-information-title";

@@ -11,10 +11,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Dialog to edit an existing Employee
- * 
- * @author Jens Thewes
+ * Entry Point of the "Edit Employee" Dialog.
  *
+ * @author Jens Thewes
+ * 
  */
 public class EditEmployeeView {
 
@@ -55,7 +55,7 @@ public class EditEmployeeView {
     }
 
     /**
-     * get the car to edit
+     * get the employee to edit
      * 
      * @return
      */

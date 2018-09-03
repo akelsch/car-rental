@@ -11,9 +11,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Entry Point of the Car Configuration Dialog.
+ * Entry Point of the "Edit Car" Dialog.
  *
  * @author Jens Thewes
+ * 
  */
 public class EditCarView {
     

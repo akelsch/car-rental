@@ -10,6 +10,12 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Entry Point of the "Edit Customer" Dialog.
+ *
+ * @author Jens Thewes
+ * 
+ */
 public class EditCustomerView {
     
     private static Stage modalWindow;
