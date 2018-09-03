@@ -29,15 +29,15 @@
 						<Menu mnemonicParsing="true" text="%menubar-view-file">
 							<items>
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-employees"
-									onAction="#switchToEmployeesView" />
+									onAction="#handleEmployeeMenuItemClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-rentals"
-									onAction="#switchToRentalsView" />
+									onAction="#handleRentalMenuItemClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-customers"
-									onAction="#switchToCustomersView" />
+									onAction="#handleCustomerMenuItemClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-cars"
-									onAction="#switchToCarsView" />
+									onAction="#handleCarMenuItemClicked" />
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-close"
-									onAction="#closeApplication" />
+									onAction="#handleCloseMenuItemClicked" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="true" text="%menubar-view-edit">
@@ -51,7 +51,7 @@
 						<Menu mnemonicParsing="true" text="%menubar-view-help">
 							<items>
 								<MenuItem mnemonicParsing="false" text="%menubar-operation-about"
-									onAction="#handleAboutButtonClicked" />
+									onAction="#handleAboutMenuItemClicked" />
 							</items>
 						</Menu>
 					</menus>
