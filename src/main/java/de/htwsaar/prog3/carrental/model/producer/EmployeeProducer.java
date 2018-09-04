@@ -7,6 +7,11 @@ import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Produces some test data for the {@link Employee} model.
+ *
+ * @author Julian Quint
+ */
 public class EmployeeProducer {
     private static EmployeeService employeeService = new EmployeeService();
 

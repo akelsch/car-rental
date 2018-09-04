@@ -10,6 +10,11 @@ import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Produces some test data for the {@link Rental} model.
+ *
+ * @author Julian Quint
+ */
 public class RentalProducer {
     private static CarService carService = new CarService();
     private static CustomerService customerService = new CustomerService();
