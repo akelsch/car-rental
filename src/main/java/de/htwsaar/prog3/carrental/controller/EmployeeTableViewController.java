@@ -42,12 +42,15 @@ public class EmployeeTableViewController extends BaseTableViewController {
 
     @Override
     public void handleApplyCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
+        String field = searchComboBoxField.getValue();
+        String comparator = searchComboBoxComparator.getValue();
+        String value = searchTextField.getText();
+        employees.setAll(service.filter(field,comparator,value));
     }
 
     @Override
     public void handleRemoveCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
+        employees.setAll(service.findAll());
     }
 
     @Override
