@@ -147,6 +147,22 @@ class RentalServiceTest {
         assertThat(actualRentals.size(), is(equalTo(0)));
     }
 
+    @Test
+    void testFilter() {
+        Rental rental1 = createTestRental1();
+        rentalService.persist(rental1);
+
+        Rental rental2 = createTestRental2();
+        rentalService.persist(rental2);
+
+        List<Rental> expectedCars = new ArrayList<>();
+        expectedCars.add(rental1);
+
+        List<Rental> actualCars = rentalService.filter("begin", "=", "'01.01.1970'");
+
+        assertThat(actualCars, is(equalTo(expectedCars)));
+    }
+
     private static Rental createTestRental1() {
         Rental rental = new Rental();
         rental.setBegin("01.01.1970");

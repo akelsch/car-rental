@@ -131,6 +131,22 @@ class EmployeeServiceTest {
         assertThat(actualEmployees.size(), is(equalTo(0)));
     }
 
+    @Test
+    void testFilter() {
+        Employee employee1 = createTestEmployee1();
+        employeeService.persist(employee1);
+
+        Employee employee2 = createTestEmployee2();
+        employeeService.persist(employee2);
+
+        List<Employee> expectedCars = new ArrayList<>();
+        expectedCars.add(employee1);
+
+        List<Employee> actualCars = employeeService.filter("lastName", "=", "'Musk'");
+
+        assertThat(actualCars, is(equalTo(expectedCars)));
+    }
+
     static Employee createTestEmployee1() {
         Employee employee = new Employee();
         employee.setFirstName("Elon");
