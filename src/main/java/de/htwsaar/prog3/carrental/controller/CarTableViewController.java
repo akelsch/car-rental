@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import de.htwsaar.prog3.carrental.util.FilterUtil;
 import de.htwsaar.prog3.carrental.view.EditCarView;
 import de.htwsaar.prog3.carrental.view.CarTableView;
 import de.htwsaar.prog3.carrental.view.NewCarView;
@@ -75,11 +76,15 @@ public class CarTableViewController extends BaseTableViewController {
 	@Override
 	public void handleApplyCurrentFilterButtonClicked() {
 		// TODO: Implement with Arthur and Julian
+		String field = searchComboBoxField.getValue();
+		String comparator = searchComboBoxComparator.getValue();
+		String value = searchTextField.getText();
+		cars.setAll(FilterUtil.filter(field,comparator,value));
 	}
 
 	@Override
 	public void handleRemoveCurrentFilterButtonClicked() {
-		carTableView.setItems(cars);
+		cars.setAll(service.findAll());
 	}
 
 	@Override
