@@ -158,7 +158,7 @@ class RentalServiceTest {
         List<Rental> expectedCars = new ArrayList<>();
         expectedCars.add(rental1);
 
-        List<Rental> actualCars = rentalService.filter("begin", "=", "'01.01.1970'");
+        List<Rental> actualCars = rentalService.filter("begin", "=", "01.01.1970");
 
         assertThat(actualCars, is(equalTo(expectedCars)));
     }

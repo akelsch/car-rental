@@ -79,7 +79,7 @@ public class CarTableViewController extends BaseTableViewController {
 		String field = searchComboBoxField.getValue();
 		String comparator = searchComboBoxComparator.getValue();
 		String value = searchTextField.getText();
-		cars.setAll(FilterUtil.filter(field,comparator,value));
+		cars.setAll(service.filter(field,comparator,value));
 	}
 
 	@Override

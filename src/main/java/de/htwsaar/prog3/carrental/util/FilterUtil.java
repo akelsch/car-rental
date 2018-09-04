@@ -1,18 +1,10 @@
 package de.htwsaar.prog3.carrental.util;
 
-import de.htwsaar.prog3.carrental.model.Car;
-import de.htwsaar.prog3.carrental.service.CarService;
-
-import java.util.List;
-
-public class FilterUtil {
-    private static CarService carService = new CarService();
-
-    public static List<Car> filter(String field, String comparator, String value){
-       return carService.filter(convertField(field), convertComparator(comparator), convertValue(value));
+public final class FilterUtil {
+    private FilterUtil(){
     }
 
-    private static String convertField(String field){
+    public static String convertField(String field){
         switch (field){
             case "ID":
                 return "id";
@@ -55,14 +47,10 @@ public class FilterUtil {
         }
     }
 
-    private static String convertComparator(String comparator){
-        if(comparator == "like"){
-            return "LIKE";
+    public static String convertValue(String value, String comparator){
+        if(comparator.equals("LIKE")){
+            return "'%" + value + "%'";
         }
-        return comparator;
-    }
-
-    private static String convertValue(String value){
         return "'" + value + "'";
     }
 }

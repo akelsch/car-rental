@@ -142,7 +142,7 @@ class CustomerServiceTest {
         List<Customer> expectedCars = new ArrayList<>();
         expectedCars.add(customer1);
 
-        List<Customer> actualCars = customerService.filter("lastName", "=", "'Braun'");
+        List<Customer> actualCars = customerService.filter("lastName", "=", "Braun");
 
         assertThat(actualCars, is(equalTo(expectedCars)));
     }
