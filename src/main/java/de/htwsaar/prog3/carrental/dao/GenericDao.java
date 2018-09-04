@@ -52,6 +52,8 @@ public interface GenericDao<T> {
      */
     void deleteAll();
 
+    List<T> filter(String field, String comparator, String value);
+
     /**
      * Creates an entity manager.
      */

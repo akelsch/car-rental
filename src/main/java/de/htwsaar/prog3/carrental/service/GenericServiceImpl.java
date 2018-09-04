@@ -76,4 +76,14 @@ public class GenericServiceImpl<T extends BaseEntity> implements GenericService<
         dao.commitTransaction();
         dao.closeEntityManager();
     }
+
+    @Override
+    public List<T> filter(String field, String comparator, String value){
+        dao.createEntityManager();
+        dao.beginTransaction();
+        List<T> entities = dao.filter(field, comparator, value);
+        dao.commitTransaction();
+        dao.closeEntityManager();
+        return entities;
+    }
 }

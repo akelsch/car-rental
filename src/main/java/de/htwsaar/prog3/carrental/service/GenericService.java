@@ -69,4 +69,6 @@ public interface GenericService<T> {
      * @see GenericDao#deleteAll()
      */
     void deleteAll();
+
+    List<T> filter(String field, String comparator, String value);
 }
