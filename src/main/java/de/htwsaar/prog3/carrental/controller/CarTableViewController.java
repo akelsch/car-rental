@@ -8,7 +8,6 @@ import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,11 +25,8 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  * @see CarTableView
  */
-public class CarTableViewController extends BaseTableViewController {
+public class CarTableViewController extends GenericTableViewController<Car> {
 	private static final Logger logger = LoggerFactory.getLogger(CarTableViewController.class);
-
-	private CarService service = new CarService();
-	private ObservableList<Car> cars = FXCollections.observableList(service.findAll());
 
 	@FXML
 	private TableView<Car> carTableView;
@@ -72,21 +68,16 @@ public class CarTableViewController extends BaseTableViewController {
 	@FXML
 	private TableColumn<Car, String> vin;
 
-	@Override
-	public void handleApplyCurrentFilterButtonClicked() {
-		// TODO: Implement with Arthur and Julian
-	}
-
-	@Override
-	public void handleRemoveCurrentFilterButtonClicked() {
-		carTableView.setItems(cars);
+	public CarTableViewController() {
+		service = new CarService();
+		entities = FXCollections.observableArrayList(service.findAll());
 	}
 
 	@Override
 	public void handleNewButtonClicked() {
 		try {
 			new NewCarView().start(primaryStage);
-			carTableView.setItems(FXCollections.observableList(service.findAll()));
+			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 		} catch (Exception e) {
 			logger.error("Error while creating a new Car");
 		}
@@ -97,7 +88,7 @@ public class CarTableViewController extends BaseTableViewController {
 		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
 		try {
 			new EditCarView().start(primaryStage, toEdit);
-			carTableView.setItems(FXCollections.observableList(service.findAll()));
+			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 		} catch (Exception e) {
 			logger.error("Error while editing selected car");
 		}
@@ -118,7 +109,7 @@ public class CarTableViewController extends BaseTableViewController {
 		if (result.get() == ButtonType.OK) {
 			logger.info("OK Button pressed. Deleting Car...");
 			service.delete(toDelete);
-			cars.remove(toDelete);
+			entities.remove(toDelete);
 		}
 	}
 
@@ -152,6 +143,6 @@ public class CarTableViewController extends BaseTableViewController {
 		tires.setCellValueFactory(new PropertyValueFactory<>("Tires"));
 		vin.setCellValueFactory(new PropertyValueFactory<>("Vin"));
 
-		carTableView.setItems(cars);
+		carTableView.setItems(entities);
 	}
 }

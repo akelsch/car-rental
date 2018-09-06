@@ -2,6 +2,7 @@ package de.htwsaar.prog3.carrental.service;
 
 import de.htwsaar.prog3.carrental.dao.GenericDao;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
+import de.htwsaar.prog3.carrental.util.FilterUtil;
 
 import java.util.List;
 
@@ -41,6 +42,17 @@ public class GenericServiceImpl<T extends BaseEntity> implements GenericService<
         List<T> entities = dao.findAll();
         dao.closeEntityManager();
 
+        return entities;
+    }
+
+    @Override
+    public List<T> filter(String field, String comparator, String value){
+        dao.createEntityManager();
+        dao.beginTransaction();
+        List<T> entities = dao.filter(FilterUtil.convertField(field), comparator,
+                FilterUtil.convertValue(value, comparator));
+        dao.commitTransaction();
+        dao.closeEntityManager();
         return entities;
     }
 

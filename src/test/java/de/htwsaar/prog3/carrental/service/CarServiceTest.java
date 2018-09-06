@@ -158,6 +158,22 @@ class CarServiceTest {
         assertThat(actualCars.size(), is(equalTo(0)));
     }
 
+    @Test
+    void testFilter() {
+        Car car1 = createTestCar1();
+        carService.persist(car1);
+
+        Car car2 = createTestCar2();
+        carService.persist(car2);
+
+        List<Car> expectedCars = new ArrayList<>();
+        expectedCars.add(car1);
+
+        List<Car> actualCars = carService.filter("brand", "=", "BMW");
+
+        assertThat(actualCars, is(equalTo(expectedCars)));
+    }
+
     static Car createTestCar1() {
         Car car = new Car();
         car.setBrand("BMW");

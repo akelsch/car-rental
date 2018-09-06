@@ -10,10 +10,8 @@ import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,11 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * 
  * @author Lukas Raubuch, Jens Thewes
  */
-public class CustomerTableViewController extends BaseTableViewController {
-
-    private CustomerService service = new CustomerService();
-    private ObservableList<Customer> customers = FXCollections.observableList(service.findAll());
-
+public class CustomerTableViewController extends GenericTableViewController<Customer> {
     @FXML
     private TableView<Customer> customerTableView;
     // TableColumns to associate data with columns
@@ -57,14 +51,9 @@ public class CustomerTableViewController extends BaseTableViewController {
     @FXML
     private TableColumn<Customer, String> zipCode;
 
-    @Override
-    public void handleApplyCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void handleRemoveCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
+    public CustomerTableViewController() {
+        service = new CustomerService();
+        entities = FXCollections.observableArrayList(service.findAll());
     }
 
     @Override
@@ -102,7 +91,7 @@ public class CustomerTableViewController extends BaseTableViewController {
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             service.delete(toDelete);
-            customers.remove(toDelete);
+            entities.remove(toDelete);
         }
     }
 
@@ -122,6 +111,6 @@ public class CustomerTableViewController extends BaseTableViewController {
         idNumber.setCellValueFactory(new PropertyValueFactory<>("IdNumber"));
         zipCode.setCellValueFactory(new PropertyValueFactory<>("ZipCode"));
 
-        customerTableView.setItems(customers);
+        customerTableView.setItems(entities);
     }
 }

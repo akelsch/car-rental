@@ -1,9 +1,12 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import de.htwsaar.prog3.carrental.model.BaseEntity;
+import de.htwsaar.prog3.carrental.service.GenericService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.CarTableView;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -11,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.Setter;
 
@@ -19,9 +24,13 @@ import lombok.Setter;
  *
  * @author Lukas Raubuch, Arthur Kelsch
  */
-public abstract class BaseTableViewController implements Initializable {
+public abstract class GenericTableViewController<T extends BaseEntity> implements Initializable {
 	// Primary stage
 	Stage primaryStage = CarTableView.getPrimaryStage();
+
+	// Service and list of entities
+	GenericService<T> service;
+	ObservableList<T> entities;
 
 	// Scenes
 	@Setter
@@ -104,14 +113,29 @@ public abstract class BaseTableViewController implements Initializable {
 	}
 
 	/**
-	 * Handle pressing the "Search" button.
+	 * Applies the selected filters to the current entity list.
 	 */
-	public abstract void handleApplyCurrentFilterButtonClicked();
+	public void handleApplyCurrentFilterButtonClicked() {
+		setSearchComboBoxAndTextFieldBordersIfEmpty();
+
+		String field = searchComboBoxField.getValue();
+		String comparator = searchComboBoxComparator.getValue();
+		String value = searchTextField.getText();
+
+		if (field != null && comparator != null && !value.isEmpty()) {
+			entities.setAll(service.filter(field, comparator, value));
+		}
+	}
 
 	/**
-	 * Handle pressing the "Clear filter" button.
+	 * Removes the selected filters of the current entity list.
 	 */
-	public abstract void handleRemoveCurrentFilterButtonClicked();
+	public void handleRemoveCurrentFilterButtonClicked() {
+		clearSearchComboBoxAndTextFieldBorders();
+		clearSearchComboBoxAndTextFieldValues();
+
+		entities.setAll(service.findAll());
+	}
 
 	/**
 	 * Handle pressing the "New..." button.
@@ -127,4 +151,53 @@ public abstract class BaseTableViewController implements Initializable {
 	 * Handle pressing the "Delete..." button.
 	 */
 	public abstract void handleDeleteButtonClicked();
+
+	/**
+	 * Clears the top two search ComboBox and TextField values.
+	 */
+	private void clearSearchComboBoxAndTextFieldValues() {
+		searchComboBoxField.getSelectionModel().clearSelection();
+		searchComboBoxComparator.getSelectionModel().clearSelection();
+		searchTextField.clear();
+	}
+
+	/**
+	 * Clears the top two search ComboBox and TextField borders.
+	 */
+	private void clearSearchComboBoxAndTextFieldBorders() {
+		searchComboBoxField.setBorder(null);
+		searchComboBoxComparator.setBorder(null);
+		searchTextField.setBorder(null);
+	}
+
+	/**
+	 * Sets the top two search ComboBox and TextField borders if they are empty.
+	 */
+	private void setSearchComboBoxAndTextFieldBordersIfEmpty() {
+		// Border radii taken from modena.css
+		Border border = new Border(new BorderStroke(
+				Color.RED,
+				BorderStrokeStyle.SOLID,
+				new CornerRadii(3.0, 3.0, 2.0, 1.0, false),
+				BorderWidths.DEFAULT
+		));
+
+		if (searchComboBoxField.getSelectionModel().isEmpty()) {
+			searchComboBoxField.setBorder(border);
+		} else {
+			searchComboBoxField.setBorder(null);
+		}
+
+		if (searchComboBoxComparator.getSelectionModel().isEmpty()) {
+			searchComboBoxComparator.setBorder(border);
+		} else {
+			searchComboBoxComparator.setBorder(null);
+		}
+
+		if (searchTextField.getText().isEmpty()) {
+			searchTextField.setBorder(border);
+		} else {
+			searchTextField.setBorder(null);
+		}
+	}
 }

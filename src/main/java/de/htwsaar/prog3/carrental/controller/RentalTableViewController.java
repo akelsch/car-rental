@@ -9,7 +9,6 @@ import de.htwsaar.prog3.carrental.service.RentalService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -21,11 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * Controller for RentalTableView
  * @author Lukas Raubuch
  */
-public class RentalTableViewController extends BaseTableViewController {
-
-	private RentalService service = new RentalService();
-	private ObservableList<Rental> rentals = FXCollections.observableList(service.findAll());
-
+public class RentalTableViewController extends GenericTableViewController<Rental> {
 	@FXML
 	private TableView<Rental> rentalTableView;
 	// TableColumns to associate data with columns
@@ -46,14 +41,9 @@ public class RentalTableViewController extends BaseTableViewController {
 	@FXML
 	private TableColumn<Rental, String> note;
 
-	@Override
-	public void handleApplyCurrentFilterButtonClicked() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void handleRemoveCurrentFilterButtonClicked() {
-		// TODO Auto-generated method stub
+	public RentalTableViewController() {
+		service = new RentalService();
+		entities = FXCollections.observableArrayList(service.findAll());
 	}
 
 	/**
@@ -83,7 +73,7 @@ public class RentalTableViewController extends BaseTableViewController {
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
 		if (result.get() == ButtonType.OK) {
 			service.delete(toDelete);
-			rentals.remove(toDelete);
+			entities.remove(toDelete);
 		}
 	}
 
@@ -99,6 +89,6 @@ public class RentalTableViewController extends BaseTableViewController {
 		extraCosts.setCellValueFactory(new PropertyValueFactory<>("ExtraCosts"));
 		note.setCellValueFactory(new PropertyValueFactory<>("Note"));
 		
-		rentalTableView.setItems(rentals);
+		rentalTableView.setItems(entities);
 	}
 }

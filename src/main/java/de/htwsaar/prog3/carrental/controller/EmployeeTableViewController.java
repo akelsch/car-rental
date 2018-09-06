@@ -10,7 +10,6 @@ import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -23,11 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * 
  * @author Lukas Raubuch, Jens Thewes
  */
-public class EmployeeTableViewController extends BaseTableViewController {
-
-    private EmployeeService service = new EmployeeService();
-    private ObservableList<Employee> employees = FXCollections.observableList(service.findAll());
-
+public class EmployeeTableViewController extends GenericTableViewController<Employee> {
     @FXML
     private TableView<Employee> employeeTableView;
     // TableColumns to associate data with columns
@@ -40,14 +35,9 @@ public class EmployeeTableViewController extends BaseTableViewController {
     @FXML
     private TableColumn<Employee, String> position;
 
-    @Override
-    public void handleApplyCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void handleRemoveCurrentFilterButtonClicked() {
-        // TODO Auto-generated method stub
+    public EmployeeTableViewController() {
+        service = new EmployeeService();
+        entities = FXCollections.observableArrayList(service.findAll());
     }
 
     @Override
@@ -85,7 +75,7 @@ public class EmployeeTableViewController extends BaseTableViewController {
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             service.delete(toDelete);
-            employees.remove(toDelete);
+            entities.remove(toDelete);
         }
     }
 
@@ -97,6 +87,6 @@ public class EmployeeTableViewController extends BaseTableViewController {
         lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         position.setCellValueFactory(new PropertyValueFactory<>("Position"));
 
-        employeeTableView.setItems(employees);
+        employeeTableView.setItems(entities);
     }
 }

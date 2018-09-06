@@ -131,6 +131,22 @@ class CustomerServiceTest {
         assertThat(actualCustomers.size(), is(equalTo(0)));
     }
 
+    @Test
+    void testFilter() {
+        Customer customer1 = createTestCustomer1();
+        customerService.persist(customer1);
+
+        Customer customer2 = createTestCustomer2();
+        customerService.persist(customer2);
+
+        List<Customer> expectedCars = new ArrayList<>();
+        expectedCars.add(customer1);
+
+        List<Customer> actualCars = customerService.filter("lastName", "=", "Braun");
+
+        assertThat(actualCars, is(equalTo(expectedCars)));
+    }
+
     static Customer createTestCustomer1() {
         Customer customer = new Customer();
         customer.setCity("Saarbrücken");
