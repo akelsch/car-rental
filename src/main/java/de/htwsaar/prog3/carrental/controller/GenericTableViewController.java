@@ -122,7 +122,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 		String comparator = searchComboBoxComparator.getValue();
 		String value = searchTextField.getText();
 
-		if (field != null && comparator != null) {
+		if (field != null && comparator != null && !value.isEmpty()) {
 			entities.setAll(service.filter(field, comparator, value));
 		}
 	}
@@ -191,6 +191,12 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 			searchComboBoxComparator.setBorder(border);
 		} else {
 			searchComboBoxComparator.setBorder(null);
+		}
+
+		if (searchTextField.getText().isEmpty()) {
+			searchTextField.setBorder(border);
+		} else {
+			searchTextField.setBorder(null);
 		}
 	}
 }
