@@ -34,6 +34,16 @@ public interface GenericDao<T> {
     List<T> findAll();
 
     /**
+     * Find all entities by a given filter (Read).
+     *
+     * @param field given field
+     * @param comparator given comparator
+     * @param value given value
+     * @return a list of found entity instances or a empty list if no entities found with the given filter
+     */
+    List<T> filter(String field, String comparator, String value);
+
+    /**
      * Updates a given entity (Update).
      *
      * @param entity entity instance
@@ -51,8 +61,6 @@ public interface GenericDao<T> {
      * Deletes all entities (Delete).
      */
     void deleteAll();
-
-    List<T> filter(String field, String comparator, String value);
 
     /**
      * Creates an entity manager.

@@ -2,6 +2,11 @@ package de.htwsaar.prog3.carrental.util;
 
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 
+/**
+ * This class is used for filtering
+ *
+ * @author Julian Quint
+ */
 public final class FilterUtil {
     private static final String CAR_ID = I18nComponentsUtil.getCarIdLabel();
     private static final String CAR_BRAND = I18nComponentsUtil.getCarBrandLabel();
@@ -49,6 +54,12 @@ public final class FilterUtil {
     private FilterUtil(){
     }
 
+    /**
+     * Converts a frontend field for filtering with Hibernate
+     *
+     * @param field field from frontend
+     * @return the converted field
+     */
     public static String convertField(String field){
         if (CAR_ID.equals(field) || CUSTOMER_ID.equals(field) || EMPLOYEE_ID.equals(field) || RENTAL_ID.equals(field)) {
             return "id";
@@ -129,6 +140,13 @@ public final class FilterUtil {
         }
     }
 
+    /**
+     * Converts a value for filtering with hibernate
+     *
+     * @param value value given by user
+     * @param comparator determines whether % is added or not to the value
+     * @return the converted value
+     */
     public static String convertValue(String value, String comparator){
         if(comparator.equals("LIKE")){
             return "'%" + value + "%'";

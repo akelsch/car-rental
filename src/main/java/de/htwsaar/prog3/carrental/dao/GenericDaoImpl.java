@@ -48,6 +48,14 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
     }
 
     @Override
+    public List<T> filter(String field, String comparator, String value){
+        String query = "SELECT t FROM %s t WHERE t.%s %s %s";
+        query = String.format(query, entityClass.getSimpleName(), field, comparator, value);
+
+        return em.createQuery(query, entityClass).getResultList();
+    }
+
+    @Override
     public void update(T entity) {
         em.merge(entity);
     }
@@ -63,14 +71,6 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
         query = String.format(query, entityClass.getSimpleName());
 
         em.createQuery(query).executeUpdate();
-    }
-
-    @Override
-    public List<T> filter(String field, String comparator, String value){
-        String query = "SELECT t FROM %s t WHERE t.%s %s %s";
-        query = String.format(query, entityClass.getSimpleName(), field, comparator, value);
-
-        return em.createQuery(query, entityClass).getResultList();
     }
 
     @Override

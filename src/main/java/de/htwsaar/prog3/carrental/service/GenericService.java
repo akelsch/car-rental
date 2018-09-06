@@ -40,6 +40,17 @@ public interface GenericService<T> {
     List<T> findAll();
 
     /**
+     * Finds all entities by a given filter.
+     *
+     * @param field given field
+     * @param comparator given comparator
+     * @param value given value
+     * @return a list of found entity instances or a empty list if no entities found with the given filter
+     * @see GenericDao#filter(String, String, String)
+     */
+    List<T> filter(String field, String comparator, String value);
+
+    /**
      * Updates a given entity.
      *
      * @param entity entity instance
@@ -69,6 +80,4 @@ public interface GenericService<T> {
      * @see GenericDao#deleteAll()
      */
     void deleteAll();
-
-    List<T> filter(String field, String comparator, String value);
 }
