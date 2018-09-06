@@ -116,7 +116,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 	 * Applies the selected filters to the current entity list.
 	 */
 	public void handleApplyCurrentFilterButtonClicked() {
-		setSearchComboBoxBordersIfEmpty();
+		setSearchComboBoxAndTextFieldBordersIfEmpty();
 
 		String field = searchComboBoxField.getValue();
 		String comparator = searchComboBoxComparator.getValue();
@@ -131,7 +131,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 	 * Removes the selected filters of the current entity list.
 	 */
 	public void handleRemoveCurrentFilterButtonClicked() {
-		clearSearchComboBoxBorders();
+		clearSearchComboBoxAndTextFieldBorders();
 		clearSearchComboBoxAndTextFieldValues();
 
 		entities.setAll(service.findAll());
@@ -162,17 +162,18 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 	}
 
 	/**
-	 * Clears the top two search ComboBox borders.
+	 * Clears the top two search ComboBox and TextField borders.
 	 */
-	private void clearSearchComboBoxBorders() {
+	private void clearSearchComboBoxAndTextFieldBorders() {
 		searchComboBoxField.setBorder(null);
 		searchComboBoxComparator.setBorder(null);
+		searchTextField.setBorder(null);
 	}
 
 	/**
-	 * Sets the top two search ComboBox borders if they are empty.
+	 * Sets the top two search ComboBox and TextField borders if they are empty.
 	 */
-	private void setSearchComboBoxBordersIfEmpty() {
+	private void setSearchComboBoxAndTextFieldBordersIfEmpty() {
 		// Border radii taken from modena.css
 		Border border = new Border(new BorderStroke(
 				Color.RED,
