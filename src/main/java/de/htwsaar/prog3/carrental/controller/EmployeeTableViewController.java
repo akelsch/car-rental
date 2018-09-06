@@ -45,7 +45,8 @@ public class EmployeeTableViewController extends BaseTableViewController {
         String field = searchComboBoxField.getValue();
         String comparator = searchComboBoxComparator.getValue();
         String value = searchTextField.getText();
-        employees.setAll(service.filter(field,comparator,value));
+        if(field != null && comparator != null)
+            employees.setAll(service.filter(field,comparator,value));
     }
 
     @Override

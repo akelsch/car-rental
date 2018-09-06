@@ -51,7 +51,8 @@ public class RentalTableViewController extends BaseTableViewController {
 		String field = searchComboBoxField.getValue();
 		String comparator = searchComboBoxComparator.getValue();
 		String value = searchTextField.getText();
-		rentals.setAll(service.filter(field,comparator,value));
+		if(field != null && comparator != null)
+			rentals.setAll(service.filter(field,comparator,value));
 	}
 
 	@Override

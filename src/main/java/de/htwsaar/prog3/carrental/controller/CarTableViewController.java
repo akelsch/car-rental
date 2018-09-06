@@ -75,11 +75,11 @@ public class CarTableViewController extends BaseTableViewController {
 
 	@Override
 	public void handleApplyCurrentFilterButtonClicked() {
-		// TODO: Implement with Arthur and Julian
 		String field = searchComboBoxField.getValue();
 		String comparator = searchComboBoxComparator.getValue();
 		String value = searchTextField.getText();
-		cars.setAll(service.filter(field,comparator,value));
+		if(field != null && comparator != null)
+			cars.setAll(service.filter(field,comparator,value));
 	}
 
 	@Override
