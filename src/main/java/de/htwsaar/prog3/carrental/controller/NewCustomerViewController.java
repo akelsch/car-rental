@@ -9,8 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -22,6 +24,12 @@ public class NewCustomerViewController {
 
     private CustomerService service = new CustomerService();
     private Customer customer = new Customer();
+
+    @FXML
+    private BorderPane rootPane;
+
+    @FXML
+    private Label titleLabel;
 
     @FXML
     private TextField firstNameTextField;
@@ -55,10 +63,10 @@ public class NewCustomerViewController {
 
     @FXML
     private TextField driverLicenseIdTextField;
-    
+
     @FXML
     private Button cancelButton;
-    
+
     @FXML
     private Button applyButton;
 

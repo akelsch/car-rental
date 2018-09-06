@@ -9,8 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -24,6 +26,12 @@ public class NewEmployeeViewController {
     private Employee employee = new Employee();
 
     @FXML
+    private BorderPane rootPane;
+
+    @FXML
+    private Label titleLabel;
+
+    @FXML
     private TextField firstNameTextField;
 
     @FXML
@@ -31,10 +39,10 @@ public class NewEmployeeViewController {
 
     @FXML
     private TextField positionTextField;
-    
+
     @FXML
     private Button cancelButton;
-    
+
     @FXML
     private Button applyButton;
 
@@ -67,8 +75,8 @@ public class NewEmployeeViewController {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
                 .setTitle(I18nComponentsUtil.getApplyCreationConfirmationDialogTitleString());
-        confirmationDialog.setHeaderText(
-                I18nComponentsUtil.getApplyCreationConfirmationDialogHeaderString());
+        confirmationDialog
+                .setHeaderText(I18nComponentsUtil.getApplyCreationConfirmationDialogHeaderString());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             employee.setFirstName(firstNameTextField.getText());

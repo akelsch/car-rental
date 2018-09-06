@@ -12,8 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,6 +27,12 @@ public class EditEmployeeViewController implements Initializable {
 
     private EmployeeService service = new EmployeeService();
     private Employee employee = EditEmployeeView.getEmployee();
+
+    @FXML
+    private BorderPane rootPane;
+
+    @FXML
+    private Label titleLabel;
 
     @FXML
     private TextField firstNameTextField;

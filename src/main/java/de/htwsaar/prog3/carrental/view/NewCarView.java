@@ -33,8 +33,10 @@ public class NewCarView {
         modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
-        modalWindow.setMaxHeight(600);
-        modalWindow.setMaxWidth(900);
+        modalWindow.setMinHeight(570);
+        modalWindow.setMaxHeight(570);
+        modalWindow.setMinWidth(950);
+        modalWindow.setMaxWidth(950);
         // set the Owner of the modal window and the Modality of the new Stage (Modal Window)
         modalWindow.initOwner(parentStage);
         modalWindow.initModality(Modality.WINDOW_MODAL);
