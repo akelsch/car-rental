@@ -11,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.Setter;
 
@@ -129,11 +131,44 @@ public abstract class BaseTableViewController implements Initializable {
 	public abstract void handleDeleteButtonClicked();
 
 	/**
-	 * Clears the top two search ComboBoxes and the search TextField.
+	 * Clears the top two search ComboBox and TextField values.
 	 */
-	void clearSearchComboBoxesAndSearchField() {
+	void clearSearchComboBoxAndTextFieldValues() {
 		searchComboBoxField.getSelectionModel().clearSelection();
 		searchComboBoxComparator.getSelectionModel().clearSelection();
 		searchTextField.clear();
+	}
+
+	/**
+	 * Clears the top two search ComboBox borders.
+	 */
+	void clearSearchComboBoxBorders() {
+		searchComboBoxField.setBorder(null);
+		searchComboBoxComparator.setBorder(null);
+	}
+
+	/**
+	 * Sets the top two search ComboBox borders if they are empty.
+	 */
+	void setSearchComboBoxBordersIfEmpty() {
+		// Border radii taken from modena.css
+		Border border = new Border(new BorderStroke(
+				Color.RED,
+				BorderStrokeStyle.SOLID,
+				new CornerRadii(3.0, 3.0, 2.0, 1.0, false),
+				BorderWidths.DEFAULT
+		));
+
+		if (searchComboBoxField.getSelectionModel().isEmpty()) {
+			searchComboBoxField.setBorder(border);
+		} else {
+			searchComboBoxField.setBorder(null);
+		}
+
+		if (searchComboBoxComparator.getSelectionModel().isEmpty()) {
+			searchComboBoxComparator.setBorder(border);
+		} else {
+			searchComboBoxComparator.setBorder(null);
+		}
 	}
 }

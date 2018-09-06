@@ -58,17 +58,23 @@ public class CustomerTableViewController extends BaseTableViewController {
 
     @Override
     public void handleApplyCurrentFilterButtonClicked() {
+        setSearchComboBoxBordersIfEmpty();
+
         String field = searchComboBoxField.getValue();
         String comparator = searchComboBoxComparator.getValue();
         String value = searchTextField.getText();
-        customers.setAll(service.filter(field,comparator,value));
+
+        if (field != null && comparator != null) {
+            customers.setAll(service.filter(field, comparator, value));
+        }
     }
 
     @Override
     public void handleRemoveCurrentFilterButtonClicked() {
-        customers.setAll(service.findAll());
+        clearSearchComboBoxBorders();
+        clearSearchComboBoxAndTextFieldValues();
 
-        clearSearchComboBoxesAndSearchField();
+        customers.setAll(service.findAll());
     }
 
     @Override

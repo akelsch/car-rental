@@ -42,18 +42,23 @@ public class EmployeeTableViewController extends BaseTableViewController {
 
     @Override
     public void handleApplyCurrentFilterButtonClicked() {
+        setSearchComboBoxBordersIfEmpty();
+
         String field = searchComboBoxField.getValue();
         String comparator = searchComboBoxComparator.getValue();
         String value = searchTextField.getText();
-        if(field != null && comparator != null)
-            employees.setAll(service.filter(field,comparator,value));
+
+        if (field != null && comparator != null) {
+            employees.setAll(service.filter(field, comparator, value));
+        }
     }
 
     @Override
     public void handleRemoveCurrentFilterButtonClicked() {
-        employees.setAll(service.findAll());
+        clearSearchComboBoxBorders();
+        clearSearchComboBoxAndTextFieldValues();
 
-        clearSearchComboBoxesAndSearchField();
+        employees.setAll(service.findAll());
     }
 
     @Override
