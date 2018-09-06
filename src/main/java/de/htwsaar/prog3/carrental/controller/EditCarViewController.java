@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -22,6 +23,12 @@ public class EditCarViewController implements Initializable {
 
     private CarService service = new CarService();
     private Car car = EditCarView.getCar();
+
+    @FXML
+    private BorderPane rootPane;
+
+    @FXML
+    private Label titleLabel;
 
     @FXML
     private TextField brandTextField;

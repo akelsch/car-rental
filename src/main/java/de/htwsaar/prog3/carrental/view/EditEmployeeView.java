@@ -37,9 +37,10 @@ public class EditEmployeeView {
         modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
+        modalWindow.setMinHeight(200);
         modalWindow.setMaxHeight(200);
+        modalWindow.setMinWidth(600);
         modalWindow.setMaxWidth(600);
-        modalWindow.setHeight(200);
         // set the Owner of the modal window and the Modality of the new Stage (Modal Window)
         modalWindow.initOwner(parentStage);
         modalWindow.initModality(Modality.WINDOW_MODAL);

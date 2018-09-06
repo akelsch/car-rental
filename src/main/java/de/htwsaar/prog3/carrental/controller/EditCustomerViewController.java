@@ -13,7 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -22,10 +24,16 @@ import javafx.scene.control.TextField;
  * @author Jens Thewes
  */
 public class EditCustomerViewController implements Initializable {
-    
+
     private CustomerService service = new CustomerService();
     private Customer customer = EditCustomerView.getCustomer();
-    
+
+    @FXML
+    private BorderPane rootPane;
+
+    @FXML
+    private Label titleLabel;
+
     @FXML
     private TextField firstNameTextField;
 
@@ -58,13 +66,13 @@ public class EditCustomerViewController implements Initializable {
 
     @FXML
     private TextField driverLicenseIdTextField;
-    
+
     @FXML
     private Button cancelButton;
-    
+
     @FXML
     private Button applyButton;
-    
+
     /**
      * Initialize all content fields with the current customer
      *

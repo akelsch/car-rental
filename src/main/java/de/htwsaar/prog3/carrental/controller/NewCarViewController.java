@@ -1,14 +1,20 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.view.NewCarView;
+import java.util.Optional;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.view.NewCarView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import java.util.Optional;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 
 /**
  * This is the Controller for the "New Car View" of the Carrental Application.
@@ -20,6 +26,12 @@ public class NewCarViewController {
     private CarService service = new CarService();
     private Car car = new Car();
 
+    @FXML
+    private BorderPane rootPane;
+    
+    @FXML
+    private Label titleLabel;
+    
     @FXML
     private TextField brandTextField;
 
