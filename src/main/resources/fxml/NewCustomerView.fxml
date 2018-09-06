@@ -3,13 +3,15 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+<BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx"
+	xmlns:fx="http://javafx.com/fxml"
 	fx:controller="de.htwsaar.prog3.carrental.controller.NewCustomerViewController">
 	<top>
 		<BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
 			<left>
 				<GridPane alignment="center" hgap="10" vgap="10">
-					<Label fx:id="titleLabel" text="New Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+					<Label fx:id="titleLabel" text="New Customer" GridPane.columnIndex="0"
+						GridPane.rowIndex="0" />
 				</GridPane>
 			</left>
 			<padding>

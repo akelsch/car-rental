@@ -37,7 +37,6 @@ public class EditCustomerView {
         modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
-        modalWindow.setScene(new Scene(scene));
         modalWindow.setMinHeight(400);
         modalWindow.setMaxHeight(400);
         modalWindow.setMinWidth(750);
