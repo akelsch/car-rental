@@ -8,6 +8,9 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
  * @author Julian Quint
  */
 public final class FilterUtil {
+    private FilterUtil(){
+    }
+
     private static final String CAR_ID = I18nComponentsUtil.getCarIdLabel();
     private static final String CAR_BRAND = I18nComponentsUtil.getCarBrandLabel();
     private static final String CAR_HORSEPOWER = I18nComponentsUtil.getCarHorsepowerLabel();
@@ -50,9 +53,6 @@ public final class FilterUtil {
     private static final String RENTAL_END = I18nComponentsUtil.getRentalEndLabel();
     private static final String RENTAL_EXTRA_COSTS = I18nComponentsUtil.getRentalExtraCostsLabel();
     private static final String RENTAL_NOTE = I18nComponentsUtil.getRentalNoteLabel();
-
-    private FilterUtil(){
-    }
 
     /**
      * Converts a frontend field for filtering with Hibernate
