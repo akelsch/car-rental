@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.view;
 import java.io.IOException;
 import java.util.Locale;
 
-import de.htwsaar.prog3.carrental.controller.BaseTableViewController;
+import de.htwsaar.prog3.carrental.controller.GenericTableViewController;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
@@ -84,7 +84,7 @@ public class CarTableView extends Application {
 	}
 
 	private void addScenesToController(FXMLLoader loader) {
-		BaseTableViewController controller = loader.getController();
+		GenericTableViewController<?> controller = loader.getController();
 		controller.setCarScene(carScene);
 		controller.setCustomerScene(customerScene);
 		controller.setEmployeeScene(employeeScene);
