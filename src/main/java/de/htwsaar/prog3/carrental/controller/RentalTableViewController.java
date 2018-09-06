@@ -58,6 +58,8 @@ public class RentalTableViewController extends BaseTableViewController {
 	@Override
 	public void handleRemoveCurrentFilterButtonClicked() {
 		rentals.setAll(service.findAll());
+
+		clearSearchComboBoxesAndSearchField();
 	}
 
 	/**

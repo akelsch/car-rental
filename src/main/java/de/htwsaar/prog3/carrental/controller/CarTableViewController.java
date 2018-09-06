@@ -1,6 +1,5 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.util.FilterUtil;
 import de.htwsaar.prog3.carrental.view.EditCarView;
 import de.htwsaar.prog3.carrental.view.CarTableView;
 import de.htwsaar.prog3.carrental.view.NewCarView;
@@ -85,6 +84,8 @@ public class CarTableViewController extends BaseTableViewController {
 	@Override
 	public void handleRemoveCurrentFilterButtonClicked() {
 		cars.setAll(service.findAll());
+
+		clearSearchComboBoxesAndSearchField();
 	}
 
 	@Override

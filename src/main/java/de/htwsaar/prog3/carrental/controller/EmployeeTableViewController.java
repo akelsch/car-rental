@@ -52,6 +52,8 @@ public class EmployeeTableViewController extends BaseTableViewController {
     @Override
     public void handleRemoveCurrentFilterButtonClicked() {
         employees.setAll(service.findAll());
+
+        clearSearchComboBoxesAndSearchField();
     }
 
     @Override

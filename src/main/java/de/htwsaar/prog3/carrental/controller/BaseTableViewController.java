@@ -127,4 +127,13 @@ public abstract class BaseTableViewController implements Initializable {
 	 * Handle pressing the "Delete..." button.
 	 */
 	public abstract void handleDeleteButtonClicked();
+
+	/**
+	 * Clears the top two search ComboBoxes and the search TextField.
+	 */
+	void clearSearchComboBoxesAndSearchField() {
+		searchComboBoxField.getSelectionModel().clearSelection();
+		searchComboBoxComparator.getSelectionModel().clearSelection();
+		searchTextField.clear();
+	}
 }
