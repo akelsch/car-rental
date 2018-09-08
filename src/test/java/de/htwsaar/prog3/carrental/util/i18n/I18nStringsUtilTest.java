@@ -10,24 +10,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
- * Unit tests for the {@link I18nComponentsUtil} class.
+ * Unit tests for the {@link I18nStringsUtil} class.
  *
- * @author Lukas Raubuch
+ * @author Arthur Kelsch
  */
-@Disabled("Disabled as I18nComponentsUtil can be initialized beforehand resulting in wrong locales.\n" +
+@Disabled("Disabled as I18nStringsUtil can be initialized beforehand resulting in wrong locales.\n" +
         "Due to the static initialization of the ResourceBundle only one test can be run at a time!")
-class I18nComponentsUtilTest {
+class I18nStringsUtilTest {
     @Test
-    void testGetStageTitleStringGerman() {
+    void testGetCarTableViewURLGerman() {
         Locale.setDefault(new Locale("de"));
 
-        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Autoverwaltung")));
+        assertThat(I18nStringsUtil.getCarTableViewURL(), is(equalTo("/fxml/CarTableView.fxml")));
     }
 
     @Test
-    void testGetStageTitleStringEnglish() {
+    void testGetCarTableViewURLEnglish() {
         Locale.setDefault(new Locale("en"));
 
-        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Car Rental")));
+        assertThat(I18nStringsUtil.getCarTableViewURL(), is(equalTo("/fxml/CarTableView.fxml")));
     }
 }
