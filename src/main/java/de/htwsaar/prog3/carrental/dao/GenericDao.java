@@ -34,12 +34,12 @@ public interface GenericDao<T> {
     List<T> findAll();
 
     /**
-     * Find all entities by a given filter (Read).
+     * Finds all entities that match a filter (Read).
      *
-     * @param field given field
-     * @param comparator given comparator
-     * @param value given value
-     * @return a list of found entity instances or a empty list if no entities found with the given filter
+     * @param field      entity field
+     * @param comparator comparator, e.g. {@code >} or {@code <}
+     * @param value      value to filter for
+     * @return a list of found entity instances or a empty list if no entities match the filter
      */
     List<T> filter(String field, String comparator, String value);
 

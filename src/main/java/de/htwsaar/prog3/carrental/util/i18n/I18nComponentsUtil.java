@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
  * <p>
  * Provides strings that are visible to the end user.
  *
- * @author Lukas Raubuch, Jens Thewes
+ * @author Lukas Raubuch, Jens Thewes, Julian Quint, Arthur Kelsch
  */
 public final class I18nComponentsUtil {
     private I18nComponentsUtil() {
@@ -17,15 +17,13 @@ public final class I18nComponentsUtil {
     private static final String STAGE_TITLE = "stage-title";
     private static final String DELETE_CONFIRMATION_DIALOG_HEADER = "dialog-delete-confirmation-header";
     private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-confirmation-title";
-    private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-cancel-creation-confirmation" +
-            "-header";
+    private static final String CANCEL_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-cancel-creation-confirmation-header";
     private static final String APPLY_CREATION_CONFIRMATION_DIALOG_TITLE = "dialog-confirmation-title";
     private static final String APPLY_CREATION_CONFIRMATION_DIALOG_HEADER = "dialog-apply-creation-confirmation-header";
     private static final String DIALOG_CONFIRMATION_TITLE = "dialog-confirmation-title";
     private static final String DIALOG_INFORMATION_TITLE = "dialog-information-title";
     private static final String DIALOG_CONFIRMATION_DELETE_OBJECT_HEADER = "dialog-confirmation-header-delete";
-    private static final String DIALOG_INFORMATION_NO_OBJECT_SELECTED_HEADER = "dialog-information-header-no-object" +
-            "-selected";
+    private static final String DIALOG_INFORMATION_NO_OBJECT_SELECTED_HEADER = "dialog-information-header-no-object-selected";
     private static final String DIALOG_INFORMATION_ABOUT_HEADER = "dialog-information-header-about";
     private static final String CAR_ID_LABEL = "car-id-label";
     private static final String CAR_BRAND_LABEL = "car-brand-label";
@@ -41,7 +39,6 @@ public final class I18nComponentsUtil {
     private static final String CAR_TIRES_LABEL = "car-tires-label";
     private static final String CAR_NEXT_INSPECTION_LABEL = "car-nextInspection-label";
     private static final String CAR_VIN_LABEL = "car-vin-label";
-    private static final String CAR_EQUIPMENT_LABEL = "car-equipment-label";
     private static final String CAR_DEFECTS_LABEL = "car-defects-label";
     private static final String CAR_LICENCE_NUMBER_LABEL = "car-licenceNumber-label";
     private static final String CAR_DAILY_RATE_LABEL = "car-dailyRate-label";
@@ -70,6 +67,7 @@ public final class I18nComponentsUtil {
     private static final String RENTAL_END_LABEL = "rental-end-label";
     private static final String RENTAL_EXTRA_COSTS_LABEL = "rental-extraCosts-label";
     private static final String RENTAL_NOTE_LABEL = "rental-note-label";
+    private static final String SEARCH_COMBOBOX_LIKE = "search-combobox-like";
 
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleComponents();
@@ -173,10 +171,6 @@ public final class I18nComponentsUtil {
 
     public static String getCarVinLabel() {
         return resourceBundle.getString(CAR_VIN_LABEL);
-    }
-
-    public static String getCarEquipmentLabel() {
-        return resourceBundle.getString(CAR_EQUIPMENT_LABEL);
     }
 
     public static String getCarDefectsLabel() {
@@ -289,5 +283,9 @@ public final class I18nComponentsUtil {
 
     public static String getRentalNoteLabel() {
         return resourceBundle.getString(RENTAL_NOTE_LABEL);
+    }
+
+    public static String getSearchComboboxLike() {
+        return resourceBundle.getString(SEARCH_COMBOBOX_LIKE);
     }
 }

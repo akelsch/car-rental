@@ -3,12 +3,13 @@ package de.htwsaar.prog3.carrental.util;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 
 /**
- * This class is used for filtering
+ * This class is used to convert variables for
+ * {@link de.htwsaar.prog3.carrental.service.GenericService#filter(String, String, String)}.
  *
  * @author Julian Quint
  */
 public final class FilterUtil {
-    private FilterUtil(){
+    private FilterUtil() {
     }
 
     private static final String CAR_ID = I18nComponentsUtil.getCarIdLabel();
@@ -53,14 +54,15 @@ public final class FilterUtil {
     private static final String RENTAL_END = I18nComponentsUtil.getRentalEndLabel();
     private static final String RENTAL_EXTRA_COSTS = I18nComponentsUtil.getRentalExtraCostsLabel();
     private static final String RENTAL_NOTE = I18nComponentsUtil.getRentalNoteLabel();
+    private static final String LIKE = I18nComponentsUtil.getSearchComboboxLike();
 
     /**
-     * Converts a frontend field for filtering with Hibernate
+     * Converts an entity field label for use in a JPQL query.
      *
-     * @param field field from frontend
+     * @param field field label from frontend
      * @return the converted field
      */
-    public static String convertField(String field){
+    public static String convertField(String field) {
         if (CAR_ID.equals(field) || CUSTOMER_ID.equals(field) || EMPLOYEE_ID.equals(field) || RENTAL_ID.equals(field)) {
             return "id";
         } else if (CAR_BRAND.equals(field)) {
@@ -135,22 +137,23 @@ public final class FilterUtil {
             return "extraCosts";
         } else if (RENTAL_NOTE.equals(field)) {
             return "note";
-        } else {
-            return field;
         }
+
+        return field;
     }
 
     /**
-     * Converts a value for filtering with hibernate
+     * Converts a text field value for use in a JPQL query.
      *
-     * @param value value given by user
-     * @param comparator determines whether % is added or not to the value
+     * @param value      text field value from frontend
+     * @param comparator determines whether or not % is added to the value
      * @return the converted value
      */
-    public static String convertValue(String value, String comparator){
-        if(comparator.equals("LIKE")){
+    public static String convertValue(String value, String comparator) {
+        if (LIKE.equals(comparator)) {
             return "'%" + value + "%'";
         }
+
         return "'" + value + "'";
     }
 }

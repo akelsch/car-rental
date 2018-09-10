@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * This class is used to create standard dialogs via static access methods
+ * This class is used to create standard dialogs via static access methods.
  *
  * @author Lukas Raubuch
  */
@@ -28,7 +28,7 @@ public final class GUIDialogUtil {
 
     /**
      * Creates an confirmation dialog that can be displayed to the user.
-     * 
+     *
      * @param headerText the text that will be displayed in the information dialog
      * @return an Alert object that represents the dialog that can be displayed
      */

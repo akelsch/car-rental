@@ -45,7 +45,6 @@ public class RentalProducer {
         list.add(new Rental("06.07.2018", carService.findById(3L), customerService.findById(8L),
                 employeeService.findById(6L), "10.08.2018", 0, ""));
 
-
         for (Rental rental : list) {
             rentalService.persist(rental);
         }
