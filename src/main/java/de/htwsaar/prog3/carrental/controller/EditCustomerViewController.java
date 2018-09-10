@@ -104,7 +104,7 @@ public class EditCustomerViewController implements Initializable {
         confirmationDialog.setHeaderText(
                 I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             EditCustomerView.closeModalWindow();
         }
     }
@@ -122,7 +122,7 @@ public class EditCustomerViewController implements Initializable {
         confirmationDialog
                 .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             customer.setFirstName(firstNameTextField.getText());
             customer.setLastName(lastNameTextField.getText());
             customer.setEmailAddress(emailAddressTextField.getText());

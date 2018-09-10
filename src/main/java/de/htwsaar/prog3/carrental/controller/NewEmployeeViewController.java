@@ -56,7 +56,7 @@ public class NewEmployeeViewController {
         confirmationDialog.setHeaderText(
                 I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             NewEmployeeView.closeModalWindow();
         }
     }
@@ -73,7 +73,7 @@ public class NewEmployeeViewController {
         confirmationDialog
                 .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             employee.setFirstName(firstNameTextField.getText());
             employee.setLastName(lastNameTextField.getText());
             employee.setPosition(positionTextField.getText());

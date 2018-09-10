@@ -80,7 +80,7 @@ public class NewCustomerViewController {
         confirmationDialog.setHeaderText(
                 I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             NewCustomerView.closeModalWindow();
         }
     }
@@ -97,7 +97,7 @@ public class NewCustomerViewController {
         confirmationDialog
                 .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             customer.setFirstName(firstNameTextField.getText());
             customer.setLastName(lastNameTextField.getText());
             customer.setEmailAddress(emailAddressTextField.getText());
