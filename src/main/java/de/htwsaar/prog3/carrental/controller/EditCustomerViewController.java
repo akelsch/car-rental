@@ -7,7 +7,6 @@ import de.htwsaar.prog3.carrental.view.EditCustomerView;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -96,11 +95,9 @@ public class EditCustomerViewController implements Initializable {
 
     /**
      * Handle Cancel Button clicked.
-     *
-     * @param event
      */
     @FXML
-    protected void handleCancelButtonClicked(ActionEvent event) {
+    protected void handleCancelButtonClicked() {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
                 .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
@@ -114,11 +111,9 @@ public class EditCustomerViewController implements Initializable {
 
     /**
      * Handle Apply Button clicked.
-     *
-     * @param event
      */
     @FXML
-    protected void handleApplyButtonClicked(ActionEvent event) {
+    protected void handleApplyButtonClicked() {
         // TODO show details + valid data check
         // TODO only update data that has changed?
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);

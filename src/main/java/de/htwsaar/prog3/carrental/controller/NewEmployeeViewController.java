@@ -5,7 +5,6 @@ import de.htwsaar.prog3.carrental.view.NewEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -48,11 +47,9 @@ public class NewEmployeeViewController {
 
     /**
      * Handle Cancel Button clicked.
-     *
-     * @param event
      */
     @FXML
-    protected void handleCancelButtonClicked(ActionEvent event) {
+    protected void handleCancelButtonClicked() {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
                 .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
@@ -66,11 +63,9 @@ public class NewEmployeeViewController {
 
     /**
      * Handle Apply Button clicked.
-     *
-     * @param event
      */
     @FXML
-    protected void handleApplyButtonClicked(ActionEvent event) {
+    protected void handleApplyButtonClicked() {
         // TODO show details + confirmation + valid data check
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog

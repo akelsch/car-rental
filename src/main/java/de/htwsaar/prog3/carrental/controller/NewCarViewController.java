@@ -5,7 +5,6 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.NewCarView;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -94,11 +93,9 @@ public class NewCarViewController {
 
     /**
      * Handle clicking the Cancel Button.
-     *
-     * @param event
      */
     @FXML
-    protected void handleCancelButtonClicked(ActionEvent event) {
+    protected void handleCancelButtonClicked() {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
                 .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
@@ -112,11 +109,9 @@ public class NewCarViewController {
 
     /**
      * Handle clicking the Apply Button.
-     *
-     * @param event
      */
     @FXML
-    protected void handleApplyButtonClicked(ActionEvent event) {
+    protected void handleApplyButtonClicked() {
         // TODO show details + valid data check
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
