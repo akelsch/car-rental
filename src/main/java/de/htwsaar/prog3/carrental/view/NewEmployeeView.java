@@ -8,6 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * Entry Point of the "New Employee" Dialog.
@@ -15,6 +19,7 @@ import javafx.stage.Stage;
  * @author Jens Thewes
  */
 public class NewEmployeeView {
+    private static final Logger logger = LoggerFactory.getLogger(NewEmployeeView.class);
 
     private static Stage modalWindow;
 
@@ -22,14 +27,19 @@ public class NewEmployeeView {
      * Start the New Employee Dialog in a modal Window.
      *
      * @param parentStage
-     * @throws Exception
      */
-    public void start(Stage parentStage) throws Exception {
+    public void start(Stage parentStage) {
         modalWindow = new Stage();
+
         // Load FXML document for the new employee view wit the needed resource bundle
-        Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewEmployeeViewFxml()),
-                        I18nUtil.getResourceBundleComponents());
+        Parent scene = null;
+        try {
+            scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewEmployeeViewFxml()),
+                    I18nUtil.getResourceBundleComponents());
+        } catch (IOException e) {
+            logger.error("Failed loading FXML!", e);
+        }
+
         modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));

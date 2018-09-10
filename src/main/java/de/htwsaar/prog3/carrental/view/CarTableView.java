@@ -34,9 +34,11 @@ public class CarTableView extends Application {
 
 	/**
 	 * Entry Point for the main view of the program.
+	 *
+	 * @throws IOException
 	 */
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) throws IOException {
 		CarTableView.primaryStage = primaryStage;
 		// Load FXML-document for the main view with the needed resource bundle
 

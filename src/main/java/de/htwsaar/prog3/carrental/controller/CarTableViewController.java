@@ -75,23 +75,15 @@ public class CarTableViewController extends GenericTableViewController<Car> {
 
 	@Override
 	public void handleNewButtonClicked() {
-		try {
-			new NewCarView().start(primaryStage);
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while creating a new Car");
-		}
+		new NewCarView().start(primaryStage);
+		carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 	}
 
 	@Override
 	public void handleEditButtonClicked() {
 		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
-		try {
-			new EditCarView().start(primaryStage, toEdit);
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while editing selected car");
-		}
+		new EditCarView().start(primaryStage, toEdit);
+		carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 	}
 
 	@Override

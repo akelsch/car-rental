@@ -10,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * Entry Point of the "Edit Customer" Dialog.
@@ -17,6 +21,7 @@ import lombok.Getter;
  * @author Jens Thewes
  */
 public class EditCustomerView {
+    private static final Logger logger = LoggerFactory.getLogger(EditCustomerView.class);
 
     private static Stage modalWindow;
 
@@ -27,15 +32,20 @@ public class EditCustomerView {
      * Start the Edit Employee Dialog in a modal Window.
      *
      * @param parentStage
-     * @throws Exception
      */
-    public void start(Stage parentStage, Customer customer) throws Exception {
+    public void start(Stage parentStage, Customer customer) {
         modalWindow = new Stage();
         EditCustomerView.customer = customer;
+
         // Load FXML document for the edit customer view wit the needed resource bundle
-        Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCustomerViewFxml()),
-                        I18nUtil.getResourceBundleComponents());
+        Parent scene = null;
+        try {
+            scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCustomerViewFxml()),
+                    I18nUtil.getResourceBundleComponents());
+        } catch (IOException e) {
+            logger.error("Failed loading FXML!", e);
+        }
+
         modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));

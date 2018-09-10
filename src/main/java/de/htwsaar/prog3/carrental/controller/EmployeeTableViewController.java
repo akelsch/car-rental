@@ -42,23 +42,15 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
     @Override
     public void handleNewButtonClicked() {
-        try {
-            new NewEmployeeView().start(primaryStage);
-            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
+        new NewEmployeeView().start(primaryStage);
+        employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
     }
 
     @Override
     public void handleEditButtonClicked() {
         Employee toEdit = employeeTableView.getSelectionModel().getSelectedItem();
-        try {
-            new EditEmployeeView().start(primaryStage, toEdit);
-            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
+        new EditEmployeeView().start(primaryStage, toEdit);
+        employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
     }
 
     @Override

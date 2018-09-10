@@ -58,23 +58,15 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
     @Override
     public void handleNewButtonClicked() {
-        try {
-            new NewCustomerView().start(primaryStage);
-            customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
+        new NewCustomerView().start(primaryStage);
+        customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
     }
 
     @Override
     public void handleEditButtonClicked() {
         Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
-        try {
-            new EditCustomerView().start(primaryStage, toEdit);
-            customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
+        new EditCustomerView().start(primaryStage, toEdit);
+        customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
     }
 
     @Override
