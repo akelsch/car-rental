@@ -15,7 +15,6 @@ import lombok.Getter;
  * Entry Point of the "Edit Car" Dialog.
  *
  * @author Jens Thewes
- *
  */
 public class EditCarView {
 
@@ -49,8 +48,7 @@ public class EditCarView {
     }
 
     /**
-     * close the modal window.
-     *
+     * Closes the modal window.
      */
     public static void closeModalWindow() {
         modalWindow.close();

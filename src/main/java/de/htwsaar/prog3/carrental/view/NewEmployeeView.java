@@ -13,7 +13,6 @@ import javafx.stage.Stage;
  * Entry Point of the "New Employee" Dialog.
  *
  * @author Jens Thewes
- *
  */
 public class NewEmployeeView {
 
@@ -45,8 +44,7 @@ public class NewEmployeeView {
     }
 
     /**
-     * close the modal window.
-     *
+     * Closes the modal window.
      */
     public static void closeModalWindow() {
         modalWindow.close();

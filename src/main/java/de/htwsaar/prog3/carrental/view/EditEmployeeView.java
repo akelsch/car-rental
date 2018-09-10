@@ -15,7 +15,6 @@ import lombok.Getter;
  * Entry Point of the "Edit Employee" Dialog.
  *
  * @author Jens Thewes
- *
  */
 public class EditEmployeeView {
 
@@ -51,8 +50,7 @@ public class EditEmployeeView {
     }
 
     /**
-     * close the modal window.
-     *
+     * Closes the modal window.
      */
     public static void closeModalWindow() {
         modalWindow.close();

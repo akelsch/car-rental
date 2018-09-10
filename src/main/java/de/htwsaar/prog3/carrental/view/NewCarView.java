@@ -13,7 +13,6 @@ import javafx.stage.Stage;
  * Entry Point of the "New Car" Dialog.
  *
  * @author Jens Thewes
- *
  */
 public class NewCarView {
 
@@ -44,8 +43,7 @@ public class NewCarView {
     }
 
     /**
-     * close the modal window.
-     *
+     * Closes the modal window.
      */
     public static void closeModalWindow() {
         modalWindow.close();

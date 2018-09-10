@@ -13,7 +13,6 @@ import javafx.stage.Stage;
  * Entry Point of the "New Customer" Dialog.
  *
  * @author Jens Thewes
- *
  */
 public class NewCustomerView {
 
@@ -45,8 +44,7 @@ public class NewCustomerView {
     }
 
     /**
-     * close the modal window.
-     *
+     * Closes the modal window.
      */
     public static void closeModalWindow() {
         modalWindow.close();
