@@ -24,28 +24,28 @@
 	</top>
 	<center>
 		<GridPane alignment="center" hgap="10" vgap="10">
-			<Label text="%customer-firstName-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			<Label text="%customer-first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 			<TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-			<Label text="%customer-lastName-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			<Label text="%customer-last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 			<TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 			<Label text="%customer-email-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 			<TextField fx:id="emailAddressTextField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-			<Label text="%customer-phoneNumber-label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+			<Label text="%customer-phone-number-label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 			<TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-			<Label text="%customer-dateOfBirth-label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+			<Label text="%customer-date-of-birth-label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 			<TextField fx:id="dateOfBirthTextField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 			<Label text="%customer-street-label" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 			<TextField fx:id="streetTextField" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-			<Label text="%customer-houseNumber-label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+			<Label text="%customer-house-number-label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 			<TextField fx:id="houseNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 			<Label text="%customer-city-label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
 			<TextField fx:id="cityTextField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-			<Label text="%customer-zipCode-label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+			<Label text="%customer-zip-code-label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
 			<TextField fx:id="zipCodeTextField" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-			<Label text="%customer-idNumber-label" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+			<Label text="%customer-id-number-label" GridPane.columnIndex="0" GridPane.rowIndex="6" />
 			<TextField fx:id="idNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-			<Label text="%customer-driverLicenseId-label" GridPane.columnIndex="1"
-				GridPane.rowIndex="6" />
+			<Label text="%customer-driver-license-id-label" GridPane.columnIndex="1"
+                   GridPane.rowIndex="6" />
 			<TextField fx:id="driverLicenseIdTextField" GridPane.columnIndex="1"
 				GridPane.rowIndex="7" />
 		</GridPane>

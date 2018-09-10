@@ -64,12 +64,12 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 		Rental toDelete = rentalTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
 			Alert informationDialog = GUIDialogUtil
-					.createInformationDialog(I18nComponentsUtil.getInformationDialogHeaderNoObjectSelected());
+					.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
 			informationDialog.show();
 			return;
 		}
 		Alert confirmationDialog = GUIDialogUtil
-				.createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
+				.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
 		if (result.get() == ButtonType.OK) {
 			service.delete(toDelete);

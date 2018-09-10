@@ -29,9 +29,9 @@ public class NewEmployeeView {
         modalWindow = new Stage();
         // Load FXML document for the new employee view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewEmployeeViewURL()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewEmployeeViewFXML()),
                         I18nUtil.getResourceBundleComponents());
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
+        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
         modalWindow.setMinHeight(200);

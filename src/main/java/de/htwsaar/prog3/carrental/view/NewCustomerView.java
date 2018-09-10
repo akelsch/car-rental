@@ -29,9 +29,9 @@ public class NewCustomerView {
         modalWindow = new Stage();
         // Load FXML document for the new customer view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCustomerViewURL()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCustomerViewFXML()),
                         I18nUtil.getResourceBundleComponents());
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
+        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
         modalWindow.setMinHeight(400);

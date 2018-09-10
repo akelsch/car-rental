@@ -32,9 +32,9 @@ public class EditCustomerView {
         EditCustomerView.customer = customer;
         // Load FXML document for the edit customer view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCustomerViewURL()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCustomerViewFXML()),
                         I18nUtil.getResourceBundleComponents());
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
+        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
         modalWindow.setMinHeight(400);

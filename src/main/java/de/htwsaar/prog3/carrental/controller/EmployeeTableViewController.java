@@ -66,12 +66,12 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         Employee toDelete = employeeTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
             Alert informationDialog = GUIDialogUtil.createInformationDialog(
-                    I18nComponentsUtil.getInformationDialogHeaderNoObjectSelected());
+                    I18nComponentsUtil.getDialogDeleteNoSelectionText());
             informationDialog.show();
             return;
         }
         Alert confirmationDialog = GUIDialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
+                .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             service.delete(toDelete);

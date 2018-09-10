@@ -18,16 +18,16 @@ import static org.hamcrest.core.IsEqual.equalTo;
         "Due to the static initialization of the ResourceBundle only one test can be run at a time!")
 class I18nStringsUtilTest {
     @Test
-    void testGetCarTableViewURLGerman() {
+    void testGetCarTableViewFXMLGerman() {
         Locale.setDefault(new Locale("de"));
 
-        assertThat(I18nStringsUtil.getCarTableViewURL(), is(equalTo("/fxml/CarTableView.fxml")));
+        assertThat(I18nStringsUtil.getCarTableViewFXML(), is(equalTo("/fxml/CarTableView.fxml")));
     }
 
     @Test
-    void testGetCarTableViewURLEnglish() {
+    void testGetCarTableViewFXMLEnglish() {
         Locale.setDefault(new Locale("en"));
 
-        assertThat(I18nStringsUtil.getCarTableViewURL(), is(equalTo("/fxml/CarTableView.fxml")));
+        assertThat(I18nStringsUtil.getCarTableViewFXML(), is(equalTo("/fxml/CarTableView.fxml")));
     }
 }

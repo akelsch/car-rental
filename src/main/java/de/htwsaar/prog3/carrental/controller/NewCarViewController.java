@@ -101,9 +101,9 @@ public class NewCarViewController {
     protected void handleCancelButtonClicked(ActionEvent event) {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getCancelCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog.setHeaderText(
-                I18nComponentsUtil.getCancelCreationConfirmationDialogHeaderString());
+                I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             NewCarView.closeModalWindow();
@@ -120,9 +120,9 @@ public class NewCarViewController {
         // TODO show details + valid data check
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getApplyCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog
-                .setHeaderText(I18nComponentsUtil.getApplyCreationConfirmationDialogHeaderString());
+                .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             car.setBrand(brandTextField.getText());

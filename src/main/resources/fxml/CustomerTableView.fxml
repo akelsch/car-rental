@@ -64,16 +64,16 @@
 				</MenuBar>
 				<fx:define>
 					<HashMap fx:id="searchComboBoxFieldStrings" id="%customer-id-label"
-						dateOfBirth="%customer-dateOfBirth-label" driverLicenseId="%customer-driverLicenseId-label"
-						emailAddress="%customer-email-label" firstName="%customer-firstName-label"
-						houseNumber="%customer-houseNumber-label" lastName="%customer-lastName-label"
-						phoneNumber="%customer-phoneNumber-label" street="%customer-street-label"
-						city="%customer-city-label" idNumber="%customer-idNumber-label"
-						zipCode="%customer-zipCode-label" />
+							 dateOfBirth="%customer-date-of-birth-label" driverLicenseId="%customer-driver-license-id-label"
+							 emailAddress="%customer-email-label" firstName="%customer-first-name-label"
+							 houseNumber="%customer-house-number-label" lastName="%customer-last-name-label"
+							 phoneNumber="%customer-phone-number-label" street="%customer-street-label"
+							 city="%customer-city-label" idNumber="%customer-id-number-label"
+							 zipCode="%customer-zip-code-label" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
-					promptText="%prompt-search-ComboBoxField" prefWidth="Infinity" GridPane.halignment="CENTER"
-					GridPane.valignment="CENTER">
+						  promptText="%search-combobox-field-text" prefWidth="Infinity" GridPane.halignment="CENTER"
+						  GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxFieldStrings.id" />
@@ -96,8 +96,8 @@
 						like="%search-combobox-like" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1"
-					GridPane.columnIndex="1" promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity"
-					GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+						  GridPane.columnIndex="1" promptText="%search-combobox-comparator-text" prefWidth="Infinity"
+						  GridPane.halignment="CENTER" GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxComparatorStrings.equals" />
@@ -106,13 +106,13 @@
 					</items>
 				</ComboBox>
 				<TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
-					promptText="%prompt-search-TextField" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+						   promptText="%search-textfield-text" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false"
-					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-applyCurrentFilter-label"
+					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-search-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false"
-					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-removeCurrentFilter-label"
+					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-clear-filter-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 			</children>
@@ -123,17 +123,17 @@
 			BorderPane.alignment="CENTER">
 			<columns>
 				<TableColumn fx:id="id" text="%customer-id-label" />
-				<TableColumn fx:id="dateOfBirth" text="%customer-dateOfBirth-label" />
-				<TableColumn fx:id="driverLicenseId" text="%customer-driverLicenseId-label" />
+				<TableColumn fx:id="dateOfBirth" text="%customer-date-of-birth-label" />
+				<TableColumn fx:id="driverLicenseId" text="%customer-driver-license-id-label" />
 				<TableColumn fx:id="emailAddress" text="%customer-email-label" />
-				<TableColumn fx:id="firstName" text="%customer-firstName-label" />
-				<TableColumn fx:id="lastName" text="%customer-lastName-label" />
-				<TableColumn fx:id="phoneNumber" text="%customer-phoneNumber-label" />
-				<TableColumn fx:id="houseNumber" text="%customer-houseNumber-label" />
+				<TableColumn fx:id="firstName" text="%customer-first-name-label" />
+				<TableColumn fx:id="lastName" text="%customer-last-name-label" />
+				<TableColumn fx:id="phoneNumber" text="%customer-phone-number-label" />
+				<TableColumn fx:id="houseNumber" text="%customer-house-number-label" />
 				<TableColumn fx:id="street" text="%customer-street-label" />
 				<TableColumn fx:id="city" text="%customer-city-label" />
-				<TableColumn fx:id="idNumber" text="%customer-idNumber-label" />
-				<TableColumn fx:id="zipCode" text="%customer-zipCode-label" />
+				<TableColumn fx:id="idNumber" text="%customer-id-number-label" />
+				<TableColumn fx:id="zipCode" text="%customer-zip-code-label" />
 			</columns>
 		</TableView>
 	</center>

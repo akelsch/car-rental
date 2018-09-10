@@ -62,13 +62,13 @@
 				</MenuBar>
 				<fx:define>
 					<HashMap fx:id="searchComboBoxFieldStrings" id="%rental-id-label"
-						begin="%rental-begin-label" car="%rental-car-label" customer="%rental-customer-label"
-						employee="%rental-employee-label" end="%rental-end-label"
-						extraCosts="%rental-extraCosts-label" note="%rental-note-label" />
+                             begin="%rental-begin-label" car="%rental-car-label" customer="%rental-customer-label"
+                             employee="%rental-employee-label" end="%rental-end-label"
+                             extraCosts="%rental-extra-costs-label" note="%rental-note-label" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
-					promptText="%prompt-search-ComboBoxField" prefWidth="Infinity" GridPane.halignment="CENTER"
-					GridPane.valignment="CENTER">
+						  promptText="%search-combobox-field-text" prefWidth="Infinity" GridPane.halignment="CENTER"
+						  GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxFieldStrings.id" />
@@ -88,8 +88,8 @@
 						like="%search-combobox-like" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1"
-					GridPane.columnIndex="1" promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity"
-					GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+						  GridPane.columnIndex="1" promptText="%search-combobox-comparator-text" prefWidth="Infinity"
+						  GridPane.halignment="CENTER" GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxComparatorStrings.equals" />
@@ -100,13 +100,13 @@
 					</items>
 				</ComboBox>
 				<TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
-					promptText="%prompt-search-TextField" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+						   promptText="%search-textfield-text" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false"
-					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-applyCurrentFilter-label"
+					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-search-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false"
-					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-removeCurrentFilter-label"
+					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-clear-filter-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 			</children>
@@ -122,7 +122,7 @@
 				<TableColumn fx:id="customer" text="%rental-customer-label" />
 				<TableColumn fx:id="employee" text="%rental-employee-label" />
 				<TableColumn fx:id="end" text="%rental-end-label" />
-				<TableColumn fx:id="extraCosts" text="%rental-extraCosts-label" />
+				<TableColumn fx:id="extraCosts" text="%rental-extra-costs-label" />
 				<TableColumn fx:id="note" text="%rental-note-label" />
 			</columns>
 		</TableView>

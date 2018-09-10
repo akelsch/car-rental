@@ -38,7 +38,7 @@ public class CarTableView extends Application {
 		// Load FXML-document for the main view with the needed resource bundle
 
 		initScenes();
-		primaryStage.setTitle(I18nComponentsUtil.getStageTitleString());
+		primaryStage.setTitle(I18nComponentsUtil.getStageTitle());
 		// Apply styling described in the FXML-document
 		primaryStage.setScene(carScene);
 		primaryStage.setMaximized(true);
@@ -52,27 +52,27 @@ public class CarTableView extends Application {
 	 */
 	private void initScenes() throws IOException {
 		// Car View
-		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewURL()),
+		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewFXML()),
 				I18nUtil.getResourceBundleComponents());
 		Parent carParent = loaderCarScene.load();
 		carScene = new Scene(carParent);
 
 		// Employee View
 		FXMLLoader loaderEmployeeScene = new FXMLLoader(
-				getClass().getResource(I18nStringsUtil.getEmployeeTableViewURL()),
+				getClass().getResource(I18nStringsUtil.getEmployeeTableViewFXML()),
 				I18nUtil.getResourceBundleComponents());
 		Parent employeeParent = loaderEmployeeScene.load();
 		employeeScene = new Scene(employeeParent);
 
 		// Rental View
-		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewURL()),
+		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewFXML()),
 				I18nUtil.getResourceBundleComponents());
 		Parent rentalParent = loaderRentalScene.load();
 		rentalScene = new Scene(rentalParent);
 
 		// Customer View
 		FXMLLoader loaderCustomerScene = new FXMLLoader(
-				getClass().getResource(I18nStringsUtil.getCustomerTableViewURL()),
+				getClass().getResource(I18nStringsUtil.getCustomerTableViewFXML()),
 				I18nUtil.getResourceBundleComponents());
 		Parent customerParent = loaderCustomerScene.load();
 		customerScene = new Scene(customerParent);

@@ -55,9 +55,9 @@ public class NewEmployeeViewController {
     protected void handleCancelButtonClicked(ActionEvent event) {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getCancelCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog.setHeaderText(
-                I18nComponentsUtil.getCancelCreationConfirmationDialogHeaderString());
+                I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             NewEmployeeView.closeModalWindow();
@@ -74,9 +74,9 @@ public class NewEmployeeViewController {
         // TODO show details + confirmation + valid data check
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getApplyCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog
-                .setHeaderText(I18nComponentsUtil.getApplyCreationConfirmationDialogHeaderString());
+                .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {
             employee.setFirstName(firstNameTextField.getText());

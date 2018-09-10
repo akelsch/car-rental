@@ -21,8 +21,10 @@ public final class GUIDialogUtil {
      */
     public static Alert createInformationDialog(String headerText) {
         Alert informationDialog = new Alert(AlertType.INFORMATION);
-        informationDialog.setTitle(I18nComponentsUtil.getInformationDialogTitle());
+
+        informationDialog.setTitle(I18nComponentsUtil.getDialogInformationTitle());
         informationDialog.setHeaderText(headerText);
+
         return informationDialog;
     }
 
@@ -34,8 +36,10 @@ public final class GUIDialogUtil {
      */
     public static Alert createConfirmationDialog(String headerText) {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-        confirmationDialog.setTitle(I18nComponentsUtil.getConfirmationDialogTitle());
+
+        confirmationDialog.setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog.setHeaderText(headerText);
+
         return confirmationDialog;
     }
 }

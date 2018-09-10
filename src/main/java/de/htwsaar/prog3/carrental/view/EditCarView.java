@@ -32,9 +32,9 @@ public class EditCarView {
         EditCarView.car = car;
         // Load FXML document for the car configuration view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCarViewURL()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCarViewFXML()),
                         I18nUtil.getResourceBundleComponents());
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
+        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
         modalWindow.setMaxHeight(600);

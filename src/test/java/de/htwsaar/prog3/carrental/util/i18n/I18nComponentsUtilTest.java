@@ -21,13 +21,13 @@ class I18nComponentsUtilTest {
     void testGetStageTitleStringGerman() {
         Locale.setDefault(new Locale("de"));
 
-        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Autoverwaltung")));
+        assertThat(I18nComponentsUtil.getStageTitle(), is(equalTo("Autoverwaltung")));
     }
 
     @Test
     void testGetStageTitleStringEnglish() {
         Locale.setDefault(new Locale("en"));
 
-        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Car Rental")));
+        assertThat(I18nComponentsUtil.getStageTitle(), is(equalTo("Car Rental")));
     }
 }

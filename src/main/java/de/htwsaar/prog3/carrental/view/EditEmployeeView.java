@@ -32,9 +32,9 @@ public class EditEmployeeView {
         EditEmployeeView.employee = employee;
         // Load FXML document for the new employee view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditEmployeeViewURL()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditEmployeeViewFXML()),
                         I18nUtil.getResourceBundleComponents());
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
+        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
         modalWindow.setMinHeight(200);

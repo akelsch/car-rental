@@ -64,12 +64,12 @@
 				</MenuBar>
 				<fx:define>
 					<HashMap fx:id="searchComboBoxFieldStrings" id="%employee-id-label"
-						firstName="%employee-firstName-label" lastName="%employee-lastName-label"
-						position="%employee-position-label" />
+							 firstName="%employee-first-name-label" lastName="%employee-last-name-label"
+							 position="%employee-position-label" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
-					promptText="%prompt-search-ComboBoxField" prefWidth="Infinity" GridPane.halignment="CENTER"
-					GridPane.valignment="CENTER">
+						  promptText="%search-combobox-field-text" prefWidth="Infinity" GridPane.halignment="CENTER"
+						  GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxFieldStrings.id" />
@@ -84,8 +84,8 @@
 						like="%search-combobox-like" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1"
-					GridPane.columnIndex="1" promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity"
-					GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+						  GridPane.columnIndex="1" promptText="%search-combobox-comparator-text" prefWidth="Infinity"
+						  GridPane.halignment="CENTER" GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxComparatorStrings.equals" />
@@ -94,13 +94,13 @@
 					</items>
 				</ComboBox>
 				<TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
-					promptText="%prompt-search-TextField" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+						   promptText="%search-textfield-text" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false"
-					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-applyCurrentFilter-label"
+					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-search-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false"
-					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-removeCurrentFilter-label"
+					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-clear-filter-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 			</children>
@@ -111,8 +111,8 @@
 			BorderPane.alignment="CENTER">
 			<columns>
 				<TableColumn fx:id="id" text="%employee-id-label" />
-				<TableColumn fx:id="firstName" text="%employee-firstName-label" />
-				<TableColumn fx:id="lastName" text="%employee-lastName-label" />
+				<TableColumn fx:id="firstName" text="%employee-first-name-label" />
+				<TableColumn fx:id="lastName" text="%employee-last-name-label" />
 				<TableColumn fx:id="position" text="%employee-position-label" />
 			</columns>
 		</TableView>

@@ -66,17 +66,17 @@
 				</MenuBar>
 				<fx:define>
 					<HashMap fx:id="searchComboBoxFieldStrings" id="%car-id-label" brand="%car-brand-label"
-						horsepower="%car-horsePower-label" dailyRate="%car-dailyRate-label"
-						doorCount="%car-doorCount-label" drivenDistance="%car-drivenDistance-label"
-						category="%car-category-label" color="%car-color-label"
-						constructionYear="%car-constructionYear-label" defects="%car-defects-label"
-						fuel="%car-fuel-label" gearbox="%car-gearBox-label" licenseNumber="%car-licenceNumber-label"
-						model="%car-model-label" nextInspection="%car-nextInspection-label"
-						parkingLot="%car-parkingLot-label" tires="%car-tires-label" vin="%car-vin-label" />
+                             horsepower="%car-horsepower-label" dailyRate="%car-daily-rate-label"
+                             doorCount="%car-door-count-label" drivenDistance="%car-driven-distance-label"
+                             category="%car-category-label" color="%car-color-label"
+                             constructionYear="%car-construction-year-label" defects="%car-defects-label"
+                             fuel="%car-fuel-label" gearbox="%car-gearbox-label" licenseNumber="%car-licence-number-label"
+                             model="%car-model-label" nextInspection="%car-next-inspection-label"
+                             parkingLot="%car-parking-lot-label" tires="%car-tires-label" vin="%car-vin-label" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
-					promptText="%prompt-search-ComboBoxField" prefWidth="Infinity" GridPane.halignment="CENTER"
-					GridPane.valignment="CENTER">
+                          promptText="%search-combobox-field-text" prefWidth="Infinity" GridPane.halignment="CENTER"
+                          GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxFieldStrings.id" />
@@ -106,8 +106,8 @@
 						like="%search-combobox-like" />
 				</fx:define>
 				<ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1"
-					GridPane.columnIndex="1" promptText="%prompt-search-ComboBoxComparator" prefWidth="Infinity"
-					GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                          GridPane.columnIndex="1" promptText="%search-combobox-comparator-text" prefWidth="Infinity"
+                          GridPane.halignment="CENTER" GridPane.valignment="CENTER">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<fx:reference source="searchComboBoxComparatorStrings.equals" />
@@ -118,13 +118,13 @@
 					</items>
 				</ComboBox>
 				<TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
-					promptText="%prompt-search-TextField" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                           promptText="%search-textfield-text" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false"
-					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-applyCurrentFilter-label"
+					onAction="#handleApplyCurrentFilterButtonClicked" text="%button-search-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 				<Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false"
-					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-removeCurrentFilter-label"
+					onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-clear-filter-label"
 					textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"
 					GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 			</children>
@@ -136,20 +136,20 @@
 			<columns>
 				<TableColumn fx:id="id" text="%car-id-label" />
 				<TableColumn fx:id="brand" text="%car-brand-label" />
-				<TableColumn fx:id="horsepower" text="%car-horsePower-label" />
-				<TableColumn fx:id="dailyRate" text="%car-dailyRate-label" />
-				<TableColumn fx:id="doorCount" text="%car-doorCount-label" />
-				<TableColumn fx:id="drivenDistance" text="%car-drivenDistance-label" />
+				<TableColumn fx:id="horsepower" text="%car-horsepower-label" />
+				<TableColumn fx:id="dailyRate" text="%car-daily-rate-label" />
+				<TableColumn fx:id="doorCount" text="%car-door-count-label" />
+				<TableColumn fx:id="drivenDistance" text="%car-driven-distance-label" />
 				<TableColumn fx:id="category" text="%car-category-label" />
 				<TableColumn fx:id="color" text="%car-color-label" />
-				<TableColumn fx:id="constructionYear" text="%car-constructionYear-label" />
+				<TableColumn fx:id="constructionYear" text="%car-construction-year-label" />
 				<TableColumn fx:id="defects" text="%car-defects-label" />
 				<TableColumn fx:id="fuel" text="%car-fuel-label" />
-				<TableColumn fx:id="gearbox" text="%car-gearBox-label" />
-				<TableColumn fx:id="licenseNumber" text="%car-licenceNumber-label" />
+				<TableColumn fx:id="gearbox" text="%car-gearbox-label" />
+				<TableColumn fx:id="licenseNumber" text="%car-licence-number-label" />
 				<TableColumn fx:id="model" text="%car-model-label" />
-				<TableColumn fx:id="nextInspection" text="%car-nextInspection-label" />
-				<TableColumn fx:id="parkingLot" text="%car-parkingLot-label" />
+				<TableColumn fx:id="nextInspection" text="%car-next-inspection-label" />
+				<TableColumn fx:id="parkingLot" text="%car-parking-lot-label" />
 				<TableColumn fx:id="tires" text="%car-tires-label" />
 				<TableColumn fx:id="vin" text="%car-vin-label" />
 			</columns>

@@ -108,7 +108,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 	 * Displays a dialog containing information about this software project.
 	 */
 	public void handleAboutMenuItemClicked() {
-		Alert aboutDialog = GUIDialogUtil.createInformationDialog(I18nComponentsUtil.getDialogInformationHeaderAbout());
+		Alert aboutDialog = GUIDialogUtil.createInformationDialog(I18nComponentsUtil.getDialogAboutText());
 		aboutDialog.show();
 	}
 
