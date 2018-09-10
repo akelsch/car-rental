@@ -75,7 +75,7 @@ public class EditEmployeeViewController implements Initializable {
         confirmationDialog.setHeaderText(
                 I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             EditEmployeeView.closeModalWindow();
         }
     }
@@ -95,7 +95,7 @@ public class EditEmployeeViewController implements Initializable {
         confirmationDialog
                 .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             employee.setFirstName(firstNameTextField.getText());
             employee.setLastName(lastNameTextField.getText());
             employee.setPosition(positionTextField.getText());

@@ -131,7 +131,7 @@ public class EditCarViewController implements Initializable {
         confirmationDialog.setHeaderText(
                 I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             EditCarView.closeModalWindow();
         }
     }
@@ -151,7 +151,7 @@ public class EditCarViewController implements Initializable {
         confirmationDialog
                 .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             car.setBrand(brandTextField.getText());
             car.setModel(modelTextField.getText());
             car.setCategory(categoryTextField.getText());

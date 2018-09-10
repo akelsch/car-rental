@@ -98,7 +98,7 @@ public class CarTableViewController extends GenericTableViewController<Car> {
 		Alert confirmationDialog = DialogUtil
 				.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
-		if (result.get() == ButtonType.OK) {
+		if (result.isPresent() && result.get() == ButtonType.OK) {
 			logger.info("OK Button pressed. Deleting Car...");
 			service.delete(toDelete);
 			entities.remove(toDelete);

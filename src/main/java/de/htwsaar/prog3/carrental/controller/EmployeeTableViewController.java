@@ -65,7 +65,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         Alert confirmationDialog = DialogUtil
                 .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             service.delete(toDelete);
             entities.remove(toDelete);
         }
