@@ -5,7 +5,7 @@ import de.htwsaar.prog3.carrental.view.CarTableView;
 import de.htwsaar.prog3.carrental.view.NewCarView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
-import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -98,12 +98,12 @@ public class CarTableViewController extends GenericTableViewController<Car> {
 	public void handleDeleteButtonClicked() {
 		Car toDelete = carTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
-			Alert informationDialog = GUIDialogUtil
+			Alert informationDialog = DialogUtil
 					.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
 			informationDialog.show();
 			return;
 		}
-		Alert confirmationDialog = GUIDialogUtil
+		Alert confirmationDialog = DialogUtil
 				.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
 		if (result.get() == ButtonType.OK) {

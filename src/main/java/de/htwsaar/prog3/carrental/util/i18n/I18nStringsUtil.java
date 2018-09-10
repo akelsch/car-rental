@@ -29,43 +29,43 @@ public final class I18nStringsUtil {
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleStrings();
 
     // Values
-    public static String getCarTableViewFXML() {
+    public static String getCarTableViewFxml() {
         return resourceBundle.getString(CAR_TABLE_VIEW_FXML);
     }
 
-    public static String getNewCarViewFXML() {
+    public static String getNewCarViewFxml() {
         return resourceBundle.getString(NEW_CAR_VIEW_FXML);
     }
 
-    public static String getEditCarViewFXML() {
+    public static String getEditCarViewFxml() {
         return resourceBundle.getString(EDIT_CAR_VIEW_FXML);
     }
 
-    public static String getCustomerTableViewFXML() {
+    public static String getCustomerTableViewFxml() {
         return resourceBundle.getString(CUSTOMER_TABLE_VIEW_FXML);
     }
 
-    public static String getNewCustomerViewFXML() {
+    public static String getNewCustomerViewFxml() {
         return resourceBundle.getString(NEW_CUSTOMER_VIEW_FXML);
     }
 
-    public static String getEditCustomerViewFXML() {
+    public static String getEditCustomerViewFxml() {
         return resourceBundle.getString(EDIT_CUSTOMER_VIEW_FXML);
     }
 
-    public static String getEmployeeTableViewFXML() {
+    public static String getEmployeeTableViewFxml() {
         return resourceBundle.getString(EMPLOYEE_TABLE_VIEW_FXML);
     }
 
-    public static String getNewEmployeeViewFXML() {
+    public static String getNewEmployeeViewFxml() {
         return resourceBundle.getString(NEW_EMPLOYEE_VIEW_FXML);
     }
 
-    public static String getEditEmployeeViewFXML() {
+    public static String getEditEmployeeViewFxml() {
         return resourceBundle.getString(EDIT_EMPLOYEE_VIEW_FXML);
     }
 
-    public static String getRentalTableViewFXML() {
+    public static String getRentalTableViewFxml() {
         return resourceBundle.getString(RENTAL_TABLE_VIEW_FXML);
     }
 }

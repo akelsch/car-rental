@@ -7,7 +7,7 @@ import de.htwsaar.prog3.carrental.view.EditEmployeeView;
 import de.htwsaar.prog3.carrental.view.NewEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
-import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Controller for EmployeeTableView
+ * Controller for EmployeeTableView.
  * 
  * @author Lukas Raubuch, Jens Thewes
  */
@@ -65,12 +65,12 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
     public void handleDeleteButtonClicked() {
         Employee toDelete = employeeTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
-            Alert informationDialog = GUIDialogUtil.createInformationDialog(
+            Alert informationDialog = DialogUtil.createInformationDialog(
                     I18nComponentsUtil.getDialogDeleteNoSelectionText());
             informationDialog.show();
             return;
         }
-        Alert confirmationDialog = GUIDialogUtil
+        Alert confirmationDialog = DialogUtil
                 .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.get() == ButtonType.OK) {

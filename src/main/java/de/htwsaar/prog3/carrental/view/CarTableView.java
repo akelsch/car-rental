@@ -46,33 +46,33 @@ public class CarTableView extends Application {
 	}
 
 	/**
-	 * Load scenes and add them to the controllers
-	 * 
+	 * Load scenes and add them to the controllers.
+	 *
 	 * @throws IOException
 	 */
 	private void initScenes() throws IOException {
 		// Car View
-		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewFXML()),
+		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent carParent = loaderCarScene.load();
 		carScene = new Scene(carParent);
 
 		// Employee View
 		FXMLLoader loaderEmployeeScene = new FXMLLoader(
-				getClass().getResource(I18nStringsUtil.getEmployeeTableViewFXML()),
+				getClass().getResource(I18nStringsUtil.getEmployeeTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent employeeParent = loaderEmployeeScene.load();
 		employeeScene = new Scene(employeeParent);
 
 		// Rental View
-		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewFXML()),
+		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent rentalParent = loaderRentalScene.load();
 		rentalScene = new Scene(rentalParent);
 
 		// Customer View
 		FXMLLoader loaderCustomerScene = new FXMLLoader(
-				getClass().getResource(I18nStringsUtil.getCustomerTableViewFXML()),
+				getClass().getResource(I18nStringsUtil.getCustomerTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent customerParent = loaderCustomerScene.load();
 		customerScene = new Scene(customerParent);

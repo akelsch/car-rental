@@ -14,8 +14,8 @@ import static org.hamcrest.core.IsEqual.equalTo;
  *
  * @author Lukas Raubuch
  */
-@Disabled("Disabled as I18nComponentsUtil can be initialized beforehand resulting in wrong locales.\n" +
-        "Due to the static initialization of the ResourceBundle only one test can be run at a time!")
+@Disabled("Disabled as I18nComponentsUtil can be initialized beforehand resulting in wrong locales.\n"
+        + "Due to the static initialization of the ResourceBundle only one test can be run at a time!")
 class I18nComponentsUtilTest {
     @Test
     void testGetStageTitleStringGerman() {

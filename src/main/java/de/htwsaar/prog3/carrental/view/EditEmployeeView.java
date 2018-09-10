@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * Entry Point of the "Edit Employee" Dialog.
  *
  * @author Jens Thewes
- * 
+ *
  */
 public class EditEmployeeView {
 
@@ -22,8 +22,8 @@ public class EditEmployeeView {
     private static Employee employee;
 
     /**
-     * Start the Edit Employee Dialog in a modal Window
-     * 
+     * Start the Edit Employee Dialog in a modal Window.
+     *
      * @param parentStage
      * @throws Exception
      */
@@ -32,7 +32,7 @@ public class EditEmployeeView {
         EditEmployeeView.employee = employee;
         // Load FXML document for the new employee view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditEmployeeViewFXML()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditEmployeeViewFxml()),
                         I18nUtil.getResourceBundleComponents());
         modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
@@ -48,16 +48,16 @@ public class EditEmployeeView {
     }
 
     /**
-     * close the modal window
-     * 
+     * close the modal window.
+     *
      */
     public static void closeModalWindow() {
         modalWindow.close();
     }
 
     /**
-     * get the employee to edit
-     * 
+     * get the employee to edit.
+     *
      * @return
      */
     public static Employee getEmployee() {

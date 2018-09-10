@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.RentalService;
-import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Controller for RentalTableView
+ * Controller for RentalTableView.
  * @author Lukas Raubuch
  */
 public class RentalTableViewController extends GenericTableViewController<Rental> {
@@ -63,12 +63,12 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 	public void handleDeleteButtonClicked() {
 		Rental toDelete = rentalTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
-			Alert informationDialog = GUIDialogUtil
+			Alert informationDialog = DialogUtil
 					.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
 			informationDialog.show();
 			return;
 		}
-		Alert confirmationDialog = GUIDialogUtil
+		Alert confirmationDialog = DialogUtil
 				.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
 		if (result.get() == ButtonType.OK) {
@@ -88,7 +88,7 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 		end.setCellValueFactory(new PropertyValueFactory<>("End"));
 		extraCosts.setCellValueFactory(new PropertyValueFactory<>("ExtraCosts"));
 		note.setCellValueFactory(new PropertyValueFactory<>("Note"));
-		
+
 		rentalTableView.setItems(entities);
 	}
 }

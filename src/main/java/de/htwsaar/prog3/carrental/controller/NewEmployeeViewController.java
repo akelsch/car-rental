@@ -47,8 +47,8 @@ public class NewEmployeeViewController {
     private Button applyButton;
 
     /**
-     * Handle Cancel Button clicked
-     * 
+     * Handle Cancel Button clicked.
+     *
      * @param event
      */
     @FXML
@@ -65,8 +65,8 @@ public class NewEmployeeViewController {
     }
 
     /**
-     * Handle Apply Button clicked
-     * 
+     * Handle Apply Button clicked.
+     *
      * @param event
      */
     @FXML

@@ -74,7 +74,7 @@ public class EditCustomerViewController implements Initializable {
     private Button applyButton;
 
     /**
-     * Initialize all content fields with the current customer
+     * Initialize all content fields with the current customer.
      *
      * @param location
      * @param resources
@@ -95,8 +95,8 @@ public class EditCustomerViewController implements Initializable {
     }
 
     /**
-     * Handle Cancel Button clicked
-     * 
+     * Handle Cancel Button clicked.
+     *
      * @param event
      */
     @FXML
@@ -113,8 +113,8 @@ public class EditCustomerViewController implements Initializable {
     }
 
     /**
-     * Handle Apply Button clicked
-     * 
+     * Handle Apply Button clicked.
+     *
      * @param event
      */
     @FXML

@@ -13,15 +13,15 @@ import javafx.stage.Stage;
  * Entry Point of the "New Customer" Dialog.
  *
  * @author Jens Thewes
- * 
+ *
  */
 public class NewCustomerView {
 
     private static Stage modalWindow;
 
     /**
-     * Start the New Employee Dialog in a modal Window
-     * 
+     * Start the New Employee Dialog in a modal Window.
+     *
      * @param parentStage
      * @throws Exception
      */
@@ -29,7 +29,7 @@ public class NewCustomerView {
         modalWindow = new Stage();
         // Load FXML document for the new customer view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCustomerViewFXML()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCustomerViewFxml()),
                         I18nUtil.getResourceBundleComponents());
         modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
@@ -45,8 +45,8 @@ public class NewCustomerView {
     }
 
     /**
-     * close the modal window
-     * 
+     * close the modal window.
+     *
      */
     public static void closeModalWindow() {
         modalWindow.close();

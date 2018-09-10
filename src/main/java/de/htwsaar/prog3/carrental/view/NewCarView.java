@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * Entry Point of the "New Car" Dialog.
  *
  * @author Jens Thewes
- * 
+ *
  */
 public class NewCarView {
 
@@ -28,7 +28,7 @@ public class NewCarView {
     public void start(Stage parentStage) throws Exception {
         modalWindow = new Stage();
         // Load FXML document for the car configuration view wit the needed resource bundle
-        Parent scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCarViewFXML()),
+        Parent scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCarViewFxml()),
                 I18nUtil.getResourceBundleComponents());
         modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
@@ -44,8 +44,8 @@ public class NewCarView {
     }
 
     /**
-     * close the modal window
-     * 
+     * close the modal window.
+     *
      */
     public static void closeModalWindow() {
         modalWindow.close();

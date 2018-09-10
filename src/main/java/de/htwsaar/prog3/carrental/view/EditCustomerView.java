@@ -14,16 +14,16 @@ import javafx.stage.Stage;
  * Entry Point of the "Edit Customer" Dialog.
  *
  * @author Jens Thewes
- * 
+ *
  */
 public class EditCustomerView {
-    
+
     private static Stage modalWindow;
     private static Customer customer;
 
     /**
-     * Start the Edit Employee Dialog in a modal Window
-     * 
+     * Start the Edit Employee Dialog in a modal Window.
+     *
      * @param parentStage
      * @throws Exception
      */
@@ -32,7 +32,7 @@ public class EditCustomerView {
         EditCustomerView.customer = customer;
         // Load FXML document for the edit customer view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCustomerViewFXML()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCustomerViewFxml()),
                         I18nUtil.getResourceBundleComponents());
         modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
@@ -48,16 +48,16 @@ public class EditCustomerView {
     }
 
     /**
-     * close the modal window
-     * 
+     * close the modal window.
+     *
      */
     public static void closeModalWindow() {
         modalWindow.close();
     }
 
     /**
-     * get the customer to edit
-     * 
+     * get the customer to edit.
+     *
      * @return
      */
     public static Customer getCustomer() {

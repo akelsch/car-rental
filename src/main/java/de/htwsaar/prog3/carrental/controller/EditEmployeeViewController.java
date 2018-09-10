@@ -50,7 +50,7 @@ public class EditEmployeeViewController implements Initializable {
     private Button applyButton;
 
     /**
-     * Initialize all content fields with the current employee
+     * Initialize all content fields with the current employee.
      *
      * @param location
      * @param resources
@@ -63,8 +63,8 @@ public class EditEmployeeViewController implements Initializable {
     }
 
     /**
-     * Handle Cancel Button clicked
-     * 
+     * Handle Cancel Button clicked.
+     *
      * @param event
      */
     @FXML
@@ -81,8 +81,8 @@ public class EditEmployeeViewController implements Initializable {
     }
 
     /**
-     * Handle Apply Button clicked
-     * 
+     * Handle Apply Button clicked.
+     *
      * @param event
      */
     @FXML

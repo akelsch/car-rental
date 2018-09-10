@@ -14,10 +14,10 @@ import javafx.stage.Stage;
  * Entry Point of the "Edit Car" Dialog.
  *
  * @author Jens Thewes
- * 
+ *
  */
 public class EditCarView {
-    
+
     private static Stage modalWindow;
     private static Car car;
 
@@ -32,7 +32,7 @@ public class EditCarView {
         EditCarView.car = car;
         // Load FXML document for the car configuration view wit the needed resource bundle
         Parent scene =
-                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCarViewFXML()),
+                FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCarViewFxml()),
                         I18nUtil.getResourceBundleComponents());
         modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
@@ -46,16 +46,16 @@ public class EditCarView {
     }
 
     /**
-     * close the modal window
-     * 
+     * close the modal window.
+     *
      */
     public static void closeModalWindow() {
         modalWindow.close();
     }
-    
+
     /**
-     * get the car to edit
-     * 
+     * get the car to edit.
+     *
      * @return
      */
     public static Car getCar() {
