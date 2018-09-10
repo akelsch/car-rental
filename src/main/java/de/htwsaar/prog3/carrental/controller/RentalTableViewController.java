@@ -47,6 +47,8 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 	}
 
 	/**
+	 * Rental view does not use a "New..." button.
+	 *
 	 * @see CarTableViewController#handleRentButtonClicked()
 	 */
 	@Override
@@ -56,7 +58,7 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 
 	@Override
 	public void handleEditButtonClicked() {
-		// TODO Auto-generated method stub
+		// TODO: Implement with Michael
 	}
 
 	@Override

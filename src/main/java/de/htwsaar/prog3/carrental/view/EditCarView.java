@@ -32,6 +32,7 @@ public class EditCarView {
      * Start the Car Configuration View Dialog in a modal Window in order to edit a existing car.
      *
      * @param parentStage
+     * @param car
      */
     public void start(Stage parentStage, Car car) {
         modalWindow  = new Stage();

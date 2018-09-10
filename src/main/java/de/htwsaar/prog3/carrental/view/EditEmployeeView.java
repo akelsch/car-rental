@@ -32,6 +32,7 @@ public class EditEmployeeView {
      * Start the Edit Employee Dialog in a modal Window.
      *
      * @param parentStage
+     * @param employee
      */
     public void start(Stage parentStage, Employee employee) {
         modalWindow = new Stage();
