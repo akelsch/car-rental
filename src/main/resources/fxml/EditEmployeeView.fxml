@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
@@ -22,9 +22,9 @@
 	</top>
 	<center>
 		<GridPane alignment="center" hgap="10" vgap="10">
-			<Label text="%employee-firstName-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			<Label text="%employee-first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 			<TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-			<Label text="%employee-lastName-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			<Label text="%employee-last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 			<TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 			<Label text="%employee-position-label" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 			<TextField fx:id="positionTextField" GridPane.columnIndex="2" GridPane.rowIndex="1" />

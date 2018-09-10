@@ -5,7 +5,7 @@ import de.htwsaar.prog3.carrental.view.CarTableView;
 import de.htwsaar.prog3.carrental.view.NewCarView;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
-import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -75,38 +75,30 @@ public class CarTableViewController extends GenericTableViewController<Car> {
 
 	@Override
 	public void handleNewButtonClicked() {
-		try {
-			new NewCarView().start(primaryStage);
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while creating a new Car");
-		}
+		new NewCarView().start(primaryStage);
+		carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 	}
 
 	@Override
 	public void handleEditButtonClicked() {
 		Car toEdit = carTableView.getSelectionModel().getSelectedItem();
-		try {
-			new EditCarView().start(primaryStage, toEdit);
-			carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-		} catch (Exception e) {
-			logger.error("Error while editing selected car");
-		}
+		new EditCarView().start(primaryStage, toEdit);
+		carTableView.setItems(FXCollections.observableArrayList(service.findAll()));
 	}
 
 	@Override
 	public void handleDeleteButtonClicked() {
 		Car toDelete = carTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
-			Alert informationDialog = GUIDialogUtil
-					.createInformationDialog(I18nComponentsUtil.getInformationDialogHeaderNoObjectSelected());
+			Alert informationDialog = DialogUtil
+					.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
 			informationDialog.show();
 			return;
 		}
-		Alert confirmationDialog = GUIDialogUtil
-				.createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
+		Alert confirmationDialog = DialogUtil
+				.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
-		if (result.get() == ButtonType.OK) {
+		if (result.orElse(null) == ButtonType.OK) {
 			logger.info("OK Button pressed. Deleting Car...");
 			service.delete(toDelete);
 			entities.remove(toDelete);

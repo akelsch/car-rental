@@ -14,20 +14,20 @@ import static org.hamcrest.core.IsEqual.equalTo;
  *
  * @author Lukas Raubuch
  */
-@Disabled("Disabled as I18nComponentsUtil can be initialized beforehand resulting in wrong locales.\n" +
-        "Due to the static initialization of the ResourceBundle only one test can be run at a time!")
+@Disabled("Disabled as I18nComponentsUtil can be initialized beforehand resulting in wrong locales.\n"
+        + "Due to the static initialization of the ResourceBundle only one test can be run at a time!")
 class I18nComponentsUtilTest {
     @Test
     void testGetStageTitleStringGerman() {
         Locale.setDefault(new Locale("de"));
 
-        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Autoverwaltung")));
+        assertThat(I18nComponentsUtil.getStageTitle(), is(equalTo("Autoverwaltung")));
     }
 
     @Test
     void testGetStageTitleStringEnglish() {
         Locale.setDefault(new Locale("en"));
 
-        assertThat(I18nComponentsUtil.getStageTitleString(), is(equalTo("Car Rental")));
+        assertThat(I18nComponentsUtil.getStageTitle(), is(equalTo("Car Rental")));
     }
 }

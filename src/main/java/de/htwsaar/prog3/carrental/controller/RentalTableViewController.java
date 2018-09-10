@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.RentalService;
-import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Controller for RentalTableView
+ * Controller for RentalTableView.
  * @author Lukas Raubuch
  */
 public class RentalTableViewController extends GenericTableViewController<Rental> {
@@ -47,6 +47,8 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 	}
 
 	/**
+	 * Rental view does not use a "New..." button.
+	 *
 	 * @see CarTableViewController#handleRentButtonClicked()
 	 */
 	@Override
@@ -56,22 +58,22 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 
 	@Override
 	public void handleEditButtonClicked() {
-		// TODO Auto-generated method stub
+		// TODO: Implement with Michael
 	}
 
 	@Override
 	public void handleDeleteButtonClicked() {
 		Rental toDelete = rentalTableView.getSelectionModel().getSelectedItem();
 		if (null == toDelete) {
-			Alert informationDialog = GUIDialogUtil
-					.createInformationDialog(I18nComponentsUtil.getInformationDialogHeaderNoObjectSelected());
+			Alert informationDialog = DialogUtil
+					.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
 			informationDialog.show();
 			return;
 		}
-		Alert confirmationDialog = GUIDialogUtil
-				.createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
+		Alert confirmationDialog = DialogUtil
+				.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
 		Optional<ButtonType> result = confirmationDialog.showAndWait();
-		if (result.get() == ButtonType.OK) {
+		if (result.orElse(null) == ButtonType.OK) {
 			service.delete(toDelete);
 			entities.remove(toDelete);
 		}
@@ -88,7 +90,7 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 		end.setCellValueFactory(new PropertyValueFactory<>("End"));
 		extraCosts.setCellValueFactory(new PropertyValueFactory<>("ExtraCosts"));
 		note.setCellValueFactory(new PropertyValueFactory<>("Note"));
-		
+
 		rentalTableView.setItems(entities);
 	}
 }

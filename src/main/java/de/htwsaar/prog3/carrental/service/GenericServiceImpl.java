@@ -46,13 +46,17 @@ public class GenericServiceImpl<T extends BaseEntity> implements GenericService<
     }
 
     @Override
-    public List<T> filter(String field, String comparator, String value){
+    public List<T> filter(String field, String comparator, String value) {
         dao.createEntityManager();
         dao.beginTransaction();
-        List<T> entities = dao.filter(FilterUtil.convertField(field), comparator,
-                FilterUtil.convertValue(value, comparator));
+        List<T> entities = dao.filter(
+                FilterUtil.convertField(field),
+                comparator,
+                FilterUtil.convertValue(value, comparator)
+        );
         dao.commitTransaction();
         dao.closeEntityManager();
+
         return entities;
     }
 

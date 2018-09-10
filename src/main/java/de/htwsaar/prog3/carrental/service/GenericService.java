@@ -10,7 +10,7 @@ import java.util.List;
  * Besides using methods from the DAO layer, the Service layer also manages entity managers and transactions.
  *
  * @param <T> the type of the entity
- * @author Arthur Kelsch
+ * @author Arthur Kelsch, Julian Quint
  * @see GenericDao
  */
 public interface GenericService<T> {
@@ -40,12 +40,12 @@ public interface GenericService<T> {
     List<T> findAll();
 
     /**
-     * Finds all entities by a given filter.
+     * Finds all entities that match a filter.
      *
-     * @param field given field
-     * @param comparator given comparator
-     * @param value given value
-     * @return a list of found entity instances or a empty list if no entities found with the given filter
+     * @param field      entity field
+     * @param comparator comparator, e.g. {@code >} or {@code <}
+     * @param value      value to filter for
+     * @return a list of found entity instances or a empty list if no entities match the filter
      * @see GenericDao#filter(String, String, String)
      */
     List<T> filter(String field, String comparator, String value);
@@ -70,7 +70,7 @@ public interface GenericService<T> {
      * Deletes a single entity by its ID.
      *
      * @param id primary key
-     * @see GenericDao#delete(Object)
+     * @see GenericService#delete(Object)
      */
     void deleteById(Long id);
 

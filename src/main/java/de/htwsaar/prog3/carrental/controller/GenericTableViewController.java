@@ -2,7 +2,7 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import de.htwsaar.prog3.carrental.service.GenericService;
-import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.CarTableView;
 import javafx.application.Platform;
@@ -108,7 +108,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 	 * Displays a dialog containing information about this software project.
 	 */
 	public void handleAboutMenuItemClicked() {
-		Alert aboutDialog = GUIDialogUtil.createInformationDialog(I18nComponentsUtil.getDialogInformationHeaderAbout());
+		Alert aboutDialog = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogAboutText());
 		aboutDialog.show();
 	}
 

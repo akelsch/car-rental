@@ -5,7 +5,6 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.NewCarView;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -94,37 +93,33 @@ public class NewCarViewController {
 
     /**
      * Handle clicking the Cancel Button.
-     *
-     * @param event
      */
     @FXML
-    protected void handleCancelButtonClicked(ActionEvent event) {
+    protected void handleCancelButtonClicked() {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getCancelCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog.setHeaderText(
-                I18nComponentsUtil.getCancelCreationConfirmationDialogHeaderString());
+                I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             NewCarView.closeModalWindow();
         }
     }
 
     /**
      * Handle clicking the Apply Button.
-     *
-     * @param event
      */
     @FXML
-    protected void handleApplyButtonClicked(ActionEvent event) {
+    protected void handleApplyButtonClicked() {
         // TODO show details + valid data check
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getApplyCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog
-                .setHeaderText(I18nComponentsUtil.getApplyCreationConfirmationDialogHeaderString());
+                .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             car.setBrand(brandTextField.getText());
             car.setModel(modelTextField.getText());
             car.setCategory(categoryTextField.getText());

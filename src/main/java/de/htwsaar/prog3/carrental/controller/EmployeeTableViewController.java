@@ -7,7 +7,7 @@ import de.htwsaar.prog3.carrental.view.EditEmployeeView;
 import de.htwsaar.prog3.carrental.view.NewEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
-import de.htwsaar.prog3.carrental.util.GUIDialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Controller for EmployeeTableView
+ * Controller for EmployeeTableView.
  * 
  * @author Lukas Raubuch, Jens Thewes
  */
@@ -42,38 +42,30 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
     @Override
     public void handleNewButtonClicked() {
-        try {
-            new NewEmployeeView().start(primaryStage);
-            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
+        new NewEmployeeView().start(primaryStage);
+        employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
     }
 
     @Override
     public void handleEditButtonClicked() {
         Employee toEdit = employeeTableView.getSelectionModel().getSelectedItem();
-        try {
-            new EditEmployeeView().start(primaryStage, toEdit);
-            employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
-        } catch (Exception e) {
-            // TODO Logger?
-        }
+        new EditEmployeeView().start(primaryStage, toEdit);
+        employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
     }
 
     @Override
     public void handleDeleteButtonClicked() {
         Employee toDelete = employeeTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
-            Alert informationDialog = GUIDialogUtil.createInformationDialog(
-                    I18nComponentsUtil.getInformationDialogHeaderNoObjectSelected());
+            Alert informationDialog = DialogUtil.createInformationDialog(
+                    I18nComponentsUtil.getDialogDeleteNoSelectionText());
             informationDialog.show();
             return;
         }
-        Alert confirmationDialog = GUIDialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getConfirmationDialogHeaderDelete());
+        Alert confirmationDialog = DialogUtil
+                .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             service.delete(toDelete);
             entities.remove(toDelete);
         }

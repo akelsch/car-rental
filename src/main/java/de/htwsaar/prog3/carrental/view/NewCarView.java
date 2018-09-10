@@ -8,14 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * Entry Point of the "New Car" Dialog.
  *
  * @author Jens Thewes
- * 
  */
 public class NewCarView {
+    private static final Logger logger = LoggerFactory.getLogger(NewCarView.class);
 
     private static Stage modalWindow;
 
@@ -23,14 +27,20 @@ public class NewCarView {
      * Start the New Car Creation Dialog in a modal Window.
      *
      * @param parentStage
-     * @throws Exception
      */
-    public void start(Stage parentStage) throws Exception {
+    public void start(Stage parentStage) {
         modalWindow = new Stage();
+
         // Load FXML document for the car configuration view wit the needed resource bundle
-        Parent scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCarViewURL()),
-                I18nUtil.getResourceBundleComponents());
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
+        Parent scene = null;
+        try {
+            scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getNewCarViewFxml()),
+                    I18nUtil.getResourceBundleComponents());
+        } catch (IOException e) {
+            logger.error("Failed loading FXML!", e);
+        }
+
+        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
         modalWindow.setMinHeight(570);
@@ -44,8 +54,7 @@ public class NewCarView {
     }
 
     /**
-     * close the modal window
-     * 
+     * Closes the modal window.
      */
     public static void closeModalWindow() {
         modalWindow.close();

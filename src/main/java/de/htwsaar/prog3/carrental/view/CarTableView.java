@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * Entry point of the car rental application. Definition of primary stage and
@@ -23,7 +24,9 @@ import javafx.stage.Stage;
 public class CarTableView extends Application {
 
 	// Has to be static to enable modal dialogs
+	@Getter
 	private static Stage primaryStage;
+
 	private static Scene carScene;
 	private static Scene employeeScene;
 	private static Scene rentalScene;
@@ -31,14 +34,16 @@ public class CarTableView extends Application {
 
 	/**
 	 * Entry Point for the main view of the program.
+	 *
+	 * @throws IOException
 	 */
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		setPrimaryStage(primaryStage);
+	public void start(Stage primaryStage) throws IOException {
+		CarTableView.primaryStage = primaryStage;
 		// Load FXML-document for the main view with the needed resource bundle
 
 		initScenes();
-		primaryStage.setTitle(I18nComponentsUtil.getStageTitleString());
+		primaryStage.setTitle(I18nComponentsUtil.getStageTitle());
 		// Apply styling described in the FXML-document
 		primaryStage.setScene(carScene);
 		primaryStage.setMaximized(true);
@@ -46,33 +51,33 @@ public class CarTableView extends Application {
 	}
 
 	/**
-	 * Load scenes and add them to the controllers
-	 * 
+	 * Load scenes and add them to the controllers.
+	 *
 	 * @throws IOException
 	 */
 	private void initScenes() throws IOException {
 		// Car View
-		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewURL()),
+		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent carParent = loaderCarScene.load();
 		carScene = new Scene(carParent);
 
 		// Employee View
 		FXMLLoader loaderEmployeeScene = new FXMLLoader(
-				getClass().getResource(I18nStringsUtil.getEmployeeTableViewURL()),
+				getClass().getResource(I18nStringsUtil.getEmployeeTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent employeeParent = loaderEmployeeScene.load();
 		employeeScene = new Scene(employeeParent);
 
 		// Rental View
-		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewURL()),
+		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent rentalParent = loaderRentalScene.load();
 		rentalScene = new Scene(rentalParent);
 
 		// Customer View
 		FXMLLoader loaderCustomerScene = new FXMLLoader(
-				getClass().getResource(I18nStringsUtil.getCustomerTableViewURL()),
+				getClass().getResource(I18nStringsUtil.getCustomerTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
 		Parent customerParent = loaderCustomerScene.load();
 		customerScene = new Scene(customerParent);
@@ -108,13 +113,5 @@ public class CarTableView extends Application {
 	public static void main(String[] args) {
 		Locale.setDefault(new Locale("en"));
 		launch(args);
-	}
-
-	public static Stage getPrimaryStage() {
-		return primaryStage;
-	}
-
-	private void setPrimaryStage(Stage primaryStage) {
-		CarTableView.primaryStage = primaryStage;
 	}
 }

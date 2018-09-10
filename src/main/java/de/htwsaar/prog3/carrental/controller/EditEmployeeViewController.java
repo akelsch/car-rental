@@ -7,7 +7,6 @@ import de.htwsaar.prog3.carrental.view.EditEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -50,7 +49,7 @@ public class EditEmployeeViewController implements Initializable {
     private Button applyButton;
 
     /**
-     * Initialize all content fields with the current employee
+     * Initialize all content fields with the current employee.
      *
      * @param location
      * @param resources
@@ -63,39 +62,35 @@ public class EditEmployeeViewController implements Initializable {
     }
 
     /**
-     * Handle Cancel Button clicked
-     * 
-     * @param event
+     * Handle Cancel Button clicked.
      */
     @FXML
-    protected void handleCancelButtonClicked(ActionEvent event) {
+    protected void handleCancelButtonClicked() {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getCancelCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog.setHeaderText(
-                I18nComponentsUtil.getCancelCreationConfirmationDialogHeaderString());
+                I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             EditEmployeeView.closeModalWindow();
         }
     }
 
     /**
-     * Handle Apply Button clicked
-     * 
-     * @param event
+     * Handle Apply Button clicked.
      */
     @FXML
-    protected void handleApplyButtonClicked(ActionEvent event) {
+    protected void handleApplyButtonClicked() {
         // TODO show details + valid data check
         // TODO only update data that has changed?
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
         confirmationDialog
-                .setTitle(I18nComponentsUtil.getApplyCreationConfirmationDialogTitleString());
+                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
         confirmationDialog
-                .setHeaderText(I18nComponentsUtil.getApplyCreationConfirmationDialogHeaderString());
+                .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.orElse(null) == ButtonType.OK) {
             employee.setFirstName(firstNameTextField.getText());
             employee.setLastName(lastNameTextField.getText());
             employee.setPosition(positionTextField.getText());
