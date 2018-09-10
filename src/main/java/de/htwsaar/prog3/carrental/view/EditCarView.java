@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * Entry Point of the "Edit Car" Dialog.
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
 public class EditCarView {
 
     private static Stage modalWindow;
+
+    @Getter
     private static Car car;
 
     /**
@@ -51,14 +54,5 @@ public class EditCarView {
      */
     public static void closeModalWindow() {
         modalWindow.close();
-    }
-
-    /**
-     * get the car to edit.
-     *
-     * @return
-     */
-    public static Car getCar() {
-        return car;
     }
 }

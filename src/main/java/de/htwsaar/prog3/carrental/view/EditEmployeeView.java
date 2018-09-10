@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * Entry Point of the "Edit Employee" Dialog.
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
 public class EditEmployeeView {
 
     private static Stage modalWindow;
+
+    @Getter
     private static Employee employee;
 
     /**
@@ -53,14 +56,5 @@ public class EditEmployeeView {
      */
     public static void closeModalWindow() {
         modalWindow.close();
-    }
-
-    /**
-     * get the employee to edit.
-     *
-     * @return
-     */
-    public static Employee getEmployee() {
-        return employee;
     }
 }

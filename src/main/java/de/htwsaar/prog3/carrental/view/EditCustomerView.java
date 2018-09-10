@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * Entry Point of the "Edit Customer" Dialog.
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
 public class EditCustomerView {
 
     private static Stage modalWindow;
+
+    @Getter
     private static Customer customer;
 
     /**
@@ -53,14 +56,5 @@ public class EditCustomerView {
      */
     public static void closeModalWindow() {
         modalWindow.close();
-    }
-
-    /**
-     * get the customer to edit.
-     *
-     * @return
-     */
-    public static Customer getCustomer() {
-        return customer;
     }
 }

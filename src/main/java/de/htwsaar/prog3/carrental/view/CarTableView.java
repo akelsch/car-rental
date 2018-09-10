@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * Entry point of the car rental application. Definition of primary stage and
@@ -23,7 +24,9 @@ import javafx.stage.Stage;
 public class CarTableView extends Application {
 
 	// Has to be static to enable modal dialogs
+	@Getter
 	private static Stage primaryStage;
+
 	private static Scene carScene;
 	private static Scene employeeScene;
 	private static Scene rentalScene;
@@ -34,7 +37,7 @@ public class CarTableView extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		setPrimaryStage(primaryStage);
+		CarTableView.primaryStage = primaryStage;
 		// Load FXML-document for the main view with the needed resource bundle
 
 		initScenes();
@@ -108,13 +111,5 @@ public class CarTableView extends Application {
 	public static void main(String[] args) {
 		Locale.setDefault(new Locale("en"));
 		launch(args);
-	}
-
-	public static Stage getPrimaryStage() {
-		return primaryStage;
-	}
-
-	private void setPrimaryStage(Stage primaryStage) {
-		CarTableView.primaryStage = primaryStage;
 	}
 }
