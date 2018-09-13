@@ -3,22 +3,19 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * This is the Controller for the "Edit Customer View" of the Carrental Application.
  *
  * @author Jens Thewes
  */
-public class EditCustomerViewController implements Initializable {
+public class EditCustomerViewController {
 
     private Stage modalStage;
     private Customer customerToEdit;
@@ -68,16 +65,6 @@ public class EditCustomerViewController implements Initializable {
 
     @FXML
     private Button applyButton;
-
-    /**
-     * Initialize all content fields with the current customer.
-     *
-     * @param location
-     * @param resources
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
 
     public void setModalStage(Stage modalStage) {
         this.modalStage = modalStage;
