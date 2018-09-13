@@ -44,8 +44,8 @@ public class EditEmployeeView {
         modalStage.initOwner(parentStage);
         Scene scene = new Scene(page);
         modalStage.setScene(scene);
-        modalStage.setMinHeight(200);
-        modalStage.setMinWidth(600);
+        modalStage.setMaxHeight(200);
+        modalStage.setMaxWidth(600);
         modalStage.setResizable(false);
 
         // set the employee into the controller

@@ -43,8 +43,8 @@ public class EditCarView {
         modalStage.initOwner(parentStage);
         Scene scene = new Scene(page);
         modalStage.setScene(scene);
-        modalStage.setMinHeight(600);
-        modalStage.setMinWidth(900);
+        modalStage.setMaxHeight(600);
+        modalStage.setMaxWidth(900);
         modalStage.setResizable(false);
 
         // set the car into the controller

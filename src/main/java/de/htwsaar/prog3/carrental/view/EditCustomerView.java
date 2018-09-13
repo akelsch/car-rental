@@ -44,8 +44,8 @@ public class EditCustomerView {
             modalStage.initOwner(parentStage);
             Scene scene = new Scene(page);
             modalStage.setScene(scene);
-            modalStage.setMinHeight(400);
-            modalStage.setMinWidth(750);
+            modalStage.setMaxHeight(400);
+            modalStage.setMaxWidth(750);
             modalStage.setResizable(false);
 
             // set the customer into the controller
