@@ -3,9 +3,10 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -22,12 +23,6 @@ public class EditEmployeeViewController {
     private boolean applyClicked = false;
 
     @FXML
-    private BorderPane rootPane;
-
-    @FXML
-    private Label titleLabel;
-
-    @FXML
     private TextField firstNameTextField;
 
     @FXML
@@ -35,12 +30,6 @@ public class EditEmployeeViewController {
 
     @FXML
     private TextField positionTextField;
-
-    @FXML
-    private Button cancelButton;
-
-    @FXML
-    private Button applyButton;
 
     public void setModalStage(Stage modalStage) {
         this.modalStage = modalStage;

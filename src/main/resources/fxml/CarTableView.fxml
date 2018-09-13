@@ -108,11 +108,11 @@
 			</ComboBox>
 			<TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
 					   promptText="%search-textfield-text" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-			<Button fx:id="buttonApplyCurrentFilter" mnemonicParsing="false"
+			<Button mnemonicParsing="false"
 				onAction="#handleApplyCurrentFilterButtonClicked" text="%button-search-label"
 				textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="Infinity"
 				GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-			<Button fx:id="buttonRemoveCurrentFilter" mnemonicParsing="false"
+			<Button mnemonicParsing="false"
 				onAction="#handleRemoveCurrentFilterButtonClicked" text="%button-clear-filter-label"
 				textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4" prefWidth="Infinity"
 				GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
@@ -154,19 +154,19 @@
 			<rowConstraints>
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
 			</rowConstraints>
-			<Button fx:id="buttonCreateNewCar" mnemonicParsing="false"
+			<Button mnemonicParsing="false"
 				onAction="#handleNewButtonClicked" text="%button-new-label" textAlignment="CENTER"
 				GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
 				GridPane.valignment="CENTER"/>
-			<Button fx:id="buttonEditSelectedObject" mnemonicParsing="false"
+			<Button mnemonicParsing="false"
 					onAction="#handleEditButtonClicked" text="%button-edit-label" textAlignment="CENTER"
 					GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"
 					GridPane.valignment="CENTER"/>
-			<Button fx:id="buttonDeleteSelectedObject" mnemonicParsing="false"
+			<Button mnemonicParsing="false"
 				onAction="#handleDeleteButtonClicked" text="%button-delete-label" textAlignment="CENTER"
 				GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER"
 				GridPane.valignment="CENTER"/>
-			<Button fx:id="buttonRentSelectedCar" mnemonicParsing="false"
+			<Button mnemonicParsing="false"
 				onAction="#handleRentButtonClicked" text="%button-rent-label" textAlignment="CENTER"
 				GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="CENTER"
 				GridPane.valignment="CENTER"/>

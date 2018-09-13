@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -53,18 +52,6 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
 
     @FXML
     public TextField searchTextField;
-
-    @FXML
-    public Button buttonApplyCurrentFilter;
-
-    @FXML
-    public Button buttonRemoveCurrentFilter;
-
-    @FXML
-    public Button buttonEditSelectedObject;
-
-    @FXML
-    public Button buttonDeleteSelectedObject;
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
