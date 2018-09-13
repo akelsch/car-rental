@@ -5,7 +5,7 @@ import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.CarTableView;
-import de.htwsaar.prog3.carrental.view.EditCarView;
+import de.htwsaar.prog3.carrental.view.CarEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -79,7 +79,7 @@ public class CarTableViewController extends GenericTableViewController<Car>
     @Override
     public void handleNewButtonClicked() {
         Car newCar = new Car();
-        boolean applyClicked = new EditCarView().start(primaryStage, newCar);
+        boolean applyClicked = new CarEditView().start(primaryStage, newCar);
         if (applyClicked) {
             service.persist(newCar);
             entities.setAll(service.findAll());
@@ -90,7 +90,7 @@ public class CarTableViewController extends GenericTableViewController<Car>
     public void handleEditButtonClicked() {
         Car toEdit = carTableView.getSelectionModel().getSelectedItem();
         if (toEdit != null) {
-            boolean applyClicked = new EditCarView().start(primaryStage, toEdit);
+            boolean applyClicked = new CarEditView().start(primaryStage, toEdit);
             if (applyClicked) {
                 service.update(toEdit);
                 entities.setAll(service.findAll());

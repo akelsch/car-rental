@@ -4,7 +4,7 @@ import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.view.EditCustomerView;
+import de.htwsaar.prog3.carrental.view.CustomerEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,7 +61,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     @Override
     public void handleNewButtonClicked() {
         Customer newCustomer = new Customer();
-        boolean applyClicked = new EditCustomerView().start(primaryStage, newCustomer);
+        boolean applyClicked = new CustomerEditView().start(primaryStage, newCustomer);
         if (applyClicked) {
             service.persist(newCustomer);
             entities.setAll(service.findAll());
@@ -72,7 +72,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     public void handleEditButtonClicked() {
         Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
         if (toEdit != null) {
-            boolean applyClicked = new EditCustomerView().start(primaryStage, toEdit);
+            boolean applyClicked = new CustomerEditView().start(primaryStage, toEdit);
             if (applyClicked) {
                 service.update(toEdit);
                 entities.setAll(service.findAll());
