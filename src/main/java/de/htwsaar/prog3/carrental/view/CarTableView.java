@@ -10,8 +10,8 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -27,10 +27,11 @@ public class CarTableView extends Application {
 	@Getter
 	private static Stage primaryStage;
 
-	private static Scene carScene;
-	private static Scene employeeScene;
-	private static Scene rentalScene;
-	private static Scene customerScene;
+	private static BorderPane rootPane;
+	private static BorderPane carPane;
+	private static BorderPane employeePane;
+	private static BorderPane rentalPane;
+	private static BorderPane customerPane;
 
 	/**
 	 * Entry Point for the main view of the program.
@@ -42,10 +43,11 @@ public class CarTableView extends Application {
 		CarTableView.primaryStage = primaryStage;
 		// Load FXML-document for the main view with the needed resource bundle
 
-		initScenes();
+		initPanes();
 		primaryStage.setTitle(I18nComponentsUtil.getStageTitle());
 		// Apply styling described in the FXML-document
-		primaryStage.setScene(carScene);
+		rootPane.setCenter(carPane);
+		primaryStage.setScene(new Scene(rootPane));
 		primaryStage.setMaximized(true);
 		primaryStage.show();
 	}
@@ -55,45 +57,47 @@ public class CarTableView extends Application {
 	 *
 	 * @throws IOException
 	 */
-	private void initScenes() throws IOException {
-		// Car View
-		FXMLLoader loaderCarScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewFxml()),
+	private void initPanes() throws IOException {
+		// Root View
+		FXMLLoader loaderRootPane = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRootViewFxml()),
 				I18nUtil.getResourceBundleComponents());
-		Parent carParent = loaderCarScene.load();
-		carScene = new Scene(carParent);
+		rootPane = loaderRootPane.load();
+
+		// Car View
+		FXMLLoader loaderCarPane = new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarTableViewFxml()),
+				I18nUtil.getResourceBundleComponents());
+		carPane = loaderCarPane.load();
 
 		// Employee View
-		FXMLLoader loaderEmployeeScene = new FXMLLoader(
+		FXMLLoader loaderEmployeePane = new FXMLLoader(
 				getClass().getResource(I18nStringsUtil.getEmployeeTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
-		Parent employeeParent = loaderEmployeeScene.load();
-		employeeScene = new Scene(employeeParent);
+		employeePane = loaderEmployeePane.load();
 
 		// Rental View
-		FXMLLoader loaderRentalScene = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewFxml()),
+		FXMLLoader loaderRentalPane = new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
-		Parent rentalParent = loaderRentalScene.load();
-		rentalScene = new Scene(rentalParent);
+		rentalPane = loaderRentalPane.load();
 
 		// Customer View
-		FXMLLoader loaderCustomerScene = new FXMLLoader(
+		FXMLLoader loaderCustomerPane = new FXMLLoader(
 				getClass().getResource(I18nStringsUtil.getCustomerTableViewFxml()),
 				I18nUtil.getResourceBundleComponents());
-		Parent customerParent = loaderCustomerScene.load();
-		customerScene = new Scene(customerParent);
+		customerPane = loaderCustomerPane.load();
 
-		addScenesToController(loaderCarScene);
-		addScenesToController(loaderEmployeeScene);
-		addScenesToController(loaderRentalScene);
-		addScenesToController(loaderCustomerScene);
+		addScenesToController(loaderCarPane);
+		addScenesToController(loaderEmployeePane);
+		addScenesToController(loaderRentalPane);
+		addScenesToController(loaderCustomerPane);
 	}
 
 	private void addScenesToController(FXMLLoader loader) {
 		GenericTableViewController<?> controller = loader.getController();
-		controller.setCarScene(carScene);
-		controller.setCustomerScene(customerScene);
-		controller.setEmployeeScene(employeeScene);
-		controller.setRentalScene(rentalScene);
+		controller.setRootPane(rootPane);
+		controller.setCarPane(carPane);
+		controller.setCustomerPane(customerPane);
+		controller.setEmployeePane(employeePane);
+		controller.setRentalPane(rentalPane);
 	}
 
 	/**
@@ -108,7 +112,8 @@ public class CarTableView extends Application {
 	/**
 	 * Main method of this Application.
 	 *
-	 * @param args commandline arguments
+	 * @param args
+	 *            commandline arguments
 	 */
 	public static void main(String[] args) {
 		Locale.setDefault(new Locale("en"));

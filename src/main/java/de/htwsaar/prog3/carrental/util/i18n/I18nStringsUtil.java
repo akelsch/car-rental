@@ -24,6 +24,7 @@ public final class I18nStringsUtil {
     private static final String NEW_EMPLOYEE_VIEW_FXML = "new-employee-view-fxml";
     private static final String EDIT_EMPLOYEE_VIEW_FXML = "edit-employee-view-fxml";
     private static final String RENTAL_TABLE_VIEW_FXML = "rental-table-view-fxml";
+	private static final String ROOT_VIEW_FXML = "root-view-fxml";
 
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleStrings();
@@ -68,4 +69,8 @@ public final class I18nStringsUtil {
     public static String getRentalTableViewFxml() {
         return resourceBundle.getString(RENTAL_TABLE_VIEW_FXML);
     }
+
+	public static String getRootViewFxml() {
+		return resourceBundle.getString(ROOT_VIEW_FXML);
+	}
 }

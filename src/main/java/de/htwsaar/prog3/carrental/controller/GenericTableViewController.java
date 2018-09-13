@@ -9,7 +9,6 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,19 +30,23 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 	// Service and list of entities
 	GenericService<T> service;
 	ObservableList<T> entities;
-
-	// Scenes
+	
+	// Panes
 	@Setter
-	private Scene carScene;
-
+	private BorderPane carPane;
+	
 	@Setter
-	private Scene customerScene;
-
-	@Setter
-	private Scene employeeScene;
+	private BorderPane customerPane;
 
 	@Setter
-	private Scene rentalScene;
+	private BorderPane employeePane;
+
+	@Setter
+	private BorderPane rentalPane;
+	
+	@Setter
+	@FXML
+	private BorderPane rootPane;
 
 	// FXML
 	@FXML
@@ -71,28 +74,28 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
 	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
 	 */
 	public void handleCarMenuItemClicked() {
-		primaryStage.setScene(carScene);
+		rootPane.setCenter(carPane);
 	}
 
 	/**
 	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Customer Customer}.
 	 */
 	public void handleCustomerMenuItemClicked() {
-		primaryStage.setScene(customerScene);
+		rootPane.setCenter(customerPane);
 	}
 
 	/**
 	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Employee Employee}.
 	 */
 	public void handleEmployeeMenuItemClicked() {
-		primaryStage.setScene(employeeScene);
+		rootPane.setCenter(employeePane);
 	}
 
 	/**
 	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Rental Rental}.
 	 */
 	public void handleRentalMenuItemClicked() {
-		primaryStage.setScene(rentalScene);
+		rootPane.setCenter(rentalPane);
 	}
 
 	/**
