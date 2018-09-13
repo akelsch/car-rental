@@ -114,7 +114,7 @@ public class CarTableViewController extends GenericTableViewController<Car>
         if (result.orElse(null) == ButtonType.OK) {
             logger.info("OK Button pressed. Deleting Car...");
             service.delete(toDelete);
-            entities.remove(toDelete);
+            entities.setAll(service.findAll());
         }
     }
 

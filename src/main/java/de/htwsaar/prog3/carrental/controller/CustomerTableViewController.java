@@ -95,7 +95,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
             service.delete(toDelete);
-            entities.remove(toDelete);
+            entities.setAll(service.findAll());
         }
     }
 
