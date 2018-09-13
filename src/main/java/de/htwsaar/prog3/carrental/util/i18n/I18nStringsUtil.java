@@ -21,6 +21,7 @@ public final class I18nStringsUtil {
     private static final String EMPLOYEE_TABLE_VIEW_FXML = "employee-table-view-fxml";
     private static final String EMPLOYEE_EDIT_VIEW_FXML = "employee-edit-view-fxml";
     private static final String RENTAL_TABLE_VIEW_FXML = "rental-table-view-fxml";
+    private static final String RENT_OUT_CAR_VIEW_URL = "rent-out-car-view-fxml";
 
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleStrings();
@@ -53,4 +54,6 @@ public final class I18nStringsUtil {
     public static String getRentalTableViewFxml() {
         return resourceBundle.getString(RENTAL_TABLE_VIEW_FXML);
     }
+
+    public static String getRentOutCarViewURL() { return resourceBundle.getString(RENT_OUT_CAR_VIEW_URL); }
 }
