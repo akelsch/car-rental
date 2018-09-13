@@ -1,28 +1,30 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.view.EditCustomerView;
-import de.htwsaar.prog3.carrental.view.NewCustomerView;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.view.CustomerEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 /**
  * Controller for CustomerTableView.
- * 
+ *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class CustomerTableViewController extends GenericTableViewController<Customer> {
+public class CustomerTableViewController extends GenericTableViewController<Customer>
+        implements Initializable {
     @FXML
     private TableView<Customer> customerTableView;
     // TableColumns to associate data with columns
@@ -58,23 +60,34 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
     @Override
     public void handleNewButtonClicked() {
-        new NewCustomerView().start(primaryStage);
-        customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        Customer newCustomer = new Customer();
+        boolean applyClicked = new CustomerEditView().start(primaryStage, newCustomer);
+        if (applyClicked) {
+            service.persist(newCustomer);
+            entities.setAll(service.findAll());
+        }
     }
 
     @Override
     public void handleEditButtonClicked() {
         Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
-        new EditCustomerView().start(primaryStage, toEdit);
-        customerTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        if (toEdit != null) {
+            boolean applyClicked = new CustomerEditView().start(primaryStage, toEdit);
+            if (applyClicked) {
+                service.update(toEdit);
+                entities.setAll(service.findAll());
+            }
+        } else {
+            // TODO show Warning
+        }
     }
 
     @Override
     public void handleDeleteButtonClicked() {
         Customer toDelete = customerTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
-            Alert informationDialog = DialogUtil.createInformationDialog(
-                    I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            Alert informationDialog = DialogUtil
+                    .createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
             informationDialog.show();
             return;
         }
@@ -83,7 +96,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
             service.delete(toDelete);
-            entities.remove(toDelete);
+            entities.setAll(service.findAll());
         }
     }
 

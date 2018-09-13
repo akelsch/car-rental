@@ -1,17 +1,15 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import de.htwsaar.prog3.carrental.CarRentalApp;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import de.htwsaar.prog3.carrental.service.GenericService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.view.CarTableView;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -24,180 +22,168 @@ import lombok.Setter;
  *
  * @author Lukas Raubuch, Arthur Kelsch
  */
-public abstract class GenericTableViewController<T extends BaseEntity> implements Initializable {
-	// Primary stage
-	Stage primaryStage = CarTableView.getPrimaryStage();
+public abstract class GenericTableViewController<T extends BaseEntity> {
+    // Primary stage
+    Stage primaryStage = CarRentalApp.getPrimaryStage();
 
-	// Service and list of entities
-	GenericService<T> service;
-	ObservableList<T> entities;
+    // Service and list of entities
+    GenericService<T> service;
+    ObservableList<T> entities;
 
-	// Scenes
-	@Setter
-	private Scene carScene;
+    // Scenes
+    @Setter
+    private Scene carScene;
 
-	@Setter
-	private Scene customerScene;
+    @Setter
+    private Scene customerScene;
 
-	@Setter
-	private Scene employeeScene;
+    @Setter
+    private Scene employeeScene;
 
-	@Setter
-	private Scene rentalScene;
+    @Setter
+    private Scene rentalScene;
 
-	// FXML
-	@FXML
-	public ComboBox<String> searchComboBoxField;
+    // FXML
+    @FXML
+    public ComboBox<String> searchComboBoxField;
 
-	@FXML
-	public ComboBox<String> searchComboBoxComparator;
+    @FXML
+    public ComboBox<String> searchComboBoxComparator;
 
-	@FXML
-	public TextField searchTextField;
+    @FXML
+    public TextField searchTextField;
 
-	@FXML
-	public Button buttonApplyCurrentFilter;
+    /**
+     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
+     */
+    public void handleCarMenuItemClicked() {
+        primaryStage.setScene(carScene);
+    }
 
-	@FXML
-	public Button buttonRemoveCurrentFilter;
+    /**
+     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Customer Customer}.
+     */
+    public void handleCustomerMenuItemClicked() {
+        primaryStage.setScene(customerScene);
+    }
 
-	@FXML
-	public Button buttonEditSelectedObject;
+    /**
+     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Employee Employee}.
+     */
+    public void handleEmployeeMenuItemClicked() {
+        primaryStage.setScene(employeeScene);
+    }
 
-	@FXML
-	public Button buttonDeleteSelectedObject;
+    /**
+     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Rental Rental}.
+     */
+    public void handleRentalMenuItemClicked() {
+        primaryStage.setScene(rentalScene);
+    }
 
-	/**
-	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
-	 */
-	public void handleCarMenuItemClicked() {
-		primaryStage.setScene(carScene);
-	}
+    /**
+     * Closes the application.
+     *
+     * @see CarRentalApp#stop()
+     */
+    public void handleCloseMenuItemClicked() {
+        Platform.exit();
+    }
 
-	/**
-	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Customer Customer}.
-	 */
-	public void handleCustomerMenuItemClicked() {
-		primaryStage.setScene(customerScene);
-	}
+    /**
+     * Displays a dialog containing information about this software project.
+     */
+    public void handleAboutMenuItemClicked() {
+        Alert aboutDialog = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogAboutText());
+        aboutDialog.show();
+    }
 
-	/**
-	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Employee Employee}.
-	 */
-	public void handleEmployeeMenuItemClicked() {
-		primaryStage.setScene(employeeScene);
-	}
+    /**
+     * Applies the selected filters to the current entity list.
+     */
+    public void handleApplyCurrentFilterButtonClicked() {
+        setSearchComboBoxAndTextFieldBordersIfEmpty();
 
-	/**
-	 * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Rental Rental}.
-	 */
-	public void handleRentalMenuItemClicked() {
-		primaryStage.setScene(rentalScene);
-	}
+        String field = searchComboBoxField.getValue();
+        String comparator = searchComboBoxComparator.getValue();
+        String value = searchTextField.getText();
 
-	/**
-	 * Closes the application.
-	 *
-	 * @see CarTableView#stop()
-	 */
-	public void handleCloseMenuItemClicked() {
-		Platform.exit();
-	}
+        if (field != null && comparator != null && !value.isEmpty()) {
+            entities.setAll(service.filter(field, comparator, value));
+        }
+    }
 
-	/**
-	 * Displays a dialog containing information about this software project.
-	 */
-	public void handleAboutMenuItemClicked() {
-		Alert aboutDialog = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogAboutText());
-		aboutDialog.show();
-	}
+    /**
+     * Removes the selected filters of the current entity list.
+     */
+    public void handleRemoveCurrentFilterButtonClicked() {
+        clearSearchComboBoxAndTextFieldBorders();
+        clearSearchComboBoxAndTextFieldValues();
 
-	/**
-	 * Applies the selected filters to the current entity list.
-	 */
-	public void handleApplyCurrentFilterButtonClicked() {
-		setSearchComboBoxAndTextFieldBordersIfEmpty();
+        entities.setAll(service.findAll());
+    }
 
-		String field = searchComboBoxField.getValue();
-		String comparator = searchComboBoxComparator.getValue();
-		String value = searchTextField.getText();
+    /**
+     * Handle pressing the "New..." button.
+     */
+    public abstract void handleNewButtonClicked();
 
-		if (field != null && comparator != null && !value.isEmpty()) {
-			entities.setAll(service.filter(field, comparator, value));
-		}
-	}
+    /**
+     * Handle pressing the "Edit..." button.
+     */
+    public abstract void handleEditButtonClicked();
 
-	/**
-	 * Removes the selected filters of the current entity list.
-	 */
-	public void handleRemoveCurrentFilterButtonClicked() {
-		clearSearchComboBoxAndTextFieldBorders();
-		clearSearchComboBoxAndTextFieldValues();
+    /**
+     * Handle pressing the "Delete..." button.
+     */
+    public abstract void handleDeleteButtonClicked();
 
-		entities.setAll(service.findAll());
-	}
+    /**
+     * Clears the top two search ComboBox and TextField values.
+     */
+    private void clearSearchComboBoxAndTextFieldValues() {
+        searchComboBoxField.getSelectionModel().clearSelection();
+        searchComboBoxComparator.getSelectionModel().clearSelection();
+        searchTextField.clear();
+    }
 
-	/**
-	 * Handle pressing the "New..." button.
-	 */
-	public abstract void handleNewButtonClicked();
+    /**
+     * Clears the top two search ComboBox and TextField borders.
+     */
+    private void clearSearchComboBoxAndTextFieldBorders() {
+        searchComboBoxField.setBorder(null);
+        searchComboBoxComparator.setBorder(null);
+        searchTextField.setBorder(null);
+    }
 
-	/**
-	 * Handle pressing the "Edit..." button.
-	 */
-	public abstract void handleEditButtonClicked();
+    /**
+     * Sets the top two search ComboBox and TextField borders if they are empty.
+     */
+    private void setSearchComboBoxAndTextFieldBordersIfEmpty() {
+        // Border radii taken from modena.css
+        Border border = new Border(new BorderStroke(
+                Color.RED,
+                BorderStrokeStyle.SOLID,
+                new CornerRadii(3.0, 3.0, 2.0, 1.0, false),
+                BorderWidths.DEFAULT
+        ));
 
-	/**
-	 * Handle pressing the "Delete..." button.
-	 */
-	public abstract void handleDeleteButtonClicked();
+        if (searchComboBoxField.getSelectionModel().isEmpty()) {
+            searchComboBoxField.setBorder(border);
+        } else {
+            searchComboBoxField.setBorder(null);
+        }
 
-	/**
-	 * Clears the top two search ComboBox and TextField values.
-	 */
-	private void clearSearchComboBoxAndTextFieldValues() {
-		searchComboBoxField.getSelectionModel().clearSelection();
-		searchComboBoxComparator.getSelectionModel().clearSelection();
-		searchTextField.clear();
-	}
+        if (searchComboBoxComparator.getSelectionModel().isEmpty()) {
+            searchComboBoxComparator.setBorder(border);
+        } else {
+            searchComboBoxComparator.setBorder(null);
+        }
 
-	/**
-	 * Clears the top two search ComboBox and TextField borders.
-	 */
-	private void clearSearchComboBoxAndTextFieldBorders() {
-		searchComboBoxField.setBorder(null);
-		searchComboBoxComparator.setBorder(null);
-		searchTextField.setBorder(null);
-	}
-
-	/**
-	 * Sets the top two search ComboBox and TextField borders if they are empty.
-	 */
-	private void setSearchComboBoxAndTextFieldBordersIfEmpty() {
-		// Border radii taken from modena.css
-		Border border = new Border(new BorderStroke(
-				Color.RED,
-				BorderStrokeStyle.SOLID,
-				new CornerRadii(3.0, 3.0, 2.0, 1.0, false),
-				BorderWidths.DEFAULT
-		));
-
-		if (searchComboBoxField.getSelectionModel().isEmpty()) {
-			searchComboBoxField.setBorder(border);
-		} else {
-			searchComboBoxField.setBorder(null);
-		}
-
-		if (searchComboBoxComparator.getSelectionModel().isEmpty()) {
-			searchComboBoxComparator.setBorder(border);
-		} else {
-			searchComboBoxComparator.setBorder(null);
-		}
-
-		if (searchTextField.getText().isEmpty()) {
-			searchTextField.setBorder(border);
-		} else {
-			searchTextField.setBorder(null);
-		}
-	}
+        if (searchTextField.getText().isEmpty()) {
+            searchTextField.setBorder(border);
+        } else {
+            searchTextField.setBorder(null);
+        }
+    }
 }

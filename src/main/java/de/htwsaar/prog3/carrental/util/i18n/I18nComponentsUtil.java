@@ -40,10 +40,28 @@ public final class I18nComponentsUtil {
     private static final String CAR_PARKING_LOT_LABEL = "car-parking-lot-label";
     private static final String CAR_TIRES_LABEL = "car-tires-label";
     private static final String CAR_VIN_LABEL = "car-vin-label";
+    private static final String CAR_NO_VALID_INTEGER = "car-no-valid-integer";
+    private static final String CAR_NO_VALID_BRAND = "car-no-valid-brand";
+    private static final String CAR_NO_VALID_CATEGORY = "car-no-valid-category";
+    private static final String CAR_NO_VALID_COLOR = "car-no-valid-color";
+    private static final String CAR_NO_VALID_CONSTRUCTION_YEAR = "car-no-valid-construction-year";
+    private static final String CAR_NO_VALID_DAILY_RATE = "car-no-valid-daily-rate";
+    private static final String CAR_NO_VALID_DOOR_COUNT = "car-no-valid-door-count";
+    private static final String CAR_NO_VALID_DRIVEN_DISTANCE = "car-no-valid-driven-distance";
+    private static final String CAR_NO_VALID_FUEL = "car-no-valid-fuel";
+    private static final String CAR_NO_VALID_GEARBOX = "car-no-valid-gearbox";
+    private static final String CAR_NO_VALID_HORSEPOWER = "car-no-valid-horsepower";
+    private static final String CAR_NO_VALID_LICENCE_NUMBER = "car-no-valid-licence-number";
+    private static final String CAR_NO_VALID_MODEL = "car-no-valid-model";
+    private static final String CAR_NO_VALID_NEXT_INSPECTION = "car-no-valid-next-inspection";
+    private static final String CAR_NO_VALID_PARKING_LOT = "car-no-valid-parking-lot";
+    private static final String CAR_NO_VALID_TIRES = "car-no-valid-tires";
+    private static final String CAR_NO_VALID_VIN = "car-no-valid-vin";
     private static final String CUSTOMER_ID_LABEL = "customer-id-label";
     private static final String CUSTOMER_CITY_LABEL = "customer-city-label";
     private static final String CUSTOMER_DATE_OF_BIRTH_LABEL = "customer-date-of-birth-label";
-    private static final String CUSTOMER_DRIVER_LICENSE_ID_LABEL = "customer-driver-license-id-label";
+    private static final String CUSTOMER_DRIVER_LICENSE_ID_LABEL =
+            "customer-driver-license-id-label";
     private static final String CUSTOMER_EMAIL_LABEL = "customer-email-label";
     private static final String CUSTOMER_FIRST_NAME_LABEL = "customer-first-name-label";
     private static final String CUSTOMER_HOUSE_NUMBER_LABEL = "customer-house-number-label";
@@ -52,10 +70,26 @@ public final class I18nComponentsUtil {
     private static final String CUSTOMER_PHONE_NUMBER_LABEL = "customer-phone-number-label";
     private static final String CUSTOMER_STREET_LABEL = "customer-street-label";
     private static final String CUSTOMER_ZIP_CODE_LABEL = "customer-zip-code-label";
+    private static final String CUSTOMER_NO_VALID_INTEGER = "customer-no-valid-integer";
+    private static final String CUSTOMER_NO_VALID_FIRST_NAME = "customer-no-valid-first-name";
+    private static final String CUSTOMER_NO_VALID_LAST_NAME = "customer-no-valid-last-name";
+    private static final String CUSTOMER_NO_VALID_EMAIL_ADDRESS = "customer-no-valid-email-address";
+    private static final String CUSTOMER_NO_VALID_PHONE_NUMBER = "customer-no-valid-phone-number";
+    private static final String CUSTOMER_NO_VALID_DATE_OF_BIRTH = "customer-no-valid-date-of-birth";
+    private static final String CUSTOMER_NO_VALID_STREET_NAME = "customer-no-valid-street-name";
+    private static final String CUSTOMER_NO_VALID_HOUSE_NUMBER = "customer-no-valid-house-number";
+    private static final String CUSTOMER_NO_VALID_CITY_NAME = "customer-no-valid-city-name";
+    private static final String CUSTOMER_NO_VALID_ZIP_CODE = "customer-no-valid-zip-code";
+    private static final String CUSTOMER_NO_VALID_ID_NUMBER = "customer-no-valid-id-number";
+    private static final String CUSTOMER_NO_VALID_DRIVER_LICENCE =
+            "customer-no-valid-driver-license";
     private static final String EMPLOYEE_ID_LABEL = "employee-id-label";
     private static final String EMPLOYEE_FIRST_NAME_LABEL = "employee-first-name-label";
     private static final String EMPLOYEE_LAST_NAME_LABEL = "employee-last-name-label";
     private static final String EMPLOYEE_POSITION_LABEL = "employee-position-label";
+    private static final String EMPLOYEE_NO_VALID_FIRST_NAME = "employee-no-valid-first-name";
+    private static final String EMPLOYEE_NO_VALID_LAST_NAME = "employee-no-valid-last-name";
+    private static final String EMPLOYEE_NO_VALID_POSITION = "employee-no-valid-position";
     private static final String RENTAL_ID_LABEL = "rental-id-label";
     private static final String RENTAL_BEGIN_LABEL = "rental-begin-label";
     private static final String RENTAL_CAR_LABEL = "rental-car-label";
@@ -272,5 +306,133 @@ public final class I18nComponentsUtil {
 
     public static String getSearchComboboxLike() {
         return resourceBundle.getString(SEARCH_COMBOBOX_LIKE);
+    }
+
+    public static String getCarNoValidInteger() {
+        return resourceBundle.getString(CAR_NO_VALID_INTEGER);
+    }
+
+    public static String getCarNoValidBrand() {
+        return resourceBundle.getString(CAR_NO_VALID_BRAND);
+    }
+
+    public static String getCarNoValidCategory() {
+        return resourceBundle.getString(CAR_NO_VALID_CATEGORY);
+    }
+
+    public static String getCarNoValidColor() {
+        return resourceBundle.getString(CAR_NO_VALID_COLOR);
+    }
+
+    public static String getCarNoValidConstructionYear() {
+        return resourceBundle.getString(CAR_NO_VALID_CONSTRUCTION_YEAR);
+    }
+
+    public static String getCarNoValidDailyRate() {
+        return resourceBundle.getString(CAR_NO_VALID_DAILY_RATE);
+    }
+
+    public static String getCarNoValidDoorCount() {
+        return resourceBundle.getString(CAR_NO_VALID_DOOR_COUNT);
+    }
+
+    public static String getCarNoValidDrivenDistance() {
+        return resourceBundle.getString(CAR_NO_VALID_DRIVEN_DISTANCE);
+    }
+
+    public static String getCarNoValidFuel() {
+        return resourceBundle.getString(CAR_NO_VALID_FUEL);
+    }
+
+    public static String getCarNoValidGearbox() {
+        return resourceBundle.getString(CAR_NO_VALID_GEARBOX);
+    }
+
+    public static String getCarNoValidHorsepower() {
+        return resourceBundle.getString(CAR_NO_VALID_HORSEPOWER);
+    }
+
+    public static String getCarNoValidLicenceNumber() {
+        return resourceBundle.getString(CAR_NO_VALID_LICENCE_NUMBER);
+    }
+
+    public static String getCarNoValidModel() {
+        return resourceBundle.getString(CAR_NO_VALID_MODEL);
+    }
+
+    public static String getCarNoValidNextInspection() {
+        return resourceBundle.getString(CAR_NO_VALID_NEXT_INSPECTION);
+    }
+
+    public static String getCarNoValidParkingLot() {
+        return resourceBundle.getString(CAR_NO_VALID_PARKING_LOT);
+    }
+
+    public static String getCarNoValidTires() {
+        return resourceBundle.getString(CAR_NO_VALID_TIRES);
+    }
+
+    public static String getCarNoValidVin() {
+        return resourceBundle.getString(CAR_NO_VALID_VIN);
+    }
+
+    public static String getCustomerNoValidInteger() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_INTEGER);
+    }
+
+    public static String getCustomerNoValidFirstName() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_FIRST_NAME);
+    }
+
+    public static String getCustomerNoValidLastName() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_LAST_NAME);
+    }
+
+    public static String getCustomerNoValidEmailAdress() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_EMAIL_ADDRESS);
+    }
+
+    public static String getCustomerNoValidPhoneNumber() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_PHONE_NUMBER);
+    }
+
+    public static String getCustomerNoValidDateOfBirth() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_DATE_OF_BIRTH);
+    }
+
+    public static String getCustomerNoValidStreetName() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_STREET_NAME);
+    }
+
+    public static String getCustomerNoValidHouseNumber() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_HOUSE_NUMBER);
+    }
+
+    public static String getCustomerNoValidCityName() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_CITY_NAME);
+    }
+
+    public static String getCustomerNoValidZipCode() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_ZIP_CODE);
+    }
+
+    public static String getCustomerNoValidIdNumber() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_ID_NUMBER);
+    }
+
+    public static String getCustomerNoValidDriverLicence() {
+        return resourceBundle.getString(CUSTOMER_NO_VALID_DRIVER_LICENCE);
+    }
+
+    public static String getEmployeeNoValidFirstName() {
+        return resourceBundle.getString(EMPLOYEE_NO_VALID_FIRST_NAME);
+    }
+
+    public static String getEmployeeNoValidLastName() {
+        return resourceBundle.getString(EMPLOYEE_NO_VALID_LAST_NAME);
+    }
+
+    public static String getEmployeeNoValidPosition() {
+        return resourceBundle.getString(EMPLOYEE_NO_VALID_POSITION);
     }
 }

@@ -1,28 +1,30 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.view.EditEmployeeView;
-import de.htwsaar.prog3.carrental.view.NewEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.view.EmployeeEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 /**
  * Controller for EmployeeTableView.
- * 
+ *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class EmployeeTableViewController extends GenericTableViewController<Employee> {
+public class EmployeeTableViewController extends GenericTableViewController<Employee>
+        implements Initializable {
     @FXML
     private TableView<Employee> employeeTableView;
     // TableColumns to associate data with columns
@@ -42,23 +44,34 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
     @Override
     public void handleNewButtonClicked() {
-        new NewEmployeeView().start(primaryStage);
-        employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        Employee newEmployee = new Employee();
+        boolean applyClicked = new EmployeeEditView().start(primaryStage, newEmployee);
+        if (applyClicked) {
+            service.persist(newEmployee);
+            entities.setAll(service.findAll());
+        }
     }
 
     @Override
     public void handleEditButtonClicked() {
         Employee toEdit = employeeTableView.getSelectionModel().getSelectedItem();
-        new EditEmployeeView().start(primaryStage, toEdit);
-        employeeTableView.setItems(FXCollections.observableArrayList(service.findAll()));
+        if (toEdit != null) {
+            boolean applyClicked = new EmployeeEditView().start(primaryStage, toEdit);
+            if (applyClicked) {
+                service.update(toEdit);
+                entities.setAll(service.findAll());
+            }
+        } else {
+            // TODO show Warning
+        }
     }
 
     @Override
     public void handleDeleteButtonClicked() {
         Employee toDelete = employeeTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
-            Alert informationDialog = DialogUtil.createInformationDialog(
-                    I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            Alert informationDialog = DialogUtil
+                    .createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
             informationDialog.show();
             return;
         }
@@ -67,7 +80,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
             service.delete(toDelete);
-            entities.remove(toDelete);
+            entities.setAll(service.findAll());
         }
     }
 
