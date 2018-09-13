@@ -3,19 +3,18 @@ package de.htwsaar.prog3.carrental.controller;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.view.EditEmployeeView;
 import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * This is the Controller for the "Edit Employee View" of the Carrental Application.
@@ -24,8 +23,9 @@ import javafx.scene.control.TextField;
  */
 public class EditEmployeeViewController implements Initializable {
 
-    private EmployeeService service = new EmployeeService();
-    private Employee employee = EditEmployeeView.getEmployee();
+    private Stage modalStage;
+    private Employee employeeToEdit;
+    private boolean applyClicked = false;
 
     @FXML
     private BorderPane rootPane;
@@ -55,25 +55,35 @@ public class EditEmployeeViewController implements Initializable {
      * @param resources
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        firstNameTextField.setText(employee.getFirstName());
-        lastNameTextField.setText(employee.getLastName());
-        positionTextField.setText(employee.getPosition());
+    public void initialize(URL location, ResourceBundle resources) {}
+
+    public void setModalStage(Stage modalStage) {
+        this.modalStage = modalStage;
     }
 
+    public void setEmployee(Employee employeeToEdit) {
+        this.employeeToEdit = employeeToEdit;
+
+        firstNameTextField.setText(employeeToEdit.getFirstName());
+        lastNameTextField.setText(employeeToEdit.getLastName());
+        positionTextField.setText(employeeToEdit.getPosition());
+    }
+
+    public boolean isApplyClicked() {
+        return applyClicked;
+    }
+    
     /**
      * Handle Cancel Button clicked.
      */
     @FXML
     protected void handleCancelButtonClicked() {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-        confirmationDialog
-                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
-        confirmationDialog.setHeaderText(
-                I18nComponentsUtil.getDialogCancelConfirmationText());
+        confirmationDialog.setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
+        confirmationDialog.setHeaderText(I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
-            EditEmployeeView.closeModalWindow();
+            modalStage.close();
         }
     }
 
@@ -82,20 +92,33 @@ public class EditEmployeeViewController implements Initializable {
      */
     @FXML
     protected void handleApplyButtonClicked() {
-        // TODO show details + valid data check
         // TODO only update data that has changed?
-        Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-        confirmationDialog
-                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
-        confirmationDialog
-                .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            employee.setFirstName(firstNameTextField.getText());
-            employee.setLastName(lastNameTextField.getText());
-            employee.setPosition(positionTextField.getText());
-            service.update(employee);
-            EditEmployeeView.closeModalWindow();
+        if (isInputValid()) {
+            employeeToEdit.setFirstName(firstNameTextField.getText());
+            employeeToEdit.setLastName(lastNameTextField.getText());
+            employeeToEdit.setPosition(positionTextField.getText());
+
+            applyClicked = true;
+            modalStage.close();
+        }
+    }
+
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        // TODO valid check
+
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(modalStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
+
+            return false;
         }
     }
 }

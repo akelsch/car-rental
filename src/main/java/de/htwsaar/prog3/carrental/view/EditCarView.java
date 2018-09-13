@@ -27,7 +27,6 @@ public class EditCarView {
      *
      * @param parentStage
      * @param car
-     * @throws IOException
      */
     public boolean start(Stage parentStage, Car carToEdit) {
         // Load FXML document for the car configuration view wit the needed resource bundle
