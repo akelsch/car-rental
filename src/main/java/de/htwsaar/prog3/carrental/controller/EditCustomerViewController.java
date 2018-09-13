@@ -3,19 +3,18 @@ package de.htwsaar.prog3.carrental.controller;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.view.EditCustomerView;
 import de.htwsaar.prog3.carrental.model.Customer;
-import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * This is the Controller for the "Edit Customer View" of the Carrental Application.
@@ -24,8 +23,9 @@ import javafx.scene.control.TextField;
  */
 public class EditCustomerViewController implements Initializable {
 
-    private CustomerService service = new CustomerService();
-    private Customer customer = EditCustomerView.getCustomer();
+    private Stage modalStage;
+    private Customer customerToEdit;
+    private boolean applyClicked = false;
 
     @FXML
     private BorderPane rootPane;
@@ -79,18 +79,30 @@ public class EditCustomerViewController implements Initializable {
      * @param resources
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        firstNameTextField.setText(customer.getFirstName());
-        lastNameTextField.setText(customer.getLastName());
-        emailAddressTextField.setText(customer.getEmailAddress());
-        phoneNumberTextField.setText(customer.getPhoneNumber());
-        dateOfBirthTextField.setText(customer.getDateOfBirth());
-        streetTextField.setText(customer.getStreet());
-        houseNumberTextField.setText(customer.getHouseNumber());
-        cityTextField.setText(customer.getCity());
-        zipCodeTextField.setText(Integer.toString(customer.getZipCode()));
-        idNumberTextField.setText(customer.getIdNumber());
-        driverLicenseIdTextField.setText(customer.getDriverLicenseId());
+    public void initialize(URL location, ResourceBundle resources) {}
+
+    public void setModalStage(Stage modalStage) {
+        this.modalStage = modalStage;
+    }
+
+    public void setCustomer(Customer customerToEdit) {
+        this.customerToEdit = customerToEdit;
+
+        firstNameTextField.setText(customerToEdit.getFirstName());
+        lastNameTextField.setText(customerToEdit.getLastName());
+        emailAddressTextField.setText(customerToEdit.getEmailAddress());
+        phoneNumberTextField.setText(customerToEdit.getPhoneNumber());
+        dateOfBirthTextField.setText(customerToEdit.getDateOfBirth());
+        streetTextField.setText(customerToEdit.getStreet());
+        houseNumberTextField.setText(customerToEdit.getHouseNumber());
+        cityTextField.setText(customerToEdit.getCity());
+        zipCodeTextField.setText(Integer.toString(customerToEdit.getZipCode()));
+        idNumberTextField.setText(customerToEdit.getIdNumber());
+        driverLicenseIdTextField.setText(customerToEdit.getDriverLicenseId());
+    }
+
+    public boolean isApplyClicked() {
+        return applyClicked;
     }
 
     /**
@@ -99,13 +111,11 @@ public class EditCustomerViewController implements Initializable {
     @FXML
     protected void handleCancelButtonClicked() {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-        confirmationDialog
-                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
-        confirmationDialog.setHeaderText(
-                I18nComponentsUtil.getDialogCancelConfirmationText());
+        confirmationDialog.setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
+        confirmationDialog.setHeaderText(I18nComponentsUtil.getDialogCancelConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
-            EditCustomerView.closeModalWindow();
+            modalStage.close();
         }
     }
 
@@ -114,28 +124,41 @@ public class EditCustomerViewController implements Initializable {
      */
     @FXML
     protected void handleApplyButtonClicked() {
-        // TODO show details + valid data check
         // TODO only update data that has changed?
-        Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-        confirmationDialog
-                .setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
-        confirmationDialog
-                .setHeaderText(I18nComponentsUtil.getDialogApplyConfirmationText());
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            customer.setFirstName(firstNameTextField.getText());
-            customer.setLastName(lastNameTextField.getText());
-            customer.setEmailAddress(emailAddressTextField.getText());
-            customer.setPhoneNumber(phoneNumberTextField.getText());
-            customer.setDateOfBirth(dateOfBirthTextField.getText());
-            customer.setStreet(streetTextField.getText());
-            customer.setHouseNumber(houseNumberTextField.getText());
-            customer.setCity(cityTextField.getText());
-            customer.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
-            customer.setIdNumber(idNumberTextField.getText());
-            customer.setDriverLicenseId(driverLicenseIdTextField.getText());
-            service.update(customer);
-            EditCustomerView.closeModalWindow();
+        if (isInputValid()) {
+            customerToEdit.setFirstName(firstNameTextField.getText());
+            customerToEdit.setLastName(lastNameTextField.getText());
+            customerToEdit.setEmailAddress(emailAddressTextField.getText());
+            customerToEdit.setPhoneNumber(phoneNumberTextField.getText());
+            customerToEdit.setDateOfBirth(dateOfBirthTextField.getText());
+            customerToEdit.setStreet(streetTextField.getText());
+            customerToEdit.setHouseNumber(houseNumberTextField.getText());
+            customerToEdit.setCity(cityTextField.getText());
+            customerToEdit.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+            customerToEdit.setIdNumber(idNumberTextField.getText());
+            customerToEdit.setDriverLicenseId(driverLicenseIdTextField.getText());
+
+            applyClicked = true;
+            modalStage.close();
+        }
+    }
+
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        // TODO valid check
+
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(modalStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
+
+            return false;
         }
     }
 }

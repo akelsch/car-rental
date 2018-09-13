@@ -3,12 +3,11 @@ package de.htwsaar.prog3.carrental.controller;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import de.htwsaar.prog3.carrental.view.EditCustomerView;
-import de.htwsaar.prog3.carrental.view.NewCustomerView;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.view.EditCustomerView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -58,23 +57,34 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
     @Override
     public void handleNewButtonClicked() {
-        new NewCustomerView().start(primaryStage);
-        customerTableView.setItems(entities);
+        Customer newCustomer = new Customer();
+        boolean applyClicked = new EditCustomerView().start(primaryStage, newCustomer);
+        if (applyClicked) {
+            service.persist(newCustomer);
+            customerTableView.setItems(entities);
+        }
     }
 
     @Override
     public void handleEditButtonClicked() {
         Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
-        new EditCustomerView().start(primaryStage, toEdit);
-        customerTableView.setItems(entities);
+        if (toEdit != null) {
+            boolean applyClicked = new EditCustomerView().start(primaryStage, toEdit);
+            if (applyClicked) {
+                service.update(toEdit);
+                customerTableView.setItems(entities);
+            }
+        } else {
+          // TODO show Warning  
+        } 
     }
 
     @Override
     public void handleDeleteButtonClicked() {
         Customer toDelete = customerTableView.getSelectionModel().getSelectedItem();
         if (null == toDelete) {
-            Alert informationDialog = DialogUtil.createInformationDialog(
-                    I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            Alert informationDialog = DialogUtil
+                    .createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
             informationDialog.show();
             return;
         }

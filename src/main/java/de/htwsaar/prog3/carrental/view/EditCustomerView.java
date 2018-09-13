@@ -1,5 +1,9 @@
 package de.htwsaar.prog3.carrental.view;
 
+import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.htwsaar.prog3.carrental.controller.EditCustomerViewController;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
@@ -9,11 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.Getter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * Entry Point of the "Edit Customer" Dialog.
@@ -23,47 +22,44 @@ import java.io.IOException;
 public class EditCustomerView {
     private static final Logger logger = LoggerFactory.getLogger(EditCustomerView.class);
 
-    private static Stage modalWindow;
-
-    @Getter
-    private static Customer customer;
-
     /**
      * Start the Edit Employee Dialog in a modal Window.
      *
      * @param parentStage
      * @param customer
+     * @return 
      */
-    public void start(Stage parentStage, Customer customer) {
-        modalWindow = new Stage();
-        EditCustomerView.customer = customer;
-
-        // Load FXML document for the edit customer view wit the needed resource bundle
-        Parent scene = null;
+    public boolean start(Stage parentStage, Customer customerToEdit) {
+        // Load FXML document for the customer configuration view wit the needed resource bundle
         try {
-            scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getEditCustomerViewFxml()),
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    getClass().getResource(I18nStringsUtil.getEditCustomerViewFxml()),
                     I18nUtil.getResourceBundleComponents());
+            Parent page = fxmlLoader.load();
+
+            // create the modal Stage
+            Stage modalStage = new Stage();
+            modalStage.setTitle(I18nComponentsUtil.getStageTitle());
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initOwner(parentStage);
+            Scene scene = new Scene(page);
+            modalStage.setScene(scene);
+            modalStage.setMinHeight(400);
+            modalStage.setMinWidth(750);
+            modalStage.setResizable(false);
+
+            // set the customer into the controller
+            EditCustomerViewController controller = fxmlLoader.getController();
+            controller.setModalStage(modalStage);
+            controller.setCustomer(customerToEdit);
+
+            // show the dialog and wait until the user closes it
+            modalStage.showAndWait();
+
+            return controller.isApplyClicked();
         } catch (IOException e) {
             logger.error("Failed loading FXML!", e);
+            return false;
         }
-
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
-        // Apply styling described in the FXML document
-        modalWindow.setScene(new Scene(scene));
-        modalWindow.setMinHeight(400);
-        modalWindow.setMaxHeight(400);
-        modalWindow.setMinWidth(750);
-        modalWindow.setMaxWidth(750);
-        // set the Owner of the modal window and the Modality of the new Stage (Modal Window)
-        modalWindow.initOwner(parentStage);
-        modalWindow.initModality(Modality.WINDOW_MODAL);
-        modalWindow.show();
-    }
-
-    /**
-     * Closes the modal window.
-     */
-    public static void closeModalWindow() {
-        modalWindow.close();
     }
 }
