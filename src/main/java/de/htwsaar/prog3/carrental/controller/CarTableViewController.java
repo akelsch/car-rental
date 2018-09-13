@@ -8,6 +8,7 @@ import de.htwsaar.prog3.carrental.view.CarTableView;
 import de.htwsaar.prog3.carrental.view.EditCarView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
@@ -26,7 +27,7 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  * @see CarTableView
  */
-public class CarTableViewController extends GenericTableViewController<Car> {
+public class CarTableViewController extends GenericTableViewController<Car> implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(CarTableViewController.class);
 
     @FXML

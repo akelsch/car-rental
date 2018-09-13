@@ -7,6 +7,7 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.EditEmployeeView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class EmployeeTableViewController extends GenericTableViewController<Employee> {
+public class EmployeeTableViewController extends GenericTableViewController<Employee> implements Initializable {
     @FXML
     private TableView<Employee> employeeTableView;
     // TableColumns to associate data with columns

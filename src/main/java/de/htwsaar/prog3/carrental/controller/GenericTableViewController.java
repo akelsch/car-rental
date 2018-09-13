@@ -8,7 +8,6 @@ import de.htwsaar.prog3.carrental.view.CarTableView;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -24,7 +23,7 @@ import lombok.Setter;
  *
  * @author Lukas Raubuch, Arthur Kelsch
  */
-public abstract class GenericTableViewController<T extends BaseEntity> implements Initializable {
+public abstract class GenericTableViewController<T extends BaseEntity> {
     // Primary stage
     Stage primaryStage = CarTableView.getPrimaryStage();
 

@@ -6,6 +6,7 @@ import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
@@ -21,7 +22,7 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch
  */
-public class RentalTableViewController extends GenericTableViewController<Rental> {
+public class RentalTableViewController extends GenericTableViewController<Rental> implements Initializable {
     @FXML
     private TableView<Rental> rentalTableView;
     // TableColumns to associate data with columns

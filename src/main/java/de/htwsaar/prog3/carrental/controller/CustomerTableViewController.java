@@ -7,6 +7,7 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.EditCustomerView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class CustomerTableViewController extends GenericTableViewController<Customer> {
+public class CustomerTableViewController extends GenericTableViewController<Customer> implements Initializable {
     @FXML
     private TableView<Customer> customerTableView;
     // TableColumns to associate data with columns
