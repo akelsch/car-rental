@@ -146,7 +146,55 @@ public class EditCustomerViewController implements Initializable {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        // TODO valid check
+        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid first name!\n"; 
+        }
+        
+        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid last name!\n"; 
+        }
+        
+        if (emailAddressTextField.getText() == null || emailAddressTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid email address!\n"; 
+        }
+        
+        if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid phone number!\n"; 
+        }
+        
+        if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid date of birth!\n"; 
+        }
+        
+        if (streetTextField.getText() == null || streetTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid street name!\n"; 
+        }
+        
+        if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid house number!\n"; 
+        }
+        
+        if (cityTextField.getText() == null || cityTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid street name!\n"; 
+        }
+        
+        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid zip code!\n"; 
+        } else {
+            try {
+                Integer.parseInt(zipCodeTextField.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid zip code (must be an integer)!\n";
+            }
+        }
+        
+        if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid id number!\n"; 
+        }
+        
+        if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid driver license id!\n"; 
+        }
 
         if (errorMessage.length() == 0) {
             return true;

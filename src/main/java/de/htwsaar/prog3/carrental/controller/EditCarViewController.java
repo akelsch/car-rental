@@ -184,8 +184,100 @@ public class EditCarViewController implements Initializable {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        // TODO valid check
+        if (brandTextField.getText() == null || brandTextField.getText().length() == 0) {
+            errorMessage += "No valid brand name!\n";
+        }
+        
+        if (modelTextField.getText() == null || modelTextField.getText().length() == 0) {
+            errorMessage += "No valid model name!\n";
+        }
+        
+        if (categoryTextField.getText() == null || categoryTextField.getText().length() == 0) {
+            errorMessage += "No valid category name!\n";
+        }
+        
+        if (colorTextField.getText() == null || colorTextField.getText().length() == 0) {
+            errorMessage += "No valid color name!\n";
+        }
+        
+        if (constructionYearTextField.getText() == null || constructionYearTextField.getText().length() == 0) {
+            errorMessage += "No valid construction name!\n";
+        } else {
+            try {
+                Integer.parseInt(constructionYearTextField.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid construction year (must be an integer)!\n";
+            }
+        }
+        
+        if (drivenDistanceTextField.getText() == null || drivenDistanceTextField.getText().length() == 0) {
+            errorMessage += "No valid driven Distance!\n";
+        } else {
+            try {
+                Integer.parseInt(constructionYearTextField.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid driven Distance (must be an integer)!\n";
+            }
+        }
+        
+        if (gearBoxChoiceBox.getSelectionModel().isEmpty()) {
+            errorMessage += "No selected gearbox!\n";
+        }
+        
+        if (horsePowerTextField.getText() == null || horsePowerTextField.getText().length() == 0) {
+            errorMessage += "No valid horse power!\n";
+        } else {
+            try {
+                Integer.parseInt(horsePowerTextField.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid horse power (must be an integer)!\n";
+            }
+        }
+        
+        if (fuelChoiceBox.getSelectionModel().isEmpty()) {
+            errorMessage += "No selected fuel!\n";
+        }
 
+        if (doorCountTextField.getText() == null || doorCountTextField.getText().length() == 0) {
+            errorMessage += "No valid door count!\n";
+        } else {
+            try {
+                Integer.parseInt(doorCountTextField.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid door count (must be an integer)!\n";
+            }
+        }
+        
+        if (tiresTextField.getText() == null || tiresTextField.getText().length() == 0) {
+            errorMessage += "No valid tires name!\n";
+        }
+        
+        if (nextInspectionTextField.getText() == null || nextInspectionTextField.getText().length() == 0) {
+            errorMessage += "No valid next inspection year!\n";
+        }
+        
+        if (vinTextField.getText() == null || vinTextField.getText().length() == 0) {
+            errorMessage += "No valid VIN!\n";
+        }
+        
+        if (licenceNumberTextField.getText() == null || licenceNumberTextField.getText().length() == 0) {
+            errorMessage += "No valid licence number!\n";
+        }
+        
+        if (dailyRateTextField.getText() == null || dailyRateTextField.getText().length() == 0) {
+            errorMessage += "No valid daily rate!\n";
+        } else {
+            try {
+                Integer.parseInt(dailyRateTextField.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid daily rate (must be an integer)!\n";
+            }
+        }
+        
+        if (parkingLotTextField.getText() == null || parkingLotTextField.getText().length() == 0) {
+            errorMessage += "No valid parkinglot!\n";
+        }
+        
         if (errorMessage.length() == 0) {
             return true;
         } else {

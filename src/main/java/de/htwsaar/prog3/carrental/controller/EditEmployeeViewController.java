@@ -106,8 +106,18 @@ public class EditEmployeeViewController implements Initializable {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        // TODO valid check
+        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid first name!\n";
+        }
+        
+        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid last name!\n";
+        }
 
+        if (positionTextField.getText() == null || positionTextField.getText().trim().length() == 0) {
+            errorMessage += "No valid positon name!\n";
+        }
+        
         if (errorMessage.length() == 0) {
             return true;
         } else {
