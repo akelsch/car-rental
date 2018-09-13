@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.carrental.view;
+package de.htwsaar.prog3.carrental;
 
 import de.htwsaar.prog3.carrental.controller.GenericTableViewController;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
@@ -21,7 +21,7 @@ import java.util.Locale;
  *
  * @author Lukas Raubuch
  */
-public class CarTableView extends Application {
+public class CarRentalApp extends Application {
 
     // Has to be static to enable modal dialogs
     @Getter
@@ -39,7 +39,7 @@ public class CarTableView extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        CarTableView.primaryStage = primaryStage;
+        CarRentalApp.primaryStage = primaryStage;
         // Load FXML-document for the main view with the needed resource bundle
 
         initScenes();

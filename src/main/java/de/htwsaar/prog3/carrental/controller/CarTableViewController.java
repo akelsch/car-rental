@@ -4,7 +4,6 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.view.CarTableView;
 import de.htwsaar.prog3.carrental.view.CarEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -25,7 +24,6 @@ import java.util.ResourceBundle;
  * This is the Controller for the Main View of the Carrental Application.
  *
  * @author Lukas Raubuch
- * @see CarTableView
  */
 public class CarTableViewController extends GenericTableViewController<Car>
         implements Initializable {

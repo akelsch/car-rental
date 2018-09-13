@@ -4,7 +4,7 @@ import de.htwsaar.prog3.carrental.model.BaseEntity;
 import de.htwsaar.prog3.carrental.service.GenericService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.view.CarTableView;
+import de.htwsaar.prog3.carrental.CarRentalApp;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ import lombok.Setter;
  */
 public abstract class GenericTableViewController<T extends BaseEntity> {
     // Primary stage
-    Stage primaryStage = CarTableView.getPrimaryStage();
+    Stage primaryStage = CarRentalApp.getPrimaryStage();
 
     // Service and list of entities
     GenericService<T> service;
@@ -84,7 +84,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
     /**
      * Closes the application.
      *
-     * @see CarTableView#stop()
+     * @see CarRentalApp#stop()
      */
     public void handleCloseMenuItemClicked() {
         Platform.exit();
