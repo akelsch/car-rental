@@ -30,7 +30,7 @@ public class EditEmployeeView {
      * @return 
      */
     public boolean start(Stage parentStage, Employee employeeToEdit) {
-     // Load FXML document for the car configuration view wit the needed resource bundle
+     // Load FXML document for the employee configuration view wit the needed resource bundle
         try {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(getClass().getResource(I18nStringsUtil.getEditEmployeeViewFxml()),
@@ -48,7 +48,7 @@ public class EditEmployeeView {
         modalStage.setMinWidth(600);
         modalStage.setResizable(false);
 
-        // set the car into the controller
+        // set the employee into the controller
         EditEmployeeViewController controller = fxmlLoader.getController();
         controller.setModalStage(modalStage);
         controller.setEmployee(employeeToEdit);
