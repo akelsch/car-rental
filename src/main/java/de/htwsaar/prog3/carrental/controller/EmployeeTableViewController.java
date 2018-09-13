@@ -1,5 +1,8 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
@@ -14,16 +17,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
 /**
  * Controller for EmployeeTableView.
  *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class EmployeeTableViewController extends GenericTableViewController<Employee> implements Initializable {
+public class EmployeeTableViewController extends GenericTableViewController<Employee>
+        implements Initializable {
     @FXML
     private TableView<Employee> employeeTableView;
     // TableColumns to associate data with columns
@@ -47,7 +47,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         boolean applyClicked = new EditEmployeeView().start(primaryStage, newEmployee);
         if (applyClicked) {
             service.persist(newEmployee);
-            employeeTableView.setItems(entities);
+            entities.setAll(service.findAll());
         }
     }
 
@@ -58,7 +58,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
             boolean applyClicked = new EditEmployeeView().start(primaryStage, toEdit);
             if (applyClicked) {
                 service.update(toEdit);
-                employeeTableView.setItems(entities);
+                entities.setAll(service.findAll());
             }
         } else {
             // TODO show Warning

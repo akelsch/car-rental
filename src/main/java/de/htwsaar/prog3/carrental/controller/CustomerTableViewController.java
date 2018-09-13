@@ -1,5 +1,8 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
@@ -14,16 +17,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
 /**
  * Controller for CustomerTableView.
  *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class CustomerTableViewController extends GenericTableViewController<Customer> implements Initializable {
+public class CustomerTableViewController extends GenericTableViewController<Customer>
+        implements Initializable {
     @FXML
     private TableView<Customer> customerTableView;
     // TableColumns to associate data with columns
@@ -63,7 +63,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         boolean applyClicked = new EditCustomerView().start(primaryStage, newCustomer);
         if (applyClicked) {
             service.persist(newCustomer);
-            customerTableView.setItems(entities);
+            entities.setAll(service.findAll());
         }
     }
 
@@ -74,7 +74,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
             boolean applyClicked = new EditCustomerView().start(primaryStage, toEdit);
             if (applyClicked) {
                 service.update(toEdit);
-                customerTableView.setItems(entities);
+                entities.setAll(service.findAll());
             }
         } else {
             // TODO show Warning

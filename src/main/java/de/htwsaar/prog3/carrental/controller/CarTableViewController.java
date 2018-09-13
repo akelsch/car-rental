@@ -1,5 +1,10 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
@@ -14,12 +19,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * This is the Controller for the Main View of the Carrental Application.
@@ -27,7 +26,8 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  * @see CarTableView
  */
-public class CarTableViewController extends GenericTableViewController<Car> implements Initializable {
+public class CarTableViewController extends GenericTableViewController<Car>
+        implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(CarTableViewController.class);
 
     @FXML
@@ -81,7 +81,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
         boolean applyClicked = new EditCarView().start(primaryStage, newCar);
         if (applyClicked) {
             service.persist(newCar);
-            carTableView.setItems(entities);
+            entities.setAll(service.findAll());
         }
     }
 
@@ -92,7 +92,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
             boolean applyClicked = new EditCarView().start(primaryStage, toEdit);
             if (applyClicked) {
                 service.update(toEdit);
-                carTableView.setItems(entities);
+                entities.setAll(service.findAll());
             }
         } else {
             // TODO show Warning
