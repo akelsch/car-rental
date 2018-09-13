@@ -151,54 +151,63 @@ public class EditCustomerViewController implements Initializable {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid first name!\n"; 
+        if (firstNameTextField.getText() == null
+                || firstNameTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidFirstName() + "\n";
         }
-        
-        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid last name!\n"; 
+
+        if (lastNameTextField.getText() == null
+                || lastNameTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidLastName() + "\n";
         }
-        
-        if (emailAddressTextField.getText() == null || emailAddressTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid email address!\n"; 
+
+        if (emailAddressTextField.getText() == null
+                || emailAddressTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidEmailAdress() + "\n";
         }
-        
-        if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid phone number!\n"; 
+
+        if (phoneNumberTextField.getText() == null
+                || phoneNumberTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidPhoneNumber() + "\n";
         }
-        
-        if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid date of birth!\n"; 
+
+        if (dateOfBirthTextField.getText() == null
+                || dateOfBirthTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidDateOfBirth() + "\n";
         }
-        
+
         if (streetTextField.getText() == null || streetTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid street name!\n"; 
+            errorMessage += I18nComponentsUtil.getCustomerNoValidStreetName() + "\n";
         }
-        
-        if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid house number!\n"; 
+
+        if (houseNumberTextField.getText() == null
+                || houseNumberTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidHouseNumber() + "\n";
         }
-        
+
         if (cityTextField.getText() == null || cityTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid street name!\n"; 
+            errorMessage += I18nComponentsUtil.getCustomerNoValidCityName() + "\n";
         }
-        
+
         if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid zip code!\n"; 
+            errorMessage += I18nComponentsUtil.getCustomerNoValidZipCode() + "\n";
         } else {
             try {
                 Integer.parseInt(zipCodeTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += "No valid zip code (must be an integer)!\n";
+                errorMessage += I18nComponentsUtil.getCustomerNoValidZipCode() + " "
+                        + I18nComponentsUtil.getCustomerNoValidInteger() + "\n";
             }
         }
-        
-        if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid id number!\n"; 
+
+        if (idNumberTextField.getText() == null
+                || idNumberTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidIdNumber() + "\n";
         }
-        
-        if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid driver license id!\n"; 
+
+        if (driverLicenseIdTextField.getText() == null
+                || driverLicenseIdTextField.getText().trim().length() == 0) {
+            errorMessage += I18nComponentsUtil.getCustomerNoValidDriverLicence() + "\n";
         }
 
         if (errorMessage.length() == 0) {

@@ -112,15 +112,15 @@ public class EditEmployeeViewController implements Initializable {
         String errorMessage = "";
 
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid first name!\n";
+            errorMessage += I18nComponentsUtil.getEmployeeNoValidFirstName() + "\n";
         }
         
         if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid last name!\n";
+            errorMessage += I18nComponentsUtil.getEmployeeNoValidLastName() + "\n";
         }
 
         if (positionTextField.getText() == null || positionTextField.getText().trim().length() == 0) {
-            errorMessage += "No valid positon name!\n";
+            errorMessage += I18nComponentsUtil.getEmployeeNoValidPosition() + "\n";
         }
         
         if (errorMessage.length() == 0) {
