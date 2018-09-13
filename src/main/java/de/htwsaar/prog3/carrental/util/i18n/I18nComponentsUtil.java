@@ -72,7 +72,7 @@ public final class I18nComponentsUtil {
     private static final String CUSTOMER_NO_VALID_INTEGER = "customer-no-valid-integer";
     private static final String CUSTOMER_NO_VALID_FIRST_NAME = "customer-no-valid-first-name";
     private static final String CUSTOMER_NO_VALID_LAST_NAME = "customer-no-valid-last-name";
-    private static final String CUSTOMER_NO_VALID_EMAIL_ADRESS = "customer-no-valid-email-adress";
+    private static final String CUSTOMER_NO_VALID_EMAIL_ADDRESS = "customer-no-valid-email-address";
     private static final String CUSTOMER_NO_VALID_PHONE_NUMBER = "customer-no-valid-phone-number";
     private static final String CUSTOMER_NO_VALID_DATE_OF_BIRTH = "customer-no-valid-date-of-birth";
     private static final String CUSTOMER_NO_VALID_STREET_NAME = "customer-no-valid-street-name";
@@ -388,7 +388,7 @@ public final class I18nComponentsUtil {
     }
 
     public static String getCustomerNoValidEmailAdress() {
-        return resourceBundle.getString(CUSTOMER_NO_VALID_EMAIL_ADRESS);
+        return resourceBundle.getString(CUSTOMER_NO_VALID_EMAIL_ADDRESS);
     }
 
     public static String getCustomerNoValidPhoneNumber() {
