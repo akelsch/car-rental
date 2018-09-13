@@ -103,6 +103,11 @@ public class EditEmployeeViewController implements Initializable {
         }
     }
 
+    /**
+     * Valid Data Check
+     * 
+     * @return true if every data is valid, false if at least one data is not valid
+     */
     private boolean isInputValid() {
         String errorMessage = "";
 
