@@ -1,8 +1,5 @@
 package de.htwsaar.prog3.carrental.view;
 
-import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import de.htwsaar.prog3.carrental.controller.EditCustomerViewController;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
@@ -13,6 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * Entry Point of the "Edit Customer" Dialog.
@@ -27,9 +28,9 @@ public class EditCustomerView {
      *
      * @param parentStage
      * @param customer
-     * @return 
+     * @return
      */
-    public boolean start(Stage parentStage, Customer customerToEdit) {
+    public boolean start(Stage parentStage, Customer customer) {
         // Load FXML document for the customer configuration view wit the needed resource bundle
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
@@ -51,7 +52,7 @@ public class EditCustomerView {
             // set the customer into the controller
             EditCustomerViewController controller = fxmlLoader.getController();
             controller.setModalStage(modalStage);
-            controller.setCustomer(customerToEdit);
+            controller.setCustomer(customer);
 
             // show the dialog and wait until the user closes it
             modalStage.showAndWait();

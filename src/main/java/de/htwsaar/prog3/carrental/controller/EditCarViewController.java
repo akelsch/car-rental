@@ -1,21 +1,17 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * This is the Controller for the "Edit Car View" of the Carrental Application.
@@ -101,7 +97,8 @@ public class EditCarViewController implements Initializable {
      * @param resources
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 
     public void setModalStage(Stage modalStage) {
         this.modalStage = modalStage;
@@ -150,7 +147,7 @@ public class EditCarViewController implements Initializable {
 
     /**
      * Handle clicking the Apply Button.
-     * 
+     *
      * @return
      */
     @FXML
@@ -182,8 +179,8 @@ public class EditCarViewController implements Initializable {
     }
 
     /**
-     * Valid Data Check
-     * 
+     * Valid Data Check.
+     *
      * @return true if every data is valid, false if at least one data is not valid
      */
     private boolean isInputValid() {

@@ -1,8 +1,5 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
@@ -16,9 +13,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 /**
  * Controller for CustomerTableView.
- * 
+ *
  * @author Lukas Raubuch, Jens Thewes
  */
 public class CustomerTableViewController extends GenericTableViewController<Customer> {
@@ -75,8 +76,8 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
                 customerTableView.setItems(entities);
             }
         } else {
-          // TODO show Warning  
-        } 
+            // TODO show Warning
+        }
     }
 
     @Override

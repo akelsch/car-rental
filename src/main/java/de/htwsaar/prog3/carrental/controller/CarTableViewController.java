@@ -1,10 +1,5 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
@@ -18,6 +13,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * This is the Controller for the Main View of the Carrental Application.
@@ -93,7 +94,7 @@ public class CarTableViewController extends GenericTableViewController<Car> {
                 carTableView.setItems(entities);
             }
         } else {
-          // TODO show Warning  
+            // TODO show Warning
         }
     }
 

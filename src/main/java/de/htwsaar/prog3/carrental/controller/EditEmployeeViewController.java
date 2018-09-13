@@ -1,20 +1,17 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * This is the Controller for the "Edit Employee View" of the Carrental Application.
@@ -55,7 +52,8 @@ public class EditEmployeeViewController implements Initializable {
      * @param resources
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 
     public void setModalStage(Stage modalStage) {
         this.modalStage = modalStage;
@@ -72,7 +70,7 @@ public class EditEmployeeViewController implements Initializable {
     public boolean isApplyClicked() {
         return applyClicked;
     }
-    
+
     /**
      * Handle Cancel Button clicked.
      */
@@ -104,8 +102,8 @@ public class EditEmployeeViewController implements Initializable {
     }
 
     /**
-     * Valid Data Check
-     * 
+     * Valid Data Check.
+     *
      * @return true if every data is valid, false if at least one data is not valid
      */
     private boolean isInputValid() {
@@ -114,7 +112,7 @@ public class EditEmployeeViewController implements Initializable {
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getEmployeeNoValidFirstName() + "\n";
         }
-        
+
         if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getEmployeeNoValidLastName() + "\n";
         }
@@ -122,7 +120,7 @@ public class EditEmployeeViewController implements Initializable {
         if (positionTextField.getText() == null || positionTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getEmployeeNoValidPosition() + "\n";
         }
-        
+
         if (errorMessage.length() == 0) {
             return true;
         } else {

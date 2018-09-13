@@ -1,8 +1,5 @@
 package de.htwsaar.prog3.carrental.view;
 
-import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import de.htwsaar.prog3.carrental.controller.EditEmployeeViewController;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
@@ -13,6 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * Entry Point of the "Edit Employee" Dialog.
@@ -27,36 +28,36 @@ public class EditEmployeeView {
      *
      * @param parentStage
      * @param employee
-     * @return 
+     * @return
      */
-    public boolean start(Stage parentStage, Employee employeeToEdit) {
-     // Load FXML document for the employee configuration view wit the needed resource bundle
+    public boolean start(Stage parentStage, Employee employee) {
+        // Load FXML document for the employee configuration view wit the needed resource bundle
         try {
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(getClass().getResource(I18nStringsUtil.getEditEmployeeViewFxml()),
-                        I18nUtil.getResourceBundleComponents());
-        Parent page = fxmlLoader.load();
+            FXMLLoader fxmlLoader =
+                    new FXMLLoader(getClass().getResource(I18nStringsUtil.getEditEmployeeViewFxml()),
+                            I18nUtil.getResourceBundleComponents());
+            Parent page = fxmlLoader.load();
 
-        // create the modal Stage
-        Stage modalStage = new Stage();
-        modalStage.setTitle(I18nComponentsUtil.getStageTitle());
-        modalStage.initModality(Modality.WINDOW_MODAL);
-        modalStage.initOwner(parentStage);
-        Scene scene = new Scene(page);
-        modalStage.setScene(scene);
-        modalStage.setMaxHeight(200);
-        modalStage.setMaxWidth(600);
-        modalStage.setResizable(false);
+            // create the modal Stage
+            Stage modalStage = new Stage();
+            modalStage.setTitle(I18nComponentsUtil.getStageTitle());
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initOwner(parentStage);
+            Scene scene = new Scene(page);
+            modalStage.setScene(scene);
+            modalStage.setMaxHeight(200);
+            modalStage.setMaxWidth(600);
+            modalStage.setResizable(false);
 
-        // set the employee into the controller
-        EditEmployeeViewController controller = fxmlLoader.getController();
-        controller.setModalStage(modalStage);
-        controller.setEmployee(employeeToEdit);
+            // set the employee into the controller
+            EditEmployeeViewController controller = fxmlLoader.getController();
+            controller.setModalStage(modalStage);
+            controller.setEmployee(employee);
 
-        // show the dialog and wait until the user closes it
-        modalStage.showAndWait();
+            // show the dialog and wait until the user closes it
+            modalStage.showAndWait();
 
-        return controller.isApplyClicked();
+            return controller.isApplyClicked();
         } catch (IOException e) {
             logger.error("Failed loading FXML!", e);
             return false;
