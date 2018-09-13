@@ -31,7 +31,7 @@ public final class DialogUtil {
     /**
      * Creates an confirmation dialog that can be displayed to the user.
      *
-     * @param headerText the text that will be displayed in the information dialog
+     * @param headerText the text that will be displayed in the confirmation dialog
      * @return an Alert object that represents the dialog that can be displayed
      */
     public static Alert createConfirmationDialog(String headerText) {

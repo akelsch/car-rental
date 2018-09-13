@@ -1,10 +1,10 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import de.htwsaar.prog3.carrental.CarRentalApp;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import de.htwsaar.prog3.carrental.service.GenericService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.CarRentalApp;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

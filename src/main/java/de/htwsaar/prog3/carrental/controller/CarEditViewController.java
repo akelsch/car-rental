@@ -1,6 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -113,9 +114,9 @@ public class CarEditViewController {
      */
     @FXML
     protected void handleCancelButtonClicked() {
-        Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-        confirmationDialog.setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
-        confirmationDialog.setHeaderText(I18nComponentsUtil.getDialogCancelConfirmationText());
+        Alert confirmationDialog =
+                DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
+
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
             modalStage.close();
@@ -239,7 +240,7 @@ public class CarEditViewController {
 
         if (nextInspectionTextField.getText() == null
                 || nextInspectionTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNextInspectionLabel() + "\n";
+            errorMessage += I18nComponentsUtil.getCarNoValidNextInspection() + "\n";
         }
 
         if (vinTextField.getText() == null || vinTextField.getText().length() == 0) {

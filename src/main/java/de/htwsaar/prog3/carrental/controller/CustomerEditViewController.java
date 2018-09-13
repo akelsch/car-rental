@@ -1,6 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -84,9 +85,9 @@ public class CustomerEditViewController {
      */
     @FXML
     protected void handleCancelButtonClicked() {
-        Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
-        confirmationDialog.setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
-        confirmationDialog.setHeaderText(I18nComponentsUtil.getDialogCancelConfirmationText());
+        Alert confirmationDialog =
+                DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
+
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
             modalStage.close();

@@ -10,7 +10,8 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch, Jens Thewes, Julian Quint, Arthur Kelsch
  */
 public final class I18nComponentsUtil {
-    private I18nComponentsUtil() {}
+    private I18nComponentsUtil() {
+    }
 
     // Keys
     private static final String STAGE_TITLE = "stage-title";
