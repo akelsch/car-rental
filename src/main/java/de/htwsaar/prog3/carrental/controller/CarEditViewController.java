@@ -125,8 +125,6 @@ public class CarEditViewController {
 
     /**
      * Handle clicking the Apply Button.
-     *
-     * @return
      */
     @FXML
     protected void handleApplyButtonClicked() {

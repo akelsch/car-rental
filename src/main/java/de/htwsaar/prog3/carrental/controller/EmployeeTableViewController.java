@@ -23,11 +23,10 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class EmployeeTableViewController extends GenericTableViewController<Employee>
-        implements Initializable {
+public class EmployeeTableViewController extends GenericTableViewController<Employee> implements Initializable {
     @FXML
     private TableView<Employee> employeeTableView;
-    // TableColumns to associate data with columns
+
     @FXML
     private TableColumn<Employee, Integer> id;
     @FXML
@@ -43,9 +42,19 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
     }
 
     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        position.setCellValueFactory(new PropertyValueFactory<>("Position"));
+
+        employeeTableView.setItems(entities);
+    }
+
+    @Override
     public void handleNewButtonClicked() {
         Employee newEmployee = new Employee();
-        boolean applyClicked = new EmployeeEditView().start(primaryStage, newEmployee);
+        boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), newEmployee);
         if (applyClicked) {
             service.persist(newEmployee);
             entities.setAll(service.findAll());
@@ -56,7 +65,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
     public void handleEditButtonClicked() {
         Employee toEdit = employeeTableView.getSelectionModel().getSelectedItem();
         if (toEdit != null) {
-            boolean applyClicked = new EmployeeEditView().start(primaryStage, toEdit);
+            boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), toEdit);
             if (applyClicked) {
                 service.update(toEdit);
                 entities.setAll(service.findAll());
@@ -82,16 +91,5 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
             service.delete(toDelete);
             entities.setAll(service.findAll());
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Associate data with columns
-        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        position.setCellValueFactory(new PropertyValueFactory<>("Position"));
-
-        employeeTableView.setItems(entities);
     }
 }
