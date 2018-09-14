@@ -91,7 +91,7 @@ public class RentalTableViewController extends GenericTableViewController<Rental
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
             service.delete(toDelete);
-            entities.remove(toDelete);
+            entities.setAll(service.findAll());
         }
     }
 }
