@@ -112,8 +112,7 @@ public class CarEditViewController {
     /**
      * Handle clicking the Cancel Button.
      */
-    @FXML
-    protected void handleCancelButtonClicked() {
+    public void handleCancelButtonClicked() {
         Alert confirmationDialog =
                 DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
 
@@ -126,8 +125,7 @@ public class CarEditViewController {
     /**
      * Handle clicking the Apply Button.
      */
-    @FXML
-    protected void handleApplyButtonClicked() {
+    public void handleApplyButtonClicked() {
         // TODO only update data that has changed?
         if (isInputValid()) {
             carToEdit.setBrand(brandTextField.getText());
