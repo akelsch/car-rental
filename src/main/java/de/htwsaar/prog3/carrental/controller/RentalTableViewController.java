@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class RentalTableViewController extends GenericTableViewController<Rental> implements Initializable {
     @FXML
     private TableView<Rental> rentalTableView;
-    // TableColumns to associate data with columns
+
     @FXML
     private TableColumn<Rental, Integer> id;
     @FXML
@@ -46,6 +46,20 @@ public class RentalTableViewController extends GenericTableViewController<Rental
     public RentalTableViewController() {
         service = new RentalService();
         entities = FXCollections.observableArrayList(service.findAll());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        begin.setCellValueFactory(new PropertyValueFactory<>("Begin"));
+        car.setCellValueFactory(new PropertyValueFactory<>("Car"));
+        customer.setCellValueFactory(new PropertyValueFactory<>("Customer"));
+        employee.setCellValueFactory(new PropertyValueFactory<>("Employee"));
+        end.setCellValueFactory(new PropertyValueFactory<>("End"));
+        extraCosts.setCellValueFactory(new PropertyValueFactory<>("ExtraCosts"));
+        note.setCellValueFactory(new PropertyValueFactory<>("Note"));
+
+        rentalTableView.setItems(entities);
     }
 
     /**
@@ -79,20 +93,5 @@ public class RentalTableViewController extends GenericTableViewController<Rental
             service.delete(toDelete);
             entities.remove(toDelete);
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Associate data with columns
-        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        begin.setCellValueFactory(new PropertyValueFactory<>("Begin"));
-        car.setCellValueFactory(new PropertyValueFactory<>("Car"));
-        customer.setCellValueFactory(new PropertyValueFactory<>("Customer"));
-        employee.setCellValueFactory(new PropertyValueFactory<>("Employee"));
-        end.setCellValueFactory(new PropertyValueFactory<>("End"));
-        extraCosts.setCellValueFactory(new PropertyValueFactory<>("ExtraCosts"));
-        note.setCellValueFactory(new PropertyValueFactory<>("Note"));
-
-        rentalTableView.setItems(entities);
     }
 }

@@ -23,11 +23,10 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes
  */
-public class CustomerTableViewController extends GenericTableViewController<Customer>
-        implements Initializable {
+public class CustomerTableViewController extends GenericTableViewController<Customer> implements Initializable {
     @FXML
     private TableView<Customer> customerTableView;
-    // TableColumns to associate data with columns
+
     @FXML
     private TableColumn<Customer, Integer> id;
     @FXML
@@ -59,9 +58,27 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     }
 
     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
+        driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DriverLicenseId"));
+        emailAddress.setCellValueFactory(new PropertyValueFactory<>("EmailAddress"));
+        firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        houseNumber.setCellValueFactory(new PropertyValueFactory<>("HouseNumber"));
+        lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        phoneNumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+        street.setCellValueFactory(new PropertyValueFactory<>("Street"));
+        city.setCellValueFactory(new PropertyValueFactory<>("City"));
+        idNumber.setCellValueFactory(new PropertyValueFactory<>("IdNumber"));
+        zipCode.setCellValueFactory(new PropertyValueFactory<>("ZipCode"));
+
+        customerTableView.setItems(entities);
+    }
+
+    @Override
     public void handleNewButtonClicked() {
         Customer newCustomer = new Customer();
-        boolean applyClicked = new CustomerEditView().start(primaryStage, newCustomer);
+        boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), newCustomer);
         if (applyClicked) {
             service.persist(newCustomer);
             entities.setAll(service.findAll());
@@ -72,7 +89,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     public void handleEditButtonClicked() {
         Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
         if (toEdit != null) {
-            boolean applyClicked = new CustomerEditView().start(primaryStage, toEdit);
+            boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), toEdit);
             if (applyClicked) {
                 service.update(toEdit);
                 entities.setAll(service.findAll());
@@ -98,24 +115,5 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
             service.delete(toDelete);
             entities.setAll(service.findAll());
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Associate data with columns
-        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
-        driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DriverLicenseId"));
-        emailAddress.setCellValueFactory(new PropertyValueFactory<>("EmailAddress"));
-        firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        houseNumber.setCellValueFactory(new PropertyValueFactory<>("HouseNumber"));
-        lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        phoneNumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
-        street.setCellValueFactory(new PropertyValueFactory<>("Street"));
-        city.setCellValueFactory(new PropertyValueFactory<>("City"));
-        idNumber.setCellValueFactory(new PropertyValueFactory<>("IdNumber"));
-        zipCode.setCellValueFactory(new PropertyValueFactory<>("ZipCode"));
-
-        customerTableView.setItems(entities);
     }
 }

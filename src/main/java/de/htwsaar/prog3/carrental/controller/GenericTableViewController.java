@@ -8,13 +8,11 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import lombok.Setter;
 
 /**
@@ -23,27 +21,16 @@ import lombok.Setter;
  * @author Lukas Raubuch, Arthur Kelsch
  */
 public abstract class GenericTableViewController<T extends BaseEntity> {
-    // Primary stage
-    Stage primaryStage = CarRentalApp.getPrimaryStage();
-
-    // Service and list of entities
+    // Backend service
     GenericService<T> service;
+
+    // Entity list
     ObservableList<T> entities;
 
-    // Scenes
+    // JavaFX application
     @Setter
-    private Scene carScene;
+    CarRentalApp app;
 
-    @Setter
-    private Scene customerScene;
-
-    @Setter
-    private Scene employeeScene;
-
-    @Setter
-    private Scene rentalScene;
-
-    // FXML
     @FXML
     public ComboBox<String> searchComboBoxField;
 
@@ -57,28 +44,28 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
      */
     public void handleCarMenuItemClicked() {
-        primaryStage.setScene(carScene);
+        app.showCarTableView();
     }
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Customer Customer}.
      */
     public void handleCustomerMenuItemClicked() {
-        primaryStage.setScene(customerScene);
+        app.showCustomerTableView();
     }
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Employee Employee}.
      */
     public void handleEmployeeMenuItemClicked() {
-        primaryStage.setScene(employeeScene);
+        app.showEmployeeTableView();
     }
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Rental Rental}.
      */
     public void handleRentalMenuItemClicked() {
-        primaryStage.setScene(rentalScene);
+        app.showRentalTableView();
     }
 
     /**

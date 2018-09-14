@@ -13,8 +13,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.Optional;
@@ -25,13 +23,10 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch
  */
-public class CarTableViewController extends GenericTableViewController<Car>
-        implements Initializable {
-    private static final Logger logger = LoggerFactory.getLogger(CarTableViewController.class);
-
+public class CarTableViewController extends GenericTableViewController<Car> implements Initializable {
     @FXML
     private TableView<Car> carTableView;
-    // TableColumns to associate data with columns
+
     @FXML
     private TableColumn<Car, Integer> id;
     @FXML
@@ -75,9 +70,33 @@ public class CarTableViewController extends GenericTableViewController<Car>
     }
 
     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
+        category.setCellValueFactory(new PropertyValueFactory<>("Category"));
+        color.setCellValueFactory(new PropertyValueFactory<>("Color"));
+        constructionYear.setCellValueFactory(new PropertyValueFactory<>("ConstructionYear"));
+        dailyRate.setCellValueFactory(new PropertyValueFactory<>("DailyRate"));
+        defects.setCellValueFactory(new PropertyValueFactory<>("Defects"));
+        doorCount.setCellValueFactory(new PropertyValueFactory<>("DoorCount"));
+        drivenDistance.setCellValueFactory(new PropertyValueFactory<>("DrivenDistance"));
+        fuel.setCellValueFactory(new PropertyValueFactory<>("Fuel"));
+        gearbox.setCellValueFactory(new PropertyValueFactory<>("Gearbox"));
+        horsepower.setCellValueFactory(new PropertyValueFactory<>("Horsepower"));
+        licenseNumber.setCellValueFactory(new PropertyValueFactory<>("LicenseNumber"));
+        model.setCellValueFactory(new PropertyValueFactory<>("Model"));
+        nextInspection.setCellValueFactory(new PropertyValueFactory<>("NextInspection"));
+        parkingLot.setCellValueFactory(new PropertyValueFactory<>("ParkingLot"));
+        tires.setCellValueFactory(new PropertyValueFactory<>("Tires"));
+        vin.setCellValueFactory(new PropertyValueFactory<>("Vin"));
+
+        carTableView.setItems(entities);
+    }
+
+    @Override
     public void handleNewButtonClicked() {
         Car newCar = new Car();
-        boolean applyClicked = new CarEditView().start(primaryStage, newCar);
+        boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), newCar);
         if (applyClicked) {
             service.persist(newCar);
             entities.setAll(service.findAll());
@@ -88,7 +107,7 @@ public class CarTableViewController extends GenericTableViewController<Car>
     public void handleEditButtonClicked() {
         Car toEdit = carTableView.getSelectionModel().getSelectedItem();
         if (toEdit != null) {
-            boolean applyClicked = new CarEditView().start(primaryStage, toEdit);
+            boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), toEdit);
             if (applyClicked) {
                 service.update(toEdit);
                 entities.setAll(service.findAll());
@@ -111,7 +130,6 @@ public class CarTableViewController extends GenericTableViewController<Car>
                 .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
-            logger.info("OK Button pressed. Deleting Car...");
             service.delete(toDelete);
             entities.setAll(service.findAll());
         }
@@ -122,31 +140,5 @@ public class CarTableViewController extends GenericTableViewController<Car>
      */
     public void handleRentButtonClicked() {
         // TODO: Implement with Michael
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Associate data with columns
-        logger.info("Associating TableColumns with model data");
-        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
-        category.setCellValueFactory(new PropertyValueFactory<>("Category"));
-        color.setCellValueFactory(new PropertyValueFactory<>("Color"));
-        constructionYear.setCellValueFactory(new PropertyValueFactory<>("ConstructionYear"));
-        dailyRate.setCellValueFactory(new PropertyValueFactory<>("DailyRate"));
-        defects.setCellValueFactory(new PropertyValueFactory<>("Defects"));
-        doorCount.setCellValueFactory(new PropertyValueFactory<>("DoorCount"));
-        drivenDistance.setCellValueFactory(new PropertyValueFactory<>("DrivenDistance"));
-        fuel.setCellValueFactory(new PropertyValueFactory<>("Fuel"));
-        gearbox.setCellValueFactory(new PropertyValueFactory<>("Gearbox"));
-        horsepower.setCellValueFactory(new PropertyValueFactory<>("Horsepower"));
-        licenseNumber.setCellValueFactory(new PropertyValueFactory<>("LicenseNumber"));
-        model.setCellValueFactory(new PropertyValueFactory<>("Model"));
-        nextInspection.setCellValueFactory(new PropertyValueFactory<>("NextInspection"));
-        parkingLot.setCellValueFactory(new PropertyValueFactory<>("ParkingLot"));
-        tires.setCellValueFactory(new PropertyValueFactory<>("Tires"));
-        vin.setCellValueFactory(new PropertyValueFactory<>("Vin"));
-
-        carTableView.setItems(entities);
     }
 }
