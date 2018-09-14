@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="715.0" minWidth="600.0" prefHeight="715.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="de.htwsaar.prog3.carrental.controller.RentalEditViewController">
+    <Pane prefHeight="82.0" prefWidth="600.0">
+        <Label fx:id="CarLabel" layoutX="212.0" layoutY="32.0" prefHeight="17.0" prefWidth="215.0" text="Car:"/>
+    </Pane>
+    <Pane layoutY="56.0" prefHeight="152.0" prefWidth="600.0">
+        <Label fx:id="DurationLabel" alignment="TOP_LEFT" layoutX="399.0" layoutY="36.0" prefHeight="17.0"
+               prefWidth="100.0" text="Duration: "/>
+        <Label fx:id="CostsLabel" layoutX="399.0" layoutY="94.0" prefHeight="17.0" prefWidth="92.0" text="Costs: "/>
+        <DatePicker fx:id="BeginRentDatePicker" layoutX="56.0" layoutY="32.0"/>
+        <DatePicker fx:id="EndRentDatePicker" layoutX="56.0" layoutY="90.0"/>
+        <Label layoutX="42.0" layoutY="14.0" text="Begin renting on"/>
+        <Label layoutX="42.0" layoutY="68.0" text="End renting on"/>
+        <Button fx:id="ConfirmDatesButton" layoutX="258.0" layoutY="90.0" mnemonicParsing="false"
+                onAction="#handleConfirmDatesButtonClicked" text="Confirm"/>
+    </Pane>
+    <Pane layoutY="208.0" prefHeight="481.0" prefWidth="600.0">
+        <TextField fx:id="IDCardTextField" layoutX="314.0" layoutY="176.0"/>
+        <TextField fx:id="PostcodeTextField" layoutX="51.0" layoutY="237.0"/>
+        <TextField fx:id="DriverLicenseIDTextField" layoutX="88.0" layoutY="39.0"/>
+        <TextField fx:id="DateOfBirthTextField" layoutX="51.0" layoutY="176.0"/>
+        <TextField fx:id="PhoneNumberTextField" layoutX="314.0" layoutY="357.0"/>
+        <TextField fx:id="LastNameTextField" layoutX="51.0" layoutY="113.0"/>
+        <TextField fx:id="StreetTextField" layoutX="51.0" layoutY="298.0"/>
+        <TextField fx:id="HouseNumberTextField" layoutX="314.0" layoutY="298.0"/>
+        <TextField fx:id="FirstNameTextField" layoutX="314.0" layoutY="113.0"/>
+        <Button fx:id="SearchForCustomerButton" layoutX="294.0" layoutY="39.0" mnemonicParsing="false"
+                text="Search"/>
+        <Button fx:id="ConfirmRentButton" layoutX="395.0" layoutY="413.0" mnemonicParsing="false" text="Book"/>
+        <TextField fx:id="EMailTextField" layoutX="51.0" layoutY="357.0"/>
+        <Label layoutX="33.0" layoutY="87.0" text="Last name:"/>
+        <Label layoutX="297.0" layoutY="87.0" text="First name:"/>
+        <Label layoutX="32.0" layoutY="150.0" text="Date of birth:"/>
+        <Label layoutX="299.0" layoutY="150.0" text="ID Card:"/>
+        <Label layoutX="32.0" layoutY="211.0" text="Postcode:"/>
+        <Label layoutX="32.0" layoutY="272.0" text="Street:"/>
+        <Label layoutX="292.0" layoutY="272.0" text="Housenumber:"/>
+        <Label layoutX="301.0" layoutY="331.0" text="Phonenumber:"/>
+        <Label layoutX="32.0" layoutY="331.0" text="E-Mail:"/>
+        <Label layoutX="50.0" layoutY="14.0" text="Driver License ID"/>
+        <Label layoutX="299.0" layoutY="211.0" text="City:"/>
+        <TextField fx:id="CityTextField" layoutX="314.0" layoutY="237.0"/>
+        <Button fx:id="CancelButton" layoutX="319.0" layoutY="413.0" mnemonicParsing="false" text="Cancel"/>
+    </Pane>
+</Pane>

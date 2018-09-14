@@ -13,9 +13,8 @@ import javafx.stage.Stage;
  * Entry Point of the "Rent out car" Dialog.
  *
  * @author Michael Bös
- *
  */
-public class RentOutCarView {
+public class RentalEditView {
 
     private static Stage modalWindow;
 
@@ -28,9 +27,9 @@ public class RentOutCarView {
     public void start(Stage parentStage) throws Exception {
         modalWindow = new Stage();
         // Load FXML document for the rent out configuration view with the needed resource bundle
-        Parent scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getRentOutCarViewURL()),
+        Parent scene = FXMLLoader.load(getClass().getResource(I18nStringsUtil.getRentalEditViewFxml()),
                 I18nUtil.getResourceBundleComponents());
-        modalWindow.setTitle(I18nComponentsUtil.getStageTitleString());
+        modalWindow.setTitle(I18nComponentsUtil.getStageTitle());
         // Apply styling described in the FXML document
         modalWindow.setScene(new Scene(scene));
         modalWindow.setMaxHeight(715);
@@ -43,7 +42,6 @@ public class RentOutCarView {
 
     /**
      * close the modal window
-     *
      */
     public static void closeModalWindow() {
         modalWindow.close();

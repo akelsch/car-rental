@@ -1,24 +1,17 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.view.EditCarView;
-import de.htwsaar.prog3.carrental.view.RentOutCarView;
-import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Car;
-import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.service.RentalService;
-import de.htwsaar.prog3.carrental.service.EmployeeService;
-import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.service.CarService;
-import javafx.event.ActionEvent;
+import de.htwsaar.prog3.carrental.service.CustomerService;
+import de.htwsaar.prog3.carrental.service.EmployeeService;
+import de.htwsaar.prog3.carrental.service.RentalService;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.time.Duration;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -27,7 +20,7 @@ import java.util.ResourceBundle;
  * @author Michael Bös
  */
 
-public class RentOutCarViewController {
+public class RentalEditViewController {
 
     private CarService carService = new CarService();
 
@@ -37,9 +30,7 @@ public class RentOutCarViewController {
 
     private RentalService rentalService = new RentalService();
 
-    private Car car = EditCarView.getCar();
-
-
+    private Car car;
 
     @FXML
     private Label CarLable;
@@ -105,12 +96,11 @@ public class RentOutCarViewController {
         CarLable.setText("Car:" + car.getBrand() + " " + car.getModel());
     }
 
-    protected void handleConfirmDatesButtonClicked(ActionEvent event) {
+    public void handleConfirmDatesButtonClicked() {
 
     }
 
-    protected void handleSearchCustomerButtonClicked(ActionEvent event) {
+    public void handleSearchCustomerButtonClicked() {
 
     }
-
 }
