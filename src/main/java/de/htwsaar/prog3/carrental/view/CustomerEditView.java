@@ -57,7 +57,7 @@ public class CustomerEditView {
             controller.setCustomer(customer);
 
             // add handler to the modal Stage
-            modalStage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
                 if (KeyCode.ENTER == event.getCode()) {
                     controller.handleApplyButtonClicked();
                 }else if (KeyCode.ESCAPE == event.getCode()) {
