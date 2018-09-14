@@ -56,7 +56,7 @@ public class EmployeeEditView {
             controller.setModalStage(modalStage);
             controller.setEmployee(employee);
 
-            // add handlers to the modal stage
+            // add handler to the modal stage
             modalStage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
                 if (KeyCode.ENTER == event.getCode()) {
                     controller.handleApplyButtonClicked();
