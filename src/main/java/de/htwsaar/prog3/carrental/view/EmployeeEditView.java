@@ -8,6 +8,8 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -54,6 +56,15 @@ public class EmployeeEditView {
             controller.setModalStage(modalStage);
             controller.setEmployee(employee);
 
+            // add handler to the modal stage
+            modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+                if (KeyCode.ENTER == event.getCode()) {
+                    controller.handleApplyButtonClicked();
+                }else if (KeyCode.ESCAPE == event.getCode()) {
+                    controller.handleCancelButtonClicked();
+                }
+            });
+
             // show the dialog and wait until the user closes it
             modalStage.showAndWait();
 
@@ -63,4 +74,4 @@ public class EmployeeEditView {
             return false;
         }
     }
-}      
+}

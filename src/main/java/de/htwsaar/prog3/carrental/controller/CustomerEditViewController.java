@@ -83,8 +83,7 @@ public class CustomerEditViewController {
     /**
      * Handle Cancel Button clicked.
      */
-    @FXML
-    protected void handleCancelButtonClicked() {
+    public void handleCancelButtonClicked() {
         Alert confirmationDialog =
                 DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
 
@@ -97,8 +96,7 @@ public class CustomerEditViewController {
     /**
      * Handle Apply Button clicked.
      */
-    @FXML
-    protected void handleApplyButtonClicked() {
+    public void handleApplyButtonClicked() {
         // TODO only update data that has changed?
         if (isInputValid()) {
             customerToEdit.setFirstName(firstNameTextField.getText());

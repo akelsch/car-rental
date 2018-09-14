@@ -51,8 +51,7 @@ public class EmployeeEditViewController {
     /**
      * Handle Cancel Button clicked.
      */
-    @FXML
-    protected void handleCancelButtonClicked() {
+    public void handleCancelButtonClicked() {
         Alert confirmationDialog =
                 DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
 
@@ -65,8 +64,7 @@ public class EmployeeEditViewController {
     /**
      * Handle Apply Button clicked.
      */
-    @FXML
-    protected void handleApplyButtonClicked() {
+    public void handleApplyButtonClicked() {
         // TODO only update data that has changed?
         if (isInputValid()) {
             employeeToEdit.setFirstName(firstNameTextField.getText());
