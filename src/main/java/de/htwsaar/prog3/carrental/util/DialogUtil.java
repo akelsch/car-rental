@@ -42,4 +42,21 @@ public final class DialogUtil {
 
         return confirmationDialog;
     }
+
+    /**
+     * Creates an error dialog that can be displayed to the user.
+     *
+     * @param title the title that will be displayed in the error dialog
+     * @param headerText the text that will be displayed in the error dialog
+     * @param errorMessage the error message that will be displayed in the error dialog
+     * @return an Alert object that represents the dialog that can be displayed
+     */
+    public static Alert createErrorDialog(String title, String headerText, String errorMessage) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(errorMessage);
+
+        return alert;
+    }
 }
