@@ -5,7 +5,6 @@ import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -186,11 +185,7 @@ public class CustomerEditViewController {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.initOwner(modalStage);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(errorMessage);
+            Alert alert = DialogUtil.createErrorDialog("Invalid Fields", "Please correct invalid fields", errorMessage);
             alert.showAndWait();
 
             return false;
