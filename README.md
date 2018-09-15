@@ -9,5 +9,6 @@ Student project as part of the Programming 3 lecture at the University of Applie
 - Hibernate
 - Java Persistence API (JPA)
 - Project Lombok
-- Checkstyle
 - PMD
+- SpotBugs
+- Checkstyle
