@@ -31,7 +31,7 @@ public class EmployeeEditViewController {
     private TextField positionTextField;
 
     /**
-     * sets the modalStage in order to use it locally
+     * sets the modalStage in order to use it locally.
      * 
      * @param modalStage given modalStage
      */
@@ -40,7 +40,7 @@ public class EmployeeEditViewController {
     }
 
     /**
-     * fills all the text fields with the given information from given employeeToEdit
+     * fills all the text fields with the given information from given employeeToEdit.
      * 
      * @param employeeToEdit given employee to be edit
      */
@@ -53,6 +53,8 @@ public class EmployeeEditViewController {
     }
 
     /**
+     * Has applyButton been clicked?
+     * 
      * @return true, if applyButton has been clicked; false if not
      */
     public boolean isApplyClicked() {

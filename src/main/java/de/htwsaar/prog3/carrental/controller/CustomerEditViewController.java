@@ -55,7 +55,7 @@ public class CustomerEditViewController {
     private TextField driverLicenseIdTextField;
 
     /**
-     * sets the modalStage in order to use it locally
+     * sets the modalStage in order to use it locally.
      * 
      * @param modalStage given modalStage
      */
@@ -64,7 +64,7 @@ public class CustomerEditViewController {
     }
 
     /**
-     * fills all the text fields with the given information from given customerToEdit
+     * fills all the text fields with the given information from given customerToEdit.
      * 
      * @param customerToEdit given customer to be edit
      */
@@ -85,6 +85,8 @@ public class CustomerEditViewController {
     }
 
     /**
+     * Has applyButton been clicked?
+     * 
      * @return true, if applyButton has been clicked; false if not
      */
     public boolean isApplyClicked() {

@@ -77,7 +77,7 @@ public class CarEditViewController {
     private TextField parkingLotTextField;
 
     /**
-     * sets the modalStage in order to use it locally
+     * sets the modalStage in order to use it locally.
      * 
      * @param modalStage given modalStage
      */
@@ -86,7 +86,7 @@ public class CarEditViewController {
     }
 
     /**
-     * fills all the text fields with the given information from given carToEdit
+     * fills all the text fields with the given information from given carToEdit.
      * 
      * @param carToEdit given car to be edit
      */
@@ -114,6 +114,8 @@ public class CarEditViewController {
     }
 
     /**
+     * Has applyButton been clicked?
+     * 
      * @return true, if applyButton has been clicked; false if not
      */
     public boolean isApplyClicked() {
