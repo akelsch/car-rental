@@ -1,5 +1,8 @@
 package de.htwsaar.prog3.carrental.view;
 
+import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import de.htwsaar.prog3.carrental.controller.CustomerEditViewController;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
@@ -12,10 +15,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * Entry Point of the "Edit Customer" Dialog.
@@ -26,11 +25,12 @@ public class CustomerEditView {
     private static final Logger logger = LoggerFactory.getLogger(CustomerEditView.class);
 
     /**
-     * Start the Edit Employee Dialog in a modal Window.
+     * Start the Edit Customer Dialog in a modal Window.
      *
-     * @param parentStage
-     * @param customer
-     * @return
+     * @param parentStage given Stage from CustomerTableView in order to guarantee Window Modality
+     * @param customer given customer to be edit
+     * @return true, if all edited changes are applied to given customer; false it at least one
+     *         error occurs
      */
     public boolean start(Stage parentStage, Customer customer) {
         // Load FXML document for the customer configuration view wit the needed resource bundle
@@ -60,7 +60,7 @@ public class CustomerEditView {
             modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
                 if (KeyCode.ENTER == event.getCode()) {
                     controller.handleApplyButtonClicked();
-                }else if (KeyCode.ESCAPE == event.getCode()) {
+                } else if (KeyCode.ESCAPE == event.getCode()) {
                     controller.handleCancelButtonClicked();
                 }
             });
