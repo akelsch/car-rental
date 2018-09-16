@@ -116,7 +116,6 @@ public class EmployeeEditViewController {
             Alert alert = DialogUtil.createErrorDialog("Invalid Fields",
                     "Please correct invalid fields", errorMessage);
             alert.showAndWait();
-            alert.showAndWait();
 
             return false;
         }
