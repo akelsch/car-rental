@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import java.util.Optional;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
@@ -8,8 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.Optional;
 
 /**
  * This is the Controller for the "Edit Customer View" of the Carrental Application.
@@ -55,10 +54,20 @@ public class CustomerEditViewController {
     @FXML
     private TextField driverLicenseIdTextField;
 
+    /**
+     * sets the modalStage in order to use it locally.
+     * 
+     * @param modalStage given modalStage
+     */
     public void setModalStage(Stage modalStage) {
         this.modalStage = modalStage;
     }
 
+    /**
+     * fills all the text fields with the given information from given customerToEdit.
+     * 
+     * @param customerToEdit given customer to be edit
+     */
     public void setCustomer(Customer customerToEdit) {
         this.customerToEdit = customerToEdit;
 
@@ -75,6 +84,11 @@ public class CustomerEditViewController {
         driverLicenseIdTextField.setText(customerToEdit.getDriverLicenseId());
     }
 
+    /**
+     * Has applyButton been clicked?
+     * 
+     * @return true, if applyButton has been clicked; false if not
+     */
     public boolean isApplyClicked() {
         return applyClicked;
     }
@@ -83,8 +97,8 @@ public class CustomerEditViewController {
      * Handle Cancel Button clicked.
      */
     public void handleCancelButtonClicked() {
-        Alert confirmationDialog =
-                DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
+        Alert confirmationDialog = DialogUtil
+                .createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
 
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
@@ -185,7 +199,8 @@ public class CustomerEditViewController {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields", "Please correct invalid fields", errorMessage);
+            Alert alert = DialogUtil.createErrorDialog("Invalid Fields",
+                    "Please correct invalid fields", errorMessage);
             alert.showAndWait();
 
             return false;
