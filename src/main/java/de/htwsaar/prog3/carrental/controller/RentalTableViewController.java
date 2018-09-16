@@ -1,9 +1,12 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.RentalService;
+import de.htwsaar.prog3.carrental.view.RentalEditView;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.view.CarEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -74,7 +77,16 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 
     @Override
     public void handleEditButtonClicked() {
-        // TODO: Implement with Michael
+        Rental toEdit = rentalTableView.getSelectionModel().getSelectedItem();
+        if (toEdit != null) {
+            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), toEdit);
+            if (applyClicked) {
+                service.update(toEdit);
+                entities.setAll(service.findAll());
+            }
+        } else {
+            // TODO show Warning
+        }
     }
 
     @Override

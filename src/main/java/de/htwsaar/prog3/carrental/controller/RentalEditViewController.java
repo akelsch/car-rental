@@ -1,6 +1,9 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.model.Employee;
+import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
@@ -13,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -33,39 +37,66 @@ public class RentalEditViewController {
     private RentalService rentalService = new RentalService();
 
     private Car car;
+    private Customer customer;
+    private Employee employee;
+    private Rental rental;
 
     private Stage modalStage;
 
+    private boolean applyClicked = false;
+
+
 
     @FXML
-    private Label CarLable;
+    private Label carLable;
 
     @FXML
-    private Label DurationLable;
+    private Label durationLable;
 
     @FXML
-    private Label CostsLable;
+    private Label costsLable;
 
     @FXML
-    private DatePicker BeginDatePicker;
+    private TextField searchCustomerField;
 
     @FXML
-    private DatePicker EndDatePicker;
+    private TextField extraCosts;
 
     @FXML
-    private Button SearchForCustomerButton;
+    private TextField note;
 
     @FXML
-    private Button ConfirmRentButton;
+    private DatePicker beginDatePicker;
 
     @FXML
-    private Button CancelButton;
+    private DatePicker endDatePicker;
 
     @FXML
-    private Button ConfirmDatesButton;
+    private Button searchForCustomerButton;
+
+    @FXML
+    private Button confirmRentButton;
+
+    @FXML
+    private Button cancelButton;
+
+    @FXML
+    private Button confirmDatesButton;
+
+    public void setModalStage(Stage modalStage) {
+        this.modalStage = modalStage;
+    }
+
+    public void setRental(Rental rental) {
+        this.rental = rental;
+    }
+
+    public boolean isApplyClicked() {
+        return applyClicked;
+    }
 
     public void initialize(URL location, ResourceBundle resources) {
-        CarLable.setText("Car:" + car.getBrand() + " " + car.getModel());
+        carLable.setText("Car:" + car.getBrand() + " " + car.getModel());
     }
 
     public void handleConfirmDatesButtonClicked() {
@@ -87,6 +118,10 @@ public class RentalEditViewController {
     }
 
     public void handleConfirmRentButtonClicked() {
+        rental.setCar(car);
+        rental.setCustomer(customer);
+        rental.setEmployee(employee);
+      // ...
 
     }
 }
