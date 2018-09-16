@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller;
 
+import java.util.Optional;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
@@ -8,8 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.Optional;
 
 /**
  * This is the Controller for the "Edit Employee View" of the Carrental Application.
@@ -31,10 +30,20 @@ public class EmployeeEditViewController {
     @FXML
     private TextField positionTextField;
 
+    /**
+     * sets the modalStage in order to use it locally
+     * 
+     * @param modalStage given modalStage
+     */
     public void setModalStage(Stage modalStage) {
         this.modalStage = modalStage;
     }
 
+    /**
+     * fills all the text fields with the given information from given employeeToEdit
+     * 
+     * @param employeeToEdit given employee to be edit
+     */
     public void setEmployee(Employee employeeToEdit) {
         this.employeeToEdit = employeeToEdit;
 
@@ -43,6 +52,9 @@ public class EmployeeEditViewController {
         positionTextField.setText(employeeToEdit.getPosition());
     }
 
+    /**
+     * @return true, if applyButton has been clicked; false if not
+     */
     public boolean isApplyClicked() {
         return applyClicked;
     }
@@ -51,8 +63,8 @@ public class EmployeeEditViewController {
      * Handle Cancel Button clicked.
      */
     public void handleCancelButtonClicked() {
-        Alert confirmationDialog =
-                DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
+        Alert confirmationDialog = DialogUtil
+                .createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
 
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
@@ -83,22 +95,26 @@ public class EmployeeEditViewController {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().length() == 0) {
+        if (firstNameTextField.getText() == null
+                || firstNameTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getEmployeeNoValidFirstName() + "\n";
         }
 
-        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().length() == 0) {
+        if (lastNameTextField.getText() == null
+                || lastNameTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getEmployeeNoValidLastName() + "\n";
         }
 
-        if (positionTextField.getText() == null || positionTextField.getText().trim().length() == 0) {
+        if (positionTextField.getText() == null
+                || positionTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getEmployeeNoValidPosition() + "\n";
         }
 
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields", "Please correct invalid fields", errorMessage);
+            Alert alert = DialogUtil.createErrorDialog("Invalid Fields",
+                    "Please correct invalid fields", errorMessage);
             alert.showAndWait();
             alert.showAndWait();
 
