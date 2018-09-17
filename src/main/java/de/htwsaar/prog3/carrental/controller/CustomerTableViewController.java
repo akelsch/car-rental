@@ -14,6 +14,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -80,8 +82,14 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         Customer newCustomer = new Customer();
         boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), newCustomer);
         if (applyClicked) {
-            service.persist(newCustomer);
-            entities.setAll(service.findAll());
+            try {
+                service.persist(newCustomer);
+                entities.setAll(service.findAll());
+            } catch (PersistenceException e) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't create this Customer", "There is already a customer with this driver license id");
+                alert.showAndWait();
+            }
         }
     }
 
@@ -91,8 +99,14 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         if (toEdit != null) {
             boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), toEdit);
             if (applyClicked) {
-                service.update(toEdit);
-                entities.setAll(service.findAll());
+                try {
+                    service.update(toEdit);
+                    entities.setAll(service.findAll());
+                } catch (RollbackException e) {
+                    Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                            "Can't update this Customer", "There is already a customer with this driver license id");
+                    alert.showAndWait();
+                }
             }
         } else {
             // TODO show Warning
@@ -112,8 +126,14 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
                 .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
-            service.delete(toDelete);
-            entities.setAll(service.findAll());
+            try {
+                service.delete(toDelete);
+                entities.setAll(service.findAll());
+            } catch (RollbackException e) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't delete this customer", "You must first delete the rental");
+                alert.showAndWait();
+            }
         }
     }
 }
