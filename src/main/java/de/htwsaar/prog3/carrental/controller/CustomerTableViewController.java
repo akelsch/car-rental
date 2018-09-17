@@ -30,6 +30,8 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     @FXML
     private TableColumn<Customer, Integer> id;
     @FXML
+    private TableColumn<Customer, String> city;
+    @FXML
     private TableColumn<Customer, String> dateOfBirth;
     @FXML
     private TableColumn<Customer, String> driverLicenseId;
@@ -40,15 +42,13 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     @FXML
     private TableColumn<Customer, Integer> houseNumber;
     @FXML
+    private TableColumn<Customer, String> idNumber;
+    @FXML
     private TableColumn<Customer, String> lastName;
     @FXML
     private TableColumn<Customer, String> phoneNumber;
     @FXML
     private TableColumn<Customer, String> street;
-    @FXML
-    private TableColumn<Customer, String> city;
-    @FXML
-    private TableColumn<Customer, String> idNumber;
     @FXML
     private TableColumn<Customer, String> zipCode;
 
@@ -60,16 +60,16 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        city.setCellValueFactory(new PropertyValueFactory<>("City"));
         dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("DateOfBirth"));
         driverLicenseId.setCellValueFactory(new PropertyValueFactory<>("DriverLicenseId"));
         emailAddress.setCellValueFactory(new PropertyValueFactory<>("EmailAddress"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         houseNumber.setCellValueFactory(new PropertyValueFactory<>("HouseNumber"));
+        idNumber.setCellValueFactory(new PropertyValueFactory<>("IdNumber"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
         street.setCellValueFactory(new PropertyValueFactory<>("Street"));
-        city.setCellValueFactory(new PropertyValueFactory<>("City"));
-        idNumber.setCellValueFactory(new PropertyValueFactory<>("IdNumber"));
         zipCode.setCellValueFactory(new PropertyValueFactory<>("ZipCode"));
 
         customerTableView.setItems(entities);
