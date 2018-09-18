@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import lombok.Setter;
@@ -39,6 +41,18 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
 
     @FXML
     public TextField searchTextField;
+
+    /**
+     * Handles key presses within a TableView.
+     *
+     * @param event
+     *            the event that occurred also containing the button that was pressed
+     */
+    public void handleKeyEvent(KeyEvent event) {
+        if (KeyCode.DELETE == event.getCode()) {
+            handleDeleteButtonClicked();
+        }
+    }
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.

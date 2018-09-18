@@ -167,7 +167,8 @@
 	</top>
 	<center>
 		<TableView fx:id="carTableView" prefHeight="400.0"
-			prefWidth="487.0" BorderPane.alignment="CENTER">
+			prefWidth="487.0" BorderPane.alignment="CENTER"
+			onKeyPressed="#handleKeyEvent">
 			<columns>
 				<TableColumn fx:id="id" text="%car-id-label" />
 				<TableColumn fx:id="brand" text="%car-brand-label" />
@@ -204,9 +205,9 @@
 						<MenuItem text="%button-edit-label"
 							onAction="#handleEditButtonClicked" />
 						<MenuItem text="%button-delete-label"
-                            onAction="#handleDeleteButtonClicked" />
-                        <MenuItem text="%button-rent-label"
-                            onAction="#handleRentButtonClicked" />
+							onAction="#handleDeleteButtonClicked" />
+						<MenuItem text="%button-rent-label"
+							onAction="#handleRentButtonClicked" />
 					</items>
 				</ContextMenu>
 			</contextMenu>

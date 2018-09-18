@@ -96,7 +96,7 @@
 	</top>
 	<center>
 		<TableView fx:id="employeeTableView" prefHeight="400.0" prefWidth="487.0"
-			BorderPane.alignment="CENTER">
+			BorderPane.alignment="CENTER" onKeyPressed="#handleKeyEvent">
 			<columns>
 				<TableColumn fx:id="id" text="%employee-id-label" />
 				<TableColumn fx:id="firstName" text="%employee-first-name-label" />

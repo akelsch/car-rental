@@ -102,7 +102,7 @@
 	</top>
 	<center>
 		<TableView fx:id="rentalTableView" prefHeight="400.0" prefWidth="487.0"
-			BorderPane.alignment="CENTER">
+			BorderPane.alignment="CENTER" onKeyPressed="#handleKeyEvent">
 			<columns>
 				<TableColumn fx:id="id" text="%rental-id-label" />
 				<TableColumn fx:id="car" text="%rental-car-label" />
