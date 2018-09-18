@@ -43,6 +43,18 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
     public TextField searchTextField;
 
     /**
+     * Handles key presses within a TableView.
+     *
+     * @param event
+     *            the event that occurred also containing the button that was pressed
+     */
+    public void handleKeyEvent(KeyEvent event) {
+        if (KeyCode.DELETE == event.getCode()) {
+            handleDeleteButtonClicked();
+        }
+    }
+
+    /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
      */
     public void handleCarMenuItemClicked() {
@@ -175,16 +187,4 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
             searchTextField.setBorder(null);
         }
     }
-    
-    /**
-	 * Handles the pressing of Buttons on the Keyboard within a TableView
-	 * 
-	 * @param event
-	 *            the Event that occured also containing the button that was pressed
-	 */
-	public void handleKeyboardControl(KeyEvent event) {
-		if (KeyCode.DELETE == event.getCode()) {
-			handleDeleteButtonClicked();
-		}
-	}
 }

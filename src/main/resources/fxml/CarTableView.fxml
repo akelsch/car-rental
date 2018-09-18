@@ -168,7 +168,7 @@
 	<center>
 		<TableView fx:id="carTableView" prefHeight="400.0"
 			prefWidth="487.0" BorderPane.alignment="CENTER"
-			onKeyPressed="#handleKeyboardControl">
+			onKeyPressed="#handleKeyEvent">
 			<columns>
 				<TableColumn fx:id="id" text="%car-id-label" />
 				<TableColumn fx:id="brand" text="%car-brand-label" />
