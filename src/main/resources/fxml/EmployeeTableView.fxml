@@ -103,6 +103,18 @@
 				<TableColumn fx:id="lastName" text="%employee-last-name-label" />
 				<TableColumn fx:id="position" text="%employee-position-label" />
 			</columns>
+			<contextMenu>
+                <ContextMenu fx:id="contextMenu">
+                    <items>
+                        <MenuItem text="%button-new-label"
+                            onAction="#handleNewButtonClicked" />
+                        <MenuItem text="%button-edit-label"
+                            onAction="#handleEditButtonClicked" />
+                        <MenuItem text="%button-delete-label"
+                            onAction="#handleDeleteButtonClicked" />
+                    </items>
+                </ContextMenu>
+            </contextMenu>
 		</TableView>
 	</center>
 	<bottom>
