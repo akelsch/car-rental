@@ -54,7 +54,7 @@ public class CustomerEditView {
             // set the customer into the controller
             CustomerEditViewController controller = fxmlLoader.getController();
             controller.setModalStage(modalStage);
-            controller.setCustomer(customer);
+            controller.initialize(customer);
 
             // add handler to the modal Stage
             modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {

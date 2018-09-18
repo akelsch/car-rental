@@ -54,7 +54,7 @@ public class CarEditView {
             // set the car into the controller
             CarEditViewController controller = fxmlLoader.getController();
             controller.setModalStage(modalStage);
-            controller.setCar(car);
+            controller.initialize(car);
 
             // add handler to the modal Stage
             modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {

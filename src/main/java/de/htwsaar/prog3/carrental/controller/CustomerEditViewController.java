@@ -6,14 +6,9 @@ import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -21,16 +16,7 @@ import java.util.stream.Collectors;
  *
  * @author Jens Thewes
  */
-public class CustomerEditViewController {
-    @Setter
-    private Stage modalStage;
-
-    @Getter
-    private boolean applyClicked = false;
-
-    private Customer customerToEdit;
-    private CustomerService service = new CustomerService();
-
+public class CustomerEditViewController extends GenericEditViewController<Customer> {
     @FXML
     private TextField firstNameTextField;
 
@@ -64,69 +50,50 @@ public class CustomerEditViewController {
     @FXML
     private TextField driverLicenseIdTextField;
 
-    /**
-     * fills all the text fields with the given information from given customerToEdit.
-     *
-     * @param customerToEdit given customer to be edit
-     */
-    public void setCustomer(Customer customerToEdit) {
-        this.customerToEdit = customerToEdit;
-
-        firstNameTextField.setText(customerToEdit.getFirstName());
-        lastNameTextField.setText(customerToEdit.getLastName());
-        emailAddressTextField.setText(customerToEdit.getEmailAddress());
-        phoneNumberTextField.setText(customerToEdit.getPhoneNumber());
-        dateOfBirthTextField.setText(customerToEdit.getDateOfBirth());
-        streetTextField.setText(customerToEdit.getStreet());
-        houseNumberTextField.setText(customerToEdit.getHouseNumber());
-        cityTextField.setText(customerToEdit.getCity());
-        zipCodeTextField.setText(Integer.toString(customerToEdit.getZipCode()));
-        idNumberTextField.setText(customerToEdit.getIdNumber());
-        driverLicenseIdTextField.setText(customerToEdit.getDriverLicenseId());
+    public CustomerEditViewController() {
+        service = new CustomerService();
     }
 
-    /**
-     * Handle Cancel Button clicked.
-     */
-    public void handleCancelButtonClicked() {
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
+    @Override
+    public void initialize(Customer customer) {
+        entity = customer;
 
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            modalStage.close();
-        }
+        firstNameTextField.setText(entity.getFirstName());
+        lastNameTextField.setText(entity.getLastName());
+        emailAddressTextField.setText(entity.getEmailAddress());
+        phoneNumberTextField.setText(entity.getPhoneNumber());
+        dateOfBirthTextField.setText(entity.getDateOfBirth());
+        streetTextField.setText(entity.getStreet());
+        houseNumberTextField.setText(entity.getHouseNumber());
+        cityTextField.setText(entity.getCity());
+        zipCodeTextField.setText(Integer.toString(entity.getZipCode()));
+        idNumberTextField.setText(entity.getIdNumber());
+        driverLicenseIdTextField.setText(entity.getDriverLicenseId());
     }
 
-    /**
-     * Handle Apply Button clicked.
-     */
+    @Override
     public void handleApplyButtonClicked() {
         // TODO only update data that has changed?
         if (isInputValid()) {
-            customerToEdit.setFirstName(firstNameTextField.getText());
-            customerToEdit.setLastName(lastNameTextField.getText());
-            customerToEdit.setEmailAddress(emailAddressTextField.getText());
-            customerToEdit.setPhoneNumber(phoneNumberTextField.getText());
-            customerToEdit.setDateOfBirth(dateOfBirthTextField.getText());
-            customerToEdit.setStreet(streetTextField.getText());
-            customerToEdit.setHouseNumber(houseNumberTextField.getText());
-            customerToEdit.setCity(cityTextField.getText());
-            customerToEdit.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
-            customerToEdit.setIdNumber(idNumberTextField.getText());
-            customerToEdit.setDriverLicenseId(driverLicenseIdTextField.getText());
+            entity.setFirstName(firstNameTextField.getText());
+            entity.setLastName(lastNameTextField.getText());
+            entity.setEmailAddress(emailAddressTextField.getText());
+            entity.setPhoneNumber(phoneNumberTextField.getText());
+            entity.setDateOfBirth(dateOfBirthTextField.getText());
+            entity.setStreet(streetTextField.getText());
+            entity.setHouseNumber(houseNumberTextField.getText());
+            entity.setCity(cityTextField.getText());
+            entity.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+            entity.setIdNumber(idNumberTextField.getText());
+            entity.setDriverLicenseId(driverLicenseIdTextField.getText());
 
             applyClicked = true;
             modalStage.close();
         }
     }
 
-    /**
-     * Valid Data Check.
-     *
-     * @return true if every data is valid, false if at least one data is not valid
-     */
-    private boolean isInputValid() {
+    @Override
+    boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
         String errorMessage;
 
@@ -199,7 +166,7 @@ public class CustomerEditViewController {
         } else {
             customers = service.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
                     .stream()
-                    .filter(c -> !c.getId().equals(customerToEdit.getId()))
+                    .filter(c -> !c.getId().equals(entity.getId()))
                     .collect(Collectors.toList());
             if (!customers.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCustomerNoValidIdNumberDuplicate());
@@ -215,7 +182,7 @@ public class CustomerEditViewController {
             customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
                     "=", driverLicenseIdTextField.getText())
                     .stream()
-                    .filter(c -> !c.getId().equals(customerToEdit.getId()))
+                    .filter(c -> !c.getId().equals(entity.getId()))
                     .collect(Collectors.toList());
             if (!customers.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicenceDuplicate());

@@ -6,15 +6,10 @@ import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -22,16 +17,7 @@ import java.util.stream.Collectors;
  *
  * @author Jens Thewes
  */
-public class CarEditViewController {
-    @Setter
-    private Stage modalStage;
-
-    @Getter
-    private boolean applyClicked = false;
-
-    private Car carToEdit;
-    private CarService service = new CarService();
-
+public class CarEditViewController extends GenericEditViewController<Car> {
     @FXML
     private TextField brandTextField;
 
@@ -86,83 +72,64 @@ public class CarEditViewController {
     @FXML
     private TextField parkingLotTextField;
 
-    /**
-     * fills all the text fields with the given information from given carToEdit.
-     *
-     * @param carToEdit given car to be edit
-     */
-    public void setCar(Car carToEdit) {
-        this.carToEdit = carToEdit;
-
-        brandTextField.setText(carToEdit.getBrand());
-        modelTextField.setText(carToEdit.getModel());
-        categoryTextField.setText(carToEdit.getCategory());
-        colorTextField.setText(carToEdit.getColor());
-        constructionYearTextField.setText(Integer.toString(carToEdit.getConstructionYear()));
-        drivenDistanceTextField.setText(Integer.toString(carToEdit.getDrivenDistance()));
-        gearBoxChoiceBox.setValue(carToEdit.getGearbox());
-        horsePowerTextField.setText(Integer.toString(carToEdit.getHorsepower()));
-        fuelChoiceBox.setValue(carToEdit.getFuel());
-        doorCountTextField.setText(Integer.toString(carToEdit.getDoorCount()));
-        tiresTextField.setText(carToEdit.getTires());
-        nextInspectionTextField.setText(carToEdit.getNextInspection());
-        vinTextField.setText(carToEdit.getVin());
-        equipmentTextField.setText(carToEdit.getEquipment());
-        defectsTextField.setText(carToEdit.getDefects());
-        licenceNumberTextField.setText(carToEdit.getLicenseNumber());
-        dailyRateTextField.setText(Integer.toString(carToEdit.getDailyRate()));
-        parkingLotTextField.setText(carToEdit.getParkingLot());
+    public CarEditViewController() {
+        service = new CarService();
     }
 
-    /**
-     * Handle clicking the Cancel Button.
-     */
-    public void handleCancelButtonClicked() {
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
+    @Override
+    public void initialize(Car car) {
+        entity = car;
 
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            modalStage.close();
-        }
+        brandTextField.setText(entity.getBrand());
+        modelTextField.setText(entity.getModel());
+        categoryTextField.setText(entity.getCategory());
+        colorTextField.setText(entity.getColor());
+        constructionYearTextField.setText(Integer.toString(entity.getConstructionYear()));
+        drivenDistanceTextField.setText(Integer.toString(entity.getDrivenDistance()));
+        gearBoxChoiceBox.setValue(entity.getGearbox());
+        horsePowerTextField.setText(Integer.toString(entity.getHorsepower()));
+        fuelChoiceBox.setValue(entity.getFuel());
+        doorCountTextField.setText(Integer.toString(entity.getDoorCount()));
+        tiresTextField.setText(entity.getTires());
+        nextInspectionTextField.setText(entity.getNextInspection());
+        vinTextField.setText(entity.getVin());
+        equipmentTextField.setText(entity.getEquipment());
+        defectsTextField.setText(entity.getDefects());
+        licenceNumberTextField.setText(entity.getLicenseNumber());
+        dailyRateTextField.setText(Integer.toString(entity.getDailyRate()));
+        parkingLotTextField.setText(entity.getParkingLot());
     }
 
-    /**
-     * Handle clicking the Apply Button.
-     */
+    @Override
     public void handleApplyButtonClicked() {
         // TODO only update data that has changed?
         if (isInputValid()) {
-            carToEdit.setBrand(brandTextField.getText());
-            carToEdit.setModel(modelTextField.getText());
-            carToEdit.setCategory(categoryTextField.getText());
-            carToEdit.setColor(colorTextField.getText());
-            carToEdit.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
-            carToEdit.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
-            carToEdit.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
-            carToEdit.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
-            carToEdit.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
-            carToEdit.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
-            carToEdit.setTires(tiresTextField.getText());
-            carToEdit.setNextInspection(nextInspectionTextField.getText());
-            carToEdit.setVin(vinTextField.getText());
-            carToEdit.setEquipment(equipmentTextField.getText());
-            carToEdit.setDefects(defectsTextField.getText());
-            carToEdit.setLicenseNumber(licenceNumberTextField.getText());
-            carToEdit.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
-            carToEdit.setParkingLot(parkingLotTextField.getText());
+            entity.setBrand(brandTextField.getText());
+            entity.setModel(modelTextField.getText());
+            entity.setCategory(categoryTextField.getText());
+            entity.setColor(colorTextField.getText());
+            entity.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
+            entity.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
+            entity.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
+            entity.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
+            entity.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
+            entity.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
+            entity.setTires(tiresTextField.getText());
+            entity.setNextInspection(nextInspectionTextField.getText());
+            entity.setVin(vinTextField.getText());
+            entity.setEquipment(equipmentTextField.getText());
+            entity.setDefects(defectsTextField.getText());
+            entity.setLicenseNumber(licenceNumberTextField.getText());
+            entity.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
+            entity.setParkingLot(parkingLotTextField.getText());
 
             applyClicked = true;
             modalStage.close();
         }
     }
 
-    /**
-     * Valid Data Check.
-     *
-     * @return true if every data is valid, false if at least one data is not valid
-     */
-    private boolean isInputValid() {
+    @Override
+    boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
         String errorMessage;
         List<Car> cars;
@@ -272,7 +239,7 @@ public class CarEditViewController {
         } else {
             cars = service.filter(I18nComponentsUtil.getCarVinLabel(), "=", vinTextField.getText())
                     .stream()
-                    .filter(c -> !c.getId().equals(carToEdit.getId()))
+                    .filter(c -> !c.getId().equals(entity.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCarNoValidVinDuplicate());
@@ -287,7 +254,7 @@ public class CarEditViewController {
         } else {
             cars = service.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
                     .stream()
-                    .filter(c -> !c.getId().equals(carToEdit.getId()))
+                    .filter(c -> !c.getId().equals(entity.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCarNoValidLicenceNumberDuplicate());
@@ -315,7 +282,7 @@ public class CarEditViewController {
         } else {
             cars = service.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
                     .stream()
-                    .filter(c -> !c.getId().equals(carToEdit.getId()))
+                    .filter(c -> !c.getId().equals(entity.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCarNoValidParkingLotDuplicate());

@@ -54,7 +54,7 @@ public class EmployeeEditView {
             // set the employee into the controller
             EmployeeEditViewController controller = fxmlLoader.getController();
             controller.setModalStage(modalStage);
-            controller.setEmployee(employee);
+            controller.initialize(employee);
 
             // add handler to the modal stage
             modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
