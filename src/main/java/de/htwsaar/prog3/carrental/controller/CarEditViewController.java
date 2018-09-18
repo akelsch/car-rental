@@ -163,138 +163,169 @@ public class CarEditViewController {
      * @return true if every data is valid, false if at least one data is not valid
      */
     private boolean isInputValid() {
+        StringBuilder sb = new StringBuilder();
         String errorMessage = "";
         List<Car> cars;
 
-        if (brandTextField.getText() == null || brandTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidBrand() + "\n";
+        if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidBrand());
+            sb.append(System.lineSeparator());
         }
 
-        if (modelTextField.getText() == null || modelTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidModel() + "\n";
+        if (modelTextField.getText() == null || modelTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidModel());
+            sb.append(System.lineSeparator());
         }
 
-        if (categoryTextField.getText() == null || categoryTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidCategory() + "\n";
+        if (categoryTextField.getText() == null || categoryTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidCategory());
+            sb.append(System.lineSeparator());
         }
 
-        if (colorTextField.getText() == null || colorTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidColor() + "\n";
+        if (colorTextField.getText() == null || colorTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidColor());
+            sb.append(System.lineSeparator());
         }
 
         if (constructionYearTextField.getText() == null
-                || constructionYearTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidConstructionYear() + "\n";
+                || constructionYearTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidConstructionYear() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (drivenDistanceTextField.getText() == null
-                || drivenDistanceTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidDrivenDistance() + "\n";
+                || drivenDistanceTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidDrivenDistance() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (gearBoxChoiceBox.getSelectionModel().isEmpty()) {
-            errorMessage += I18nComponentsUtil.getCarNoValidGearbox() + "\n";
+            sb.append(I18nComponentsUtil.getCarNoValidGearbox());
+            sb.append(System.lineSeparator());
         }
 
         if (horsePowerTextField.getText() == null || horsePowerTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidHorsepower() + "\n";
+            sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(horsePowerTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidHorsepower() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (fuelChoiceBox.getSelectionModel().isEmpty()) {
-            errorMessage += I18nComponentsUtil.getCarNoValidFuel() + "\n";
+            sb.append(I18nComponentsUtil.getCarNoValidFuel());
+            sb.append(System.lineSeparator());
         }
 
-        if (doorCountTextField.getText() == null || doorCountTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidDoorCount() + "\n";
+        if (doorCountTextField.getText() == null || doorCountTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidDoorCount());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(doorCountTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidDoorCount() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidDoorCount());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
-        if (tiresTextField.getText() == null || tiresTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidTires() + "\n";
+        if (tiresTextField.getText() == null || tiresTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidTires());
+            sb.append(System.lineSeparator());
         }
 
         if (nextInspectionTextField.getText() == null
-                || nextInspectionTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidNextInspection() + "\n";
+                || nextInspectionTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidNextInspection());
+            sb.append(System.lineSeparator());
         }
 
-        if (vinTextField.getText() == null || vinTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidVin() + "\n";
+        if (vinTextField.getText() == null || vinTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidVin());
+            sb.append(System.lineSeparator());
         } else {
             cars = service.filter(I18nComponentsUtil.getCarVinLabel(), "=", vinTextField.getText())
                     .stream()
                     .filter(c -> !c.getId().equals(carToEdit.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                errorMessage += "There is already a car with this vin \n";
+                sb.append(I18nComponentsUtil.getCarNoValidVinDuplicate());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (licenceNumberTextField.getText() == null
-                || licenceNumberTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidLicenceNumber() + "\n";
+                || licenceNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidLicenceNumber());
+            sb.append(System.lineSeparator());
         } else {
             cars = service.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
                     .stream()
                     .filter(c -> !c.getId().equals(carToEdit.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                errorMessage += "There is already a car with this license number \n";
+                sb.append(I18nComponentsUtil.getCarNoValidLicenceNumberDuplicate());
+                sb.append(System.lineSeparator());
             }
         }
 
-        if (dailyRateTextField.getText() == null || dailyRateTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidDailyRate() + "\n";
+        if (dailyRateTextField.getText() == null || dailyRateTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidDailyRate());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(dailyRateTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidDailyRate() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidDailyRate());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
-        if (parkingLotTextField.getText() == null || parkingLotTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidParkingLot() + "\n";
+        if (parkingLotTextField.getText() == null || parkingLotTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidParkingLot());
+            sb.append(System.lineSeparator());
         } else {
             cars = service.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
                     .stream()
                     .filter(c -> !c.getId().equals(carToEdit.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                errorMessage += "There is already a car with this parking lot \n";
+                sb.append(I18nComponentsUtil.getCarNoValidParkingLotDuplicate());
+                sb.append(System.lineSeparator());
             }
         }
 
+        errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields", "Please correct invalid fields", errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(), I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;

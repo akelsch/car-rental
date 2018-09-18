@@ -127,74 +127,90 @@ public class CustomerEditViewController {
      * @return true if every data is valid, false if at least one data is not valid
      */
     private boolean isInputValid() {
-        String errorMessage = "";
+        StringBuilder sb = new StringBuilder();
+        String errorMessage;
+
         List<Customer> customers;
 
         if (firstNameTextField.getText() == null
-                || firstNameTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidFirstName() + "\n";
+                || firstNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidFirstName());
+            sb.append(System.lineSeparator());
         }
 
         if (lastNameTextField.getText() == null
-                || lastNameTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidLastName() + "\n";
+                || lastNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidLastName());
+            sb.append(System.lineSeparator());
         }
 
         if (emailAddressTextField.getText() == null
-                || emailAddressTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidEmailAdress() + "\n";
+                || emailAddressTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAdress());
+            sb.append(System.lineSeparator());
         }
 
         if (phoneNumberTextField.getText() == null
-                || phoneNumberTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidPhoneNumber() + "\n";
+                || phoneNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
+            sb.append(System.lineSeparator());
         }
 
         if (dateOfBirthTextField.getText() == null
-                || dateOfBirthTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidDateOfBirth() + "\n";
+                || dateOfBirthTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidDateOfBirth());
+            sb.append(System.lineSeparator());
         }
 
-        if (streetTextField.getText() == null || streetTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidStreetName() + "\n";
+        if (streetTextField.getText() == null || streetTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidStreetName());
+            sb.append(System.lineSeparator());
         }
 
         if (houseNumberTextField.getText() == null
-                || houseNumberTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidHouseNumber() + "\n";
+                || houseNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidHouseNumber());
+            sb.append(System.lineSeparator());
         }
 
-        if (cityTextField.getText() == null || cityTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidCityName() + "\n";
+        if (cityTextField.getText() == null || cityTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidCityName());
+            sb.append(System.lineSeparator());
         }
 
-        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidZipCode() + "\n";
+        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(zipCodeTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCustomerNoValidZipCode() + " "
-                        + I18nComponentsUtil.getCustomerNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCustomerNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (idNumberTextField.getText() == null
-                || idNumberTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidIdNumber() + "\n";
+                || idNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
+            sb.append(System.lineSeparator());
         } else {
             customers = service.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
                     .stream()
                     .filter(c -> !c.getId().equals(customerToEdit.getId()))
                     .collect(Collectors.toList());
             if (!customers.isEmpty()) {
-                errorMessage += "There is already a customer with this id number \n";
+                sb.append(I18nComponentsUtil.getCustomerNoValidIdNumberDuplicate());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (driverLicenseIdTextField.getText() == null
-                || driverLicenseIdTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidDriverLicence() + "\n";
+                || driverLicenseIdTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
+            sb.append(System.lineSeparator());
         } else {
             customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
                     "=", driverLicenseIdTextField.getText())
@@ -202,12 +218,14 @@ public class CustomerEditViewController {
                     .filter(c -> !c.getId().equals(customerToEdit.getId()))
                     .collect(Collectors.toList());
             if (!customers.isEmpty()) {
-                errorMessage += "There is already a customer with this driver license id \n";
+                sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicenceDuplicate());
+                sb.append(System.lineSeparator());
             }
         }
 
+        errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields", "Please correct invalid fields", errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(), I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;

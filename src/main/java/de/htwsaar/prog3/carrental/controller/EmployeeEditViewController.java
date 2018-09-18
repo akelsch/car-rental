@@ -82,25 +82,30 @@ public class EmployeeEditViewController {
      * @return true if every data is valid, false if at least one data is not valid
      */
     private boolean isInputValid() {
-        String errorMessage = "";
+        StringBuilder sb = new StringBuilder();
+        String errorMessage;
 
         if (firstNameTextField.getText() == null
-                || firstNameTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getEmployeeNoValidFirstName() + "\n";
+                || firstNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getEmployeeNoValidFirstName());
+            sb.append(System.lineSeparator());
         }
 
         if (lastNameTextField.getText() == null
-                || lastNameTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getEmployeeNoValidLastName() + "\n";
+                || lastNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getEmployeeNoValidLastName());
+            sb.append(System.lineSeparator());
         }
 
         if (positionTextField.getText() == null
-                || positionTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getEmployeeNoValidPosition() + "\n";
+                || positionTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getEmployeeNoValidPosition());
+            sb.append(System.lineSeparator());
         }
 
+        errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields", "Please correct invalid fields", errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(), I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;
