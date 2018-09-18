@@ -14,7 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
 import java.net.URL;
 import java.util.Optional;
@@ -100,14 +99,8 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
         Car newCar = new Car();
         boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), newCar);
         if (applyClicked) {
-            try {
-                service.persist(newCar);
-                entities.setAll(service.findAll());
-            } catch (PersistenceException e) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't create this car", "There is already a car with this license number, parking lot or vin");
-                alert.showAndWait();
-            }
+            service.persist(newCar);
+            entities.setAll(service.findAll());
         }
     }
 
@@ -117,15 +110,8 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
         if (toEdit != null) {
             boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), toEdit);
             if (applyClicked) {
-                try {
-                    service.update(toEdit);
-                    entities.setAll(service.findAll());
-                } catch (RollbackException e) {
-                    Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                            "Can't update this car",
-                            "There is already a car with this license number, parking lot or vin");
-                    alert.showAndWait();
-                }
+                service.update(toEdit);
+                entities.setAll(service.findAll());
             }
         } else {
             // TODO show Warning

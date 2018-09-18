@@ -1,7 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.util.Optional;
 import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
@@ -9,6 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Edit Customer View" of the Carrental Application.
@@ -20,6 +24,7 @@ public class CustomerEditViewController {
     private Stage modalStage;
     private Customer customerToEdit;
     private boolean applyClicked = false;
+    private CustomerService service = new CustomerService();
 
     @FXML
     private TextField firstNameTextField;
@@ -56,7 +61,7 @@ public class CustomerEditViewController {
 
     /**
      * sets the modalStage in order to use it locally.
-     * 
+     *
      * @param modalStage given modalStage
      */
     public void setModalStage(Stage modalStage) {
@@ -65,7 +70,7 @@ public class CustomerEditViewController {
 
     /**
      * fills all the text fields with the given information from given customerToEdit.
-     * 
+     *
      * @param customerToEdit given customer to be edit
      */
     public void setCustomer(Customer customerToEdit) {
@@ -86,7 +91,7 @@ public class CustomerEditViewController {
 
     /**
      * Has applyButton been clicked?
-     * 
+     *
      * @return true, if applyButton has been clicked; false if not
      */
     public boolean isApplyClicked() {
@@ -136,6 +141,7 @@ public class CustomerEditViewController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
+        List<Customer> customers;
 
         if (firstNameTextField.getText() == null
                 || firstNameTextField.getText().trim().length() == 0) {
@@ -189,11 +195,38 @@ public class CustomerEditViewController {
         if (idNumberTextField.getText() == null
                 || idNumberTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getCustomerNoValidIdNumber() + "\n";
+        } else {
+            customers = service.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(customerToEdit.getId()))
+                    .collect(Collectors.toList());
+            if (!customers.isEmpty()) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't create or update this customer",
+                        "There is already a customer with this id number");
+                alert.showAndWait();
+
+                return false;
+            }
         }
 
         if (driverLicenseIdTextField.getText() == null
                 || driverLicenseIdTextField.getText().trim().length() == 0) {
             errorMessage += I18nComponentsUtil.getCustomerNoValidDriverLicence() + "\n";
+        } else {
+            customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
+                    "=", driverLicenseIdTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(customerToEdit.getId()))
+                    .collect(Collectors.toList());
+            if (!customers.isEmpty()) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't create or update this customer",
+                        "There is already a customer with this driver license id");
+                alert.showAndWait();
+
+                return false;
+            }
         }
 
         if (errorMessage.length() == 0) {

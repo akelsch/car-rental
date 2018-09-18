@@ -92,7 +92,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
             try {
                 service.delete(toDelete);
                 entities.setAll(service.findAll());
-            } catch (RollbackException e){
+            } catch (RollbackException e) {
                 Alert alert = DialogUtil.createErrorDialog("Invalid Action",
                         "Can't delete this employee", "You must first delete the rental");
                 alert.showAndWait();

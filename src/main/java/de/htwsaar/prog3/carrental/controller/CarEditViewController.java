@@ -1,7 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.util.Optional;
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
@@ -10,6 +10,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Edit Car View" of the Carrental Application.
@@ -21,6 +25,7 @@ public class CarEditViewController {
     private Stage modalStage;
     private Car carToEdit;
     private boolean applyClicked = false;
+    private CarService service = new CarService();
 
     @FXML
     private TextField brandTextField;
@@ -78,7 +83,7 @@ public class CarEditViewController {
 
     /**
      * sets the modalStage in order to use it locally.
-     * 
+     *
      * @param modalStage given modalStage
      */
     public void setModalStage(Stage modalStage) {
@@ -87,7 +92,7 @@ public class CarEditViewController {
 
     /**
      * fills all the text fields with the given information from given carToEdit.
-     * 
+     *
      * @param carToEdit given car to be edit
      */
     public void setCar(Car carToEdit) {
@@ -115,7 +120,7 @@ public class CarEditViewController {
 
     /**
      * Has applyButton been clicked?
-     * 
+     *
      * @return true, if applyButton has been clicked; false if not
      */
     public boolean isApplyClicked() {
@@ -172,6 +177,7 @@ public class CarEditViewController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
+        List<Car> cars;
 
         if (brandTextField.getText() == null || brandTextField.getText().length() == 0) {
             errorMessage += I18nComponentsUtil.getCarNoValidBrand() + "\n";
@@ -254,11 +260,37 @@ public class CarEditViewController {
 
         if (vinTextField.getText() == null || vinTextField.getText().length() == 0) {
             errorMessage += I18nComponentsUtil.getCarNoValidVin() + "\n";
+        } else {
+            cars = service.filter(I18nComponentsUtil.getCarVinLabel(), "=", vinTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(carToEdit.getId()))
+                    .collect(Collectors.toList());
+            if (!cars.isEmpty()) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't create or update this car",
+                        "There is already a car with this vin");
+                alert.showAndWait();
+
+                return false;
+            }
         }
 
         if (licenceNumberTextField.getText() == null
                 || licenceNumberTextField.getText().length() == 0) {
             errorMessage += I18nComponentsUtil.getCarNoValidLicenceNumber() + "\n";
+        } else {
+            cars = service.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(carToEdit.getId()))
+                    .collect(Collectors.toList());
+            if (!cars.isEmpty()) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't create or update this car",
+                        "There is already a car with this license number");
+                alert.showAndWait();
+
+                return false;
+            }
         }
 
         if (dailyRateTextField.getText() == null || dailyRateTextField.getText().length() == 0) {
@@ -274,6 +306,19 @@ public class CarEditViewController {
 
         if (parkingLotTextField.getText() == null || parkingLotTextField.getText().length() == 0) {
             errorMessage += I18nComponentsUtil.getCarNoValidParkingLot() + "\n";
+        } else {
+            cars = service.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(carToEdit.getId()))
+                    .collect(Collectors.toList());
+            if (!cars.isEmpty()) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't create or update this car",
+                        "There is already a car with this parking lot");
+                alert.showAndWait();
+
+                return false;
+            }
         }
 
         if (errorMessage.length() == 0) {
