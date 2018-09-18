@@ -113,6 +113,16 @@
 				<TableColumn fx:id="extraCosts" text="%rental-extra-costs-label" />
 				<TableColumn fx:id="note" text="%rental-note-label" />
 			</columns>
+			<contextMenu>
+                <ContextMenu fx:id="contextMenu">
+                    <items>
+                        <MenuItem text="%button-edit-label"
+                            onAction="#handleEditButtonClicked" />
+                        <MenuItem text="%button-delete-label"
+                            onAction="#handleDeleteButtonClicked" />
+                    </items>
+                </ContextMenu>
+            </contextMenu>
 		</TableView>
 	</center>
 	<bottom>

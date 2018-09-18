@@ -123,6 +123,18 @@
 				<TableColumn fx:id="idNumber" text="%customer-id-number-label" />
 				<TableColumn fx:id="driverLicenseId" text="%customer-driver-license-id-label" />
 			</columns>
+			<contextMenu>
+                <ContextMenu fx:id="contextMenu">
+                    <items>
+                        <MenuItem text="%button-new-label"
+                            onAction="#handleNewButtonClicked" />
+                        <MenuItem text="%button-edit-label"
+                            onAction="#handleEditButtonClicked" />
+                        <MenuItem text="%button-delete-label"
+                            onAction="#handleDeleteButtonClicked" />
+                    </items>
+                </ContextMenu>
+            </contextMenu>
 		</TableView>
 	</center>
 	<bottom>
