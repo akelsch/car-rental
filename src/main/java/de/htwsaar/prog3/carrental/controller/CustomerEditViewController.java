@@ -206,14 +206,13 @@ public class CustomerEditViewController {
             }
         }
 
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields",
-                    "Please correct invalid fields", errorMessage);
+        if (!errorMessage.isEmpty()) {
+            Alert alert = DialogUtil.createErrorDialog("Invalid Fields", "Please correct invalid fields", errorMessage);
             alert.showAndWait();
 
             return false;
         }
+
+        return true;
     }
 }
