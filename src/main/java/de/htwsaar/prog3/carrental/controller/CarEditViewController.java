@@ -164,7 +164,7 @@ public class CarEditViewController {
      */
     private boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
-        String errorMessage = "";
+        String errorMessage;
         List<Car> cars;
 
         if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
@@ -222,7 +222,7 @@ public class CarEditViewController {
             sb.append(System.lineSeparator());
         }
 
-        if (horsePowerTextField.getText() == null || horsePowerTextField.getText().length() == 0) {
+        if (horsePowerTextField.getText() == null || horsePowerTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
             sb.append(System.lineSeparator());
         } else {
