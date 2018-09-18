@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import lombok.Setter;
@@ -173,4 +175,16 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
             searchTextField.setBorder(null);
         }
     }
+    
+    /**
+	 * Handles the pressing of Buttons on the Keyboard within a TableView
+	 * 
+	 * @param event
+	 *            the Event that occured also containing the button that was pressed
+	 */
+	public void handleKeyboardControl(KeyEvent event) {
+		if (KeyCode.DELETE == event.getCode()) {
+			handleDeleteButtonClicked();
+		}
+	}
 }
