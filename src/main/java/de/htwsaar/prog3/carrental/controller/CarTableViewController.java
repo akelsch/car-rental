@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.persistence.RollbackException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -130,8 +131,14 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
                 .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
-            service.delete(toDelete);
-            entities.setAll(service.findAll());
+            try {
+                service.delete(toDelete);
+                entities.setAll(service.findAll());
+            } catch (RollbackException e) {
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
+                        "Can't delete this car", "You must first delete the rental");
+                alert.showAndWait();
+            }
         }
     }
 

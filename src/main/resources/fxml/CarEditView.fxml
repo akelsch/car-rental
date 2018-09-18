@@ -24,7 +24,7 @@
 		</BorderPane>
 	</top>
 	<center>
-		<GridPane alignment="center" hgap="10" vgap="10">
+		<GridPane alignment="center" hgap="10" vgap="10" onKeyPressed="#handleKeyEvent">
 			<Label text="%car-brand-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 			<TextField fx:id="brandTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 			<Label text="%car-model-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />

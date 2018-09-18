@@ -1,26 +1,22 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.util.Optional;
 import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Edit Customer View" of the Carrental Application.
  *
  * @author Jens Thewes
  */
-public class CustomerEditViewController {
-
-    private Stage modalStage;
-    private Customer customerToEdit;
-    private boolean applyClicked = false;
-
+public class CustomerEditViewController extends GenericEditViewController<Customer> {
     @FXML
     private TextField firstNameTextField;
 
@@ -54,156 +50,154 @@ public class CustomerEditViewController {
     @FXML
     private TextField driverLicenseIdTextField;
 
-    /**
-     * sets the modalStage in order to use it locally.
-     * 
-     * @param modalStage given modalStage
-     */
-    public void setModalStage(Stage modalStage) {
-        this.modalStage = modalStage;
+    public CustomerEditViewController() {
+        service = new CustomerService();
     }
 
-    /**
-     * fills all the text fields with the given information from given customerToEdit.
-     * 
-     * @param customerToEdit given customer to be edit
-     */
-    public void setCustomer(Customer customerToEdit) {
-        this.customerToEdit = customerToEdit;
+    @Override
+    public void initialize(Customer customer) {
+        entity = customer;
 
-        firstNameTextField.setText(customerToEdit.getFirstName());
-        lastNameTextField.setText(customerToEdit.getLastName());
-        emailAddressTextField.setText(customerToEdit.getEmailAddress());
-        phoneNumberTextField.setText(customerToEdit.getPhoneNumber());
-        dateOfBirthTextField.setText(customerToEdit.getDateOfBirth());
-        streetTextField.setText(customerToEdit.getStreet());
-        houseNumberTextField.setText(customerToEdit.getHouseNumber());
-        cityTextField.setText(customerToEdit.getCity());
-        zipCodeTextField.setText(Integer.toString(customerToEdit.getZipCode()));
-        idNumberTextField.setText(customerToEdit.getIdNumber());
-        driverLicenseIdTextField.setText(customerToEdit.getDriverLicenseId());
+        firstNameTextField.setText(entity.getFirstName());
+        lastNameTextField.setText(entity.getLastName());
+        emailAddressTextField.setText(entity.getEmailAddress());
+        phoneNumberTextField.setText(entity.getPhoneNumber());
+        dateOfBirthTextField.setText(entity.getDateOfBirth());
+        streetTextField.setText(entity.getStreet());
+        houseNumberTextField.setText(entity.getHouseNumber());
+        cityTextField.setText(entity.getCity());
+        zipCodeTextField.setText(Integer.toString(entity.getZipCode()));
+        idNumberTextField.setText(entity.getIdNumber());
+        driverLicenseIdTextField.setText(entity.getDriverLicenseId());
     }
 
-    /**
-     * Has applyButton been clicked?
-     * 
-     * @return true, if applyButton has been clicked; false if not
-     */
-    public boolean isApplyClicked() {
-        return applyClicked;
-    }
-
-    /**
-     * Handle Cancel Button clicked.
-     */
-    public void handleCancelButtonClicked() {
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
-
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            modalStage.close();
-        }
-    }
-
-    /**
-     * Handle Apply Button clicked.
-     */
+    @Override
     public void handleApplyButtonClicked() {
         // TODO only update data that has changed?
         if (isInputValid()) {
-            customerToEdit.setFirstName(firstNameTextField.getText());
-            customerToEdit.setLastName(lastNameTextField.getText());
-            customerToEdit.setEmailAddress(emailAddressTextField.getText());
-            customerToEdit.setPhoneNumber(phoneNumberTextField.getText());
-            customerToEdit.setDateOfBirth(dateOfBirthTextField.getText());
-            customerToEdit.setStreet(streetTextField.getText());
-            customerToEdit.setHouseNumber(houseNumberTextField.getText());
-            customerToEdit.setCity(cityTextField.getText());
-            customerToEdit.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
-            customerToEdit.setIdNumber(idNumberTextField.getText());
-            customerToEdit.setDriverLicenseId(driverLicenseIdTextField.getText());
+            entity.setFirstName(firstNameTextField.getText());
+            entity.setLastName(lastNameTextField.getText());
+            entity.setEmailAddress(emailAddressTextField.getText());
+            entity.setPhoneNumber(phoneNumberTextField.getText());
+            entity.setDateOfBirth(dateOfBirthTextField.getText());
+            entity.setStreet(streetTextField.getText());
+            entity.setHouseNumber(houseNumberTextField.getText());
+            entity.setCity(cityTextField.getText());
+            entity.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+            entity.setIdNumber(idNumberTextField.getText());
+            entity.setDriverLicenseId(driverLicenseIdTextField.getText());
 
             applyClicked = true;
             modalStage.close();
         }
     }
 
-    /**
-     * Valid Data Check.
-     *
-     * @return true if every data is valid, false if at least one data is not valid
-     */
-    private boolean isInputValid() {
-        String errorMessage = "";
+    @Override
+    boolean isInputValid() {
+        StringBuilder sb = new StringBuilder();
+        String errorMessage;
+
+        List<Customer> customers;
 
         if (firstNameTextField.getText() == null
-                || firstNameTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidFirstName() + "\n";
+                || firstNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidFirstName());
+            sb.append(System.lineSeparator());
         }
 
         if (lastNameTextField.getText() == null
-                || lastNameTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidLastName() + "\n";
+                || lastNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidLastName());
+            sb.append(System.lineSeparator());
         }
 
         if (emailAddressTextField.getText() == null
-                || emailAddressTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidEmailAdress() + "\n";
+                || emailAddressTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAdress());
+            sb.append(System.lineSeparator());
         }
 
         if (phoneNumberTextField.getText() == null
-                || phoneNumberTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidPhoneNumber() + "\n";
+                || phoneNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
+            sb.append(System.lineSeparator());
         }
 
         if (dateOfBirthTextField.getText() == null
-                || dateOfBirthTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidDateOfBirth() + "\n";
+                || dateOfBirthTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidDateOfBirth());
+            sb.append(System.lineSeparator());
         }
 
-        if (streetTextField.getText() == null || streetTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidStreetName() + "\n";
+        if (streetTextField.getText() == null || streetTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidStreetName());
+            sb.append(System.lineSeparator());
         }
 
         if (houseNumberTextField.getText() == null
-                || houseNumberTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidHouseNumber() + "\n";
+                || houseNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidHouseNumber());
+            sb.append(System.lineSeparator());
         }
 
-        if (cityTextField.getText() == null || cityTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidCityName() + "\n";
+        if (cityTextField.getText() == null || cityTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidCityName());
+            sb.append(System.lineSeparator());
         }
 
-        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidZipCode() + "\n";
+        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(zipCodeTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCustomerNoValidZipCode() + " "
-                        + I18nComponentsUtil.getCustomerNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCustomerNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (idNumberTextField.getText() == null
-                || idNumberTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidIdNumber() + "\n";
+                || idNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
+            sb.append(System.lineSeparator());
+        } else {
+            customers = service.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(entity.getId()))
+                    .collect(Collectors.toList());
+            if (!customers.isEmpty()) {
+                sb.append(I18nComponentsUtil.getCustomerNoValidIdNumberDuplicate());
+                sb.append(System.lineSeparator());
+            }
         }
 
         if (driverLicenseIdTextField.getText() == null
-                || driverLicenseIdTextField.getText().trim().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCustomerNoValidDriverLicence() + "\n";
+                || driverLicenseIdTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
+            sb.append(System.lineSeparator());
+        } else {
+            customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
+                    "=", driverLicenseIdTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(entity.getId()))
+                    .collect(Collectors.toList());
+            if (!customers.isEmpty()) {
+                sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicenceDuplicate());
+                sb.append(System.lineSeparator());
+            }
         }
 
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields",
-                    "Please correct invalid fields", errorMessage);
+        errorMessage = sb.toString();
+        if (!errorMessage.isEmpty()) {
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(), I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;
         }
+
+        return true;
     }
 }

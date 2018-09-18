@@ -54,16 +54,7 @@ public class CustomerEditView {
             // set the customer into the controller
             CustomerEditViewController controller = fxmlLoader.getController();
             controller.setModalStage(modalStage);
-            controller.setCustomer(customer);
-
-            // add handler to the modal Stage
-            modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-                if (KeyCode.ENTER == event.getCode()) {
-                    controller.handleApplyButtonClicked();
-                } else if (KeyCode.ESCAPE == event.getCode()) {
-                    controller.handleCancelButtonClicked();
-                }
-            });
+            controller.initialize(customer);
 
             // show the dialog and wait until the user closes it
             modalStage.showAndWait();

@@ -1,27 +1,23 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import java.util.Optional;
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Edit Car View" of the Carrental Application.
  *
  * @author Jens Thewes
  */
-public class CarEditViewController {
-
-    private Stage modalStage;
-    private Car carToEdit;
-    private boolean applyClicked = false;
-
+public class CarEditViewController extends GenericEditViewController<Car> {
     @FXML
     private TextField brandTextField;
 
@@ -76,214 +72,232 @@ public class CarEditViewController {
     @FXML
     private TextField parkingLotTextField;
 
-    /**
-     * sets the modalStage in order to use it locally.
-     * 
-     * @param modalStage given modalStage
-     */
-    public void setModalStage(Stage modalStage) {
-        this.modalStage = modalStage;
+    public CarEditViewController() {
+        service = new CarService();
     }
 
-    /**
-     * fills all the text fields with the given information from given carToEdit.
-     * 
-     * @param carToEdit given car to be edit
-     */
-    public void setCar(Car carToEdit) {
-        this.carToEdit = carToEdit;
+    @Override
+    public void initialize(Car car) {
+        entity = car;
 
-        brandTextField.setText(carToEdit.getBrand());
-        modelTextField.setText(carToEdit.getModel());
-        categoryTextField.setText(carToEdit.getCategory());
-        colorTextField.setText(carToEdit.getColor());
-        constructionYearTextField.setText(Integer.toString(carToEdit.getConstructionYear()));
-        drivenDistanceTextField.setText(Integer.toString(carToEdit.getDrivenDistance()));
-        gearBoxChoiceBox.setValue(carToEdit.getGearbox());
-        horsePowerTextField.setText(Integer.toString(carToEdit.getHorsepower()));
-        fuelChoiceBox.setValue(carToEdit.getFuel());
-        doorCountTextField.setText(Integer.toString(carToEdit.getDoorCount()));
-        tiresTextField.setText(carToEdit.getTires());
-        nextInspectionTextField.setText(carToEdit.getNextInspection());
-        vinTextField.setText(carToEdit.getVin());
-        equipmentTextField.setText(carToEdit.getEquipment());
-        defectsTextField.setText(carToEdit.getDefects());
-        licenceNumberTextField.setText(carToEdit.getLicenseNumber());
-        dailyRateTextField.setText(Integer.toString(carToEdit.getDailyRate()));
-        parkingLotTextField.setText(carToEdit.getParkingLot());
+        brandTextField.setText(entity.getBrand());
+        modelTextField.setText(entity.getModel());
+        categoryTextField.setText(entity.getCategory());
+        colorTextField.setText(entity.getColor());
+        constructionYearTextField.setText(Integer.toString(entity.getConstructionYear()));
+        drivenDistanceTextField.setText(Integer.toString(entity.getDrivenDistance()));
+        gearBoxChoiceBox.setValue(entity.getGearbox());
+        horsePowerTextField.setText(Integer.toString(entity.getHorsepower()));
+        fuelChoiceBox.setValue(entity.getFuel());
+        doorCountTextField.setText(Integer.toString(entity.getDoorCount()));
+        tiresTextField.setText(entity.getTires());
+        nextInspectionTextField.setText(entity.getNextInspection());
+        vinTextField.setText(entity.getVin());
+        equipmentTextField.setText(entity.getEquipment());
+        defectsTextField.setText(entity.getDefects());
+        licenceNumberTextField.setText(entity.getLicenseNumber());
+        dailyRateTextField.setText(Integer.toString(entity.getDailyRate()));
+        parkingLotTextField.setText(entity.getParkingLot());
     }
 
-    /**
-     * Has applyButton been clicked?
-     * 
-     * @return true, if applyButton has been clicked; false if not
-     */
-    public boolean isApplyClicked() {
-        return applyClicked;
-    }
-
-    /**
-     * Handle clicking the Cancel Button.
-     */
-    public void handleCancelButtonClicked() {
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
-
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            modalStage.close();
-        }
-    }
-
-    /**
-     * Handle clicking the Apply Button.
-     */
+    @Override
     public void handleApplyButtonClicked() {
         // TODO only update data that has changed?
         if (isInputValid()) {
-            carToEdit.setBrand(brandTextField.getText());
-            carToEdit.setModel(modelTextField.getText());
-            carToEdit.setCategory(categoryTextField.getText());
-            carToEdit.setColor(colorTextField.getText());
-            carToEdit.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
-            carToEdit.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
-            carToEdit.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
-            carToEdit.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
-            carToEdit.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
-            carToEdit.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
-            carToEdit.setTires(tiresTextField.getText());
-            carToEdit.setNextInspection(nextInspectionTextField.getText());
-            carToEdit.setVin(vinTextField.getText());
-            carToEdit.setEquipment(equipmentTextField.getText());
-            carToEdit.setDefects(defectsTextField.getText());
-            carToEdit.setLicenseNumber(licenceNumberTextField.getText());
-            carToEdit.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
-            carToEdit.setParkingLot(parkingLotTextField.getText());
+            entity.setBrand(brandTextField.getText());
+            entity.setModel(modelTextField.getText());
+            entity.setCategory(categoryTextField.getText());
+            entity.setColor(colorTextField.getText());
+            entity.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
+            entity.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
+            entity.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
+            entity.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
+            entity.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
+            entity.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
+            entity.setTires(tiresTextField.getText());
+            entity.setNextInspection(nextInspectionTextField.getText());
+            entity.setVin(vinTextField.getText());
+            entity.setEquipment(equipmentTextField.getText());
+            entity.setDefects(defectsTextField.getText());
+            entity.setLicenseNumber(licenceNumberTextField.getText());
+            entity.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
+            entity.setParkingLot(parkingLotTextField.getText());
 
             applyClicked = true;
             modalStage.close();
         }
     }
 
-    /**
-     * Valid Data Check.
-     *
-     * @return true if every data is valid, false if at least one data is not valid
-     */
-    private boolean isInputValid() {
-        String errorMessage = "";
+    @Override
+    boolean isInputValid() {
+        StringBuilder sb = new StringBuilder();
+        String errorMessage;
+        List<Car> cars;
 
-        if (brandTextField.getText() == null || brandTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidBrand() + "\n";
+        if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidBrand());
+            sb.append(System.lineSeparator());
         }
 
-        if (modelTextField.getText() == null || modelTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidModel() + "\n";
+        if (modelTextField.getText() == null || modelTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidModel());
+            sb.append(System.lineSeparator());
         }
 
-        if (categoryTextField.getText() == null || categoryTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidCategory() + "\n";
+        if (categoryTextField.getText() == null || categoryTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidCategory());
+            sb.append(System.lineSeparator());
         }
 
-        if (colorTextField.getText() == null || colorTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidColor() + "\n";
+        if (colorTextField.getText() == null || colorTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidColor());
+            sb.append(System.lineSeparator());
         }
 
         if (constructionYearTextField.getText() == null
-                || constructionYearTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidConstructionYear() + "\n";
+                || constructionYearTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidConstructionYear() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (drivenDistanceTextField.getText() == null
-                || drivenDistanceTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidDrivenDistance() + "\n";
+                || drivenDistanceTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidDrivenDistance() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (gearBoxChoiceBox.getSelectionModel().isEmpty()) {
-            errorMessage += I18nComponentsUtil.getCarNoValidGearbox() + "\n";
+            sb.append(I18nComponentsUtil.getCarNoValidGearbox());
+            sb.append(System.lineSeparator());
         }
 
-        if (horsePowerTextField.getText() == null || horsePowerTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidHorsepower() + "\n";
+        if (horsePowerTextField.getText() == null || horsePowerTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(horsePowerTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidHorsepower() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
         if (fuelChoiceBox.getSelectionModel().isEmpty()) {
-            errorMessage += I18nComponentsUtil.getCarNoValidFuel() + "\n";
+            sb.append(I18nComponentsUtil.getCarNoValidFuel());
+            sb.append(System.lineSeparator());
         }
 
-        if (doorCountTextField.getText() == null || doorCountTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidDoorCount() + "\n";
+        if (doorCountTextField.getText() == null || doorCountTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidDoorCount());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(doorCountTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidDoorCount() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidDoorCount());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
-        if (tiresTextField.getText() == null || tiresTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidTires() + "\n";
+        if (tiresTextField.getText() == null || tiresTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidTires());
+            sb.append(System.lineSeparator());
         }
 
         if (nextInspectionTextField.getText() == null
-                || nextInspectionTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidNextInspection() + "\n";
+                || nextInspectionTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidNextInspection());
+            sb.append(System.lineSeparator());
         }
 
-        if (vinTextField.getText() == null || vinTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidVin() + "\n";
+        if (vinTextField.getText() == null || vinTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidVin());
+            sb.append(System.lineSeparator());
+        } else {
+            cars = service.filter(I18nComponentsUtil.getCarVinLabel(), "=", vinTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(entity.getId()))
+                    .collect(Collectors.toList());
+            if (!cars.isEmpty()) {
+                sb.append(I18nComponentsUtil.getCarNoValidVinDuplicate());
+                sb.append(System.lineSeparator());
+            }
         }
 
         if (licenceNumberTextField.getText() == null
-                || licenceNumberTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidLicenceNumber() + "\n";
+                || licenceNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidLicenceNumber());
+            sb.append(System.lineSeparator());
+        } else {
+            cars = service.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(entity.getId()))
+                    .collect(Collectors.toList());
+            if (!cars.isEmpty()) {
+                sb.append(I18nComponentsUtil.getCarNoValidLicenceNumberDuplicate());
+                sb.append(System.lineSeparator());
+            }
         }
 
-        if (dailyRateTextField.getText() == null || dailyRateTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidDailyRate() + "\n";
+        if (dailyRateTextField.getText() == null || dailyRateTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidDailyRate());
+            sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(dailyRateTextField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += I18nComponentsUtil.getCarNoValidDailyRate() + " "
-                        + I18nComponentsUtil.getCarNoValidInteger() + "\n";
+                sb.append(I18nComponentsUtil.getCarNoValidDailyRate());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(System.lineSeparator());
             }
         }
 
-        if (parkingLotTextField.getText() == null || parkingLotTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getCarNoValidParkingLot() + "\n";
+        if (parkingLotTextField.getText() == null || parkingLotTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCarNoValidParkingLot());
+            sb.append(System.lineSeparator());
+        } else {
+            cars = service.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(entity.getId()))
+                    .collect(Collectors.toList());
+            if (!cars.isEmpty()) {
+                sb.append(I18nComponentsUtil.getCarNoValidParkingLotDuplicate());
+                sb.append(System.lineSeparator());
+            }
         }
 
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
-            Alert alert = DialogUtil.createErrorDialog("Invalid Fields",
-                    "Please correct invalid fields", errorMessage);
+        errorMessage = sb.toString();
+        if (!errorMessage.isEmpty()) {
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(), I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;
         }
+
+        return true;
     }
 }
