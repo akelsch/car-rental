@@ -18,7 +18,6 @@ public final class I18nComponentsUtil {
     private static final String DIALOG_INFORMATION_TITLE = "dialog-information-title";
     private static final String DIALOG_CONFIRMATION_TITLE = "dialog-confirmation-title";
     private static final String DIALOG_CANCEL_CONFIRMATION_TEXT = "dialog-cancel-confirmation-text";
-    private static final String DIALOG_APPLY_CONFIRMATION_TEXT = "dialog-apply-confirmation-text";
     private static final String DIALOG_DELETE_CONFIRMATION_TEXT = "dialog-delete-confirmation-text";
     private static final String DIALOG_DELETE_NO_SELECTION_TEXT = "dialog-delete-no-selection-text";
     private static final String DIALOG_ABOUT_TEXT = "dialog-about-text";
@@ -65,8 +64,7 @@ public final class I18nComponentsUtil {
     private static final String CUSTOMER_ID_LABEL = "customer-id-label";
     private static final String CUSTOMER_CITY_LABEL = "customer-city-label";
     private static final String CUSTOMER_DATE_OF_BIRTH_LABEL = "customer-date-of-birth-label";
-    private static final String CUSTOMER_DRIVER_LICENSE_ID_LABEL =
-            "customer-driver-license-id-label";
+    private static final String CUSTOMER_DRIVER_LICENSE_ID_LABEL = "customer-driver-license-id-label";
     private static final String CUSTOMER_EMAIL_LABEL = "customer-email-label";
     private static final String CUSTOMER_FIRST_NAME_LABEL = "customer-first-name-label";
     private static final String CUSTOMER_HOUSE_NUMBER_LABEL = "customer-house-number-label";
@@ -87,8 +85,7 @@ public final class I18nComponentsUtil {
     private static final String CUSTOMER_NO_VALID_ZIP_CODE = "customer-no-valid-zip-code";
     private static final String CUSTOMER_NO_VALID_ID_NUMBER = "customer-no-valid-id-number";
     private static final String CUSTOMER_NO_VALID_ID_NUMBER_DUPLICATE = "customer-no-valid-id-number-duplicate";
-    private static final String CUSTOMER_NO_VALID_DRIVER_LICENCE =
-            "customer-no-valid-driver-license";
+    private static final String CUSTOMER_NO_VALID_DRIVER_LICENCE = "customer-no-valid-driver-license";
     private static final String CUSTOMER_NO_VALID_DRIVER_LICENCE_DUPLICATE = "customer-no-valid-driver-license-duplicate";
     private static final String EMPLOYEE_ID_LABEL = "employee-id-label";
     private static final String EMPLOYEE_FIRST_NAME_LABEL = "employee-first-name-label";
@@ -125,10 +122,6 @@ public final class I18nComponentsUtil {
 
     public static String getDialogCancelConfirmationText() {
         return resourceBundle.getString(DIALOG_CANCEL_CONFIRMATION_TEXT);
-    }
-
-    public static String getDialogApplyConfirmationText() {
-        return resourceBundle.getString(DIALOG_APPLY_CONFIRMATION_TEXT);
     }
 
     public static String getDialogDeleteConfirmationText() {
