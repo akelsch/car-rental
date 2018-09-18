@@ -6,6 +6,8 @@ import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +32,21 @@ public abstract class GenericEditViewController<T extends BaseEntity> {
 
     @Getter
     boolean applyClicked = false;
+
+    /**
+     * Handles key presses within a EditView.
+     *
+     * @param event the event that occurred also containing the button that was pressed
+     */
+    public void handleKeyEvent(KeyEvent event) {
+        KeyCode key = event.getCode();
+
+        if (key == KeyCode.ESCAPE) {
+            handleCancelButtonClicked();
+        } else if (key == KeyCode.ENTER) {
+            handleApplyButtonClicked();
+        }
+    }
 
     /**
      * Handle pressing the "Cancel" button.

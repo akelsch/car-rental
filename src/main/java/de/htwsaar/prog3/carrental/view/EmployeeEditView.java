@@ -56,15 +56,6 @@ public class EmployeeEditView {
             controller.setModalStage(modalStage);
             controller.initialize(employee);
 
-            // add handler to the modal stage
-            modalStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-                if (KeyCode.ENTER == event.getCode()) {
-                    controller.handleApplyButtonClicked();
-                } else if (KeyCode.ESCAPE == event.getCode()) {
-                    controller.handleCancelButtonClicked();
-                }
-            });
-
             // show the dialog and wait until the user closes it
             modalStage.showAndWait();
 

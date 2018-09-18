@@ -23,7 +23,7 @@
 		</BorderPane>
 	</top>
 	<center>
-		<GridPane alignment="center" hgap="10" vgap="10">
+		<GridPane alignment="center" hgap="10" vgap="10" onKeyPressed="#handleKeyEvent">
 			<Label text="%customer-first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 			<TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 			<Label text="%customer-last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
