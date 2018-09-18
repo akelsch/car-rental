@@ -266,12 +266,7 @@ public class CarEditViewController {
                     .filter(c -> !c.getId().equals(carToEdit.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't create or update this car",
-                        "There is already a car with this vin");
-                alert.showAndWait();
-
-                return false;
+                errorMessage += "There is already a car with this vin \n";
             }
         }
 
@@ -284,12 +279,7 @@ public class CarEditViewController {
                     .filter(c -> !c.getId().equals(carToEdit.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't create or update this car",
-                        "There is already a car with this license number");
-                alert.showAndWait();
-
-                return false;
+                errorMessage += "There is already a car with this license number \n";
             }
         }
 
@@ -312,12 +302,7 @@ public class CarEditViewController {
                     .filter(c -> !c.getId().equals(carToEdit.getId()))
                     .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't create or update this car",
-                        "There is already a car with this parking lot");
-                alert.showAndWait();
-
-                return false;
+                errorMessage += "There is already a car with this parking lot \n";
             }
         }
 

@@ -201,12 +201,7 @@ public class CustomerEditViewController {
                     .filter(c -> !c.getId().equals(customerToEdit.getId()))
                     .collect(Collectors.toList());
             if (!customers.isEmpty()) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't create or update this customer",
-                        "There is already a customer with this id number");
-                alert.showAndWait();
-
-                return false;
+                errorMessage += "There is already a customer with this id number \n";
             }
         }
 
@@ -220,12 +215,7 @@ public class CustomerEditViewController {
                     .filter(c -> !c.getId().equals(customerToEdit.getId()))
                     .collect(Collectors.toList());
             if (!customers.isEmpty()) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't create or update this customer",
-                        "There is already a customer with this driver license id");
-                alert.showAndWait();
-
-                return false;
+                errorMessage += "There is already a customer with this driver license id \n";
             }
         }
 
