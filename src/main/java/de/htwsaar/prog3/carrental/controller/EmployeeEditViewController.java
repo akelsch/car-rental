@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * This is the Controller for the "Edit Employee View" of the Carrental Application.
@@ -16,10 +18,13 @@ import javafx.stage.Stage;
  * @author Jens Thewes
  */
 public class EmployeeEditViewController {
-
+    @Setter
     private Stage modalStage;
-    private Employee employeeToEdit;
+
+    @Getter
     private boolean applyClicked = false;
+
+    private Employee employeeToEdit;
 
     @FXML
     private TextField firstNameTextField;
@@ -29,15 +34,6 @@ public class EmployeeEditViewController {
 
     @FXML
     private TextField positionTextField;
-
-    /**
-     * sets the modalStage in order to use it locally.
-     * 
-     * @param modalStage given modalStage
-     */
-    public void setModalStage(Stage modalStage) {
-        this.modalStage = modalStage;
-    }
 
     /**
      * fills all the text fields with the given information from given employeeToEdit.
@@ -50,15 +46,6 @@ public class EmployeeEditViewController {
         firstNameTextField.setText(employeeToEdit.getFirstName());
         lastNameTextField.setText(employeeToEdit.getLastName());
         positionTextField.setText(employeeToEdit.getPosition());
-    }
-
-    /**
-     * Has applyButton been clicked?
-     * 
-     * @return true, if applyButton has been clicked; false if not
-     */
-    public boolean isApplyClicked() {
-        return applyClicked;
     }
 
     /**

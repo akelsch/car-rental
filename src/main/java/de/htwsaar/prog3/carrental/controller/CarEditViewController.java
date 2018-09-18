@@ -10,6 +10,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +23,13 @@ import java.util.stream.Collectors;
  * @author Jens Thewes
  */
 public class CarEditViewController {
-
+    @Setter
     private Stage modalStage;
-    private Car carToEdit;
+
+    @Getter
     private boolean applyClicked = false;
+
+    private Car carToEdit;
     private CarService service = new CarService();
 
     @FXML
@@ -82,15 +87,6 @@ public class CarEditViewController {
     private TextField parkingLotTextField;
 
     /**
-     * sets the modalStage in order to use it locally.
-     *
-     * @param modalStage given modalStage
-     */
-    public void setModalStage(Stage modalStage) {
-        this.modalStage = modalStage;
-    }
-
-    /**
      * fills all the text fields with the given information from given carToEdit.
      *
      * @param carToEdit given car to be edit
@@ -116,15 +112,6 @@ public class CarEditViewController {
         licenceNumberTextField.setText(carToEdit.getLicenseNumber());
         dailyRateTextField.setText(Integer.toString(carToEdit.getDailyRate()));
         parkingLotTextField.setText(carToEdit.getParkingLot());
-    }
-
-    /**
-     * Has applyButton been clicked?
-     *
-     * @return true, if applyButton has been clicked; false if not
-     */
-    public boolean isApplyClicked() {
-        return applyClicked;
     }
 
     /**

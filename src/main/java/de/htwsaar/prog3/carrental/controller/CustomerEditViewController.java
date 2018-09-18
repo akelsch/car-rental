@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,10 +22,13 @@ import java.util.stream.Collectors;
  * @author Jens Thewes
  */
 public class CustomerEditViewController {
-
+    @Setter
     private Stage modalStage;
-    private Customer customerToEdit;
+
+    @Getter
     private boolean applyClicked = false;
+
+    private Customer customerToEdit;
     private CustomerService service = new CustomerService();
 
     @FXML
@@ -60,15 +65,6 @@ public class CustomerEditViewController {
     private TextField driverLicenseIdTextField;
 
     /**
-     * sets the modalStage in order to use it locally.
-     *
-     * @param modalStage given modalStage
-     */
-    public void setModalStage(Stage modalStage) {
-        this.modalStage = modalStage;
-    }
-
-    /**
      * fills all the text fields with the given information from given customerToEdit.
      *
      * @param customerToEdit given customer to be edit
@@ -87,15 +83,6 @@ public class CustomerEditViewController {
         zipCodeTextField.setText(Integer.toString(customerToEdit.getZipCode()));
         idNumberTextField.setText(customerToEdit.getIdNumber());
         driverLicenseIdTextField.setText(customerToEdit.getDriverLicenseId());
-    }
-
-    /**
-     * Has applyButton been clicked?
-     *
-     * @return true, if applyButton has been clicked; false if not
-     */
-    public boolean isApplyClicked() {
-        return applyClicked;
     }
 
     /**
