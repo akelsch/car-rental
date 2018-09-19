@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * Entry Point of the "Rental Edit" Dialog.
  *
- * @author Michael Bös
+ * @author Michael Bös, Hagen Schackmann
  */
 public class RentalEditView {
     private static final Logger logger = LoggerFactory.getLogger(RentalEditView.class);

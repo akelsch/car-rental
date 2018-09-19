@@ -18,8 +18,8 @@
     <Pane layoutY="47.0" prefHeight="152.0" prefWidth="600.0">
         <Label fx:id="DurationLabel" alignment="TOP_LEFT" layoutX="30.0" layoutY="103.0" prefHeight="17.0" prefWidth="51.0" text="Duration:" />
         <Label fx:id="CostsLabel" layoutX="300.0" layoutY="103.0" prefHeight="17.0" prefWidth="34.0" text="Costs:" />
-        <DatePicker fx:id="BeginRentDatePicker" layoutX="30.0" layoutY="25.0" prefHeight="25.0" prefWidth="149.0" />
-        <DatePicker fx:id="EndRentDatePicker" layoutX="30.0" layoutY="65.0" prefHeight="25.0" prefWidth="149.0" />
+        <DatePicker fx:id="beginDatePicker" layoutX="30.0" layoutY="25.0" prefHeight="25.0" prefWidth="149.0" />
+        <DatePicker fx:id="endDatePicker" layoutX="30.0" layoutY="65.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="30.0" layoutY="10.0" text="Begin renting on" />
         <Label layoutX="30.0" layoutY="50.0" text="End renting on" />
         <Button fx:id="ConfirmDatesButton" layoutX="522.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleConfirmDatesButtonClicked" text="Confirm" />

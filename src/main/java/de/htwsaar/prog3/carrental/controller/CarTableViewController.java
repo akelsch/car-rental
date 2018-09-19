@@ -66,9 +66,11 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     private TableColumn<Car, String> tires;
     @FXML
     private TableColumn<Car, String> vin;
+    private RentalService service2;
 
     public CarTableViewController() {
         service = new CarService();
+        service2 = new RentalService();
         entities = FXCollections.observableArrayList(service.findAll());
     }
 
@@ -142,13 +144,15 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
      * Handle pressing the "Rent..." button.
      */
     public void handleRentButtonClicked() {
-        // TODO: Implement with Michael
 
-        Rental newRental = new Rental();
-        boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), newRental);
-        if (applyClicked) {
-           // service.persist(newRental);
-           // entities.setAll(service.findAll());
+        Rental toRent = new Rental();
+        toRent.setCar(carTableView.getSelectionModel().getSelectedItem());
+        if (toRent != null) {
+            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), toRent);
+            if (applyClicked) {
+                service2.persist(toRent);
+                entities.setAll(service.findAll());
+            }
         }
     }
 }
