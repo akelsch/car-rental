@@ -3,6 +3,7 @@ package de.htwsaar.prog3.carrental.dao;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 /**
@@ -12,8 +13,10 @@ import java.util.List;
  * @author Arthur Kelsch, Julian Quint
  */
 public class GenericDaoImpl<T> implements GenericDao<T> {
-    private EntityManager em;
     private final Class<T> entityClass;
+
+    private EntityManagerFactory emf;
+    private EntityManager em;
 
     /**
      * Constructs a GenericDaoImpl object.
@@ -27,6 +30,7 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
      */
     public GenericDaoImpl(Class<T> entityClass) {
         this.entityClass = entityClass;
+        emf = EntityManagerUtil.createEntityManagerFactory();
     }
 
     @Override
@@ -75,7 +79,7 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Override
     public void createEntityManager() {
-        em = EntityManagerUtil.getEntityManager();
+        em = emf.createEntityManager();
     }
 
     @Override
