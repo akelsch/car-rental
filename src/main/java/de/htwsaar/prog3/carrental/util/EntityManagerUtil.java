@@ -1,6 +1,5 @@
 package de.htwsaar.prog3.carrental.util;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -18,17 +17,15 @@ public final class EntityManagerUtil {
 
     private static EntityManagerFactory emf;
 
-    static {
-        createEntityManagerFactory();
-    }
-
     /**
      * Initializes the {@link EntityManagerFactory} field {@link #emf} if it is null or currently closed.
      */
-    private static void createEntityManagerFactory() {
+    public static EntityManagerFactory createEntityManagerFactory() {
         if (emf == null || !emf.isOpen()) {
             emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         }
+
+        return emf;
     }
 
     /**
@@ -38,18 +35,5 @@ public final class EntityManagerUtil {
         if (emf != null && emf.isOpen()) {
             emf.close();
         }
-    }
-
-    /**
-     * Provides {@link EntityManager} objects for the DAO layer.
-     *
-     * @return an entity manager object
-     */
-    public static EntityManager getEntityManager() {
-        // Make sure the entity manager factory exists!
-        // -> avoiding NullPointerException after closing the entity manager factory
-        createEntityManagerFactory();
-
-        return emf.createEntityManager();
     }
 }
