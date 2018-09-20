@@ -99,18 +99,6 @@ public final class I18nComponentsUtil {
     private static final String RENTAL_EXTRA_COSTS_LABEL = "rental-extra-costs-label";
     private static final String RENTAL_NOTE_LABEL = "rental-note-label";
     private static final String SEARCH_COMBOBOX_LIKE = "search-combobox-like";
-    private static final String RENTAL_NO_VALID_LAST_NAME = "rental-no-valid-last-name";
-    private static final String RENTAL_NO_VALID_FIRST_NAME = "rental-no-valid-first-name";
-    private static final String RENTAL_NO_VALID_DRIVER_LICENSE_ID = "rental-no-valid-driver-license-id";
-    private static final String RENTAL_NO_VALID_EMAIL_ADDRESS = "rental-no-valid-email-address";
-    private static final String RENTAL_NO_VALID_CITY_NAME = "rental-no-valid-city-name";
-    private static final String RENTAL_NO_VALID_STREET_NAME = "rental-no-valid-street-name";
-    private static final String RENTAL_NO_VALID_HOUSE_NUMBER = "rental-no-valid-house-number";
-    private static final String RENTAL_NO_VALID_ZIP_CODE = "rental-no-valid-zip-code";
-    private static final String RENTAL_NO_VALID_ID_NUMBER = "rental-no-valid-id-number";
-    private static final String RENTAL_NO_VALID_DATE_OF_BIRTH = "rental-no-valid-date-of-birth";
-    private static final String RENTAL_NO_VALID_PHONE_NUMBER ="rental-no-valid-phone-number";
-
 
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleComponents();
@@ -447,17 +435,4 @@ public final class I18nComponentsUtil {
     public static String getEmployeeNoValidPosition() {
         return resourceBundle.getString(EMPLOYEE_NO_VALID_POSITION);
     }
-
-
-    public static String getRentalNoValidDriverLicenseId() { return resourceBundle.getString(RENTAL_NO_VALID_DRIVER_LICENSE_ID); }
-    public static String getRentalNoValidFirstName() { return resourceBundle.getString(RENTAL_NO_VALID_FIRST_NAME); }
-    public static String getRentalNoValidLastName() { return resourceBundle.getString(RENTAL_NO_VALID_LAST_NAME); }
-    public static String getRentalNoValidEmailAddress() { return resourceBundle.getString(RENTAL_NO_VALID_EMAIL_ADDRESS); }
-    public static String getRentalNoValidStreetName() { return resourceBundle.getString(RENTAL_NO_VALID_STREET_NAME); }
-    public static String getRentalNoValidHouseNumber() { return resourceBundle.getString(RENTAL_NO_VALID_HOUSE_NUMBER); }
-    public static String getRentalNoValidZipCode() { return resourceBundle.getString(RENTAL_NO_VALID_ZIP_CODE); }
-    public static String getRentalNoValidCityName() { return resourceBundle.getString(RENTAL_NO_VALID_CITY_NAME); }
-    public static String getRentalNoValidIdNumber() { return resourceBundle.getString(RENTAL_NO_VALID_ID_NUMBER); }
-    public static String getRentalNoValidDateOfBirth() { return resourceBundle.getString(RENTAL_NO_VALID_DATE_OF_BIRTH); }
-    public static String getRentalNoValidPhoneNumber() { return resourceBundle.getString(RENTAL_NO_VALID_PHONE_NUMBER); }
 }

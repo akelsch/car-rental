@@ -2,13 +2,13 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.CustomerService;
-import de.htwsaar.prog3.carrental.service.GenericService;
+import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -18,6 +18,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,14 +28,10 @@ import java.util.Optional;
  */
 
 public class RentalEditViewController {
-
-    private GenericService<Customer> customerservice;
-
-    private ObservableList<Customer> entities;
-
-    private Customer customer;
-
     private Rental rental;
+
+    private CustomerService customerService;
+    private EmployeeService employeeService;
 
     @Setter
     private Stage modalStage;
@@ -46,19 +43,21 @@ public class RentalEditViewController {
     private Label carLabel;
 
     @FXML
-    private ChoiceBox employeeChoiceBox;
+    private ChoiceBox<Employee> employeeChoiceBox;
 
     @FXML
     private Label durationLabel;
+    // TODO set durationLabel after making date selection
 
     @FXML
-    private Label dailyPriceLabel;
+    private Label dailyRateLabel;
 
     @FXML
-    private TextField dailyPriceTextField;
+    private TextField extraCostsTextField;
 
     @FXML
     private Label sumLabel;
+    // TODO calculate sumLabel
 
     @FXML
     private DatePicker beginDatePicker;
@@ -102,31 +101,48 @@ public class RentalEditViewController {
     @FXML
     private TextArea noteTextArea;
 
+    public RentalEditViewController() {
+        customerService = new CustomerService();
+        employeeService = new EmployeeService();
+    }
 
     public void initialize(Rental rental) {
         this.rental = rental;
 
-        beginDatePicker.setValue(getDatePickerConverter().fromString(rental.getBegin()));
-        endDatePicker.setValue(getDatePickerConverter().fromString(rental.getEnd()));
-        noteTextArea.setText(rental.getNote());
-        driverLicenseIdTextField.requestFocus();
-
-        Car car = rental.getCar();
+        Car car = this.rental.getCar();
         if (car != null) {
             carLabel.setText(car.toString());
+            dailyRateLabel.setText(Integer.toString(car.getDailyRate()));
         }
 
-        customer = rental.getCustomer();
-        fillCustomerFields();
+        employeeChoiceBox.setItems(FXCollections.observableArrayList(employeeService.findAll()));
+        Employee employee = this.rental.getEmployee();
+        if (employee != null) {
+            employeeChoiceBox.setValue(employee);
+        }
+
+        fillCustomerTextFields();
+
+        beginDatePicker.setValue(getDatePickerConverter().fromString(this.rental.getBegin()));
+        endDatePicker.setValue(getDatePickerConverter().fromString(this.rental.getEnd()));
+        noteTextArea.setText(this.rental.getNote());
+
+        driverLicenseIdTextField.requestFocus();
     }
 
     public void handleConfirmButtonClicked() {
+        // TODO implement
     }
 
     public void handleSearchButtonClicked() {
+        String driverLicenseId = driverLicenseIdTextField.getText();
 
-        customer = findByDriverID(driverLicenseIdTextField.getText());
-        fillCustomerFields();
+        if (driverLicenseId != null && !driverLicenseId.trim().isEmpty()) {
+            Customer customer = findCustomerByDriverLicenseId(driverLicenseId);
+            rental.setCustomer(customer);
+
+            fillCustomerTextFields();
+        }
     }
 
     public void handleCancelButtonClicked() {
@@ -140,15 +156,36 @@ public class RentalEditViewController {
     }
 
     public void handleApplyButtonClicked() {
-      rental.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
-      rental.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
-     // rental.setEmployee();
-      rental.setCustomer(findByDriverID(driverLicenseIdTextField.getText()));
-      rental.setExtraCosts(Integer.parseInt(dailyPriceTextField.getText()));
-      rental.setNote(noteTextArea.getText());
+        if (isInputValid()) {
+            rental.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
+            // TODO Case where a new customer is created
+            rental.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
+            rental.setEmployee(employeeChoiceBox.getValue());
+            rental.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
+            rental.setExtraCosts(Integer.parseInt(extraCostsTextField.getText()));
+            rental.setNote(noteTextArea.getText());
 
-      applyClicked = true;
-      modalStage.close();
+            applyClicked = true;
+            modalStage.close();
+        }
+    }
+
+    private void fillCustomerTextFields() {
+        Customer customer = this.rental.getCustomer();
+
+        if (customer != null) {
+            driverLicenseIdTextField.setText(customer.getDriverLicenseId());
+            firstNameTextField.setText(customer.getFirstName());
+            lastNameTextField.setText(customer.getLastName());
+            idNumberTextField.setText(customer.getIdNumber());
+            dateOfBirthTextField.setText(customer.getDateOfBirth());
+            zipCodeTextField.setText(Integer.toString(customer.getZipCode()));
+            cityTextField.setText(customer.getCity());
+            streetTextField.setText(customer.getStreet());
+            houseNumberTextField.setText(customer.getHouseNumber());
+            emailTextField.setText(customer.getEmailAddress());
+            phoneNumberTextField.setText(customer.getPhoneNumber());
+        }
     }
 
     private StringConverter<LocalDate> getDatePickerConverter() {
@@ -175,98 +212,89 @@ public class RentalEditViewController {
                 }
             }
         };
+
         beginDatePicker.setConverter(converter);
         beginDatePicker.setPromptText(pattern);
+
         endDatePicker.setConverter(converter);
         endDatePicker.setPromptText(pattern);
+
         return converter;
     }
 
+    private Customer findCustomerByDriverLicenseId(String driverLicenseId) {
+        List<Customer> customers = customerService.filter("driverLicenseId", "=", driverLicenseId);
 
-    private Customer findByDriverID(String driverID) {
-        customerservice = new CustomerService();
-        entities = FXCollections.observableArrayList(customerservice.findAll());
-        Customer correctCustomer;
-        int i;
-
-        for(i = 0; i < entities.size(); i++) {
-            if ((entities.get(i).getDriverLicenseId()).contentEquals(driverID)) {
-                correctCustomer = entities.get(i);
-                System.out.println("FoundFoundFound: " + entities.get(i).getFirstName());
-                return correctCustomer;
-            }
-        } return null;
-    }
-
-
-    private void fillCustomerFields() {
-        if (customer != null) {
-            driverLicenseIdTextField.setText(customer.getDriverLicenseId());
-            firstNameTextField.setText(customer.getFirstName());
-            lastNameTextField.setText(customer.getLastName());
-            idNumberTextField.setText(customer.getIdNumber());
-            dateOfBirthTextField.setText(customer.getDateOfBirth());
-            zipCodeTextField.setText(Integer.toString(customer.getZipCode()));
-            cityTextField.setText(customer.getCity());
-            streetTextField.setText(customer.getStreet());
-            houseNumberTextField.setText(customer.getHouseNumber());
-            emailTextField.setText(customer.getEmailAddress());
-            phoneNumberTextField.setText(customer.getPhoneNumber());
+        if (customers.size() == 1) {
+            return customers.get(0);
         }
+
+        return new Customer();
     }
 
     private boolean isInputValid() {
-        String errorMessage = "";
+        StringBuilder sb = new StringBuilder();
+        String errorMessage;
 
-        if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidDriverLicenseId() + "\n";
+        // TODO add missing checks
+
+        if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
+            sb.append(System.lineSeparator());
         }
 
-        if (firstNameTextField.getText() == null || firstNameTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidFirstName() + "\n";
+        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidFirstName());
+            sb.append(System.lineSeparator());
         }
 
-        if (lastNameTextField.getText() == null || lastNameTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidLastName() + "\n";
+        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidLastName());
+            sb.append(System.lineSeparator());
         }
 
-        if (idNumberTextField.getText() == null || idNumberTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidIdNumber() + "\n";
+        if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
+            sb.append(System.lineSeparator());
         }
 
-        if (dateOfBirthTextField.getText() == null
-                || dateOfBirthTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidDateOfBirth() + "\n";
+        if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidDateOfBirth());
+            sb.append(System.lineSeparator());
         }
 
-        if (zipCodeTextField.getText() == null
-                || zipCodeTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidZipCode() + "\n";
+        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+            sb.append(System.lineSeparator());
         }
 
-        if (cityTextField.getText() == null || cityTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidCityName() + "\n";
+        if (cityTextField.getText() == null || cityTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidCityName());
+            sb.append(System.lineSeparator());
         }
 
-        if (streetTextField.getText() == null || streetTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidStreetName() + "\n";
+        if (streetTextField.getText() == null || streetTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidStreetName());
+            sb.append(System.lineSeparator());
         }
 
-        if (houseNumberTextField.getText() == null || houseNumberTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidHouseNumber() + "\n";
+        if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidHouseNumber());
+            sb.append(System.lineSeparator());
         }
 
-        if (emailTextField.getText() == null || emailTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidEmailAddress() + "\n";
+        if (emailTextField.getText() == null || emailTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAdress());
+            sb.append(System.lineSeparator());
         }
 
-        if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().length() == 0) {
-            errorMessage += I18nComponentsUtil.getRentalNoValidPhoneNumber() + "\n";
+        if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().isEmpty()) {
+            sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
+            sb.append(System.lineSeparator());
         }
 
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
+        errorMessage = sb.toString();
+        if (!errorMessage.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(modalStage);
             alert.setTitle("Invalid Fields");
@@ -276,6 +304,8 @@ public class RentalEditViewController {
 
             return false;
         }
+
+        return true;
     }
 }
 

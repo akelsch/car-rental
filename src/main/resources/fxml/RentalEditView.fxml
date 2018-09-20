@@ -2,16 +2,13 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.collections.FXCollections?>
-<?import java.util.HashMap?>
 <Pane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.htwsaar.prog3.carrental.controller.RentalEditViewController">
     <Pane prefHeight="60.0" prefWidth="540.0">
         <Label layoutX="30.0" layoutY="30.0" text="Car:"/>
         <Label fx:id="carLabel" layoutX="53.0" layoutY="30.0" text="placeholder"/>
         <Label layoutX="300.0" layoutY="30.0" text="Employee:"/>
-
-
+        <ChoiceBox fx:id="employeeChoiceBox" layoutX="364.0" layoutY="26.0" prefHeight="25.0" prefWidth="150.0"/>
     </Pane>
     <Pane layoutY="60.0" prefHeight="160.0" prefWidth="540.0">
         <Label layoutX="30.0" layoutY="10.0" text="Begin renting on"/>
@@ -21,10 +18,10 @@
         <Button layoutX="195.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleConfirmButtonClicked" text="Confirm"/>
         <Label layoutX="30.0" layoutY="120.0" text="Duration:"/>
         <Label fx:id="durationLabel" layoutX="84.0" layoutY="120.0"/>
-        <Label layoutX="300.0" layoutY="32.0" text="Daily Price:"/>
-        <Label fx:id="dailyPriceLabel" layoutX="363.0" layoutY="32.0"/>
+        <Label layoutX="300.0" layoutY="32.0" text="Daily Rate:"/>
+        <Label fx:id="dailyRateLabel" layoutX="363.0" layoutY="32.0"/>
         <Label layoutX="300.0" layoutY="65.0" text="Extra Costs"/>
-        <TextField fx:id="dailyPriceTextField" layoutX="300.0" layoutY="83.0" prefHeight="25.0" prefWidth="150.0" text="0"/>
+        <TextField fx:id="extraCostsTextField" layoutX="300.0" layoutY="83.0" prefHeight="25.0" prefWidth="150.0" text="0"/>
         <Label layoutX="300.0" layoutY="120.0" prefHeight="17.0" prefWidth="34.0" text="Sum:"/>
         <Label fx:id="sumLabel" layoutX="332.0" layoutY="120.0"/>
     </Pane>
@@ -41,7 +38,7 @@
         <Label layoutX="300.0" layoutY="130.0" text="%customer-date-of-birth-label"/>
         <TextField fx:id="dateOfBirthTextField" layoutX="300.0" layoutY="150.0"/>
         <Label layoutX="30.0" layoutY="190.0" text="%customer-zip-code-label"/>
-        <TextField fx:id="zipCodeTextField" layoutX="30.0" layoutY="210.0"/>
+        <TextField fx:id="zipCodeTextField" layoutX="30.0" layoutY="210.0" text="0"/>
         <Label layoutX="300.0" layoutY="190.0" text="%customer-city-label"/>
         <TextField fx:id="cityTextField" layoutX="300.0" layoutY="210.0"/>
         <Label layoutX="30.0" layoutY="250.0" text="%customer-street-label"/>
