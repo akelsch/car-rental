@@ -73,7 +73,6 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
     @Override
     public void handleApplyButtonClicked() {
-        // TODO only update data that has changed?
         if (isInputValid()) {
             entity.setFirstName(firstNameTextField.getText());
             entity.setLastName(lastNameTextField.getText());

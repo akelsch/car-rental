@@ -102,7 +102,6 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 
     @Override
     public void handleApplyButtonClicked() {
-        // TODO only update data that has changed?
         if (isInputValid()) {
             entity.setBrand(brandTextField.getText());
             entity.setModel(modelTextField.getText());

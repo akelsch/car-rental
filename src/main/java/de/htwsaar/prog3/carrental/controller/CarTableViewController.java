@@ -120,8 +120,6 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
                 service.update(toEdit);
                 entities.setAll(service.findAll());
             }
-        } else {
-            // TODO show Warning
         }
     }
 

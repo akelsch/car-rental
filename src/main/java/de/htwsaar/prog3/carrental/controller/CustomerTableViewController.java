@@ -95,8 +95,6 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
                 service.update(toEdit);
                 entities.setAll(service.findAll());
             }
-        } else {
-            // TODO show Warning
         }
     }
 

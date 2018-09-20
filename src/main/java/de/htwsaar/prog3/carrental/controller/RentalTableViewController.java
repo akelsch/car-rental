@@ -84,8 +84,6 @@ public class RentalTableViewController extends GenericTableViewController<Rental
                 service.update(toEdit);
                 entities.setAll(service.findAll());
             }
-        } else {
-            // TODO show Warning
         }
     }
 

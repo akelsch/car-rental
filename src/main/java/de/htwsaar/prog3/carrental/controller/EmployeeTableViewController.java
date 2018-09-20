@@ -71,8 +71,6 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
                 service.update(toEdit);
                 entities.setAll(service.findAll());
             }
-        } else {
-            // TODO show Warning
         }
     }
 
