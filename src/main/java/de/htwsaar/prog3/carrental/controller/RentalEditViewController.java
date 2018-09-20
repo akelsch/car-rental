@@ -6,38 +6,26 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.CustomerService;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
+import de.htwsaar.prog3.carrental.service.RentalService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * This is the Controller for the "Rental Edit View" of the Carrental Application.
  *
  * @author Hagen Schackmann, Michael Bös
  */
-
-public class RentalEditViewController {
-    private Rental rental;
-
+public class RentalEditViewController extends GenericEditViewController<Rental> {
     private CustomerService customerService;
     private EmployeeService employeeService;
-
-    @Setter
-    private Stage modalStage;
-
-    @Getter
-    private boolean applyClicked = false;
 
     @FXML
     private Label carLabel;
@@ -102,30 +90,33 @@ public class RentalEditViewController {
     private TextArea noteTextArea;
 
     public RentalEditViewController() {
+        service = new RentalService();
+
         customerService = new CustomerService();
         employeeService = new EmployeeService();
     }
 
+    @Override
     public void initialize(Rental rental) {
-        this.rental = rental;
+        entity = rental;
 
-        Car car = this.rental.getCar();
+        Car car = entity.getCar();
         if (car != null) {
             carLabel.setText(car.toString());
             dailyRateLabel.setText(Integer.toString(car.getDailyRate()));
         }
 
         employeeChoiceBox.setItems(FXCollections.observableArrayList(employeeService.findAll()));
-        Employee employee = this.rental.getEmployee();
+        Employee employee = entity.getEmployee();
         if (employee != null) {
             employeeChoiceBox.setValue(employee);
         }
 
         fillCustomerTextFields();
 
-        beginDatePicker.setValue(getDatePickerConverter().fromString(this.rental.getBegin()));
-        endDatePicker.setValue(getDatePickerConverter().fromString(this.rental.getEnd()));
-        noteTextArea.setText(this.rental.getNote());
+        beginDatePicker.setValue(getDatePickerConverter().fromString(entity.getBegin()));
+        endDatePicker.setValue(getDatePickerConverter().fromString(entity.getEnd()));
+        noteTextArea.setText(entity.getNote());
 
         driverLicenseIdTextField.requestFocus();
     }
@@ -139,100 +130,30 @@ public class RentalEditViewController {
 
         if (driverLicenseId != null && !driverLicenseId.trim().isEmpty()) {
             Customer customer = findCustomerByDriverLicenseId(driverLicenseId);
-            rental.setCustomer(customer);
+            entity.setCustomer(customer);
 
             fillCustomerTextFields();
         }
     }
 
-    public void handleCancelButtonClicked() {
-        Alert confirmationDialog =
-                DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
-
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            modalStage.close();
-        }
-    }
-
+    @Override
     public void handleApplyButtonClicked() {
         if (isInputValid()) {
-            rental.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
+            entity.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
             // TODO Case where a new customer is created
-            rental.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
-            rental.setEmployee(employeeChoiceBox.getValue());
-            rental.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
-            rental.setExtraCosts(Integer.parseInt(extraCostsTextField.getText()));
-            rental.setNote(noteTextArea.getText());
+            entity.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
+            entity.setEmployee(employeeChoiceBox.getValue());
+            entity.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
+            entity.setExtraCosts(Integer.parseInt(extraCostsTextField.getText()));
+            entity.setNote(noteTextArea.getText());
 
             applyClicked = true;
             modalStage.close();
         }
     }
 
-    private void fillCustomerTextFields() {
-        Customer customer = this.rental.getCustomer();
-
-        if (customer != null) {
-            driverLicenseIdTextField.setText(customer.getDriverLicenseId());
-            firstNameTextField.setText(customer.getFirstName());
-            lastNameTextField.setText(customer.getLastName());
-            idNumberTextField.setText(customer.getIdNumber());
-            dateOfBirthTextField.setText(customer.getDateOfBirth());
-            zipCodeTextField.setText(Integer.toString(customer.getZipCode()));
-            cityTextField.setText(customer.getCity());
-            streetTextField.setText(customer.getStreet());
-            houseNumberTextField.setText(customer.getHouseNumber());
-            emailTextField.setText(customer.getEmailAddress());
-            phoneNumberTextField.setText(customer.getPhoneNumber());
-        }
-    }
-
-    private StringConverter<LocalDate> getDatePickerConverter() {
-        String pattern = "dd.MM.yyyy";
-
-        StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-
-            @Override
-            public String toString(LocalDate date) {
-                if (date != null) {
-                    return dateFormatter.format(date);
-                } else {
-                    return "";
-                }
-            }
-
-            @Override
-            public LocalDate fromString(String string) {
-                if (string != null && !string.isEmpty()) {
-                    return LocalDate.parse(string, dateFormatter);
-                } else {
-                    return null;
-                }
-            }
-        };
-
-        beginDatePicker.setConverter(converter);
-        beginDatePicker.setPromptText(pattern);
-
-        endDatePicker.setConverter(converter);
-        endDatePicker.setPromptText(pattern);
-
-        return converter;
-    }
-
-    private Customer findCustomerByDriverLicenseId(String driverLicenseId) {
-        List<Customer> customers = customerService.filter("driverLicenseId", "=", driverLicenseId);
-
-        if (customers.size() == 1) {
-            return customers.get(0);
-        }
-
-        return new Customer();
-    }
-
-    private boolean isInputValid() {
+    @Override
+    boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
         String errorMessage;
 
@@ -295,17 +216,76 @@ public class RentalEditViewController {
 
         errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(modalStage);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
+                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;
         }
 
         return true;
+    }
+
+    private void fillCustomerTextFields() {
+        Customer customer = entity.getCustomer();
+
+        if (customer != null) {
+            driverLicenseIdTextField.setText(customer.getDriverLicenseId());
+            firstNameTextField.setText(customer.getFirstName());
+            lastNameTextField.setText(customer.getLastName());
+            idNumberTextField.setText(customer.getIdNumber());
+            dateOfBirthTextField.setText(customer.getDateOfBirth());
+            zipCodeTextField.setText(Integer.toString(customer.getZipCode()));
+            cityTextField.setText(customer.getCity());
+            streetTextField.setText(customer.getStreet());
+            houseNumberTextField.setText(customer.getHouseNumber());
+            emailTextField.setText(customer.getEmailAddress());
+            phoneNumberTextField.setText(customer.getPhoneNumber());
+        }
+    }
+
+    private StringConverter<LocalDate> getDatePickerConverter() {
+        String pattern = "dd.MM.yyyy";
+
+        StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return dateFormatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, dateFormatter);
+                } else {
+                    return null;
+                }
+            }
+        };
+
+        beginDatePicker.setConverter(converter);
+        beginDatePicker.setPromptText(pattern);
+
+        endDatePicker.setConverter(converter);
+        endDatePicker.setPromptText(pattern);
+
+        return converter;
+    }
+
+    private Customer findCustomerByDriverLicenseId(String driverLicenseId) {
+        List<Customer> customers = customerService.filter("driverLicenseId", "=", driverLicenseId);
+
+        if (customers.size() == 1) {
+            return customers.get(0);
+        }
+
+        return new Customer();
     }
 }
 
