@@ -27,6 +27,8 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  */
 public class CarTableViewController extends GenericTableViewController<Car> implements Initializable {
+    private RentalService rentalService;
+
     @FXML
     private TableView<Car> carTableView;
 
@@ -66,12 +68,12 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     private TableColumn<Car, String> tires;
     @FXML
     private TableColumn<Car, String> vin;
-    private RentalService service2;
 
     public CarTableViewController() {
         service = new CarService();
-        service2 = new RentalService();
         entities = FXCollections.observableArrayList(service.findAll());
+
+        rentalService = new RentalService();
     }
 
     @Override
@@ -144,13 +146,16 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
      * Handle pressing the "Rent..." button.
      */
     public void handleRentButtonClicked() {
+        Rental newRental = new Rental();
+        Car toRent = carTableView.getSelectionModel().getSelectedItem();
 
-        Rental toRent = new Rental();
-        toRent.setCar(carTableView.getSelectionModel().getSelectedItem());
         if (toRent != null) {
-            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), toRent);
+            newRental.setCar(toRent);
+
+            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), newRental);
+
             if (applyClicked) {
-                service2.persist(toRent);
+                rentalService.persist(newRental);
                 entities.setAll(service.findAll());
             }
         }

@@ -2,24 +2,19 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
-import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.service.CarService;
-import de.htwsaar.prog3.carrental.service.CustomerService;
-import de.htwsaar.prog3.carrental.service.EmployeeService;
-import de.htwsaar.prog3.carrental.service.RentalService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * This is the Controller for the "Rental Edit View" of the Carrental Application.
@@ -28,73 +23,31 @@ import java.util.ResourceBundle;
  */
 
 public class RentalEditViewController {
-    private CarService carService = new CarService();
-    private CustomerService customerService = new CustomerService();
-    private EmployeeService employeeService = new EmployeeService();
-    private RentalService rentalService = new RentalService();
-
-    private Car car;
-    private Customer customer;
-    private Employee employee;
     private Rental rental;
 
+    @Setter
     private Stage modalStage;
 
+    @Getter
     private boolean applyClicked = false;
 
     @FXML
-    private Label CarPlaceholderLabel;
+    private Label carLabel;
 
     @FXML
-    private Label DurationPlaceholderLabel;
+    private ChoiceBox employeeChoiceBox;
 
     @FXML
-    private Label SumCostPlaceholderLabel;
+    private Label durationLabel;
 
     @FXML
-    private TextField IDCardTextField;
+    private Label dailyPriceLabel;
 
     @FXML
-    private TextField PostcodeTextField;
+    private TextField dailyPriceTextField;
 
     @FXML
-    private TextField DriverLicenseIDTextField;
-
-    @FXML
-    private TextField DateOfBirthTextField;
-
-    @FXML
-    private TextField PhoneNumberTextField;
-
-    @FXML
-    private TextField LastNameTextField;
-
-    @FXML
-    private TextField StreetTextField;
-
-    @FXML
-    private TextField HouseNumberTextField;
-
-    @FXML
-    private TextField FirstNameTextField;
-
-    @FXML
-    private TextField EMailTextField;
-
-    @FXML
-    private TextField CityTextField;
-
-    @FXML
-    private TextArea NotesTextArea;
-
-    @FXML
-    private TextField searchCustomerField;
-
-    @FXML
-    private TextField extraCosts;
-
-    @FXML
-    private TextField note;
+    private Label sumLabel;
 
     @FXML
     private DatePicker beginDatePicker;
@@ -103,65 +56,75 @@ public class RentalEditViewController {
     private DatePicker endDatePicker;
 
     @FXML
-    private Button searchForCustomerButton;
+    private TextField driverLicenseIdTextField;
 
     @FXML
-    private Button confirmRentButton;
+    private TextField firstNameTextField;
 
     @FXML
-    private Button cancelButton;
+    private TextField lastNameTextField;
 
     @FXML
-    private Button confirmDatesButton;
+    private TextField idNumberTextField;
 
-    public void setModalStage(Stage modalStage) {
-        this.modalStage = modalStage;
-    }
+    @FXML
+    private TextField dateOfBirthTextField;
 
-    public void setRental(Rental rental) {
+    @FXML
+    private TextField zipCodeTextField;
+
+    @FXML
+    private TextField cityTextField;
+
+    @FXML
+    private TextField streetTextField;
+
+    @FXML
+    private TextField houseNumberTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField phoneNumberTextField;
+
+    @FXML
+    private TextArea noteTextArea;
+
+    public void initialize(Rental rental) {
         this.rental = rental;
 
-        Customer customer = rental.getCustomer();
-
-        if (customer != null) {
-
-            IDCardTextField.setText(customer.getIdNumber());
-            PostcodeTextField.setText(Integer.toString(customer.getZipCode()));
-            DriverLicenseIDTextField.setText(customer.getDriverLicenseId());
-            DateOfBirthTextField.setText(customer.getDateOfBirth());
-            PhoneNumberTextField.setText(customer.getPhoneNumber());
-            LastNameTextField.setText(customer.getLastName());
-            FirstNameTextField.setText(customer.getFirstName());
-            StreetTextField.setText(customer.getStreet());
-            HouseNumberTextField.setText(customer.getHouseNumber());
-            CityTextField.setText(customer.getCity());
-            EMailTextField.setText(customer.getEmailAddress());
-
-        }
-
-        NotesTextArea.setText(rental.getNote());
         beginDatePicker.setValue(getDatePickerConverter().fromString(rental.getBegin()));
         endDatePicker.setValue(getDatePickerConverter().fromString(rental.getEnd()));
+        noteTextArea.setText(rental.getNote());
 
-        if (rental.getCar() != null) {
-            CarPlaceholderLabel.setText(" " + rental.getCar().getBrand() + " " + rental.getCar().getModel());
+        Car car = rental.getCar();
+        if (car != null) {
+            carLabel.setText(car.toString());
         }
+
+        Customer customer = rental.getCustomer();
+        if (customer != null) {
+            driverLicenseIdTextField.setText(customer.getDriverLicenseId());
+            firstNameTextField.setText(customer.getFirstName());
+            lastNameTextField.setText(customer.getLastName());
+            idNumberTextField.setText(customer.getIdNumber());
+            dateOfBirthTextField.setText(customer.getDateOfBirth());
+            zipCodeTextField.setText(Integer.toString(customer.getZipCode()));
+            cityTextField.setText(customer.getCity());
+            streetTextField.setText(customer.getStreet());
+            houseNumberTextField.setText(customer.getHouseNumber());
+            emailTextField.setText(customer.getEmailAddress());
+            phoneNumberTextField.setText(customer.getPhoneNumber());
+        }
+
+        driverLicenseIdTextField.requestFocus();
     }
 
-    public boolean isApplyClicked() {
-        return applyClicked;
+    public void handleConfirmButtonClicked() {
     }
 
-    public void initialize(URL location, ResourceBundle resources) {
-        CarPlaceholderLabel.setText("Car:" + car.getBrand() + " " + car.getModel());
-    }
-
-    public void handleConfirmDatesButtonClicked() {
-
-    }
-
-    public void handleSearchCustomerButtonClicked() {
-
+    public void handleSearchButtonClicked() {
     }
 
     public void handleCancelButtonClicked() {
@@ -174,11 +137,10 @@ public class RentalEditViewController {
         }
     }
 
-    public void handleConfirmRentButtonClicked() {
-        rental.setCar(car);
-        rental.setCustomer(customer);
-        rental.setEmployee(employee);
-        // ...
+    public void handleApplyButtonClicked() {
+        // rental.setCar(car);
+        // rental.setCustomer(customer);
+        // rental.setEmployee(employee);
     }
 
     private StringConverter<LocalDate> getDatePickerConverter() {

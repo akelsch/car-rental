@@ -22,36 +22,40 @@ import java.io.IOException;
  */
 public class RentalEditView {
     private static final Logger logger = LoggerFactory.getLogger(RentalEditView.class);
-    private static Stage modalStage;
 
     /**
      * Start the Rent Edit Dialog in a modal Window.
      *
-     * @param parentStage
-     * @param rental
-     * @throws Exception
+     * @param parentStage given Stage from RentalTableView in order to guarantee Window Modality
+     * @param rental given rental to be edit
+     * @return true, if all edited changes are applied to given rental; false it at least one
+     *         error occurs
      */
     public boolean start(Stage parentStage, Rental rental) {
         try {
             FXMLLoader fxmlLoader =
                     new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalEditViewFxml()),
                             I18nUtil.getResourceBundleComponents());
-            Parent scene = fxmlLoader.load();
+            Parent page = fxmlLoader.load();
 
-            modalStage = new Stage();
+            // create the modal Stage
+            Stage modalStage = new Stage();
             modalStage.setTitle(I18nComponentsUtil.getStageTitle());
-            // Apply styling described in the FXML document
-            modalStage.setScene(new Scene(scene));
-            modalStage.setMaxHeight(715);
-            modalStage.setMaxWidth(600);
-            // set the Owner of the modal window and the Modality of the new Stage (Modal Window)
-            modalStage.initOwner(parentStage);
             modalStage.initModality(Modality.WINDOW_MODAL);
-            modalStage.show();
+            modalStage.initOwner(parentStage);
+            Scene scene = new Scene(page);
+            modalStage.setScene(scene);
+            modalStage.setMaxHeight(760);
+            modalStage.setMaxWidth(600);
+            modalStage.setResizable(false);
 
+            // set the rental into the controller
             RentalEditViewController controller = fxmlLoader.getController();
             controller.setModalStage(modalStage);
-            controller.setRental(rental);
+            controller.initialize(rental);
+
+            // show the dialog and wait until the user closes it
+            modalStage.showAndWait();
 
             return controller.isApplyClicked();
         } catch (IOException e) {
@@ -59,12 +63,4 @@ public class RentalEditView {
             return false;
         }
     }
-
-        /**
-         * close the modal window
-         */
-        public static void closeModalWindow() {
-            modalStage.close();
-        }
-
 }
