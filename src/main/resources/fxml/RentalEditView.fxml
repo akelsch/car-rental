@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.util.HashMap?>
 <Pane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.htwsaar.prog3.carrental.controller.RentalEditViewController">
     <Pane prefHeight="60.0" prefWidth="540.0">
         <Label layoutX="30.0" layoutY="30.0" text="Car:"/>
         <Label fx:id="carLabel" layoutX="53.0" layoutY="30.0" text="placeholder"/>
         <Label layoutX="300.0" layoutY="30.0" text="Employee:"/>
-        <ChoiceBox fx:id="employeeChoiceBox" layoutX="364.0" layoutY="26.0" prefHeight="25.0" prefWidth="150.0"/>
+
+
     </Pane>
     <Pane layoutY="60.0" prefHeight="160.0" prefWidth="540.0">
         <Label layoutX="30.0" layoutY="10.0" text="Begin renting on"/>
