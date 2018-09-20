@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<Pane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="de.htwsaar.prog3.carrental.controller.RentalEditViewController">
+    <Pane prefHeight="60.0" prefWidth="540.0">
+        <Label layoutX="30.0" layoutY="30.0" text="Car:"/>
+        <Label fx:id="carLabel" layoutX="53.0" layoutY="30.0" text="placeholder"/>
+        <Label layoutX="300.0" layoutY="30.0" text="Employee:"/>
+        <ChoiceBox fx:id="employeeChoiceBox" layoutX="364.0" layoutY="26.0" prefHeight="25.0" prefWidth="150.0"/>
+    </Pane>
+    <Pane layoutY="60.0" prefHeight="160.0" prefWidth="540.0">
+        <Label layoutX="30.0" layoutY="10.0" text="Begin renting on"/>
+        <DatePicker fx:id="beginDatePicker" layoutX="30.0" layoutY="28.0" prefHeight="25.0" prefWidth="150.0"/>
+        <Label layoutX="30.0" layoutY="65.0" text="End renting on"/>
+        <DatePicker fx:id="endDatePicker" layoutX="30.0" layoutY="83.0" prefHeight="25.0" prefWidth="150.0"/>
+        <Button layoutX="195.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleConfirmButtonClicked" text="Confirm"/>
+        <Label layoutX="30.0" layoutY="120.0" text="Duration:"/>
+        <Label fx:id="durationLabel" layoutX="84.0" layoutY="120.0"/>
+        <Label layoutX="300.0" layoutY="32.0" text="Daily Rate:"/>
+        <Label fx:id="dailyRateLabel" layoutX="363.0" layoutY="32.0"/>
+        <Label layoutX="300.0" layoutY="65.0" text="Extra Costs"/>
+        <TextField fx:id="extraCostsTextField" layoutX="300.0" layoutY="83.0" prefHeight="25.0" prefWidth="150.0" text="0"/>
+        <Label layoutX="300.0" layoutY="120.0" prefHeight="17.0" prefWidth="34.0" text="Sum:"/>
+        <Label fx:id="sumLabel" layoutX="332.0" layoutY="120.0"/>
+    </Pane>
+    <Pane layoutY="220.0" prefHeight="510.0" prefWidth="540.0">
+        <Label layoutX="30.0" layoutY="10.0" text="%customer-driver-license-id-label"/>
+        <TextField fx:id="driverLicenseIdTextField" layoutX="30.0" layoutY="30.0" prefHeight="25.0" prefWidth="150.0"/>
+        <Button layoutX="195.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleSearchButtonClicked" text="%button-search-label"/>
+        <Label layoutX="30.0" layoutY="70.0" text="%customer-first-name-label"/>
+        <TextField fx:id="firstNameTextField" layoutX="30.0" layoutY="90.0"/>
+        <Label layoutX="300.0" layoutY="70.0" text="%customer-last-name-label"/>
+        <TextField fx:id="lastNameTextField" layoutX="300.0" layoutY="90.0"/>
+        <Label layoutX="30.0" layoutY="130.0" text="%customer-id-number-label"/>
+        <TextField fx:id="idNumberTextField" layoutX="30.0" layoutY="150.0"/>
+        <Label layoutX="300.0" layoutY="130.0" text="%customer-date-of-birth-label"/>
+        <TextField fx:id="dateOfBirthTextField" layoutX="300.0" layoutY="150.0"/>
+        <Label layoutX="30.0" layoutY="190.0" text="%customer-zip-code-label"/>
+        <TextField fx:id="zipCodeTextField" layoutX="30.0" layoutY="210.0" text="0"/>
+        <Label layoutX="300.0" layoutY="190.0" text="%customer-city-label"/>
+        <TextField fx:id="cityTextField" layoutX="300.0" layoutY="210.0"/>
+        <Label layoutX="30.0" layoutY="250.0" text="%customer-street-label"/>
+        <TextField fx:id="streetTextField" layoutX="30.0" layoutY="270.0"/>
+        <Label layoutX="300.0" layoutY="250.0" text="%customer-house-number-label"/>
+        <TextField fx:id="houseNumberTextField" layoutX="300.0" layoutY="270.0"/>
+        <Label layoutX="30.0" layoutY="310.0" text="%customer-email-label"/>
+        <TextField fx:id="emailTextField" layoutX="30.0" layoutY="330.0"/>
+        <Label layoutX="300.0" layoutY="310.0" text="%customer-phone-number-label"/>
+        <TextField fx:id="phoneNumberTextField" layoutX="300.0" layoutY="330.0"/>
+        <Label layoutX="30.0" layoutY="370.0" text="%rental-note-label"/>
+        <TextArea fx:id="noteTextArea" layoutX="30.0" layoutY="390.0" prefHeight="100.0" prefWidth="250.0"/>
+        <Button layoutX="300.0" layoutY="463.0" mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button-cancel-label"/>
+        <Button layoutX="401.0" layoutY="463.0" mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button-apply-label"/>
+    </Pane>
+</Pane>

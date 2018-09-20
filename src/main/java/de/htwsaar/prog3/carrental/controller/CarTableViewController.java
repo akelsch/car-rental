@@ -1,10 +1,13 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.CarService;
+import de.htwsaar.prog3.carrental.service.RentalService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.view.CarEditView;
+import de.htwsaar.prog3.carrental.view.RentalEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +28,8 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  */
 public class CarTableViewController extends GenericTableViewController<Car> implements Initializable {
+    private RentalService rentalService;
+
     @FXML
     private TableView<Car> carTableView;
 
@@ -68,6 +73,8 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     public CarTableViewController() {
         service = new CarService();
         entities = FXCollections.observableArrayList(service.findAll());
+
+        rentalService = new RentalService();
     }
 
     @Override
@@ -146,6 +153,18 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
      * Handle pressing the "Rent..." button.
      */
     public void handleRentButtonClicked() {
-        // TODO: Implement with Michael
+        Rental newRental = new Rental();
+        Car toRent = carTableView.getSelectionModel().getSelectedItem();
+
+        if (toRent != null) {
+            newRental.setCar(toRent);
+
+            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), newRental);
+
+            if (applyClicked) {
+                rentalService.persist(newRental);
+                entities.setAll(service.findAll());
+            }
+        }
     }
 }
