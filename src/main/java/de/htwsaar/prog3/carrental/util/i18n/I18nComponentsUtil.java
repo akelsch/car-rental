@@ -21,8 +21,8 @@ public final class I18nComponentsUtil {
     private static final String DIALOG_DELETE_CONFIRMATION_TEXT = "dialog-delete-confirmation-text";
     private static final String DIALOG_DELETE_NO_SELECTION_TEXT = "dialog-delete-no-selection-text";
     private static final String DIALOG_ABOUT_TEXT = "dialog-about-text";
-    private static final String DIALOG_ERROR_INVALID_FIELDS_TITLE= "dialog-invalid-fields-title";
-    private static final String DIALOG_ERROR_INVALID_FIELDS_TEXT= "dialog-invalid-fields-text";   
+    private static final String DIALOG_ERROR_INVALID_FIELDS_TITLE = "dialog-invalid-fields-title";
+    private static final String DIALOG_ERROR_INVALID_FIELDS_TEXT = "dialog-invalid-fields-text";
     private static final String CAR_ID_LABEL = "car-id-label";
     private static final String CAR_BRAND_LABEL = "car-brand-label";
     private static final String CAR_CATEGORY_LABEL = "car-category-label";
@@ -60,7 +60,7 @@ public final class I18nComponentsUtil {
     private static final String CAR_NO_VALID_PARKING_LOT_DUPLICATE = "car-no-valid-parking-lot-duplicate";
     private static final String CAR_NO_VALID_TIRES = "car-no-valid-tires";
     private static final String CAR_NO_VALID_VIN = "car-no-valid-vin";
-    private static final String CAR_NO_VALID_VIN_DUPLICATE  = "car-no-valid-vin-duplicate";
+    private static final String CAR_NO_VALID_VIN_DUPLICATE = "car-no-valid-vin-duplicate";
     private static final String CUSTOMER_ID_LABEL = "customer-id-label";
     private static final String CUSTOMER_CITY_LABEL = "customer-city-label";
     private static final String CUSTOMER_DATE_OF_BIRTH_LABEL = "customer-date-of-birth-label";
@@ -135,11 +135,11 @@ public final class I18nComponentsUtil {
     public static String getDialogAboutText() {
         return resourceBundle.getString(DIALOG_ABOUT_TEXT);
     }
-    
+
     public static String getDialogErrorInvalidFieldsTitle() {
         return resourceBundle.getString(DIALOG_ERROR_INVALID_FIELDS_TITLE);
     }
-    
+
     public static String getDialogErrorInvalidFieldsText() {
         return resourceBundle.getString(DIALOG_ERROR_INVALID_FIELDS_TEXT);
     }
@@ -363,7 +363,7 @@ public final class I18nComponentsUtil {
     public static String getCarNoValidLicenceNumber() {
         return resourceBundle.getString(CAR_NO_VALID_LICENCE_NUMBER);
     }
-    
+
     public static String getCarNoValidLicenceNumberDuplicate() {
         return resourceBundle.getString(CAR_NO_VALID_LICENCE_NUMBER_DUPLICATE);
     }
@@ -379,7 +379,7 @@ public final class I18nComponentsUtil {
     public static String getCarNoValidParkingLot() {
         return resourceBundle.getString(CAR_NO_VALID_PARKING_LOT);
     }
-    
+
     public static String getCarNoValidParkingLotDuplicate() {
         return resourceBundle.getString(CAR_NO_VALID_PARKING_LOT_DUPLICATE);
     }
@@ -391,7 +391,7 @@ public final class I18nComponentsUtil {
     public static String getCarNoValidVin() {
         return resourceBundle.getString(CAR_NO_VALID_VIN);
     }
-    
+
     public static String getCarNoValidVinDuplicate() {
         return resourceBundle.getString(CAR_NO_VALID_VIN_DUPLICATE);
     }
@@ -408,7 +408,7 @@ public final class I18nComponentsUtil {
         return resourceBundle.getString(CUSTOMER_NO_VALID_LAST_NAME);
     }
 
-    public static String getCustomerNoValidEmailAdress() {
+    public static String getCustomerNoValidEmailAddress() {
         return resourceBundle.getString(CUSTOMER_NO_VALID_EMAIL_ADDRESS);
     }
 
@@ -439,7 +439,7 @@ public final class I18nComponentsUtil {
     public static String getCustomerNoValidIdNumber() {
         return resourceBundle.getString(CUSTOMER_NO_VALID_ID_NUMBER);
     }
-    
+
     public static String getCustomerNoValidIdNumberDuplicate() {
         return resourceBundle.getString(CUSTOMER_NO_VALID_ID_NUMBER_DUPLICATE);
     }
@@ -447,7 +447,7 @@ public final class I18nComponentsUtil {
     public static String getCustomerNoValidDriverLicence() {
         return resourceBundle.getString(CUSTOMER_NO_VALID_DRIVER_LICENCE);
     }
-    
+
     public static String getCustomerNoValidDriverLicenceDuplicate() {
         return resourceBundle.getString(CUSTOMER_NO_VALID_DRIVER_LICENCE_DUPLICATE);
     }

@@ -45,11 +45,10 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
     /**
      * Handles key presses within a TableView.
      *
-     * @param event
-     *            the event that occurred also containing the button that was pressed
+     * @param event the event that occurred also containing the button that was pressed
      */
     public void handleKeyEvent(KeyEvent event) {
-        if (KeyCode.DELETE == event.getCode()) {
+        if (event.getCode() == KeyCode.DELETE) {
             handleDeleteButtonClicked();
         }
     }

@@ -112,7 +112,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
         if (emailAddressTextField.getText() == null
                 || emailAddressTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAdress());
+            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAddress());
             sb.append(System.lineSeparator());
         }
 
@@ -191,7 +191,8 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
         errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(), I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
+                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;

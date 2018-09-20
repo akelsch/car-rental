@@ -15,7 +15,7 @@ class FilterUtilTest {
     @Test
     void testConvertField() {
         String field = "ID";
-        String actualField= FilterUtil.convertField(field);
+        String actualField = FilterUtil.convertField(field);
         String expectedField = "id";
 
         assertThat(actualField, is(equalTo(expectedField)));
@@ -24,7 +24,7 @@ class FilterUtilTest {
     @Test
     void testConvertValueWithLike() {
         String value = "1";
-        String actualValue =FilterUtil.convertValue(value,"LIKE");
+        String actualValue = FilterUtil.convertValue(value, "LIKE");
         String expectedValue = "'%1%'";
 
         assertThat(actualValue, is(equalTo(expectedValue)));
@@ -33,7 +33,7 @@ class FilterUtilTest {
     @Test
     void testConvertValueWithoutLike() {
         String value = "1";
-        String actualValue = FilterUtil.convertValue(value,"=");
+        String actualValue = FilterUtil.convertValue(value, "=");
         String expectedValue = "'1'";
 
         assertThat(actualValue, is(equalTo(expectedValue)));

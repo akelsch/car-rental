@@ -55,5 +55,7 @@ public final class I18nStringsUtil {
         return resourceBundle.getString(RENTAL_TABLE_VIEW_FXML);
     }
 
-    public static String getRentalEditViewFxml() { return resourceBundle.getString(RENTAL_EDIT_VIEW_FXML); }
+    public static String getRentalEditViewFxml() {
+        return resourceBundle.getString(RENTAL_EDIT_VIEW_FXML);
+    }
 }

@@ -1,8 +1,5 @@
 package de.htwsaar.prog3.carrental.view;
 
-import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import de.htwsaar.prog3.carrental.controller.CarEditViewController;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
@@ -11,10 +8,12 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * Entry Point of the "Edit Car" Dialog.
@@ -28,9 +27,8 @@ public class CarEditView {
      * Start the Edit Car Dialog in a modal Window.
      *
      * @param parentStage given Stage from CarTableView in order to guarantee Window Modality
-     * @param car given car to be edit
-     * @return true, if all edited changes are applied to given car; false it at least one error
-     *         occurs
+     * @param car         given car to be edit
+     * @return true, if all edited changes are applied to given car; false it at least one error occurs
      */
     public boolean start(Stage parentStage, Car car) {
         // Load FXML document for the car configuration view wit the needed resource bundle

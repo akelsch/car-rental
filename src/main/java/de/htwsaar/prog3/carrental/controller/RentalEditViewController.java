@@ -284,7 +284,7 @@ public class RentalEditViewController {
         }
 
         if (emailTextField.getText() == null || emailTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAdress());
+            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAddress());
             sb.append(System.lineSeparator());
         }
 

@@ -27,9 +27,8 @@ public class RentalEditView {
      * Start the Rent Edit Dialog in a modal Window.
      *
      * @param parentStage given Stage from RentalTableView in order to guarantee Window Modality
-     * @param rental given rental to be edit
-     * @return true, if all edited changes are applied to given rental; false it at least one
-     *         error occurs
+     * @param rental      given rental to be edit
+     * @return true, if all edited changes are applied to given rental; false it at least one error occurs
      */
     public boolean start(Stage parentStage, Rental rental) {
         try {

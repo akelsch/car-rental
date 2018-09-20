@@ -1,8 +1,5 @@
 package de.htwsaar.prog3.carrental.view;
 
-import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import de.htwsaar.prog3.carrental.controller.EmployeeEditViewController;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
@@ -11,10 +8,12 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * Entry Point of the "Edit Employee" Dialog.
@@ -28,9 +27,8 @@ public class EmployeeEditView {
      * Start the Edit Employee Dialog in a modal Window.
      *
      * @param parentStage given Stage from EmployeeTableView in order to guarantee Window Modality
-     * @param employee given employee to be edit
-     * @return true, if all edited changes are applied to given employee; false it at least one
-     *         error occurs
+     * @param employee    given employee to be edit
+     * @return true, if all edited changes are applied to given employee; false it at least one error occurs
      */
     public boolean start(Stage parentStage, Employee employee) {
         // Load FXML document for the employee configuration view wit the needed resource bundle

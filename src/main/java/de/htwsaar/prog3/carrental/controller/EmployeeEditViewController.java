@@ -73,7 +73,8 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
 
         errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(), I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
+                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;
