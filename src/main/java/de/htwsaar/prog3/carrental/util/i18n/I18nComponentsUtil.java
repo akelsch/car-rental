@@ -103,6 +103,7 @@ public final class I18nComponentsUtil {
     private static final String RENTAL_EXTRA_COSTS_LABEL = "rental-extra-costs-label";
     private static final String RENTAL_NOTE_LABEL = "rental-note-label";
     private static final String SEARCH_COMBOBOX_LIKE = "search-combobox-like";
+    private static final String RENTAL_NO_VALID_DATE_DURATION = "rental-no-valid-date-duration";
 
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleComponents();
@@ -300,17 +301,17 @@ public final class I18nComponentsUtil {
         return resourceBundle.getString(RENTAL_EMPLOYEE_LABEL);
     }
 
+    public static String getRentalExtraCostsLabel() { return resourceBundle.getString(RENTAL_EXTRA_COSTS_LABEL);}
+
     public static String getRentalEndLabel() {
         return resourceBundle.getString(RENTAL_END_LABEL);
-    }
-
-    public static String getRentalExtraCostsLabel() {
-        return resourceBundle.getString(RENTAL_EXTRA_COSTS_LABEL);
     }
 
     public static String getRentalNoteLabel() {
         return resourceBundle.getString(RENTAL_NOTE_LABEL);
     }
+
+    public static String getRentalNoValidDateDuration() { return resourceBundle.getString(RENTAL_NO_VALID_DATE_DURATION); }
 
     public static String getSearchComboboxLike() {
         return resourceBundle.getString(SEARCH_COMBOBOX_LIKE);

@@ -14,9 +14,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Rental Edit View" of the Carrental Application.
@@ -35,7 +38,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
     @FXML
     private Label durationLabel;
-    // TODO set durationLabel after making date selection
 
     @FXML
     private Label dailyRateLabel;
@@ -45,7 +47,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
     @FXML
     private Label sumLabel;
-    // TODO calculate sumLabel
 
     @FXML
     private DatePicker beginDatePicker;
@@ -89,6 +90,8 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     @FXML
     private TextArea noteTextArea;
 
+    private long duration;
+
     public RentalEditViewController() {
         service = new RentalService();
 
@@ -122,8 +125,22 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     }
 
     public void handleConfirmButtonClicked() {
-        // TODO implement
+        // calculate Date-to-Date Duration
+        LocalDate begin = beginDatePicker.getValue();
+        LocalDate end = endDatePicker.getValue();
+        duration = (Period.between(begin, end)).plusDays(1).getDays();
+
+        if (isDateInputValid()) {
+              durationLabel.setText(duration + " Day(s)");
+
+              // calculate sumLabel
+              String stringValue = dailyRateLabel.getText();
+              double value = Double.parseDouble(stringValue);
+              sumLabel.setText(value * duration + " €");
+        }
+
     }
+
 
     public void handleSearchButtonClicked() {
         String driverLicenseId = driverLicenseIdTextField.getText();
@@ -152,16 +169,51 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         }
     }
 
+    private boolean isDateInputValid() {
+        StringBuilder sb = new StringBuilder();
+        String errorMessage;
+
+        if (duration < 1) {
+            sb.append(I18nComponentsUtil.getRentalNoValidDateDuration());
+            sb.append(System.lineSeparator());
+        }
+
+        System.out.println(duration);
+
+        errorMessage = sb.toString();
+        if (!errorMessage.isEmpty()) {
+            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
+                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
+            alert.showAndWait();
+
+            return false;
+        }
+
+        return true;
+    }
+
     @Override
     boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
         String errorMessage;
 
-        // TODO add missing checks
+        List<Customer> customers;
+
+
 
         if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
+        } else {
+            customers = customerService.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
+                    "=", driverLicenseIdTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(entity.getId()))
+                    .collect(Collectors.toList());
+            if (!customers.isEmpty()) {
+                sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicenceDuplicate());
+                sb.append(System.lineSeparator());
+            }
         }
 
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
@@ -177,6 +229,15 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
+        } else {
+            customers = customerService.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
+                    .stream()
+                    .filter(c -> !c.getId().equals(entity.getId()))
+                    .collect(Collectors.toList());
+            if (!customers.isEmpty()) {
+                sb.append(I18nComponentsUtil.getCustomerNoValidIdNumberDuplicate());
+                sb.append(System.lineSeparator());
+            }
         }
 
         if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().isEmpty()) {
@@ -187,6 +248,15 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
             sb.append(System.lineSeparator());
+        } else {
+            try {
+                Integer.parseInt(zipCodeTextField.getText());
+            } catch (NumberFormatException e) {
+                sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCustomerNoValidInteger());
+                sb.append(System.lineSeparator());
+            }
         }
 
         if (cityTextField.getText() == null || cityTextField.getText().trim().isEmpty()) {
@@ -202,6 +272,15 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidHouseNumber());
             sb.append(System.lineSeparator());
+        } else {
+            try {
+                Integer.parseInt(houseNumberTextField.getText());
+            } catch (NumberFormatException e) {
+                sb.append(I18nComponentsUtil.getCustomerNoValidHouseNumber());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCustomerNoValidInteger());
+                sb.append(System.lineSeparator());
+            }
         }
 
         if (emailTextField.getText() == null || emailTextField.getText().trim().isEmpty()) {
@@ -212,6 +291,15 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
             sb.append(System.lineSeparator());
+        } else {
+            try {
+                Integer.parseInt(phoneNumberTextField.getText());
+            } catch (NumberFormatException e) {
+                sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
+                sb.append(" ");
+                sb.append(I18nComponentsUtil.getCustomerNoValidInteger());
+                sb.append(System.lineSeparator());
+            }
         }
 
         errorMessage = sb.toString();
