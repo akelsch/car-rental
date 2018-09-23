@@ -195,16 +195,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
-        } else {
-            customers = customerService.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
-                    "=", driverLicenseIdTextField.getText())
-                    .stream()
-                    .filter(c -> !c.getId().equals(entity.getId()))
-                    .collect(Collectors.toList());
-            if (!customers.isEmpty()) {
-                sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicenceDuplicate());
-                sb.append(System.lineSeparator());
-            }
         }
 
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
@@ -220,16 +210,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
-        } else {
-            customers = customerService.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=",
-                    idNumberTextField.getText())
-                    .stream()
-                    .filter(c -> !c.getId().equals(entity.getId()))
-                    .collect(Collectors.toList());
-            if (!customers.isEmpty()) {
-                sb.append(I18nComponentsUtil.getCustomerNoValidIdNumberDuplicate());
-                sb.append(System.lineSeparator());
-            }
         }
 
         if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().isEmpty()) {
@@ -283,15 +263,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
             sb.append(System.lineSeparator());
-        } else {
-            try {
-                Integer.parseInt(phoneNumberTextField.getText());
-            } catch (NumberFormatException e) {
-                sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
-                sb.append(" ");
-                sb.append(I18nComponentsUtil.getCustomerNoValidInteger());
-                sb.append(System.lineSeparator());
-            }
         }
 
         errorMessage = sb.toString();
