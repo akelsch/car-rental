@@ -93,6 +93,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
     public RentalEditViewController() {
         service = new RentalService();
+
         customerService = new CustomerService();
         employeeService = new EmployeeService();
     }
@@ -130,7 +131,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         endDatePicker.setValue(getDatePickerConverter().fromString(entity.getEnd()));
 
         extraCostsTextField.setText(Integer.toString(rental.getExtraCosts()));
-
         noteTextArea.setText(entity.getNote());
 
         // Focus
@@ -145,9 +145,12 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
         if (begin != null && end != null) {
             duration = Duration.between(begin.atStartOfDay(), end.atStartOfDay()).toDays();
+            durationLabel.setText(String.format("%d %s", duration, I18nComponentsUtil.getRentalDurationLabel()));
+
+            // TODO check extraCosts for NumberFormatException
             int extraCosts = Integer.parseInt(extraCostsTextField.getText());
-            durationLabel.setText(duration + " " + I18nComponentsUtil.getRentalDurationText());
-            sumLabel.setText(dailyRate * duration + extraCosts + " " + I18nComponentsUtil.getRentalCurrency());
+            double sum = (dailyRate * duration) + extraCosts;
+            sumLabel.setText(String.format("%.2f %s", sum, I18nComponentsUtil.getRentalCurrencyLabel()));
         }
     }
 
@@ -164,10 +167,9 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
     @Override
     public void handleApplyButtonClicked() {
-        Customer customer;
         if (isInputValid()) {
             if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
-                customer = new Customer();
+                Customer customer = new Customer();
 
                 customer.setDriverLicenseId(driverLicenseIdTextField.getText());
                 customer.setFirstName(firstNameTextField.getText());
@@ -184,6 +186,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
                 customerService.persist(customer);
                 entity.setCustomer(customer);
             }
+
             entity.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
             entity.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
             entity.setEmployee(employeeChoiceBox.getValue());
@@ -201,10 +204,11 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         StringBuilder sb = new StringBuilder();
         String errorMessage;
 
-        //   if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
-        //       sb.append(I18nComponentsUtil.getRentalNoValidCustomer());
-        //       sb.append(System.lineSeparator());
-        //   } */
+        // TODO handle customer check if customer does not exist yet
+//       if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
+//           sb.append(I18nComponentsUtil.getRentalNoValidCustomer());
+//           sb.append(System.lineSeparator());
+//       }
 
         if (employeeChoiceBox.getValue() == null) {
             sb.append(I18nComponentsUtil.getRentalNoValidEmployee());
