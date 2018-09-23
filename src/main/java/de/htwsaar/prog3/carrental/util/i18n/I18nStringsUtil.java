@@ -10,9 +10,6 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch, Jens Thewes
  */
 public final class I18nStringsUtil {
-    private I18nStringsUtil() {
-    }
-
     // Keys
     private static final String CAR_TABLE_VIEW_FXML = "car-table-view-fxml";
     private static final String CAR_EDIT_VIEW_FXML = "car-edit-view-fxml";
@@ -25,6 +22,9 @@ public final class I18nStringsUtil {
 
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleStrings();
+
+    private I18nStringsUtil() {
+    }
 
     // Values
     public static String getCarTableViewFxml() {
