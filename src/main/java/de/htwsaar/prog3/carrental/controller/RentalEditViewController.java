@@ -12,12 +12,12 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +29,8 @@ import java.util.stream.Collectors;
 public class RentalEditViewController extends GenericEditViewController<Rental> {
     private CustomerService customerService;
     private EmployeeService employeeService;
+
+    private long duration = -1;
 
     @FXML
     private Label carLabel;
@@ -90,8 +92,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     @FXML
     private TextArea noteTextArea;
 
-    private long duration;
-
     public RentalEditViewController() {
         service = new RentalService();
 
@@ -103,44 +103,53 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     public void initialize(Rental rental) {
         entity = rental;
 
+        // Car fields
         Car car = entity.getCar();
         if (car != null) {
             carLabel.setText(car.toString());
             dailyRateLabel.setText(Integer.toString(car.getDailyRate()));
         }
 
+        // Customer fields
+        fillCustomerTextFields();
+
+        // Employee fields
         employeeChoiceBox.setItems(FXCollections.observableArrayList(employeeService.findAll()));
         Employee employee = entity.getEmployee();
         if (employee != null) {
             employeeChoiceBox.setValue(employee);
         }
 
-        fillCustomerTextFields();
+        // Rental fields
+        LocalDate beginDate = getDatePickerConverter().fromString(entity.getBegin());
+        if (beginDate != null) {
+            beginDatePicker.setValue(beginDate);
+        } else {
+            beginDatePicker.setValue(LocalDate.now());
+        }
 
-        beginDatePicker.setValue(getDatePickerConverter().fromString(entity.getBegin()));
+        endDatePicker.setDayCellFactory(getDayCellFactory());
         endDatePicker.setValue(getDatePickerConverter().fromString(entity.getEnd()));
+
         noteTextArea.setText(entity.getNote());
 
+        // Focus
         driverLicenseIdTextField.requestFocus();
     }
 
     public void handleConfirmButtonClicked() {
-        // calculate Date-to-Date Duration
+        int dailyRate = Integer.parseInt(dailyRateLabel.getText());
+
         LocalDate begin = beginDatePicker.getValue();
         LocalDate end = endDatePicker.getValue();
-        duration = (Period.between(begin, end)).plusDays(1).getDays();
 
-        if (isDateInputValid()) {
-              durationLabel.setText(duration + " Day(s)");
-
-              // calculate sumLabel
-              String stringValue = dailyRateLabel.getText();
-              double value = Double.parseDouble(stringValue);
-              sumLabel.setText(value * duration + " €");
+        if (begin != null && end != null) {
+            duration = Duration.between(begin.atStartOfDay(), end.atStartOfDay()).toDays();
+            // TODO i18n
+            durationLabel.setText(duration + " Day(s)");
+            sumLabel.setText(dailyRate * duration + " €");
         }
-
     }
-
 
     public void handleSearchButtonClicked() {
         String driverLicenseId = driverLicenseIdTextField.getText();
@@ -169,29 +178,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         }
     }
 
-    private boolean isDateInputValid() {
-        StringBuilder sb = new StringBuilder();
-        String errorMessage;
-
-        if (duration < 1) {
-            sb.append(I18nComponentsUtil.getRentalNoValidDateDuration());
-            sb.append(System.lineSeparator());
-        }
-
-        System.out.println(duration);
-
-        errorMessage = sb.toString();
-        if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
-                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
-            alert.showAndWait();
-
-            return false;
-        }
-
-        return true;
-    }
-
     @Override
     boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
@@ -199,7 +185,12 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
         List<Customer> customers;
 
+        // TODO null checks for car & employee
 
+        if (duration < 0.0) {
+            sb.append(I18nComponentsUtil.getRentalNoValidDuration());
+            sb.append(System.lineSeparator());
+        }
 
         if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
@@ -230,7 +221,8 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
             sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
         } else {
-            customers = customerService.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
+            customers = customerService.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=",
+                    idNumberTextField.getText())
                     .stream()
                     .filter(c -> !c.getId().equals(entity.getId()))
                     .collect(Collectors.toList());
@@ -364,6 +356,25 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         endDatePicker.setPromptText(pattern);
 
         return converter;
+    }
+
+    private Callback<DatePicker, DateCell> getDayCellFactory() {
+        return new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (item.isBefore(beginDatePicker.getValue().plusDays(1))) {
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;");
+                        }
+                    }
+                };
+            }
+        };
     }
 
     private Customer findCustomerByDriverLicenseId(String driverLicenseId) {
