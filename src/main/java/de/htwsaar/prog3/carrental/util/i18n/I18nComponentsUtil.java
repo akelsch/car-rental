@@ -98,7 +98,11 @@ public final class I18nComponentsUtil {
     private static final String RENTAL_EXTRA_COSTS_LABEL = "rental-extra-costs-label";
     private static final String RENTAL_ID_LABEL = "rental-id-label";
     private static final String RENTAL_NOTE_LABEL = "rental-note-label";
+    private static final String RENTAL_DURATION_TEXT = "rental-duration-text";
+    private static final String RENTAL_CURRENCY = "rental-currency";
     private static final String RENTAL_NO_VALID_DURATION = "rental-no-valid-duration";
+    private static final String RENTAL_NO_VALID_CUSTOMER = "rental-no-valid-customer";
+    private static final String RENTAL_NO_VALID_EMPLOYEE = "rental-no-valid-employee";
     private static final String SEARCH_COMBOBOX_LIKE = "search-combobox-like";
     private static final String STAGE_TITLE = "stage-title";
 
@@ -457,9 +461,27 @@ public final class I18nComponentsUtil {
         return resourceBundle.getString(RENTAL_NOTE_LABEL);
     }
 
+    public static String getRentalDurationText() {
+        return resourceBundle.getString(RENTAL_DURATION_TEXT);
+    }
+
+    public static String getRentalCurrency() {
+        return resourceBundle.getString(RENTAL_CURRENCY);
+    }
+
     public static String getRentalNoValidDuration() {
         return resourceBundle.getString(RENTAL_NO_VALID_DURATION);
     }
+
+    public static String getRentalNoValidCustomer() {
+        return resourceBundle.getString(RENTAL_NO_VALID_CUSTOMER);
+    }
+
+    public static String getRentalNoValidEmployee() {
+        return resourceBundle.getString(RENTAL_NO_VALID_EMPLOYEE);
+    }
+
+
 
     public static String getSearchComboboxLike() {
         return resourceBundle.getString(SEARCH_COMBOBOX_LIKE);

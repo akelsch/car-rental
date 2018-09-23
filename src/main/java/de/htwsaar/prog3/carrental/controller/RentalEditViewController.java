@@ -19,7 +19,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Rental Edit View" of the Carrental Application.
@@ -94,7 +93,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
     public RentalEditViewController() {
         service = new RentalService();
-
         customerService = new CustomerService();
         employeeService = new EmployeeService();
     }
@@ -131,6 +129,8 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         endDatePicker.setDayCellFactory(getDayCellFactory());
         endDatePicker.setValue(getDatePickerConverter().fromString(entity.getEnd()));
 
+        extraCostsTextField.setText(Integer.toString(rental.getExtraCosts()));
+
         noteTextArea.setText(entity.getNote());
 
         // Focus
@@ -145,9 +145,9 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
         if (begin != null && end != null) {
             duration = Duration.between(begin.atStartOfDay(), end.atStartOfDay()).toDays();
-            // TODO i18n
-            durationLabel.setText(duration + " Day(s)");
-            sumLabel.setText(dailyRate * duration + " €");
+            int extraCosts = Integer.parseInt(extraCostsTextField.getText());
+            durationLabel.setText(duration + " " + I18nComponentsUtil.getRentalDurationText());
+            sumLabel.setText(dailyRate * duration + extraCosts + " " + I18nComponentsUtil.getRentalCurrency());
         }
     }
 
@@ -164,9 +164,27 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
     @Override
     public void handleApplyButtonClicked() {
+        Customer customer;
         if (isInputValid()) {
+            if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
+                customer = new Customer();
+
+                customer.setDriverLicenseId(driverLicenseIdTextField.getText());
+                customer.setFirstName(firstNameTextField.getText());
+                customer.setLastName(lastNameTextField.getText());
+                customer.setIdNumber(idNumberTextField.getText());
+                customer.setDateOfBirth(dateOfBirthTextField.getText());
+                customer.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+                customer.setCity(cityTextField.getText());
+                customer.setStreet(streetTextField.getText());
+                customer.setHouseNumber(houseNumberTextField.getText());
+                customer.setEmailAddress(emailTextField.getText());
+                customer.setPhoneNumber(phoneNumberTextField.getText());
+
+                customerService.persist(customer);
+                entity.setCustomer(customer);
+            }
             entity.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
-            // TODO Case where a new customer is created
             entity.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
             entity.setEmployee(employeeChoiceBox.getValue());
             entity.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
@@ -183,9 +201,15 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         StringBuilder sb = new StringBuilder();
         String errorMessage;
 
-        List<Customer> customers;
+        //   if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
+        //       sb.append(I18nComponentsUtil.getRentalNoValidCustomer());
+        //       sb.append(System.lineSeparator());
+        //   } */
 
-        // TODO null checks for car & employee
+        if (employeeChoiceBox.getValue() == null) {
+            sb.append(I18nComponentsUtil.getRentalNoValidEmployee());
+            sb.append(System.lineSeparator());
+        }
 
         if (duration < 0.0) {
             sb.append(I18nComponentsUtil.getRentalNoValidDuration());
