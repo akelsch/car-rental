@@ -153,7 +153,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             } catch (NumberFormatException e) {
                 sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getCustomerNoValidInteger());
+                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }

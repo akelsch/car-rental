@@ -163,7 +163,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             } catch (NumberFormatException e) {
                 sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
@@ -178,7 +178,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             } catch (NumberFormatException e) {
                 sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
@@ -197,7 +197,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             } catch (NumberFormatException e) {
                 sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
@@ -216,7 +216,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             } catch (NumberFormatException e) {
                 sb.append(I18nComponentsUtil.getCarNoValidDoorCount());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
@@ -270,7 +270,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             } catch (NumberFormatException e) {
                 sb.append(I18nComponentsUtil.getCarNoValidDailyRate());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getCarNoValidInteger());
+                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }

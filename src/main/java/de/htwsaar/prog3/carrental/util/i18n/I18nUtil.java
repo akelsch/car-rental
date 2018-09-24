@@ -10,12 +10,12 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  */
 public final class I18nUtil {
-    private I18nUtil() {
-    }
-
     // Bundle base names
     private static final String I18N_BASENAME_STRINGS = "bundles/strings";
     private static final String I18N_BASENAME_COMPONENTS = "bundles/components";
+
+    private I18nUtil() {
+    }
 
     @Getter
     private static ResourceBundle resourceBundleStrings;

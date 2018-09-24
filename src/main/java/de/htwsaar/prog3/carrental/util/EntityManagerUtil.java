@@ -10,12 +10,12 @@ import javax.persistence.Persistence;
  * @author Arthur Kelsch
  */
 public final class EntityManagerUtil {
-    private EntityManagerUtil() {
-    }
-
     private static final String PERSISTENCE_UNIT_NAME = "car-rental";
 
     private static EntityManagerFactory emf;
+
+    private EntityManagerUtil() {
+    }
 
     /**
      * Initializes the {@link EntityManagerFactory} field {@link #emf} if it is null or currently closed.
