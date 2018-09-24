@@ -36,7 +36,6 @@ public final class I18nComponentsUtil {
     private static final String CAR_NO_VALID_FUEL = "car-no-valid-fuel";
     private static final String CAR_NO_VALID_GEARBOX = "car-no-valid-gearbox";
     private static final String CAR_NO_VALID_HORSEPOWER = "car-no-valid-horsepower";
-    private static final String CAR_NO_VALID_INTEGER = "car-no-valid-integer";
     private static final String CAR_NO_VALID_LICENCE_NUMBER = "car-no-valid-licence-number";
     private static final String CAR_NO_VALID_LICENCE_NUMBER_DUPLICATE = "car-no-valid-licence-number-duplicate";
     private static final String CAR_NO_VALID_MODEL = "car-no-valid-model";
@@ -67,7 +66,6 @@ public final class I18nComponentsUtil {
     private static final String CUSTOMER_NO_VALID_HOUSE_NUMBER = "customer-no-valid-house-number";
     private static final String CUSTOMER_NO_VALID_ID_NUMBER = "customer-no-valid-id-number";
     private static final String CUSTOMER_NO_VALID_ID_NUMBER_DUPLICATE = "customer-no-valid-id-number-duplicate";
-    private static final String CUSTOMER_NO_VALID_INTEGER = "customer-no-valid-integer";
     private static final String CUSTOMER_NO_VALID_LAST_NAME = "customer-no-valid-last-name";
     private static final String CUSTOMER_NO_VALID_PHONE_NUMBER = "customer-no-valid-phone-number";
     private static final String CUSTOMER_NO_VALID_STREET_NAME = "customer-no-valid-street-name";
@@ -83,6 +81,7 @@ public final class I18nComponentsUtil {
     private static final String DIALOG_ERROR_INVALID_FIELDS_TEXT = "dialog-invalid-fields-text";
     private static final String DIALOG_ERROR_INVALID_FIELDS_TITLE = "dialog-invalid-fields-title";
     private static final String DIALOG_INFORMATION_TITLE = "dialog-information-title";
+    private static final String DIALOG_INVALID_NUMBER_TEXT = "dialog-invalid-number-text";
     private static final String EMPLOYEE_FIRST_NAME_LABEL = "employee-first-name-label";
     private static final String EMPLOYEE_ID_LABEL = "employee-id-label";
     private static final String EMPLOYEE_LAST_NAME_LABEL = "employee-last-name-label";
@@ -100,12 +99,11 @@ public final class I18nComponentsUtil {
     private static final String RENTAL_EXTRA_COSTS_LABEL = "rental-extra-costs-label";
     private static final String RENTAL_ID_LABEL = "rental-id-label";
     private static final String RENTAL_NOTE_LABEL = "rental-note-label";
-    private static final String RENTAL_NO_VALID_CUSTOMER = "rental-no-valid-customer";
     private static final String RENTAL_NO_VALID_DURATION = "rental-no-valid-duration";
     private static final String RENTAL_NO_VALID_EMPLOYEE = "rental-no-valid-employee";
+    private static final String RENTAL_NO_VALID_EXTRA_COSTS = "rental-no-valid-extra-costs";
     private static final String SEARCH_COMBOBOX_LIKE = "search-combobox-like";
     private static final String STAGE_TITLE = "stage-title";
-
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleComponents();
 
@@ -211,10 +209,6 @@ public final class I18nComponentsUtil {
 
     public static String getCarNoValidHorsepower() {
         return resourceBundle.getString(CAR_NO_VALID_HORSEPOWER);
-    }
-
-    public static String getCarNoValidInteger() {
-        return resourceBundle.getString(CAR_NO_VALID_INTEGER);
     }
 
     public static String getCarNoValidLicenceNumber() {
@@ -337,10 +331,6 @@ public final class I18nComponentsUtil {
         return resourceBundle.getString(CUSTOMER_NO_VALID_ID_NUMBER_DUPLICATE);
     }
 
-    public static String getCustomerNoValidInteger() {
-        return resourceBundle.getString(CUSTOMER_NO_VALID_INTEGER);
-    }
-
     public static String getCustomerNoValidLastName() {
         return resourceBundle.getString(CUSTOMER_NO_VALID_LAST_NAME);
     }
@@ -399,6 +389,10 @@ public final class I18nComponentsUtil {
 
     public static String getDialogInformationTitle() {
         return resourceBundle.getString(DIALOG_INFORMATION_TITLE);
+    }
+
+    public static String getDialogInvalidNumberText() {
+        return resourceBundle.getString(DIALOG_INVALID_NUMBER_TEXT);
     }
 
     public static String getEmployeeFirstNameLabel() {
@@ -465,16 +459,16 @@ public final class I18nComponentsUtil {
         return resourceBundle.getString(RENTAL_ID_LABEL);
     }
 
-    public static String getRentalNoValidCustomer() {
-        return resourceBundle.getString(RENTAL_NO_VALID_CUSTOMER);
-    }
-
     public static String getRentalNoValidDuration() {
         return resourceBundle.getString(RENTAL_NO_VALID_DURATION);
     }
 
     public static String getRentalNoValidEmployee() {
         return resourceBundle.getString(RENTAL_NO_VALID_EMPLOYEE);
+    }
+
+    public static String getRentalNoValidExtraCosts() {
+        return resourceBundle.getString(RENTAL_NO_VALID_EXTRA_COSTS);
     }
 
     public static String getRentalNoteLabel() {
