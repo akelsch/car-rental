@@ -104,6 +104,7 @@ public final class I18nComponentsUtil {
     private static final String RENTAL_NO_VALID_EXTRA_COSTS = "rental-no-valid-extra-costs";
     private static final String SEARCH_COMBOBOX_LIKE = "search-combobox-like";
     private static final String STAGE_TITLE = "stage-title";
+
     // Resource bundle
     private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleComponents();
 

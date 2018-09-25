@@ -54,21 +54,23 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
     @Override
     public void handleNewButtonClicked() {
-        Employee newEmployee = new Employee();
-        boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), newEmployee);
+        Employee employee = new Employee();
+
+        boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), employee);
         if (applyClicked) {
-            service.persist(newEmployee);
+            service.persist(employee);
             entities.setAll(service.findAll());
         }
     }
 
     @Override
     public void handleEditButtonClicked() {
-        Employee toEdit = employeeTableView.getSelectionModel().getSelectedItem();
-        if (toEdit != null) {
-            boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), toEdit);
+        Employee employee = employeeTableView.getSelectionModel().getSelectedItem();
+
+        if (employee != null) {
+            boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), employee);
             if (applyClicked) {
-                service.update(toEdit);
+                service.update(employee);
                 entities.setAll(service.findAll());
             }
         }
@@ -76,23 +78,25 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
     @Override
     public void handleDeleteButtonClicked() {
-        Employee toDelete = employeeTableView.getSelectionModel().getSelectedItem();
-        if (null == toDelete) {
-            Alert informationDialog = DialogUtil
-                    .createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
-            informationDialog.show();
+        Employee employee = employeeTableView.getSelectionModel().getSelectedItem();
+
+        if (null == employee) {
+            Alert info = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            info.show();
             return;
         }
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
+
+        Alert confirmation = DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
+        Optional<ButtonType> result = confirmation.showAndWait();
+
         if (result.orElse(null) == ButtonType.OK) {
             try {
-                service.delete(toDelete);
+                service.delete(employee);
                 entities.setAll(service.findAll());
             } catch (RollbackException e) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't delete this employee", "You must first delete the rental");
+                // TODO i18n
+                Alert alert = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this employee",
+                        "You must first delete the rental");
                 alert.showAndWait();
             }
         }

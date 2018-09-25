@@ -93,37 +93,30 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
     @Override
     boolean isInputValid() {
-        StringBuilder sb = new StringBuilder();
-        String errorMessage;
-
         List<Customer> customers;
+        StringBuilder sb = new StringBuilder();
 
-        if (firstNameTextField.getText() == null
-                || firstNameTextField.getText().trim().isEmpty()) {
+        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidFirstName());
             sb.append(System.lineSeparator());
         }
 
-        if (lastNameTextField.getText() == null
-                || lastNameTextField.getText().trim().isEmpty()) {
+        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidLastName());
             sb.append(System.lineSeparator());
         }
 
-        if (emailAddressTextField.getText() == null
-                || emailAddressTextField.getText().trim().isEmpty()) {
+        if (emailAddressTextField.getText() == null || emailAddressTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidEmailAddress());
             sb.append(System.lineSeparator());
         }
 
-        if (phoneNumberTextField.getText() == null
-                || phoneNumberTextField.getText().trim().isEmpty()) {
+        if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
             sb.append(System.lineSeparator());
         }
 
-        if (dateOfBirthTextField.getText() == null
-                || dateOfBirthTextField.getText().trim().isEmpty()) {
+        if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidDateOfBirth());
             sb.append(System.lineSeparator());
         }
@@ -133,8 +126,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             sb.append(System.lineSeparator());
         }
 
-        if (houseNumberTextField.getText() == null
-                || houseNumberTextField.getText().trim().isEmpty()) {
+        if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidHouseNumber());
             sb.append(System.lineSeparator());
         }
@@ -158,8 +150,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             }
         }
 
-        if (idNumberTextField.getText() == null
-                || idNumberTextField.getText().trim().isEmpty()) {
+        if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
         } else {
@@ -173,8 +164,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             }
         }
 
-        if (driverLicenseIdTextField.getText() == null
-                || driverLicenseIdTextField.getText().trim().isEmpty()) {
+        if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
         } else {
@@ -189,7 +179,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             }
         }
 
-        errorMessage = sb.toString();
+        String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
             Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
                     I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);

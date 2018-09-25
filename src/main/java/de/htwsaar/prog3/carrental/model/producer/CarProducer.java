@@ -15,6 +15,11 @@ import java.util.List;
 public class CarProducer {
     private static CarService carService = new CarService();
 
+    public static void main(String[] args) {
+        produce();
+        EntityManagerUtil.closeEntityManagerFactory();
+    }
+
     private static void produce() {
         List<Car> list = new ArrayList<>();
 
@@ -52,10 +57,5 @@ public class CarProducer {
         for (Car car : list) {
             carService.persist(car);
         }
-    }
-
-    public static void main(String[] args) {
-        produce();
-        EntityManagerUtil.closeEntityManagerFactory();
     }
 }

@@ -75,11 +75,12 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 
     @Override
     public void handleEditButtonClicked() {
-        Rental toEdit = rentalTableView.getSelectionModel().getSelectedItem();
-        if (toEdit != null) {
-            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), toEdit);
+        Rental rental = rentalTableView.getSelectionModel().getSelectedItem();
+
+        if (rental != null) {
+            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), rental);
             if (applyClicked) {
-                service.update(toEdit);
+                service.update(rental);
                 entities.setAll(service.findAll());
             }
         }
@@ -87,18 +88,19 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 
     @Override
     public void handleDeleteButtonClicked() {
-        Rental toDelete = rentalTableView.getSelectionModel().getSelectedItem();
-        if (null == toDelete) {
-            Alert informationDialog = DialogUtil
-                    .createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
-            informationDialog.show();
+        Rental rental = rentalTableView.getSelectionModel().getSelectedItem();
+
+        if (null == rental) {
+            Alert info = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            info.show();
             return;
         }
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
+
+        Alert confirmation = DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
+        Optional<ButtonType> result = confirmation.showAndWait();
+
         if (result.orElse(null) == ButtonType.OK) {
-            service.delete(toDelete);
+            service.delete(rental);
             entities.setAll(service.findAll());
         }
     }

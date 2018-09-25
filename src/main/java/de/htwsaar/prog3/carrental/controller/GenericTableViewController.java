@@ -23,13 +23,9 @@ import lombok.Setter;
  * @author Lukas Raubuch, Arthur Kelsch
  */
 public abstract class GenericTableViewController<T extends BaseEntity> {
-    // Backend service
     GenericService<T> service;
-
-    // Entity list
     ObservableList<T> entities;
 
-    // JavaFX application
     @Setter
     CarRentalApp app;
 

@@ -15,6 +15,11 @@ import java.util.List;
 public class EmployeeProducer {
     private static EmployeeService employeeService = new EmployeeService();
 
+    public static void main(String[] args) {
+        produce();
+        EntityManagerUtil.closeEntityManagerFactory();
+    }
+
     private static void produce() {
         List<Employee> list = new ArrayList<>();
 
@@ -29,10 +34,5 @@ public class EmployeeProducer {
         for (Employee employee : list) {
             employeeService.persist(employee);
         }
-    }
-
-    public static void main(String[] args) {
-        produce();
-        EntityManagerUtil.closeEntityManagerFactory();
     }
 }

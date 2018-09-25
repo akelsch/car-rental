@@ -21,6 +21,11 @@ public class RentalProducer {
     private static EmployeeService employeeService = new EmployeeService();
     private static RentalService rentalService = new RentalService();
 
+    public static void main(String[] args) {
+        produce();
+        EntityManagerUtil.closeEntityManagerFactory();
+    }
+
     private static void produce() {
         List<Rental> list = new ArrayList<>();
 
@@ -48,10 +53,5 @@ public class RentalProducer {
         for (Rental rental : list) {
             rentalService.persist(rental);
         }
-    }
-
-    public static void main(String[] args) {
-        produce();
-        EntityManagerUtil.closeEntityManagerFactory();
     }
 }

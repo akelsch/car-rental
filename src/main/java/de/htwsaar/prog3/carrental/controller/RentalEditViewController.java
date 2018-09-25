@@ -139,6 +139,9 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         driverLicenseIdTextField.requestFocus();
     }
 
+    /**
+     * Handle pressing the "Confirm" button.
+     */
     public void handleConfirmButtonClicked() {
         setDatePickerBorderIfIsEmpty();
 
@@ -165,6 +168,9 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         }
     }
 
+    /**
+     * Handle pressing the "Search" button.
+     */
     public void handleSearchButtonClicked() {
         String driverLicenseId = driverLicenseIdTextField.getText();
 
@@ -237,7 +243,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     @Override
     boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
-        String errorMessage;
 
         if (duration < 0.0) {
             sb.append(I18nComponentsUtil.getRentalNoValidDuration());
@@ -313,7 +318,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
             sb.append(System.lineSeparator());
         }
 
-        errorMessage = sb.toString();
+        String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
             Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
                     I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);

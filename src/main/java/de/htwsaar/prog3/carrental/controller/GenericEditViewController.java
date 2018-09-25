@@ -20,13 +20,9 @@ import java.util.Optional;
  * @author Jens Thewes, Arthur Kelsch
  */
 public abstract class GenericEditViewController<T extends BaseEntity> {
-    // Backend service
     GenericService<T> service;
-
-    // Entity
     T entity;
 
-    // Stage
     @Setter
     Stage modalStage;
 

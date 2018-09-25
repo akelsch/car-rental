@@ -78,21 +78,23 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
     @Override
     public void handleNewButtonClicked() {
-        Customer newCustomer = new Customer();
-        boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), newCustomer);
+        Customer customer = new Customer();
+
+        boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), customer);
         if (applyClicked) {
-            service.persist(newCustomer);
+            service.persist(customer);
             entities.setAll(service.findAll());
         }
     }
 
     @Override
     public void handleEditButtonClicked() {
-        Customer toEdit = customerTableView.getSelectionModel().getSelectedItem();
-        if (toEdit != null) {
-            boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), toEdit);
+        Customer customer = customerTableView.getSelectionModel().getSelectedItem();
+
+        if (customer != null) {
+            boolean applyClicked = new CustomerEditView().start(app.getPrimaryStage(), customer);
             if (applyClicked) {
-                service.update(toEdit);
+                service.update(customer);
                 entities.setAll(service.findAll());
             }
         }
@@ -100,24 +102,26 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
     @Override
     public void handleDeleteButtonClicked() {
-        Customer toDelete = customerTableView.getSelectionModel().getSelectedItem();
-        if (null == toDelete) {
-            Alert informationDialog = DialogUtil
-                    .createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
-            informationDialog.show();
+        Customer customer = customerTableView.getSelectionModel().getSelectedItem();
+
+        if (null == customer) {
+            Alert info = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            info.show();
             return;
         }
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
+
+        Alert confirmation = DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
+        Optional<ButtonType> result = confirmation.showAndWait();
+
         if (result.orElse(null) == ButtonType.OK) {
             try {
-                service.delete(toDelete);
+                service.delete(customer);
                 entities.setAll(service.findAll());
             } catch (RollbackException e) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't delete this customer", "You must first delete the rental");
-                alert.showAndWait();
+                // TODO i18n
+                Alert error = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this customer",
+                        "You must first delete the rental");
+                error.showAndWait();
             }
         }
     }

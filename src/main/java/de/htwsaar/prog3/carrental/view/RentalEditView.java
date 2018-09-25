@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Entry Point of the "Rental Edit" Dialog.
+ * Entry point of the "Rental Edit" dialog.
  *
  * @author Michael Bös, Hagen Schackmann
  */
@@ -24,20 +24,22 @@ public class RentalEditView {
     private static final Logger logger = LoggerFactory.getLogger(RentalEditView.class);
 
     /**
-     * Start the Rent Edit Dialog in a modal Window.
+     * Starts the "Rental Edit" dialog in a modal window.
      *
-     * @param parentStage given Stage from RentalTableView in order to guarantee Window Modality
+     * @param parentStage given stage from RentalTableView in order to guarantee window modality
      * @param rental      given rental to be edit
      * @return true, if all edited changes are applied to given rental; false it at least one error occurs
      */
     public boolean start(Stage parentStage, Rental rental) {
         try {
-            FXMLLoader fxmlLoader =
-                    new FXMLLoader(getClass().getResource(I18nStringsUtil.getRentalEditViewFxml()),
-                            I18nUtil.getResourceBundleComponents());
-            Parent page = fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getRentalEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
 
-            // create the modal Stage
+            Parent page = loader.load();
+            RentalEditViewController controller = loader.getController();
+
+            // Create the modal stage
             Stage modalStage = new Stage();
             modalStage.setTitle(I18nComponentsUtil.getStageTitle());
             modalStage.initModality(Modality.WINDOW_MODAL);
@@ -48,12 +50,11 @@ public class RentalEditView {
             modalStage.setMaxWidth(600);
             modalStage.setResizable(false);
 
-            // set the rental into the controller
-            RentalEditViewController controller = fxmlLoader.getController();
+            // Put the modal stage and rental into the controller
             controller.setModalStage(modalStage);
             controller.initialize(rental);
 
-            // show the dialog and wait until the user closes it
+            // Show the dialog and wait until the user closes it
             modalStage.showAndWait();
 
             return controller.isApplyClicked();

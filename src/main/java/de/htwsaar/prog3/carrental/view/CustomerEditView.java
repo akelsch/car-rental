@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Entry Point of the "Edit Customer" Dialog.
+ * Entry point of the "Edit Customer" dialog.
  *
  * @author Jens Thewes
  */
@@ -24,21 +24,22 @@ public class CustomerEditView {
     private static final Logger logger = LoggerFactory.getLogger(CustomerEditView.class);
 
     /**
-     * Start the Edit Customer Dialog in a modal Window.
+     * Starts the "Edit Customer" dialog in a modal window.
      *
-     * @param parentStage given Stage from CustomerTableView in order to guarantee Window Modality
+     * @param parentStage given stage from CustomerTableView in order to guarantee window modality
      * @param customer    given customer to be edit
      * @return true, if all edited changes are applied to given customer; false it at least one error occurs
      */
     public boolean start(Stage parentStage, Customer customer) {
-        // Load FXML document for the customer configuration view wit the needed resource bundle
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource(I18nStringsUtil.getCustomerEditViewFxml()),
-                    I18nUtil.getResourceBundleComponents());
-            Parent page = fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getCustomerEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
 
-            // create the modal Stage
+            Parent page = loader.load();
+            CustomerEditViewController controller = loader.getController();
+
+            // Create the modal stage
             Stage modalStage = new Stage();
             modalStage.setTitle(I18nComponentsUtil.getStageTitle());
             modalStage.initModality(Modality.WINDOW_MODAL);
@@ -49,12 +50,11 @@ public class CustomerEditView {
             modalStage.setMaxWidth(750);
             modalStage.setResizable(false);
 
-            // set the customer into the controller
-            CustomerEditViewController controller = fxmlLoader.getController();
+            // Put the modal stage and customer into the controller
             controller.setModalStage(modalStage);
             controller.initialize(customer);
 
-            // show the dialog and wait until the user closes it
+            // Show the dialog and wait until the user closes it
             modalStage.showAndWait();
 
             return controller.isApplyClicked();

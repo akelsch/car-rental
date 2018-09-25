@@ -51,27 +51,23 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
     @Override
     boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
-        String errorMessage;
 
-        if (firstNameTextField.getText() == null
-                || firstNameTextField.getText().trim().isEmpty()) {
+        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getEmployeeNoValidFirstName());
             sb.append(System.lineSeparator());
         }
 
-        if (lastNameTextField.getText() == null
-                || lastNameTextField.getText().trim().isEmpty()) {
+        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getEmployeeNoValidLastName());
             sb.append(System.lineSeparator());
         }
 
-        if (positionTextField.getText() == null
-                || positionTextField.getText().trim().isEmpty()) {
+        if (positionTextField.getText() == null || positionTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getEmployeeNoValidPosition());
             sb.append(System.lineSeparator());
         }
 
-        errorMessage = sb.toString();
+        String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
             Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
                     I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);

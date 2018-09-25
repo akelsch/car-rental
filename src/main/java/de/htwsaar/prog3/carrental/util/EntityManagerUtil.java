@@ -18,7 +18,10 @@ public final class EntityManagerUtil {
     }
 
     /**
-     * Initializes the {@link EntityManagerFactory} field {@link #emf} if it is null or currently closed.
+     * Initializes the {@link EntityManagerFactory} field {@link #emf} if it is null or currently closed
+     * and returns it.
+     *
+     * @return the initialized {@link EntityManagerFactory}
      */
     public static EntityManagerFactory createEntityManagerFactory() {
         if (emf == null || !emf.isOpen()) {

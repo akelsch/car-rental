@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Entry Point of the "Edit Car" Dialog.
+ * Entry point of the "Edit Car" dialog.
  *
  * @author Jens Thewes
  */
@@ -24,21 +24,22 @@ public class CarEditView {
     private static final Logger logger = LoggerFactory.getLogger(CarEditView.class);
 
     /**
-     * Start the Edit Car Dialog in a modal Window.
+     * Starts the "Edit Car" dialog in a modal window.
      *
-     * @param parentStage given Stage from CarTableView in order to guarantee Window Modality
+     * @param parentStage given stage from CarTableView in order to guarantee window modality
      * @param car         given car to be edit
      * @return true, if all edited changes are applied to given car; false it at least one error occurs
      */
     public boolean start(Stage parentStage, Car car) {
-        // Load FXML document for the car configuration view wit the needed resource bundle
         try {
-            FXMLLoader fxmlLoader =
-                    new FXMLLoader(getClass().getResource(I18nStringsUtil.getCarEditViewFxml()),
-                            I18nUtil.getResourceBundleComponents());
-            Parent page = fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getCarEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
 
-            // create the modal Stage
+            Parent page = loader.load();
+            CarEditViewController controller = loader.getController();
+
+            // Create the modal stage
             Stage modalStage = new Stage();
             modalStage.setTitle(I18nComponentsUtil.getStageTitle());
             modalStage.initModality(Modality.WINDOW_MODAL);
@@ -49,12 +50,11 @@ public class CarEditView {
             modalStage.setMaxWidth(900);
             modalStage.setResizable(false);
 
-            // set the car into the controller
-            CarEditViewController controller = fxmlLoader.getController();
+            // Put the modal stage and car into the controller
             controller.setModalStage(modalStage);
             controller.initialize(car);
 
-            // show the dialog and wait until the user closes it
+            // Show the dialog and wait until the user closes it
             modalStage.showAndWait();
 
             return controller.isApplyClicked();

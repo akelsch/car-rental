@@ -103,21 +103,23 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
 
     @Override
     public void handleNewButtonClicked() {
-        Car newCar = new Car();
-        boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), newCar);
+        Car car = new Car();
+
+        boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), car);
         if (applyClicked) {
-            service.persist(newCar);
+            service.persist(car);
             entities.setAll(service.findAll());
         }
     }
 
     @Override
     public void handleEditButtonClicked() {
-        Car toEdit = carTableView.getSelectionModel().getSelectedItem();
-        if (toEdit != null) {
-            boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), toEdit);
+        Car car = carTableView.getSelectionModel().getSelectedItem();
+
+        if (car != null) {
+            boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), car);
             if (applyClicked) {
-                service.update(toEdit);
+                service.update(car);
                 entities.setAll(service.findAll());
             }
         }
@@ -125,24 +127,26 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
 
     @Override
     public void handleDeleteButtonClicked() {
-        Car toDelete = carTableView.getSelectionModel().getSelectedItem();
-        if (null == toDelete) {
-            Alert informationDialog = DialogUtil
-                    .createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
-            informationDialog.show();
+        Car car = carTableView.getSelectionModel().getSelectedItem();
+
+        if (null == car) {
+            Alert info = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            info.show();
             return;
         }
-        Alert confirmationDialog = DialogUtil
-                .createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
-        Optional<ButtonType> result = confirmationDialog.showAndWait();
+
+        Alert confirmation = DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
+        Optional<ButtonType> result = confirmation.showAndWait();
+
         if (result.orElse(null) == ButtonType.OK) {
             try {
-                service.delete(toDelete);
+                service.delete(car);
                 entities.setAll(service.findAll());
             } catch (RollbackException e) {
-                Alert alert = DialogUtil.createErrorDialog("Invalid Action",
-                        "Can't delete this car", "You must first delete the rental");
-                alert.showAndWait();
+                // TODO i18n
+                Alert error = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this car",
+                        "You must first delete the rental");
+                error.showAndWait();
             }
         }
     }
@@ -151,16 +155,15 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
      * Handle pressing the "Rent..." button.
      */
     public void handleRentButtonClicked() {
-        Rental newRental = new Rental();
-        Car toRent = carTableView.getSelectionModel().getSelectedItem();
+        Car car = carTableView.getSelectionModel().getSelectedItem();
 
-        if (toRent != null) {
-            newRental.setCar(toRent);
+        if (car != null) {
+            Rental rental = new Rental();
+            rental.setCar(car);
 
-            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), newRental);
-
+            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), rental);
             if (applyClicked) {
-                rentalService.persist(newRental);
+                rentalService.persist(rental);
                 entities.setAll(service.findAll());
             }
         }

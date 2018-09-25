@@ -13,7 +13,7 @@ import java.util.List;
  * The only difference between the services is their DAO implementation.
  *
  * @param <T> the type of the entity
- * @author Arthur Kelsch
+ * @author Arthur Kelsch, Julian Quint
  */
 public class GenericServiceImpl<T extends BaseEntity> implements GenericService<T> {
     GenericDao<T> dao;
@@ -49,11 +49,9 @@ public class GenericServiceImpl<T extends BaseEntity> implements GenericService<
     public List<T> filter(String field, String comparator, String value) {
         dao.createEntityManager();
         dao.beginTransaction();
-        List<T> entities = dao.filter(
-                FilterUtil.convertField(field),
+        List<T> entities = dao.filter(FilterUtil.convertField(field),
                 comparator,
-                FilterUtil.convertValue(value, comparator)
-        );
+                FilterUtil.convertValue(value, comparator));
         dao.commitTransaction();
         dao.closeEntityManager();
 

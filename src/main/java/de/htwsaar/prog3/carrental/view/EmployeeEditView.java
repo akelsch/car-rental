@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Entry Point of the "Edit Employee" Dialog.
+ * Entry point of the "Edit Employee" dialog.
  *
  * @author Jens Thewes
  */
@@ -24,21 +24,22 @@ public class EmployeeEditView {
     private static final Logger logger = LoggerFactory.getLogger(EmployeeEditView.class);
 
     /**
-     * Start the Edit Employee Dialog in a modal Window.
+     * Starts the "Edit Employee" dialog in a modal window.
      *
-     * @param parentStage given Stage from EmployeeTableView in order to guarantee Window Modality
+     * @param parentStage given stage from EmployeeTableView in order to guarantee window modality
      * @param employee    given employee to be edit
      * @return true, if all edited changes are applied to given employee; false it at least one error occurs
      */
     public boolean start(Stage parentStage, Employee employee) {
-        // Load FXML document for the employee configuration view wit the needed resource bundle
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource(I18nStringsUtil.getEmployeeEditViewFxml()),
-                    I18nUtil.getResourceBundleComponents());
-            Parent page = fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getEmployeeEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
 
-            // create the modal Stage
+            Parent page = loader.load();
+            EmployeeEditViewController controller = loader.getController();
+
+            // Create the modal stage
             Stage modalStage = new Stage();
             modalStage.setTitle(I18nComponentsUtil.getStageTitle());
             modalStage.initModality(Modality.WINDOW_MODAL);
@@ -49,12 +50,11 @@ public class EmployeeEditView {
             modalStage.setMaxWidth(600);
             modalStage.setResizable(false);
 
-            // set the employee into the controller
-            EmployeeEditViewController controller = fxmlLoader.getController();
+            // Put the modal stage and employee into the controller
             controller.setModalStage(modalStage);
             controller.initialize(employee);
 
-            // show the dialog and wait until the user closes it
+            // Show the dialog and wait until the user closes it
             modalStage.showAndWait();
 
             return controller.isApplyClicked();

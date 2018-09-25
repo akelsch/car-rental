@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<Pane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      onKeyPressed="#handleKeyEvent"
-      fx:controller="de.htwsaar.prog3.carrental.controller.RentalEditViewController">
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns:fx="http://javafx.com/fxml"
+      fx:controller="de.htwsaar.prog3.carrental.controller.RentalEditViewController"
+      onKeyPressed="#handleKeyEvent">
+    <!-- TODO i18n -->
     <Pane prefHeight="60.0" prefWidth="540.0">
         <Label layoutX="30.0" layoutY="30.0" text="Car:"/>
         <Label fx:id="carLabel" layoutX="53.0" layoutY="30.0" text="placeholder"/>

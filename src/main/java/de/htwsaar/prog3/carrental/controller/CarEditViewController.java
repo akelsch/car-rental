@@ -129,9 +129,8 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 
     @Override
     boolean isInputValid() {
-        StringBuilder sb = new StringBuilder();
-        String errorMessage;
         List<Car> cars;
+        StringBuilder sb = new StringBuilder();
 
         if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCarNoValidBrand());
@@ -153,8 +152,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(System.lineSeparator());
         }
 
-        if (constructionYearTextField.getText() == null
-                || constructionYearTextField.getText().trim().isEmpty()) {
+        if (constructionYearTextField.getText() == null || constructionYearTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
             sb.append(System.lineSeparator());
         } else {
@@ -168,8 +166,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        if (drivenDistanceTextField.getText() == null
-                || drivenDistanceTextField.getText().trim().isEmpty()) {
+        if (drivenDistanceTextField.getText() == null || drivenDistanceTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
             sb.append(System.lineSeparator());
         } else {
@@ -226,8 +223,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(System.lineSeparator());
         }
 
-        if (nextInspectionTextField.getText() == null
-                || nextInspectionTextField.getText().trim().isEmpty()) {
+        if (nextInspectionTextField.getText() == null || nextInspectionTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCarNoValidNextInspection());
             sb.append(System.lineSeparator());
         }
@@ -246,8 +242,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        if (licenceNumberTextField.getText() == null
-                || licenceNumberTextField.getText().trim().isEmpty()) {
+        if (licenceNumberTextField.getText() == null || licenceNumberTextField.getText().trim().isEmpty()) {
             sb.append(I18nComponentsUtil.getCarNoValidLicenceNumber());
             sb.append(System.lineSeparator());
         } else {
@@ -289,7 +284,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        errorMessage = sb.toString();
+        String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
             Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
                     I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
