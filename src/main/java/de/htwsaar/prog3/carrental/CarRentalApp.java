@@ -1,9 +1,10 @@
 package de.htwsaar.prog3.carrental;
 
-import de.htwsaar.prog3.carrental.controller.CarTableViewController;
-import de.htwsaar.prog3.carrental.controller.CustomerTableViewController;
-import de.htwsaar.prog3.carrental.controller.EmployeeTableViewController;
-import de.htwsaar.prog3.carrental.controller.RentalTableViewController;
+import de.htwsaar.prog3.carrental.controller.*;
+import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.model.Employee;
+import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
@@ -12,8 +13,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,12 +26,11 @@ import java.util.Locale;
  * Entry point of the car rental application. Definition of primary stage and
  * building of the environment.
  *
- * @author Lukas Raubuch, Arthur Kelsch
+ * @author Lukas Raubuch, Arthur Kelsch, Jens Thewes
  */
 public class CarRentalApp extends Application {
     private static final Logger logger = LoggerFactory.getLogger(CarRentalApp.class);
 
-    @Getter
     private Stage primaryStage;
     private BorderPane root;
 
@@ -70,7 +71,7 @@ public class CarRentalApp extends Application {
     }
 
     /**
-     * Switches the view to the Car TableView.
+     * Switches the view to the CarTableView.
      */
     public void showCarTableView() {
         try {
@@ -79,6 +80,7 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane carTableView = loader.load();
+            logger.info("Displaying CarTableView");
             root.setCenter(carTableView);
 
             CarTableViewController controller = loader.getController();
@@ -86,12 +88,47 @@ public class CarRentalApp extends Application {
         } catch (IOException e) {
             logger.error("Failed loading FXML!", e);
         }
-
-        logger.info("Displaying Car TableView");
     }
 
     /**
-     * Switches the view to the Customer TableView.
+     * Opens the CarEditView dialog.
+     */
+    public boolean showCarEditView(Car car) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getCarEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
+
+            BorderPane carEditView = loader.load();
+            CarEditViewController controller = loader.getController();
+
+            // Create the modal stage
+            Stage modalStage = new Stage();
+            modalStage.setTitle(I18nComponentsUtil.getStageTitle());
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initOwner(primaryStage);
+            Scene scene = new Scene(carEditView);
+            modalStage.setScene(scene);
+
+            // Put the modal stage and car into the controller
+            controller.setModalStage(modalStage);
+            controller.initialize(car);
+
+            // Show the dialog and wait until the user closes it
+            modalStage.setResizable(false);
+            logger.info("Displaying CarEditView");
+            modalStage.showAndWait();
+            logger.info("Closed CarEditView");
+
+            return controller.isApplyClicked();
+        } catch (IOException e) {
+            logger.error("Failed loading FXML!", e);
+            return false;
+        }
+    }
+
+    /**
+     * Switches the view to the CustomerTableView.
      */
     public void showCustomerTableView() {
         try {
@@ -100,6 +137,7 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane customerTableView = loader.load();
+            logger.info("Displaying CustomerTableView");
             root.setCenter(customerTableView);
 
             CustomerTableViewController controller = loader.getController();
@@ -107,12 +145,47 @@ public class CarRentalApp extends Application {
         } catch (IOException e) {
             logger.error("Failed loading FXML!", e);
         }
-
-        logger.info("Displaying Customer TableView");
     }
 
     /**
-     * Switches the view to the Employee TableView.
+     * Opens the CustomerEditView dialog.
+     */
+    public boolean showCustomerEditView(Customer customer) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getCustomerEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
+
+            BorderPane customerEditView = loader.load();
+            CustomerEditViewController controller = loader.getController();
+
+            // Create the modal stage
+            Stage modalStage = new Stage();
+            modalStage.setTitle(I18nComponentsUtil.getStageTitle());
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initOwner(primaryStage);
+            Scene scene = new Scene(customerEditView);
+            modalStage.setScene(scene);
+
+            // Put the modal stage and customer into the controller
+            controller.setModalStage(modalStage);
+            controller.initialize(customer);
+
+            // Show the dialog and wait until the user closes it
+            modalStage.setResizable(false);
+            logger.info("Displaying CustomerEditView");
+            modalStage.showAndWait();
+            logger.info("Closed CustomerEditView");
+
+            return controller.isApplyClicked();
+        } catch (IOException e) {
+            logger.error("Failed loading FXML!", e);
+            return false;
+        }
+    }
+
+    /**
+     * Switches the view to the EmployeeTableView.
      */
     public void showEmployeeTableView() {
         try {
@@ -121,6 +194,7 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane employeeTableView = loader.load();
+            logger.info("Displaying EmployeeTableView");
             root.setCenter(employeeTableView);
 
             EmployeeTableViewController controller = loader.getController();
@@ -128,12 +202,47 @@ public class CarRentalApp extends Application {
         } catch (IOException e) {
             logger.error("Failed loading FXML!", e);
         }
-
-        logger.info("Displaying Employee TableView");
     }
 
     /**
-     * Switches the view to the Rental TableView.
+     * Opens the EmployeeEditView dialog.
+     */
+    public boolean showEmployeeEditView(Employee employee) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getEmployeeEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
+
+            BorderPane employeeEditView = loader.load();
+            EmployeeEditViewController controller = loader.getController();
+
+            // Create the modal stage
+            Stage modalStage = new Stage();
+            modalStage.setTitle(I18nComponentsUtil.getStageTitle());
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initOwner(primaryStage);
+            Scene scene = new Scene(employeeEditView);
+            modalStage.setScene(scene);
+
+            // Put the modal stage and employee into the controller
+            controller.setModalStage(modalStage);
+            controller.initialize(employee);
+
+            // Show the dialog and wait until the user closes it
+            modalStage.setResizable(false);
+            logger.info("Displaying EmployeeEditView");
+            modalStage.showAndWait();
+            logger.info("Closed EmployeeEditView");
+
+            return controller.isApplyClicked();
+        } catch (IOException e) {
+            logger.error("Failed loading FXML!", e);
+            return false;
+        }
+    }
+
+    /**
+     * Switches the view to the RentalTableView.
      */
     public void showRentalTableView() {
         try {
@@ -142,6 +251,7 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane rentalTableView = loader.load();
+            logger.info("Displaying RentalTableView");
             root.setCenter(rentalTableView);
 
             RentalTableViewController controller = loader.getController();
@@ -149,7 +259,42 @@ public class CarRentalApp extends Application {
         } catch (IOException e) {
             logger.error("Failed loading FXML!", e);
         }
+    }
 
-        logger.info("Displaying Rental TableView");
+    /**
+     * Opens the RentalEditView dialog.
+     */
+    public boolean showRentalEditView(Rental rental) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(I18nStringsUtil.getRentalEditViewFxml()));
+            loader.setResources(I18nUtil.getResourceBundleComponents());
+
+            Pane rentalEditView = loader.load();
+            RentalEditViewController controller = loader.getController();
+
+            // Create the modal stage
+            Stage modalStage = new Stage();
+            modalStage.setTitle(I18nComponentsUtil.getStageTitle());
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initOwner(primaryStage);
+            Scene scene = new Scene(rentalEditView);
+            modalStage.setScene(scene);
+
+            // Put the modal stage and rental into the controller
+            controller.setModalStage(modalStage);
+            controller.initialize(rental);
+
+            // Show the dialog and wait until the user closes it
+            modalStage.setResizable(false);
+            logger.info("Displaying RentalEditView");
+            modalStage.showAndWait();
+            logger.info("Closed RentalEditView");
+
+            return controller.isApplyClicked();
+        } catch (IOException e) {
+            logger.error("Failed loading FXML!", e);
+            return false;
+        }
     }
 }

@@ -6,8 +6,6 @@ import de.htwsaar.prog3.carrental.service.CarService;
 import de.htwsaar.prog3.carrental.service.RentalService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.view.CarEditView;
-import de.htwsaar.prog3.carrental.view.RentalEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -105,7 +103,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     public void handleNewButtonClicked() {
         Car car = new Car();
 
-        boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), car);
+        boolean applyClicked = app.showCarEditView(car);
         if (applyClicked) {
             service.persist(car);
             entities.setAll(service.findAll());
@@ -117,7 +115,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
         Car car = carTableView.getSelectionModel().getSelectedItem();
 
         if (car != null) {
-            boolean applyClicked = new CarEditView().start(app.getPrimaryStage(), car);
+            boolean applyClicked = app.showCarEditView(car);
             if (applyClicked) {
                 service.update(car);
                 entities.setAll(service.findAll());
@@ -161,7 +159,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
             Rental rental = new Rental();
             rental.setCar(car);
 
-            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), rental);
+            boolean applyClicked = app.showRentalEditView(rental);
             if (applyClicked) {
                 rentalService.persist(rental);
                 entities.setAll(service.findAll());

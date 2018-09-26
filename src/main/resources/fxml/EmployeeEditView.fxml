@@ -3,21 +3,23 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.EmployeeEditViewController"
-            onKeyPressed="#handleKeyEvent">
+<?import javafx.scene.text.Font?>
+<BorderPane onKeyPressed="#handleKeyEvent"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.htwsaar.prog3.carrental.controller.EmployeeEditViewController">
     <top>
-        <BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+        <BorderPane BorderPane.alignment="CENTER">
             <left>
                 <GridPane alignment="center" hgap="10" vgap="10">
-                    <Label text="%employee-edit-title-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label text="%employee-edit-title-label" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <font>
+                            <Font size="14.0"/>
+                        </font>
+                    </Label>
                 </GridPane>
             </left>
-            <padding>
-                <Insets left="29" right="5.0" top="12.0"/>
-            </padding>
             <BorderPane.margin>
-                <Insets left="29" right="5.0" top="12.0"/>
+                <Insets bottom="20"/>
             </BorderPane.margin>
         </BorderPane>
     </top>
@@ -32,7 +34,7 @@
         </GridPane>
     </center>
     <bottom>
-        <BorderPane prefHeight="25.0" prefWidth="1442.0" BorderPane.alignment="CENTER">
+        <BorderPane BorderPane.alignment="CENTER">
             <right>
                 <GridPane alignment="center" hgap="10" vgap="10">
                     <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button-cancel-label"
@@ -41,12 +43,12 @@
                             textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                 </GridPane>
             </right>
-            <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-            </padding>
             <BorderPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                <Insets top="20"/>
             </BorderPane.margin>
         </BorderPane>
     </bottom>
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
 </BorderPane>

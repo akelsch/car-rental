@@ -4,7 +4,6 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.service.EmployeeService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.view.EmployeeEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,7 +55,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
     public void handleNewButtonClicked() {
         Employee employee = new Employee();
 
-        boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), employee);
+        boolean applyClicked = app.showEmployeeEditView(employee);
         if (applyClicked) {
             service.persist(employee);
             entities.setAll(service.findAll());
@@ -68,7 +67,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         Employee employee = employeeTableView.getSelectionModel().getSelectedItem();
 
         if (employee != null) {
-            boolean applyClicked = new EmployeeEditView().start(app.getPrimaryStage(), employee);
+            boolean applyClicked = app.showEmployeeEditView(employee);
             if (applyClicked) {
                 service.update(employee);
                 entities.setAll(service.findAll());

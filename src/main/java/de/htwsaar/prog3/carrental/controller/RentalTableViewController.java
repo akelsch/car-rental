@@ -4,7 +4,6 @@ import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.service.RentalService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.view.RentalEditView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -78,7 +77,7 @@ public class RentalTableViewController extends GenericTableViewController<Rental
         Rental rental = rentalTableView.getSelectionModel().getSelectedItem();
 
         if (rental != null) {
-            boolean applyClicked = new RentalEditView().start(app.getPrimaryStage(), rental);
+            boolean applyClicked = app.showRentalEditView(rental);
             if (applyClicked) {
                 service.update(rental);
                 entities.setAll(service.findAll());

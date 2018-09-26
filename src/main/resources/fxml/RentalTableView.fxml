@@ -5,9 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.util.HashMap?>
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.RentalTableViewController"
-            onKeyPressed="#handleKeyEvent">
+<BorderPane onKeyPressed="#handleKeyEvent"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.htwsaar.prog3.carrental.controller.RentalTableViewController">
     <top>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
