@@ -92,6 +92,9 @@ public class CarRentalApp extends Application {
 
     /**
      * Opens the CarEditView dialog.
+     *
+     * @param car car that we want to edit
+     * @return true if the changes were applied successfully, else false
      */
     public boolean showCarEditView(Car car) {
         try {
@@ -149,6 +152,9 @@ public class CarRentalApp extends Application {
 
     /**
      * Opens the CustomerEditView dialog.
+     *
+     * @param customer customer that we want to edit
+     * @return true if the changes were applied successfully, else false
      */
     public boolean showCustomerEditView(Customer customer) {
         try {
@@ -206,6 +212,9 @@ public class CarRentalApp extends Application {
 
     /**
      * Opens the EmployeeEditView dialog.
+     *
+     * @param employee employee that we want to edit
+     * @return true if the changes were applied successfully, else false
      */
     public boolean showEmployeeEditView(Employee employee) {
         try {
@@ -263,6 +272,9 @@ public class CarRentalApp extends Application {
 
     /**
      * Opens the RentalEditView dialog.
+     *
+     * @param rental rental that we want to edit
+     * @return true if the changes were applied successfully, else false
      */
     public boolean showRentalEditView(Rental rental) {
         try {
