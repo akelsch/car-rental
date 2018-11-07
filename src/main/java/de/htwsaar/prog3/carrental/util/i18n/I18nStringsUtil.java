@@ -9,6 +9,11 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes
  */
+/*
+ * OLBERTZ Das Auslagern dieser Strings in eine properties-Datei ist eine gute Idee. Nur benutzen
+ * Sie dann im Bezeichner der Klasse nicht I18n, denn Sie internationalisieren an dieser Stelle ja 
+ * nicht. 
+ */
 public final class I18nStringsUtil {
     // Keys
     private static final String CAR_TABLE_VIEW_FXML = "car-table-view-fxml";

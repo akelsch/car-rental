@@ -128,6 +128,11 @@ public class CarEditViewController extends GenericEditViewController<Car> {
     }
 
     @Override
+    /*
+     * OLBERTZ Fuer den Ueberblick waere es schoen, wenn diese Methode noch einmal in einige private zerlegt
+     * waere. Dann koennte man durch die sprechenden Bezeichner der privaten Methoden schnell sehen, was 
+     * genau in welcher Reihenfolge geprueft wird. 
+     */
     boolean isInputValid() {
         List<Car> cars;
         StringBuilder sb = new StringBuilder();

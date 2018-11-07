@@ -174,41 +174,69 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     public void handleSearchButtonClicked() {
         String driverLicenseId = driverLicenseIdTextField.getText();
 
+		/*
+		 * OLBERTZ Ich empfehle auch hierfuer Werkzeugmethoden zu schreiben, um einfache
+		 * Fluechtigkeitsfehler zu vermeiden. de.htwsaar.prog3.carrental.olbertz.StringUtils z
+		 * eigt ein Beispiel wie das bei mir aussieht.
+		 */
         if (driverLicenseId != null && !driverLicenseId.trim().isEmpty()) {
             Customer customer = findCustomerByDriverLicenseId(driverLicenseId);
             entity.setCustomer(customer);
 
             fillCustomerTextFields();
 
+            /*
+             * OLBERTZ Auch hierfuer bastle ich mehr wegen der Uebersichtlichkeit gerne
+             * zwei Methoden: enableInputComponents() und disableInputComponents(). Das soll 
+             * die Uebersichtlichkeit erhoehen und die Fehleranfaelligkeit verringern. Die beiden 
+             * Methoden haben keinen boolschen Uebergabeparameter, so dass auch hier kein Fehler passieren
+             * kann. Ich habe mal ein Beispiel unter diese Methode geschrieben. So kann man die
+             * Aktivierung bzw. Deaktivierung auch von verschiedenen Stellen aus vornehmen.
+             */
             if (customer.getId() != null) {
-                firstNameTextField.setDisable(true);
-                lastNameTextField.setDisable(true);
-                idNumberTextField.setDisable(true);
-                dateOfBirthTextField.setDisable(true);
-                zipCodeTextField.setDisable(true);
-                cityTextField.setDisable(true);
-                streetTextField.setDisable(true);
-                houseNumberTextField.setDisable(true);
-                emailTextField.setDisable(true);
-                phoneNumberTextField.setDisable(true);
+            	enableInputComponents();
             } else {
-                firstNameTextField.setDisable(false);
-                lastNameTextField.setDisable(false);
-                idNumberTextField.setDisable(false);
-                dateOfBirthTextField.setDisable(false);
-                zipCodeTextField.setDisable(false);
-                cityTextField.setDisable(false);
-                streetTextField.setDisable(false);
-                houseNumberTextField.setDisable(false);
-                emailTextField.setDisable(false);
-                phoneNumberTextField.setDisable(false);
+            	disableInputComponents();
             }
         }
+    }
+    
+    private void enableInputComponents() {
+        firstNameTextField.setDisable(true);
+        lastNameTextField.setDisable(true);
+        idNumberTextField.setDisable(true);
+        dateOfBirthTextField.setDisable(true);
+        zipCodeTextField.setDisable(true);
+        cityTextField.setDisable(true);
+        streetTextField.setDisable(true);
+        houseNumberTextField.setDisable(true);
+        emailTextField.setDisable(true);
+        phoneNumberTextField.setDisable(true);
+    }
+    
+    private void disableInputComponents() {
+        firstNameTextField.setDisable(false);
+        lastNameTextField.setDisable(false);
+        idNumberTextField.setDisable(false);
+        dateOfBirthTextField.setDisable(false);
+        zipCodeTextField.setDisable(false);
+        cityTextField.setDisable(false);
+        streetTextField.setDisable(false);
+        houseNumberTextField.setDisable(false);
+        emailTextField.setDisable(false);
+        phoneNumberTextField.setDisable(false);
     }
 
     @Override
     public void handleApplyButtonClicked() {
         if (isInputValid()) {
+        	/*
+        	 * OLBERTZ Ich muss zugeben, dass ich diese Anweisung im ersten Moment ganz 
+        	 * falsch verstanden habe. Ich musste erst sehr genau hinsehen, bevor mir klar
+        	 * wurde, was in diesem if passiert. Diese Verschachtelung sollten Sie in 
+        	 * if-Bedingungen unbedingt vermeiden. Dafuer stehen uns temporaere Variablen
+        	 * zur Verfuegung.
+        	 */
             if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
                 Customer customer = new Customer();
 
@@ -351,6 +379,12 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     private StringConverter<LocalDate> getDatePickerConverter() {
         String pattern = "dd.MM.yyyy";
 
+        /*
+         * OLBERTZ Das hier betrachte ich jetzt fuer eine innere anonyme Klasse als nicht 
+         * geeignet, denn diese Umwandlungen waeren an anderer Stelle bestimmt auch
+         * interessant. Das haette ich jetzt in einer benannten Klasse gemacht, die dann
+         * in meine Werkzeugklassen.jar wandert. 
+         */
         StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 

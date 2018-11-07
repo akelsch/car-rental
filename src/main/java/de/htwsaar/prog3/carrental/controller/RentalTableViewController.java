@@ -67,6 +67,11 @@ public class RentalTableViewController extends GenericTableViewController<Rental
      *
      * @see CarTableViewController#handleRentButtonClicked()
      */
+    /*
+     * OLBERTZ Normalerweise sollten man das Werfen einer solchen UnsupportedOperationException
+     * ja vermeiden, aber in diesem Fall kann man es machen, denke ich. Gut ist, dass Sie einen
+     * erklaerenden Kommentar geschrieben haben. 
+     */
     @Override
     public void handleNewButtonClicked() {
         throw new UnsupportedOperationException();

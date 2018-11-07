@@ -23,7 +23,9 @@ import lombok.Setter;
  * @author Lukas Raubuch, Arthur Kelsch
  */
 public abstract class GenericTableViewController<T extends BaseEntity> {
-    GenericService<T> service;
+    // OLBERTZ Bitte machen Sie die Attribute imer privat. 
+	
+	GenericService<T> service;
     ObservableList<T> entities;
 
     @Setter

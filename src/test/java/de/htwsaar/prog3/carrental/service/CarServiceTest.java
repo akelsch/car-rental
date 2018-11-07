@@ -46,6 +46,15 @@ class CarServiceTest {
 
     @Test
     void testFindAll() {
+    	/*
+    	 * OLBERTZ Die beiden createTestCar-Methoden sind gut. Ich haette mir noch 
+    	 * eine weitere Methode geschrieben, die die Liste mit den erwarteten Autos erzeugt. 
+    	 * Dann waere die Testmethode noch etwas entschlackt. Inzwischen schreibe ich mir
+    	 * ganz gerne eine TestAPI, die diese ganzen Erzeugungsmethoden von Testdaten
+    	 * beinhaltet. Das ist eine Menge von Klassen, die diese ganzen Testdaten erzeugt. 
+    	 * Somit ist all das dann noch einmal aus den Testklassen raus und diese werden 
+    	 * uebersichtlicher.
+    	 */
         // Persist two cars
         Car car1 = createTestCar1();
         carService.persist(car1);
@@ -83,6 +92,11 @@ class CarServiceTest {
         assertThat(actualCar, is(equalTo(updatedCar)));
     }
 
+    /*
+     * OLBERTZ Hier sollte man unbedingt fuer den Test der Datenbanken ein
+     * Framework wie das von mir vorgestellte DBUnit verwenden. Das ermoeglicht
+     * ein wesentlich umfangreicheres Testen bei Datenbanken.
+     */
     @Test
     void testDelete() {
         // Persist two cars

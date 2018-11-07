@@ -96,21 +96,26 @@ public class CarRentalApp extends Application {
      * @param car car that we want to edit
      * @return true if the changes were applied successfully, else false
      */
-    public boolean showCarEditView(Car car) {
+    /*
+     * OLBERTZ Generell empfehle ich wie in der Vorlesung schon gezeigt die Verwendung von final bei 
+     * Uebergabeparametern und auch bei lokalen Variablen und Referenzen. Ich habe in diese Methode
+     * mal als Beispiel umgebaut wie das bei mir aussehen wuerde. 
+     */
+    public boolean showCarEditView(final Car car) {
         try {
-            FXMLLoader loader = new FXMLLoader();
+        	final FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(I18nStringsUtil.getCarEditViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
-            BorderPane carEditView = loader.load();
-            CarEditViewController controller = loader.getController();
+            final BorderPane carEditView = loader.load();
+            final CarEditViewController controller = loader.getController();
 
             // Create the modal stage
-            Stage modalStage = new Stage();
+            final Stage modalStage = new Stage();
             modalStage.setTitle(I18nComponentsUtil.getStageTitle());
             modalStage.initModality(Modality.WINDOW_MODAL);
             modalStage.initOwner(primaryStage);
-            Scene scene = new Scene(carEditView);
+            final Scene scene = new Scene(carEditView);
             modalStage.setScene(scene);
 
             // Put the modal stage and car into the controller
@@ -119,6 +124,10 @@ public class CarRentalApp extends Application {
 
             // Show the dialog and wait until the user closes it
             modalStage.setResizable(false);
+            /*
+             * OLBERTZ Dass Sie mit einem Logger gearbeitet haben und nicht System.out.println
+             * verwendet haben, ist natuerlich sehr gut. 
+             */
             logger.info("Displaying CarEditView");
             modalStage.showAndWait();
             logger.info("Closed CarEditView");
