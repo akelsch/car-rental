@@ -5,7 +5,7 @@
 
     <groupId>de.htwsaar.prog3</groupId>
     <artifactId>car-rental</artifactId>
-    <version>0.0.1-SNAPSHOTT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <name>Car Rental</name>
     <description>
@@ -47,6 +47,7 @@
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+        <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -183,6 +184,7 @@
                     <version>${maven-surefire-plugin.version}</version>
                     <configuration>
                         <argLine>
+                            @{argLine}
                             --add-opens carrental/de.htwsaar.prog3.carrental.service=ALL-UNNAMED
                             --add-opens carrental/de.htwsaar.prog3.carrental.util=ALL-UNNAMED
                         </argLine>
@@ -223,4 +225,33 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
