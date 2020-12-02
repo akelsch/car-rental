@@ -6,7 +6,6 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.util.EntityManagerUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
@@ -56,7 +55,6 @@ public class CarRentalUiApplication extends Application {
 
     @Override
     public void stop() {
-        EntityManagerUtil.closeEntityManagerFactory();
         applicationContext.close();
         Platform.exit();
     }
@@ -81,6 +79,7 @@ public class CarRentalUiApplication extends Application {
     public void showCarTableView() {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getCarTableViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
@@ -104,6 +103,7 @@ public class CarRentalUiApplication extends Application {
     public boolean showCarEditView(Car car) {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getCarEditViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
@@ -141,6 +141,7 @@ public class CarRentalUiApplication extends Application {
     public void showCustomerTableView() {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getCustomerTableViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
@@ -164,6 +165,7 @@ public class CarRentalUiApplication extends Application {
     public boolean showCustomerEditView(Customer customer) {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getCustomerEditViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
@@ -201,6 +203,7 @@ public class CarRentalUiApplication extends Application {
     public void showEmployeeTableView() {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getEmployeeTableViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
@@ -224,6 +227,7 @@ public class CarRentalUiApplication extends Application {
     public boolean showEmployeeEditView(Employee employee) {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getEmployeeEditViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
@@ -261,6 +265,7 @@ public class CarRentalUiApplication extends Application {
     public void showRentalTableView() {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getRentalTableViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
@@ -284,6 +289,7 @@ public class CarRentalUiApplication extends Application {
     public boolean showRentalEditView(Rental rental) {
         try {
             FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(applicationContext::getBean);
             loader.setLocation(getClass().getResource(I18nStringsUtil.getRentalEditViewFxml()));
             loader.setResources(I18nUtil.getResourceBundleComponents());
 

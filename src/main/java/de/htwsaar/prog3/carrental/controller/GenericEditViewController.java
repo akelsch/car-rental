@@ -1,7 +1,6 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.BaseEntity;
-import de.htwsaar.prog3.carrental.service.GenericService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.scene.control.Alert;
@@ -20,7 +19,7 @@ import java.util.Optional;
  * @author Jens Thewes, Arthur Kelsch
  */
 public abstract class GenericEditViewController<T extends BaseEntity> {
-    GenericService<T> service;
+
     T entity;
 
     @Setter

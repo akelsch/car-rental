@@ -2,8 +2,8 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.service.CarService;
-import de.htwsaar.prog3.carrental.service.RentalService;
+import de.htwsaar.prog3.carrental.repository.CarRepository;
+import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
@@ -14,6 +14,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.RollbackException;
 import java.net.URL;
@@ -25,8 +27,11 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch
  */
+@Component
 public class CarTableViewController extends GenericTableViewController<Car> implements Initializable {
-    private RentalService rentalService;
+
+    private final CarRepository carRepository;
+    private final RentalRepository rentalRepository;
 
     @FXML
     private TableView<Car> carTableView;
@@ -68,11 +73,11 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     @FXML
     private TableColumn<Car, String> vin;
 
-    public CarTableViewController() {
-        service = new CarService();
-        entities = FXCollections.observableArrayList(service.findAll());
-
-        rentalService = new RentalService();
+    @Autowired
+    public CarTableViewController(CarRepository carRepository, RentalRepository rentalRepository) {
+        this.carRepository = carRepository;
+        this.rentalRepository = rentalRepository;
+        entities = FXCollections.observableArrayList(this.carRepository.findAll());
     }
 
     @Override
@@ -105,8 +110,8 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
 
         boolean applyClicked = app.showCarEditView(car);
         if (applyClicked) {
-            service.persist(car);
-            entities.setAll(service.findAll());
+            carRepository.save(car);
+            entities.setAll(carRepository.findAll());
         }
     }
 
@@ -117,8 +122,8 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
         if (car != null) {
             boolean applyClicked = app.showCarEditView(car);
             if (applyClicked) {
-                service.update(car);
-                entities.setAll(service.findAll());
+                carRepository.save(car);
+                entities.setAll(carRepository.findAll());
             }
         }
     }
@@ -138,8 +143,8 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
 
         if (result.orElse(null) == ButtonType.OK) {
             try {
-                service.delete(car);
-                entities.setAll(service.findAll());
+                carRepository.delete(car);
+                entities.setAll(carRepository.findAll());
             } catch (RollbackException e) {
                 // TODO i18n
                 Alert error = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this car",
@@ -161,8 +166,8 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
 
             boolean applyClicked = app.showRentalEditView(rental);
             if (applyClicked) {
-                rentalService.persist(rental);
-                entities.setAll(service.findAll());
+                rentalRepository.save(rental);
+                entities.setAll(carRepository.findAll());
             }
         }
     }

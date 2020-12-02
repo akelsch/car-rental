@@ -1,7 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.service.EmployeeService;
+import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
@@ -12,6 +12,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.RollbackException;
 import java.net.URL;
@@ -23,7 +25,11 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes
  */
+@Component
 public class EmployeeTableViewController extends GenericTableViewController<Employee> implements Initializable {
+
+    private final EmployeeRepository employeeRepository;
+
     @FXML
     private TableView<Employee> employeeTableView;
 
@@ -36,9 +42,10 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
     @FXML
     private TableColumn<Employee, String> position;
 
-    public EmployeeTableViewController() {
-        service = new EmployeeService();
-        entities = FXCollections.observableArrayList(service.findAll());
+    @Autowired
+    public EmployeeTableViewController(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+        entities = FXCollections.observableArrayList(this.employeeRepository.findAll());
     }
 
     @Override
@@ -57,8 +64,8 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
         boolean applyClicked = app.showEmployeeEditView(employee);
         if (applyClicked) {
-            service.persist(employee);
-            entities.setAll(service.findAll());
+            employeeRepository.save(employee);
+            entities.setAll(employeeRepository.findAll());
         }
     }
 
@@ -69,8 +76,8 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         if (employee != null) {
             boolean applyClicked = app.showEmployeeEditView(employee);
             if (applyClicked) {
-                service.update(employee);
-                entities.setAll(service.findAll());
+                employeeRepository.save(employee);
+                entities.setAll(employeeRepository.findAll());
             }
         }
     }
@@ -90,8 +97,8 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
         if (result.orElse(null) == ButtonType.OK) {
             try {
-                service.delete(employee);
-                entities.setAll(service.findAll());
+                employeeRepository.delete(employee);
+                entities.setAll(employeeRepository.findAll());
             } catch (RollbackException e) {
                 // TODO i18n
                 Alert alert = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this employee",

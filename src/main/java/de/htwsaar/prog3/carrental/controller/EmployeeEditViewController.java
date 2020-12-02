@@ -1,19 +1,25 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.service.EmployeeService;
+import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * This is the Controller for the "Edit Employee View" of the Carrental Application.
  *
  * @author Jens Thewes
  */
+@Component
 public class EmployeeEditViewController extends GenericEditViewController<Employee> {
+
+    private final EmployeeRepository employeeRepository;
+
     @FXML
     private TextField firstNameTextField;
 
@@ -23,8 +29,9 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
     @FXML
     private TextField positionTextField;
 
-    public EmployeeEditViewController() {
-        service = new EmployeeService();
+    @Autowired
+    public EmployeeEditViewController(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
     @Override

@@ -2,7 +2,6 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.CarRentalUiApplication;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
-import de.htwsaar.prog3.carrental.service.GenericService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.application.Platform;
@@ -23,7 +22,7 @@ import lombok.Setter;
  * @author Lukas Raubuch, Arthur Kelsch
  */
 public abstract class GenericTableViewController<T extends BaseEntity> {
-    GenericService<T> service;
+
     ObservableList<T> entities;
 
     @Setter
@@ -105,7 +104,8 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
         String value = searchTextField.getText();
 
         if (field != null && comparator != null && !value.isEmpty()) {
-            entities.setAll(service.filter(field, comparator, value));
+            // TODO filter
+//            entities.setAll(service.filter(field, comparator, value));
         }
     }
 
@@ -116,7 +116,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
         clearSearchComboBoxAndTextFieldBorders();
         clearSearchComboBoxAndTextFieldValues();
 
-        entities.setAll(service.findAll());
+//        entities.setAll(service.findAll());
     }
 
     /**

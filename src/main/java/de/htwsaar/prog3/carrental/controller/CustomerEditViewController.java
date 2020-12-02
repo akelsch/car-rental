@@ -1,22 +1,28 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Customer;
-import de.htwsaar.prog3.carrental.service.CustomerService;
+import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Edit Customer View" of the Carrental Application.
  *
  * @author Jens Thewes
  */
+@Component
 public class CustomerEditViewController extends GenericEditViewController<Customer> {
+
+    private final CustomerRepository customerRepository;
+
     @FXML
     private TextField firstNameTextField;
 
@@ -50,8 +56,9 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
     @FXML
     private TextField driverLicenseIdTextField;
 
-    public CustomerEditViewController() {
-        service = new CustomerService();
+    @Autowired
+    public CustomerEditViewController(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -93,7 +100,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
     @Override
     boolean isInputValid() {
-        List<Customer> customers;
+        List<Customer> customers = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
@@ -154,10 +161,11 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
         } else {
-            customers = service.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
-                    .stream()
-                    .filter(c -> !c.getId().equals(entity.getId()))
-                    .collect(Collectors.toList());
+            // TODO filter
+//            customers = service.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
+//                    .stream()
+//                    .filter(c -> !c.getId().equals(entity.getId()))
+//                    .collect(Collectors.toList());
             if (!customers.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCustomerNoValidIdNumberDuplicate());
                 sb.append(System.lineSeparator());
@@ -168,11 +176,11 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
         } else {
-            customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
-                    "=", driverLicenseIdTextField.getText())
-                    .stream()
-                    .filter(c -> !c.getId().equals(entity.getId()))
-                    .collect(Collectors.toList());
+//            customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
+//                    "=", driverLicenseIdTextField.getText())
+//                    .stream()
+//                    .filter(c -> !c.getId().equals(entity.getId()))
+//                    .collect(Collectors.toList());
             if (!customers.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicenceDuplicate());
                 sb.append(System.lineSeparator());

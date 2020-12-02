@@ -1,7 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.service.RentalService;
+import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
@@ -12,6 +12,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.Optional;
@@ -22,7 +24,11 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch
  */
+@Component
 public class RentalTableViewController extends GenericTableViewController<Rental> implements Initializable {
+
+    private final RentalRepository rentalRepository;
+
     @FXML
     private TableView<Rental> rentalTableView;
 
@@ -43,9 +49,10 @@ public class RentalTableViewController extends GenericTableViewController<Rental
     @FXML
     private TableColumn<Rental, String> note;
 
-    public RentalTableViewController() {
-        service = new RentalService();
-        entities = FXCollections.observableArrayList(service.findAll());
+    @Autowired
+    public RentalTableViewController(RentalRepository rentalRepository) {
+        this.rentalRepository = rentalRepository;
+        entities = FXCollections.observableArrayList(this.rentalRepository.findAll());
     }
 
     @Override
@@ -79,8 +86,8 @@ public class RentalTableViewController extends GenericTableViewController<Rental
         if (rental != null) {
             boolean applyClicked = app.showRentalEditView(rental);
             if (applyClicked) {
-                service.update(rental);
-                entities.setAll(service.findAll());
+                rentalRepository.save(rental);
+                entities.setAll(rentalRepository.findAll());
             }
         }
     }
@@ -99,8 +106,8 @@ public class RentalTableViewController extends GenericTableViewController<Rental
         Optional<ButtonType> result = confirmation.showAndWait();
 
         if (result.orElse(null) == ButtonType.OK) {
-            service.delete(rental);
-            entities.setAll(service.findAll());
+            rentalRepository.delete(rental);
+            entities.setAll(rentalRepository.findAll());
         }
     }
 }

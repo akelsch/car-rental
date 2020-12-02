@@ -1,23 +1,29 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
-import de.htwsaar.prog3.carrental.service.CarService;
+import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * This is the Controller for the "Edit Car View" of the Carrental Application.
  *
  * @author Jens Thewes
  */
+@Component
 public class CarEditViewController extends GenericEditViewController<Car> {
+
+    private final CarRepository carRepository;
+
     @FXML
     private TextField brandTextField;
 
@@ -72,8 +78,9 @@ public class CarEditViewController extends GenericEditViewController<Car> {
     @FXML
     private TextField parkingLotTextField;
 
-    public CarEditViewController() {
-        service = new CarService();
+    @Autowired
+    public CarEditViewController(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
 
     @Override
@@ -129,7 +136,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 
     @Override
     boolean isInputValid() {
-        List<Car> cars;
+        List<Car> cars = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 
         if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
@@ -232,10 +239,11 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(I18nComponentsUtil.getCarNoValidVin());
             sb.append(System.lineSeparator());
         } else {
-            cars = service.filter(I18nComponentsUtil.getCarVinLabel(), "=", vinTextField.getText())
-                    .stream()
-                    .filter(c -> !c.getId().equals(entity.getId()))
-                    .collect(Collectors.toList());
+            // TODO filter
+//            cars = carRepository.filter(I18nComponentsUtil.getCarVinLabel(), "=", vinTextField.getText())
+//                    .stream()
+//                    .filter(c -> !c.getId().equals(entity.getId()))
+//                    .collect(Collectors.toList());
             if (!cars.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCarNoValidVinDuplicate());
                 sb.append(System.lineSeparator());
@@ -246,10 +254,10 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(I18nComponentsUtil.getCarNoValidLicenceNumber());
             sb.append(System.lineSeparator());
         } else {
-            cars = service.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
-                    .stream()
-                    .filter(c -> !c.getId().equals(entity.getId()))
-                    .collect(Collectors.toList());
+//            cars = carRepository.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
+//                    .stream()
+//                    .filter(c -> !c.getId().equals(entity.getId()))
+//                    .collect(Collectors.toList());
             if (!cars.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCarNoValidLicenceNumberDuplicate());
                 sb.append(System.lineSeparator());
@@ -274,10 +282,10 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(I18nComponentsUtil.getCarNoValidParkingLot());
             sb.append(System.lineSeparator());
         } else {
-            cars = service.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
-                    .stream()
-                    .filter(c -> !c.getId().equals(entity.getId()))
-                    .collect(Collectors.toList());
+//            cars = carRepository.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
+//                    .stream()
+//                    .filter(c -> !c.getId().equals(entity.getId()))
+//                    .collect(Collectors.toList());
             if (!cars.isEmpty()) {
                 sb.append(I18nComponentsUtil.getCarNoValidParkingLotDuplicate());
                 sb.append(System.lineSeparator());

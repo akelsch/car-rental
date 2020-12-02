@@ -1,7 +1,7 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Customer;
-import de.htwsaar.prog3.carrental.service.CustomerService;
+import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
@@ -12,6 +12,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.RollbackException;
 import java.net.URL;
@@ -23,7 +25,11 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes
  */
+@Component
 public class CustomerTableViewController extends GenericTableViewController<Customer> implements Initializable {
+
+    private final CustomerRepository customerRepository;
+
     @FXML
     private TableView<Customer> customerTableView;
 
@@ -52,9 +58,10 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     @FXML
     private TableColumn<Customer, String> zipCode;
 
-    public CustomerTableViewController() {
-        service = new CustomerService();
-        entities = FXCollections.observableArrayList(service.findAll());
+    @Autowired
+    public CustomerTableViewController(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+        entities = FXCollections.observableArrayList(this.customerRepository.findAll());
     }
 
     @Override
@@ -81,8 +88,8 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
         boolean applyClicked = app.showCustomerEditView(customer);
         if (applyClicked) {
-            service.persist(customer);
-            entities.setAll(service.findAll());
+            customerRepository.save(customer);
+            entities.setAll(customerRepository.findAll());
         }
     }
 
@@ -93,8 +100,8 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         if (customer != null) {
             boolean applyClicked = app.showCustomerEditView(customer);
             if (applyClicked) {
-                service.update(customer);
-                entities.setAll(service.findAll());
+                customerRepository.save(customer);
+                entities.setAll(customerRepository.findAll());
             }
         }
     }
@@ -114,8 +121,8 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
         if (result.orElse(null) == ButtonType.OK) {
             try {
-                service.delete(customer);
-                entities.setAll(service.findAll());
+                customerRepository.delete(customer);
+                entities.setAll(customerRepository.findAll());
             } catch (RollbackException e) {
                 // TODO i18n
                 Alert error = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this customer",

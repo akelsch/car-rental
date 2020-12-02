@@ -4,9 +4,9 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.service.CustomerService;
-import de.htwsaar.prog3.carrental.service.EmployeeService;
-import de.htwsaar.prog3.carrental.service.RentalService;
+import de.htwsaar.prog3.carrental.repository.CustomerRepository;
+import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
+import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.collections.FXCollections;
@@ -16,20 +16,24 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * This is the Controller for the "Rental Edit View" of the Carrental Application.
  *
  * @author Hagen Schackmann, Michael Bös
  */
+@Component
 public class RentalEditViewController extends GenericEditViewController<Rental> {
-    private CustomerService customerService;
-    private EmployeeService employeeService;
+
+    private final RentalRepository rentalRepository;
+    private final CustomerRepository customerRepository;
+    private final EmployeeRepository employeeRepository;
 
     private long duration = -1;
 
@@ -93,11 +97,11 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     @FXML
     private TextArea noteTextArea;
 
-    public RentalEditViewController() {
-        service = new RentalService();
-
-        customerService = new CustomerService();
-        employeeService = new EmployeeService();
+    @Autowired
+    public RentalEditViewController(RentalRepository rentalRepository, CustomerRepository customerRepository, EmployeeRepository employeeRepository) {
+        this.rentalRepository = rentalRepository;
+        this.customerRepository = customerRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
@@ -115,7 +119,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         fillCustomerTextFields();
 
         // Employee fields
-        employeeChoiceBox.setItems(FXCollections.observableArrayList(employeeService.findAll()));
+        employeeChoiceBox.setItems(FXCollections.observableArrayList(employeeRepository.findAll()));
         Employee employee = entity.getEmployee();
         if (employee != null) {
             employeeChoiceBox.setValue(employee);
@@ -224,7 +228,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
                 customer.setEmailAddress(emailTextField.getText());
                 customer.setPhoneNumber(phoneNumberTextField.getText());
 
-                customerService.persist(customer);
+                customerRepository.save(customer);
                 entity.setCustomer(customer);
             }
 
@@ -430,11 +434,12 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     }
 
     private Customer findCustomerByDriverLicenseId(String driverLicenseId) {
-        List<Customer> customers = customerService.filter("driverLicenseId", "=", driverLicenseId);
-
-        if (customers.size() == 1) {
-            return customers.get(0);
-        }
+        // TODO filter
+//        List<Customer> customers = customerRepository.filter("driverLicenseId", "=", driverLicenseId);
+//
+//        if (customers.size() == 1) {
+//            return customers.get(0);
+//        }
 
         return new Customer();
     }
