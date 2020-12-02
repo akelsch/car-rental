@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental;
 
+import de.htwsaar.prog3.carrental.application.StageReadyEvent;
 import de.htwsaar.prog3.carrental.controller.*;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
@@ -10,17 +11,18 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
 import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
-import java.util.Locale;
 
 /**
  * Entry point of the car rental application. Definition of primary stage and
@@ -28,17 +30,17 @@ import java.util.Locale;
  *
  * @author Lukas Raubuch, Arthur Kelsch, Jens Thewes
  */
-public class CarRentalApp extends Application {
-    private static final Logger logger = LoggerFactory.getLogger(CarRentalApp.class);
+@Slf4j
+public class CarRentalUiApplication extends Application {
+
+    private ConfigurableApplicationContext applicationContext;
 
     private Stage primaryStage;
     private BorderPane root;
 
-    public static void main(String[] args) {
-        // Use English locale by default
-        Locale.setDefault(new Locale("en"));
-
-        launch(args);
+    @Override
+    public void init() {
+        applicationContext = SpringApplication.run(CarRentalApplication.class);
     }
 
     @Override
@@ -47,13 +49,16 @@ public class CarRentalApp extends Application {
         this.primaryStage.setTitle(I18nComponentsUtil.getStageTitle());
 
         initializeRoot();
-
         showCarTableView();
+
+        applicationContext.publishEvent(new StageReadyEvent(primaryStage));
     }
 
     @Override
     public void stop() {
         EntityManagerUtil.closeEntityManagerFactory();
+        applicationContext.close();
+        Platform.exit();
     }
 
     /**
@@ -67,7 +72,7 @@ public class CarRentalApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        logger.info("Initialized root BorderPane");
+        log.info("Initialized root BorderPane");
     }
 
     /**
@@ -80,13 +85,13 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane carTableView = loader.load();
-            logger.info("Displaying CarTableView");
+            log.info("Displaying CarTableView");
             root.setCenter(carTableView);
 
             CarTableViewController controller = loader.getController();
             controller.setApp(this);
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
         }
     }
 
@@ -119,13 +124,13 @@ public class CarRentalApp extends Application {
 
             // Show the dialog and wait until the user closes it
             modalStage.setResizable(false);
-            logger.info("Displaying CarEditView");
+            log.info("Displaying CarEditView");
             modalStage.showAndWait();
-            logger.info("Closed CarEditView");
+            log.info("Closed CarEditView");
 
             return controller.isApplyClicked();
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
             return false;
         }
     }
@@ -140,13 +145,13 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane customerTableView = loader.load();
-            logger.info("Displaying CustomerTableView");
+            log.info("Displaying CustomerTableView");
             root.setCenter(customerTableView);
 
             CustomerTableViewController controller = loader.getController();
             controller.setApp(this);
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
         }
     }
 
@@ -179,13 +184,13 @@ public class CarRentalApp extends Application {
 
             // Show the dialog and wait until the user closes it
             modalStage.setResizable(false);
-            logger.info("Displaying CustomerEditView");
+            log.info("Displaying CustomerEditView");
             modalStage.showAndWait();
-            logger.info("Closed CustomerEditView");
+            log.info("Closed CustomerEditView");
 
             return controller.isApplyClicked();
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
             return false;
         }
     }
@@ -200,13 +205,13 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane employeeTableView = loader.load();
-            logger.info("Displaying EmployeeTableView");
+            log.info("Displaying EmployeeTableView");
             root.setCenter(employeeTableView);
 
             EmployeeTableViewController controller = loader.getController();
             controller.setApp(this);
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
         }
     }
 
@@ -239,13 +244,13 @@ public class CarRentalApp extends Application {
 
             // Show the dialog and wait until the user closes it
             modalStage.setResizable(false);
-            logger.info("Displaying EmployeeEditView");
+            log.info("Displaying EmployeeEditView");
             modalStage.showAndWait();
-            logger.info("Closed EmployeeEditView");
+            log.info("Closed EmployeeEditView");
 
             return controller.isApplyClicked();
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
             return false;
         }
     }
@@ -260,13 +265,13 @@ public class CarRentalApp extends Application {
             loader.setResources(I18nUtil.getResourceBundleComponents());
 
             BorderPane rentalTableView = loader.load();
-            logger.info("Displaying RentalTableView");
+            log.info("Displaying RentalTableView");
             root.setCenter(rentalTableView);
 
             RentalTableViewController controller = loader.getController();
             controller.setApp(this);
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
         }
     }
 
@@ -299,14 +304,15 @@ public class CarRentalApp extends Application {
 
             // Show the dialog and wait until the user closes it
             modalStage.setResizable(false);
-            logger.info("Displaying RentalEditView");
+            log.info("Displaying RentalEditView");
             modalStage.showAndWait();
-            logger.info("Closed RentalEditView");
+            log.info("Closed RentalEditView");
 
             return controller.isApplyClicked();
         } catch (IOException e) {
-            logger.error("Failed loading FXML!", e);
+            log.error("Failed loading FXML!", e);
             return false;
         }
     }
+
 }

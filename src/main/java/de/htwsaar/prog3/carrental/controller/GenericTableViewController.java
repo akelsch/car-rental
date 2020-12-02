@@ -1,6 +1,6 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.CarRentalApp;
+import de.htwsaar.prog3.carrental.CarRentalUiApplication;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import de.htwsaar.prog3.carrental.service.GenericService;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
@@ -27,7 +27,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
     ObservableList<T> entities;
 
     @Setter
-    CarRentalApp app;
+    CarRentalUiApplication app;
 
     @FXML
     public ComboBox<String> searchComboBoxField;
@@ -80,7 +80,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
     /**
      * Closes the application.
      *
-     * @see CarRentalApp#stop()
+     * @see CarRentalUiApplication#stop()
      */
     public void handleCloseMenuItemClicked() {
         Platform.exit();
