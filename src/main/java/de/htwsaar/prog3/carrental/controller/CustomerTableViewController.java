@@ -86,7 +86,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     public void handleNewButtonClicked() {
         Customer customer = new Customer();
 
-        boolean applyClicked = app.showCustomerEditView(customer);
+        boolean applyClicked = application.showCustomerEditView(customer);
         if (applyClicked) {
             customerRepository.save(customer);
             entities.setAll(customerRepository.findAll());
@@ -98,7 +98,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         Customer customer = customerTableView.getSelectionModel().getSelectedItem();
 
         if (customer != null) {
-            boolean applyClicked = app.showCustomerEditView(customer);
+            boolean applyClicked = application.showCustomerEditView(customer);
             if (applyClicked) {
                 customerRepository.save(customer);
                 entities.setAll(customerRepository.findAll());

@@ -84,7 +84,7 @@ public class RentalTableViewController extends GenericTableViewController<Rental
         Rental rental = rentalTableView.getSelectionModel().getSelectedItem();
 
         if (rental != null) {
-            boolean applyClicked = app.showRentalEditView(rental);
+            boolean applyClicked = application.showRentalEditView(rental);
             if (applyClicked) {
                 rentalRepository.save(rental);
                 entities.setAll(rentalRepository.findAll());

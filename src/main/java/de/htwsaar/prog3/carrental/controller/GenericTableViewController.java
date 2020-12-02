@@ -14,7 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Super Controller for all other TableView controllers.
@@ -25,8 +25,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
 
     ObservableList<T> entities;
 
-    @Setter
-    CarRentalUiApplication app;
+    CarRentalUiApplication application;
 
     @FXML
     public ComboBox<String> searchComboBoxField;
@@ -36,6 +35,11 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
 
     @FXML
     public TextField searchTextField;
+
+    @Autowired
+    public final void setApplication(CarRentalUiApplication application) {
+        this.application = application;
+    }
 
     /**
      * Handles key presses within a TableView.
@@ -52,28 +56,28 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
      */
     public void handleCarMenuItemClicked() {
-        app.showCarTableView();
+        application.switchToCarTableView();
     }
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Customer Customer}.
      */
     public void handleCustomerMenuItemClicked() {
-        app.showCustomerTableView();
+        application.switchToCustomerTableView();
     }
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Employee Employee}.
      */
     public void handleEmployeeMenuItemClicked() {
-        app.showEmployeeTableView();
+        application.switchToEmployeeTableView();
     }
 
     /**
      * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Rental Rental}.
      */
     public void handleRentalMenuItemClicked() {
-        app.showRentalTableView();
+        application.switchToRentalTableView();
     }
 
     /**

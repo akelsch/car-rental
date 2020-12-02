@@ -108,7 +108,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     public void handleNewButtonClicked() {
         Car car = new Car();
 
-        boolean applyClicked = app.showCarEditView(car);
+        boolean applyClicked = application.showCarEditView(car);
         if (applyClicked) {
             carRepository.save(car);
             entities.setAll(carRepository.findAll());
@@ -120,7 +120,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
         Car car = carTableView.getSelectionModel().getSelectedItem();
 
         if (car != null) {
-            boolean applyClicked = app.showCarEditView(car);
+            boolean applyClicked = application.showCarEditView(car);
             if (applyClicked) {
                 carRepository.save(car);
                 entities.setAll(carRepository.findAll());
@@ -164,7 +164,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
             Rental rental = new Rental();
             rental.setCar(car);
 
-            boolean applyClicked = app.showRentalEditView(rental);
+            boolean applyClicked = application.showRentalEditView(rental);
             if (applyClicked) {
                 rentalRepository.save(rental);
                 entities.setAll(carRepository.findAll());

@@ -62,7 +62,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
     public void handleNewButtonClicked() {
         Employee employee = new Employee();
 
-        boolean applyClicked = app.showEmployeeEditView(employee);
+        boolean applyClicked = application.showEmployeeEditView(employee);
         if (applyClicked) {
             employeeRepository.save(employee);
             entities.setAll(employeeRepository.findAll());
@@ -74,7 +74,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         Employee employee = employeeTableView.getSelectionModel().getSelectedItem();
 
         if (employee != null) {
-            boolean applyClicked = app.showEmployeeEditView(employee);
+            boolean applyClicked = application.showEmployeeEditView(employee);
             if (applyClicked) {
                 employeeRepository.save(employee);
                 entities.setAll(employeeRepository.findAll());
