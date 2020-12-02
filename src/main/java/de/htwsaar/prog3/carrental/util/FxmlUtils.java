@@ -17,26 +17,35 @@ import java.io.IOException;
 
 public class FxmlUtils {
 
+    public static final String FXML_CAR_EDIT = "de.htwsaar.prog3.carrental.fxml.car.edit";
+    public static final String FXML_CAR_TABLE = "de.htwsaar.prog3.carrental.fxml.car.table";
+    public static final String FXML_CUSTOMER_EDIT = "de.htwsaar.prog3.carrental.fxml.customer.edit";
+    public static final String FXML_CUSTOMER_TABLE = "de.htwsaar.prog3.carrental.fxml.customer.table";
+    public static final String FXML_EMPLOYEE_EDIT = "de.htwsaar.prog3.carrental.fxml.employee.edit";
+    public static final String FXML_EMPLOYEE_TABLE = "de.htwsaar.prog3.carrental.fxml.employee.table";
+    public static final String FXML_RENTAL_EDIT = "de.htwsaar.prog3.carrental.fxml.rental.edit";
+    public static final String FXML_RENTAL_TABLE = "de.htwsaar.prog3.carrental.fxml.rental.table";
+
     private final ConfigurableApplicationContext applicationContext;
 
     public FxmlUtils(ConfigurableApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
+    public void setView(Stage stage, String fxml) {
+        Parent root = loadView(fxml);
+        stage.getScene().setRoot(root);
+    }
+
     @SneakyThrows
-    public Parent loadView(String resource) {
-        FXMLLoader fxmlLoader = getFxmlLoader(new ClassPathResource(resource));
+    public Parent loadView(String fxml) {
+        FXMLLoader fxmlLoader = getFxmlLoader(fxml);
         return fxmlLoader.load();
     }
 
-    public void setView(Stage stage, String resource) {
-        Parent view = loadView(resource);
-        stage.getScene().setRoot(view);
-    }
-
     @SneakyThrows
-    public <T extends BaseEntity> boolean showModalView(Stage stage, String resource, T entity) {
-        FXMLLoader fxmlLoader = getFxmlLoader(new ClassPathResource(resource));
+    public <T extends BaseEntity> boolean showModalView(Stage stage, String fxml, T entity) {
+        FXMLLoader fxmlLoader = getFxmlLoader(fxml);
         Scene scene = new Scene(fxmlLoader.load());
         GenericEditViewController<T> controller = fxmlLoader.getController();
 
@@ -55,10 +64,14 @@ public class FxmlUtils {
         return controller.isApplyClicked();
     }
 
-    private FXMLLoader getFxmlLoader(ClassPathResource fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(fxml.getURL());
+    private FXMLLoader getFxmlLoader(String fxml) throws IOException {
+        String file = applicationContext.getEnvironment().getProperty(fxml);
+        ClassPathResource resource = new ClassPathResource("fxml/%s".formatted(file));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(resource.getURL());
         fxmlLoader.setResources(I18nUtil.getResourceBundleComponents());
         fxmlLoader.setControllerFactory(applicationContext::getBean);
+
         return fxmlLoader;
     }
 }

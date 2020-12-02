@@ -6,7 +6,6 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.util.FxmlUtils;
 import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nStringsUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -45,7 +44,7 @@ public class CarRentalUiApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        Parent root = fxmlUtils.loadView(I18nStringsUtil.getCarTableViewFxml());
+        Parent root = fxmlUtils.loadView(FxmlUtils.FXML_CAR_TABLE);
         Scene scene = new Scene(root, 1440, 810);
         primaryStage.setScene(scene);
         primaryStage.setTitle(I18nComponentsUtil.getStageTitle());
@@ -59,35 +58,35 @@ public class CarRentalUiApplication extends Application {
     }
 
     public void switchToCarTableView() {
-        fxmlUtils.setView(primaryStage, I18nStringsUtil.getCarTableViewFxml());
+        fxmlUtils.setView(primaryStage, FxmlUtils.FXML_CAR_TABLE);
     }
 
     public void switchToCustomerTableView() {
-        fxmlUtils.setView(primaryStage, I18nStringsUtil.getCustomerTableViewFxml());
+        fxmlUtils.setView(primaryStage, FxmlUtils.FXML_CUSTOMER_TABLE);
     }
 
     public void switchToEmployeeTableView() {
-        fxmlUtils.setView(primaryStage, I18nStringsUtil.getEmployeeTableViewFxml());
+        fxmlUtils.setView(primaryStage, FxmlUtils.FXML_EMPLOYEE_TABLE);
     }
 
     public void switchToRentalTableView() {
-        fxmlUtils.setView(primaryStage, I18nStringsUtil.getRentalTableViewFxml());
+        fxmlUtils.setView(primaryStage, FxmlUtils.FXML_RENTAL_TABLE);
     }
 
     public boolean showCarEditView(Car car) {
-        return fxmlUtils.showModalView(primaryStage, I18nStringsUtil.getCarEditViewFxml(), car);
+        return fxmlUtils.showModalView(primaryStage, FxmlUtils.FXML_CAR_EDIT, car);
     }
 
     public boolean showCustomerEditView(Customer customer) {
-        return fxmlUtils.showModalView(primaryStage, I18nStringsUtil.getCustomerEditViewFxml(), customer);
+        return fxmlUtils.showModalView(primaryStage, FxmlUtils.FXML_CUSTOMER_EDIT, customer);
     }
 
     public boolean showEmployeeEditView(Employee employee) {
-        return fxmlUtils.showModalView(primaryStage, I18nStringsUtil.getEmployeeEditViewFxml(), employee);
+        return fxmlUtils.showModalView(primaryStage, FxmlUtils.FXML_EMPLOYEE_EDIT, employee);
     }
 
     public boolean showRentalEditView(Rental rental) {
-        return fxmlUtils.showModalView(primaryStage, I18nStringsUtil.getRentalEditViewFxml(), rental);
+        return fxmlUtils.showModalView(primaryStage, FxmlUtils.FXML_RENTAL_EDIT, rental);
     }
 
 }
