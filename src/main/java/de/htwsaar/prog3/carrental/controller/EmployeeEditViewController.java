@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -60,24 +60,24 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
         StringBuilder sb = new StringBuilder();
 
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getEmployeeNoValidFirstName());
+            sb.append(I18nUtils.getEmployeeNoValidFirstName());
             sb.append(System.lineSeparator());
         }
 
         if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getEmployeeNoValidLastName());
+            sb.append(I18nUtils.getEmployeeNoValidLastName());
             sb.append(System.lineSeparator());
         }
 
         if (positionTextField.getText() == null || positionTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getEmployeeNoValidPosition());
+            sb.append(I18nUtils.getEmployeeNoValidPosition());
             sb.append(System.lineSeparator());
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
-                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
+                    I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;

@@ -1,4 +1,6 @@
-package de.htwsaar.prog3.carrental.util.i18n;
+package de.htwsaar.prog3.carrental.util;
+
+import lombok.Getter;
 
 import java.util.ResourceBundle;
 
@@ -9,7 +11,11 @@ import java.util.ResourceBundle;
  *
  * @author Lukas Raubuch, Jens Thewes, Julian Quint, Arthur Kelsch
  */
-public final class I18nComponentsUtil {
+public final class I18nUtils {
+
+    @Getter
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n.messages");
+
     // Keys
     private static final String CAR_BRAND_LABEL = "car-brand-label";
     private static final String CAR_CATEGORY_LABEL = "car-category-label";
@@ -105,10 +111,7 @@ public final class I18nComponentsUtil {
     private static final String SEARCH_COMBOBOX_LIKE = "search-combobox-like";
     private static final String STAGE_TITLE = "stage-title";
 
-    // Resource bundle
-    private static ResourceBundle resourceBundle = I18nUtil.getResourceBundleComponents();
-
-    private I18nComponentsUtil() {
+    private I18nUtils() {
     }
 
     // Values

@@ -2,8 +2,6 @@ package de.htwsaar.prog3.carrental.util;
 
 import de.htwsaar.prog3.carrental.controller.GenericEditViewController;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,7 +51,7 @@ public class FxmlUtils {
         modalStage.initModality(Modality.WINDOW_MODAL);
         modalStage.initOwner(stage);
         modalStage.setScene(scene);
-        modalStage.setTitle(I18nComponentsUtil.getStageTitle());
+        modalStage.setTitle(I18nUtils.getStageTitle());
         modalStage.setResizable(false);
 
         controller.setModalStage(modalStage);
@@ -69,7 +67,7 @@ public class FxmlUtils {
         ClassPathResource resource = new ClassPathResource("fxml/%s".formatted(file));
 
         FXMLLoader fxmlLoader = new FXMLLoader(resource.getURL());
-        fxmlLoader.setResources(I18nUtil.getResourceBundleComponents());
+        fxmlLoader.setResources(I18nUtils.getResourceBundle());
         fxmlLoader.setControllerFactory(applicationContext::getBean);
 
         return fxmlLoader;

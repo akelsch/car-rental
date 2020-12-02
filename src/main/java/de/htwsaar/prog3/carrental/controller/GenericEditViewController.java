@@ -2,7 +2,7 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
@@ -48,7 +48,7 @@ public abstract class GenericEditViewController<T extends BaseEntity> {
      */
     public void handleCancelButtonClicked() {
         Alert confirmationDialog =
-                DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogCancelConfirmationText());
+                DialogUtil.createConfirmationDialog(I18nUtils.getDialogCancelConfirmationText());
 
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {

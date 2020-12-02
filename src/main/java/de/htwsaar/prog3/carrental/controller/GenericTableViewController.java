@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.CarRentalUiApplication;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -93,7 +93,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
      * Displays a dialog containing information about this software project.
      */
     public void handleAboutMenuItemClicked() {
-        Alert aboutDialog = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogAboutText());
+        Alert aboutDialog = DialogUtil.createInformationDialog(I18nUtils.getDialogAboutText());
         aboutDialog.show();
     }
 

@@ -1,7 +1,5 @@
 package de.htwsaar.prog3.carrental.util;
 
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
-
 /**
  * This class is used to convert variables for
  * {@link de.htwsaar.prog3.carrental.service.GenericService#filter(String, String, String)}.
@@ -9,49 +7,49 @@ import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
  * @author Julian Quint
  */
 public final class FilterUtil {
-    private static final String CAR_ID = I18nComponentsUtil.getCarIdLabel();
-    private static final String CAR_BRAND = I18nComponentsUtil.getCarBrandLabel();
-    private static final String CAR_HORSEPOWER = I18nComponentsUtil.getCarHorsepowerLabel();
-    private static final String CAR_DAILY_RATE = I18nComponentsUtil.getCarDailyRateLabel();
-    private static final String CAR_DOOR_COUNT = I18nComponentsUtil.getCarDoorCountLabel();
-    private static final String CAR_DRIVEN_DISTANCE = I18nComponentsUtil.getCarDrivenDistanceLabel();
-    private static final String CAR_CATEGORY = I18nComponentsUtil.getCarCategoryLabel();
-    private static final String CAR_COLOR = I18nComponentsUtil.getCarColorLabel();
-    private static final String CAR_CONSTRUCTION_YEAR = I18nComponentsUtil.getCarConstructionYearLabel();
-    private static final String CAR_DEFECTS = I18nComponentsUtil.getCarDefectsLabel();
-    private static final String CAR_FUEL = I18nComponentsUtil.getCarFuelLabel();
-    private static final String CAR_GEARBOX = I18nComponentsUtil.getCarGearboxLabel();
-    private static final String CAR_LICENCE_NUMBER = I18nComponentsUtil.getCarLicenceNumberLabel();
-    private static final String CAR_MODEL = I18nComponentsUtil.getCarModelLabel();
-    private static final String CAR_NEXT_INSPECTION = I18nComponentsUtil.getCarNextInspectionLabel();
-    private static final String CAR_PARKING_LOT = I18nComponentsUtil.getCarParkingLotLabel();
-    private static final String CAR_TIRES = I18nComponentsUtil.getCarTiresLabel();
-    private static final String CAR_VIN = I18nComponentsUtil.getCarVinLabel();
-    private static final String CUSTOMER_ID = I18nComponentsUtil.getCustomerIdLabel();
-    private static final String CUSTOMER_FIRST_NAME = I18nComponentsUtil.getCustomerFirstNameLabel();
-    private static final String CUSTOMER_LAST_NAME = I18nComponentsUtil.getCustomerLastNameLabel();
-    private static final String CUSTOMER_EMAIL = I18nComponentsUtil.getCustomerEmailLabel();
-    private static final String CUSTOMER_PHONE_NUMBER = I18nComponentsUtil.getCustomerPhoneNumberLabel();
-    private static final String CUSTOMER_DATE_OF_BIRTH = I18nComponentsUtil.getCustomerDateOfBirthLabel();
-    private static final String CUSTOMER_STREET = I18nComponentsUtil.getCustomerStreetLabel();
-    private static final String CUSTOMER_HOUSE_NUMBER = I18nComponentsUtil.getCustomerHouseNumberLabel();
-    private static final String CUSTOMER_CITY = I18nComponentsUtil.getCustomerCityLabel();
-    private static final String CUSTOMER_ZIP_CODE = I18nComponentsUtil.getCustomerZipCodeLabel();
-    private static final String CUSTOMER_ID_NUMBER = I18nComponentsUtil.getCustomerIdNumberLabel();
-    private static final String CUSTOMER_DRIVER_LICENSE_ID = I18nComponentsUtil.getCustomerDriverLicenseIdLabel();
-    private static final String EMPLOYEE_ID = I18nComponentsUtil.getEmployeeIdLabel();
-    private static final String EMPLOYEE_FIRST_NAME = I18nComponentsUtil.getEmployeeFirstNameLabel();
-    private static final String EMPLOYEE_LAST_NAME = I18nComponentsUtil.getEmployeeLastNameLabel();
-    private static final String EMPLOYEE_POSITION = I18nComponentsUtil.getEmployeePositionLabel();
-    private static final String RENTAL_ID = I18nComponentsUtil.getRentalIdLabel();
-    private static final String RENTAL_BEGIN = I18nComponentsUtil.getRentalBeginLabel();
-    private static final String RENTAL_CAR = I18nComponentsUtil.getRentalCarLabel();
-    private static final String RENTAL_CUSTOMER = I18nComponentsUtil.getRentalCustomerLabel();
-    private static final String RENTAL_EMPLOYEE = I18nComponentsUtil.getRentalEmployeeLabel();
-    private static final String RENTAL_END = I18nComponentsUtil.getRentalEndLabel();
-    private static final String RENTAL_EXTRA_COSTS = I18nComponentsUtil.getRentalExtraCostsLabel();
-    private static final String RENTAL_NOTE = I18nComponentsUtil.getRentalNoteLabel();
-    private static final String LIKE = I18nComponentsUtil.getSearchComboboxLike();
+    private static final String CAR_ID = I18nUtils.getCarIdLabel();
+    private static final String CAR_BRAND = I18nUtils.getCarBrandLabel();
+    private static final String CAR_HORSEPOWER = I18nUtils.getCarHorsepowerLabel();
+    private static final String CAR_DAILY_RATE = I18nUtils.getCarDailyRateLabel();
+    private static final String CAR_DOOR_COUNT = I18nUtils.getCarDoorCountLabel();
+    private static final String CAR_DRIVEN_DISTANCE = I18nUtils.getCarDrivenDistanceLabel();
+    private static final String CAR_CATEGORY = I18nUtils.getCarCategoryLabel();
+    private static final String CAR_COLOR = I18nUtils.getCarColorLabel();
+    private static final String CAR_CONSTRUCTION_YEAR = I18nUtils.getCarConstructionYearLabel();
+    private static final String CAR_DEFECTS = I18nUtils.getCarDefectsLabel();
+    private static final String CAR_FUEL = I18nUtils.getCarFuelLabel();
+    private static final String CAR_GEARBOX = I18nUtils.getCarGearboxLabel();
+    private static final String CAR_LICENCE_NUMBER = I18nUtils.getCarLicenceNumberLabel();
+    private static final String CAR_MODEL = I18nUtils.getCarModelLabel();
+    private static final String CAR_NEXT_INSPECTION = I18nUtils.getCarNextInspectionLabel();
+    private static final String CAR_PARKING_LOT = I18nUtils.getCarParkingLotLabel();
+    private static final String CAR_TIRES = I18nUtils.getCarTiresLabel();
+    private static final String CAR_VIN = I18nUtils.getCarVinLabel();
+    private static final String CUSTOMER_ID = I18nUtils.getCustomerIdLabel();
+    private static final String CUSTOMER_FIRST_NAME = I18nUtils.getCustomerFirstNameLabel();
+    private static final String CUSTOMER_LAST_NAME = I18nUtils.getCustomerLastNameLabel();
+    private static final String CUSTOMER_EMAIL = I18nUtils.getCustomerEmailLabel();
+    private static final String CUSTOMER_PHONE_NUMBER = I18nUtils.getCustomerPhoneNumberLabel();
+    private static final String CUSTOMER_DATE_OF_BIRTH = I18nUtils.getCustomerDateOfBirthLabel();
+    private static final String CUSTOMER_STREET = I18nUtils.getCustomerStreetLabel();
+    private static final String CUSTOMER_HOUSE_NUMBER = I18nUtils.getCustomerHouseNumberLabel();
+    private static final String CUSTOMER_CITY = I18nUtils.getCustomerCityLabel();
+    private static final String CUSTOMER_ZIP_CODE = I18nUtils.getCustomerZipCodeLabel();
+    private static final String CUSTOMER_ID_NUMBER = I18nUtils.getCustomerIdNumberLabel();
+    private static final String CUSTOMER_DRIVER_LICENSE_ID = I18nUtils.getCustomerDriverLicenseIdLabel();
+    private static final String EMPLOYEE_ID = I18nUtils.getEmployeeIdLabel();
+    private static final String EMPLOYEE_FIRST_NAME = I18nUtils.getEmployeeFirstNameLabel();
+    private static final String EMPLOYEE_LAST_NAME = I18nUtils.getEmployeeLastNameLabel();
+    private static final String EMPLOYEE_POSITION = I18nUtils.getEmployeePositionLabel();
+    private static final String RENTAL_ID = I18nUtils.getRentalIdLabel();
+    private static final String RENTAL_BEGIN = I18nUtils.getRentalBeginLabel();
+    private static final String RENTAL_CAR = I18nUtils.getRentalCarLabel();
+    private static final String RENTAL_CUSTOMER = I18nUtils.getRentalCustomerLabel();
+    private static final String RENTAL_EMPLOYEE = I18nUtils.getRentalEmployeeLabel();
+    private static final String RENTAL_END = I18nUtils.getRentalEndLabel();
+    private static final String RENTAL_EXTRA_COSTS = I18nUtils.getRentalExtraCostsLabel();
+    private static final String RENTAL_NOTE = I18nUtils.getRentalNoteLabel();
+    private static final String LIKE = I18nUtils.getSearchComboboxLike();
 
     private FilterUtil() {
     }

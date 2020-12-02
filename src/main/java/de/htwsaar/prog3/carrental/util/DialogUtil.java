@@ -1,6 +1,5 @@
 package de.htwsaar.prog3.carrental.util;
 
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -22,7 +21,7 @@ public final class DialogUtil {
     public static Alert createInformationDialog(String headerText) {
         Alert informationDialog = new Alert(AlertType.INFORMATION);
 
-        informationDialog.setTitle(I18nComponentsUtil.getDialogInformationTitle());
+        informationDialog.setTitle(I18nUtils.getDialogInformationTitle());
         informationDialog.setHeaderText(headerText);
 
         return informationDialog;
@@ -37,7 +36,7 @@ public final class DialogUtil {
     public static Alert createConfirmationDialog(String headerText) {
         Alert confirmationDialog = new Alert(AlertType.CONFIRMATION);
 
-        confirmationDialog.setTitle(I18nComponentsUtil.getDialogConfirmationTitle());
+        confirmationDialog.setTitle(I18nUtils.getDialogConfirmationTitle());
         confirmationDialog.setHeaderText(headerText);
 
         return confirmationDialog;

@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -104,61 +104,61 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
         StringBuilder sb = new StringBuilder();
 
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidFirstName());
+            sb.append(I18nUtils.getCustomerNoValidFirstName());
             sb.append(System.lineSeparator());
         }
 
         if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidLastName());
+            sb.append(I18nUtils.getCustomerNoValidLastName());
             sb.append(System.lineSeparator());
         }
 
         if (emailAddressTextField.getText() == null || emailAddressTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidEmailAddress());
+            sb.append(I18nUtils.getCustomerNoValidEmailAddress());
             sb.append(System.lineSeparator());
         }
 
         if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidPhoneNumber());
+            sb.append(I18nUtils.getCustomerNoValidPhoneNumber());
             sb.append(System.lineSeparator());
         }
 
         if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidDateOfBirth());
+            sb.append(I18nUtils.getCustomerNoValidDateOfBirth());
             sb.append(System.lineSeparator());
         }
 
         if (streetTextField.getText() == null || streetTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidStreetName());
+            sb.append(I18nUtils.getCustomerNoValidStreetName());
             sb.append(System.lineSeparator());
         }
 
         if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidHouseNumber());
+            sb.append(I18nUtils.getCustomerNoValidHouseNumber());
             sb.append(System.lineSeparator());
         }
 
         if (cityTextField.getText() == null || cityTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidCityName());
+            sb.append(I18nUtils.getCustomerNoValidCityName());
             sb.append(System.lineSeparator());
         }
 
         if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+            sb.append(I18nUtils.getCustomerNoValidZipCode());
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(zipCodeTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nComponentsUtil.getCustomerNoValidZipCode());
+                sb.append(I18nUtils.getCustomerNoValidZipCode());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
+                sb.append(I18nUtils.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidIdNumber());
+            sb.append(I18nUtils.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
         } else {
             // TODO filter
@@ -167,13 +167,13 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 //                    .filter(c -> !c.getId().equals(entity.getId()))
 //                    .collect(Collectors.toList());
             if (!customers.isEmpty()) {
-                sb.append(I18nComponentsUtil.getCustomerNoValidIdNumberDuplicate());
+                sb.append(I18nUtils.getCustomerNoValidIdNumberDuplicate());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicence());
+            sb.append(I18nUtils.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
         } else {
 //            customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
@@ -182,15 +182,15 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 //                    .filter(c -> !c.getId().equals(entity.getId()))
 //                    .collect(Collectors.toList());
             if (!customers.isEmpty()) {
-                sb.append(I18nComponentsUtil.getCustomerNoValidDriverLicenceDuplicate());
+                sb.append(I18nUtils.getCustomerNoValidDriverLicenceDuplicate());
                 sb.append(System.lineSeparator());
             }
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
-                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
+                    I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;

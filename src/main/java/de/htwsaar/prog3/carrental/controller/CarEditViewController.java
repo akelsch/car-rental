@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -140,103 +140,103 @@ public class CarEditViewController extends GenericEditViewController<Car> {
         StringBuilder sb = new StringBuilder();
 
         if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidBrand());
+            sb.append(I18nUtils.getCarNoValidBrand());
             sb.append(System.lineSeparator());
         }
 
         if (modelTextField.getText() == null || modelTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidModel());
+            sb.append(I18nUtils.getCarNoValidModel());
             sb.append(System.lineSeparator());
         }
 
         if (categoryTextField.getText() == null || categoryTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidCategory());
+            sb.append(I18nUtils.getCarNoValidCategory());
             sb.append(System.lineSeparator());
         }
 
         if (colorTextField.getText() == null || colorTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidColor());
+            sb.append(I18nUtils.getCarNoValidColor());
             sb.append(System.lineSeparator());
         }
 
         if (constructionYearTextField.getText() == null || constructionYearTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
+            sb.append(I18nUtils.getCarNoValidConstructionYear());
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nComponentsUtil.getCarNoValidConstructionYear());
+                sb.append(I18nUtils.getCarNoValidConstructionYear());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
+                sb.append(I18nUtils.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (drivenDistanceTextField.getText() == null || drivenDistanceTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
+            sb.append(I18nUtils.getCarNoValidDrivenDistance());
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nComponentsUtil.getCarNoValidDrivenDistance());
+                sb.append(I18nUtils.getCarNoValidDrivenDistance());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
+                sb.append(I18nUtils.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (gearBoxChoiceBox.getSelectionModel().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidGearbox());
+            sb.append(I18nUtils.getCarNoValidGearbox());
             sb.append(System.lineSeparator());
         }
 
         if (horsePowerTextField.getText() == null || horsePowerTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
+            sb.append(I18nUtils.getCarNoValidHorsepower());
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(horsePowerTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nComponentsUtil.getCarNoValidHorsepower());
+                sb.append(I18nUtils.getCarNoValidHorsepower());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
+                sb.append(I18nUtils.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (fuelChoiceBox.getSelectionModel().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidFuel());
+            sb.append(I18nUtils.getCarNoValidFuel());
             sb.append(System.lineSeparator());
         }
 
         if (doorCountTextField.getText() == null || doorCountTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidDoorCount());
+            sb.append(I18nUtils.getCarNoValidDoorCount());
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(doorCountTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nComponentsUtil.getCarNoValidDoorCount());
+                sb.append(I18nUtils.getCarNoValidDoorCount());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
+                sb.append(I18nUtils.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (tiresTextField.getText() == null || tiresTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidTires());
+            sb.append(I18nUtils.getCarNoValidTires());
             sb.append(System.lineSeparator());
         }
 
         if (nextInspectionTextField.getText() == null || nextInspectionTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidNextInspection());
+            sb.append(I18nUtils.getCarNoValidNextInspection());
             sb.append(System.lineSeparator());
         }
 
         if (vinTextField.getText() == null || vinTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidVin());
+            sb.append(I18nUtils.getCarNoValidVin());
             sb.append(System.lineSeparator());
         } else {
             // TODO filter
@@ -245,13 +245,13 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 //                    .filter(c -> !c.getId().equals(entity.getId()))
 //                    .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                sb.append(I18nComponentsUtil.getCarNoValidVinDuplicate());
+                sb.append(I18nUtils.getCarNoValidVinDuplicate());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (licenceNumberTextField.getText() == null || licenceNumberTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidLicenceNumber());
+            sb.append(I18nUtils.getCarNoValidLicenceNumber());
             sb.append(System.lineSeparator());
         } else {
 //            cars = carRepository.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
@@ -259,27 +259,27 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 //                    .filter(c -> !c.getId().equals(entity.getId()))
 //                    .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                sb.append(I18nComponentsUtil.getCarNoValidLicenceNumberDuplicate());
+                sb.append(I18nUtils.getCarNoValidLicenceNumberDuplicate());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (dailyRateTextField.getText() == null || dailyRateTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidDailyRate());
+            sb.append(I18nUtils.getCarNoValidDailyRate());
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(dailyRateTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nComponentsUtil.getCarNoValidDailyRate());
+                sb.append(I18nUtils.getCarNoValidDailyRate());
                 sb.append(" ");
-                sb.append(I18nComponentsUtil.getDialogInvalidNumberText());
+                sb.append(I18nUtils.getDialogInvalidNumberText());
                 sb.append(System.lineSeparator());
             }
         }
 
         if (parkingLotTextField.getText() == null || parkingLotTextField.getText().trim().isEmpty()) {
-            sb.append(I18nComponentsUtil.getCarNoValidParkingLot());
+            sb.append(I18nUtils.getCarNoValidParkingLot());
             sb.append(System.lineSeparator());
         } else {
 //            cars = carRepository.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
@@ -287,15 +287,15 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 //                    .filter(c -> !c.getId().equals(entity.getId()))
 //                    .collect(Collectors.toList());
             if (!cars.isEmpty()) {
-                sb.append(I18nComponentsUtil.getCarNoValidParkingLotDuplicate());
+                sb.append(I18nUtils.getCarNoValidParkingLotDuplicate());
                 sb.append(System.lineSeparator());
             }
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nComponentsUtil.getDialogErrorInvalidFieldsTitle(),
-                    I18nComponentsUtil.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtil.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
+                    I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
             return false;

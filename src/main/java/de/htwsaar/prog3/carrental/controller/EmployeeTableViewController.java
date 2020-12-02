@@ -3,7 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
-import de.htwsaar.prog3.carrental.util.i18n.I18nComponentsUtil;
+import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,12 +87,12 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
         Employee employee = employeeTableView.getSelectionModel().getSelectedItem();
 
         if (null == employee) {
-            Alert info = DialogUtil.createInformationDialog(I18nComponentsUtil.getDialogDeleteNoSelectionText());
+            Alert info = DialogUtil.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
             info.show();
             return;
         }
 
-        Alert confirmation = DialogUtil.createConfirmationDialog(I18nComponentsUtil.getDialogDeleteConfirmationText());
+        Alert confirmation = DialogUtil.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmation.showAndWait();
 
         if (result.orElse(null) == ButtonType.OK) {
