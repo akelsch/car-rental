@@ -120,6 +120,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
         clearSearchComboBoxAndTextFieldBorders();
         clearSearchComboBoxAndTextFieldValues();
 
+        // TODO filter
 //        entities.setAll(service.findAll());
     }
 

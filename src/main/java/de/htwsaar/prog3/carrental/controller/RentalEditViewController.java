@@ -6,7 +6,6 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
-import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.collections.FXCollections;
@@ -31,7 +30,6 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class RentalEditViewController extends GenericEditViewController<Rental> {
 
-    private final RentalRepository rentalRepository;
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;
 
@@ -98,8 +96,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     private TextArea noteTextArea;
 
     @Autowired
-    public RentalEditViewController(RentalRepository rentalRepository, CustomerRepository customerRepository, EmployeeRepository employeeRepository) {
-        this.rentalRepository = rentalRepository;
+    public RentalEditViewController(CustomerRepository customerRepository, EmployeeRepository employeeRepository) {
         this.customerRepository = customerRepository;
         this.employeeRepository = employeeRepository;
     }
@@ -434,13 +431,6 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     }
 
     private Customer findCustomerByDriverLicenseId(String driverLicenseId) {
-        // TODO filter
-//        List<Customer> customers = customerRepository.filter("driverLicenseId", "=", driverLicenseId);
-//
-//        if (customers.size() == 1) {
-//            return customers.get(0);
-//        }
-
-        return new Customer();
+        return customerRepository.findByDriverLicenseId(driverLicenseId).orElseGet(Customer::new);
     }
 }

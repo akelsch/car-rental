@@ -11,9 +11,6 @@ import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * This is the Controller for the "Edit Car View" of the Carrental Application.
  *
@@ -136,7 +133,6 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 
     @Override
     boolean isInputValid() {
-        List<Car> cars = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 
         if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
@@ -239,12 +235,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(I18nUtils.getCarNoValidVin());
             sb.append(System.lineSeparator());
         } else {
-            // TODO filter
-//            cars = carRepository.filter(I18nComponentsUtil.getCarVinLabel(), "=", vinTextField.getText())
-//                    .stream()
-//                    .filter(c -> !c.getId().equals(entity.getId()))
-//                    .collect(Collectors.toList());
-            if (!cars.isEmpty()) {
+            if (carRepository.existsByIdNotAndVin(entity.getId(), vinTextField.getText())) {
                 sb.append(I18nUtils.getCarNoValidVinDuplicate());
                 sb.append(System.lineSeparator());
             }
@@ -254,11 +245,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(I18nUtils.getCarNoValidLicenceNumber());
             sb.append(System.lineSeparator());
         } else {
-//            cars = carRepository.filter(I18nComponentsUtil.getCarLicenceNumberLabel(), "=", licenceNumberTextField.getText())
-//                    .stream()
-//                    .filter(c -> !c.getId().equals(entity.getId()))
-//                    .collect(Collectors.toList());
-            if (!cars.isEmpty()) {
+            if (carRepository.existsByIdNotAndLicenseNumber(entity.getId(), licenceNumberTextField.getText())) {
                 sb.append(I18nUtils.getCarNoValidLicenceNumberDuplicate());
                 sb.append(System.lineSeparator());
             }
@@ -282,11 +269,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(I18nUtils.getCarNoValidParkingLot());
             sb.append(System.lineSeparator());
         } else {
-//            cars = carRepository.filter(I18nComponentsUtil.getCarParkingLotLabel(), "=", parkingLotTextField.getText())
-//                    .stream()
-//                    .filter(c -> !c.getId().equals(entity.getId()))
-//                    .collect(Collectors.toList());
-            if (!cars.isEmpty()) {
+            if (carRepository.existsByIdNotAndParkingLot(entity.getId(), parkingLotTextField.getText())) {
                 sb.append(I18nUtils.getCarNoValidParkingLotDuplicate());
                 sb.append(System.lineSeparator());
             }

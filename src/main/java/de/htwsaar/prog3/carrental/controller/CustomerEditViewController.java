@@ -10,9 +10,6 @@ import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * This is the Controller for the "Edit Customer View" of the Carrental Application.
  *
@@ -100,7 +97,6 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
     @Override
     boolean isInputValid() {
-        List<Customer> customers = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 
         if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
@@ -161,12 +157,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             sb.append(I18nUtils.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
         } else {
-            // TODO filter
-//            customers = service.filter(I18nComponentsUtil.getCustomerIdNumberLabel(), "=", idNumberTextField.getText())
-//                    .stream()
-//                    .filter(c -> !c.getId().equals(entity.getId()))
-//                    .collect(Collectors.toList());
-            if (!customers.isEmpty()) {
+            if (customerRepository.existsByIdNotAndIdNumber(entity.getId(), idNumberTextField.getText())) {
                 sb.append(I18nUtils.getCustomerNoValidIdNumberDuplicate());
                 sb.append(System.lineSeparator());
             }
@@ -176,12 +167,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             sb.append(I18nUtils.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
         } else {
-//            customers = service.filter(I18nComponentsUtil.getCustomerDriverLicenseIdLabel(),
-//                    "=", driverLicenseIdTextField.getText())
-//                    .stream()
-//                    .filter(c -> !c.getId().equals(entity.getId()))
-//                    .collect(Collectors.toList());
-            if (!customers.isEmpty()) {
+            if (customerRepository.existsByIdNotAndDriverLicenseId(entity.getId(), driverLicenseIdTextField.getText())) {
                 sb.append(I18nUtils.getCustomerNoValidDriverLicenceDuplicate());
                 sb.append(System.lineSeparator());
             }

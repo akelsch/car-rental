@@ -1,13 +1,11 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtil;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,8 +16,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmployeeEditViewController extends GenericEditViewController<Employee> {
 
-    private final EmployeeRepository employeeRepository;
-
     @FXML
     private TextField firstNameTextField;
 
@@ -28,11 +24,6 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
 
     @FXML
     private TextField positionTextField;
-
-    @Autowired
-    public EmployeeEditViewController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
 
     @Override
     public void initialize(Employee employee) {
