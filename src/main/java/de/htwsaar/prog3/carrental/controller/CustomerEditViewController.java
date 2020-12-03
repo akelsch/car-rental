@@ -89,9 +89,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             entity.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
             entity.setIdNumber(idNumberTextField.getText());
             entity.setDriverLicenseId(driverLicenseIdTextField.getText());
-
-            applyClicked = true;
-            modalStage.close();
+            closeModalWithApply();
         }
     }
 

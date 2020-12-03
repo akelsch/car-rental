@@ -125,9 +125,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             entity.setLicenseNumber(licenceNumberTextField.getText());
             entity.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
             entity.setParkingLot(parkingLotTextField.getText());
-
-            applyClicked = true;
-            modalStage.close();
+            closeModalWithApply();
         }
     }
 

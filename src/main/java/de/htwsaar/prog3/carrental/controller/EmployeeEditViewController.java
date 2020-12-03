@@ -40,9 +40,7 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
             entity.setFirstName(firstNameTextField.getText());
             entity.setLastName(lastNameTextField.getText());
             entity.setPosition(positionTextField.getText());
-
-            applyClicked = true;
-            modalStage.close();
+            closeModalWithApply();
         }
     }
 

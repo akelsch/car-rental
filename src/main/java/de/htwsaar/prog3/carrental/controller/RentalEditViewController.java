@@ -235,9 +235,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
             entity.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
             entity.setExtraCosts(Integer.parseInt(extraCostsTextField.getText()));
             entity.setNote(noteTextArea.getText());
-
-            applyClicked = true;
-            modalStage.close();
+            closeModalWithApply();
         }
     }
 

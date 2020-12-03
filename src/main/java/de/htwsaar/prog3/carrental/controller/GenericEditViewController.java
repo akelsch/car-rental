@@ -23,10 +23,17 @@ public abstract class GenericEditViewController<T extends BaseEntity> {
     T entity;
 
     @Setter
-    Stage modalStage;
+    private Stage modalStage;
 
     @Getter
-    boolean applyClicked = false;
+    private boolean applyClicked = false;
+
+    /**
+     * Fills all the text fields with the given entity fields.
+     *
+     * @param entity given entity of type {@link T}
+     */
+    public abstract void initialize(T entity);
 
     /**
      * Handles key presses within a EditView.
@@ -47,21 +54,13 @@ public abstract class GenericEditViewController<T extends BaseEntity> {
      * Handle pressing the "Cancel" button.
      */
     public void handleCancelButtonClicked() {
-        Alert confirmationDialog =
-                DialogUtil.createConfirmationDialog(I18nUtils.getDialogCancelConfirmationText());
+        Alert confirmationDialog = DialogUtil.createConfirmationDialog(I18nUtils.getDialogCancelConfirmationText());
 
         Optional<ButtonType> result = confirmationDialog.showAndWait();
         if (result.orElse(null) == ButtonType.OK) {
             modalStage.close();
         }
     }
-
-    /**
-     * Fills all the text fields with the given entity fields.
-     *
-     * @param entity given entity of type {@link T}
-     */
-    public abstract void initialize(T entity);
 
     /**
      * Handle pressing the "Apply" button.
@@ -74,4 +73,9 @@ public abstract class GenericEditViewController<T extends BaseEntity> {
      * @return true if all inputs are valid, else false
      */
     abstract boolean isInputValid();
+
+    void closeModalWithApply() {
+        applyClicked = true;
+        modalStage.close();
+    }
 }
