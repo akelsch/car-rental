@@ -4,7 +4,7 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * This is the Controller for the Main View of the Carrental Application.
+ * JavaFX controller for the "Car Table" view (main).
  *
  * @author Lukas Raubuch
  */
@@ -35,7 +35,6 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
 
     @FXML
     private TableView<Car> carTableView;
-
     @FXML
     private TableColumn<Car, Integer> id;
     @FXML
@@ -77,7 +76,6 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     public CarTableViewController(CarRepository carRepository, RentalRepository rentalRepository) {
         this.carRepository = carRepository;
         this.rentalRepository = rentalRepository;
-        entities = FXCollections.observableArrayList(this.carRepository.findAll());
     }
 
     @Override
@@ -101,11 +99,12 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
         tires.setCellValueFactory(new PropertyValueFactory<>("Tires"));
         vin.setCellValueFactory(new PropertyValueFactory<>("Vin"));
 
+        entities = FXCollections.observableArrayList(carRepository.findAll());
         carTableView.setItems(entities);
     }
 
     @Override
-    public void handleNewButtonClicked() {
+    public void handleNewClicked() {
         Car car = new Car();
 
         boolean applyClicked = application.showCarEditView(car);
@@ -116,7 +115,7 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     }
 
     @Override
-    public void handleEditButtonClicked() {
+    public void handleEditClicked() {
         Car car = carTableView.getSelectionModel().getSelectedItem();
 
         if (car != null) {
@@ -129,16 +128,16 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
     }
 
     @Override
-    public void handleDeleteButtonClicked() {
+    public void handleDeleteClicked() {
         Car car = carTableView.getSelectionModel().getSelectedItem();
 
         if (null == car) {
-            Alert info = DialogUtil.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
+            Alert info = DialogUtils.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
             info.show();
             return;
         }
 
-        Alert confirmation = DialogUtil.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
+        Alert confirmation = DialogUtils.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmation.showAndWait();
 
         if (result.orElse(null) == ButtonType.OK) {
@@ -146,18 +145,16 @@ public class CarTableViewController extends GenericTableViewController<Car> impl
                 carRepository.delete(car);
                 entities.setAll(carRepository.findAll());
             } catch (RollbackException e) {
+                // TODO choose different exception
                 // TODO i18n
-                Alert error = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this car",
+                Alert error = DialogUtils.createErrorDialog("Invalid Action", "Can't delete this car",
                         "You must first delete the rental");
                 error.showAndWait();
             }
         }
     }
 
-    /**
-     * Handle pressing the "Rent..." button.
-     */
-    public void handleRentButtonClicked() {
+    public void handleRentClicked() {
         Car car = carTableView.getSelectionModel().getSelectedItem();
 
         if (car != null) {

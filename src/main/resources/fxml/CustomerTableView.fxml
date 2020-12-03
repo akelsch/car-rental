@@ -5,9 +5,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.util.HashMap?>
-<BorderPane onKeyPressed="#handleKeyEvent"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.CustomerTableViewController">
+            fx:controller="de.htwsaar.prog3.carrental.controller.CustomerTableViewController"
+            onKeyPressed="#handleKeyEvent">
     <top>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -34,9 +35,9 @@
                     <MenuItem mnemonicParsing="false" text="%menubar-operation-close" onAction="#handleCloseMenuItemClicked"/>
                 </Menu>
                 <Menu text="%menubar-view-edit">
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-new" onAction="#handleNewButtonClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-edit" onAction="#handleEditButtonClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-delete" onAction="#handleDeleteButtonClicked"/>
+                    <MenuItem mnemonicParsing="false" text="%menubar-operation-new" onAction="#handleNewClicked"/>
+                    <MenuItem mnemonicParsing="false" text="%menubar-operation-edit" onAction="#handleEditClicked"/>
+                    <MenuItem mnemonicParsing="false" text="%menubar-operation-delete" onAction="#handleDeleteClicked"/>
                 </Menu>
                 <Menu text="%menubar-view-help">
                     <MenuItem mnemonicParsing="false" text="%menubar-operation-about" onAction="#handleAboutMenuItemClicked"/>
@@ -121,9 +122,9 @@
             <contextMenu>
                 <ContextMenu>
                     <items>
-                        <MenuItem text="%button-new-label" onAction="#handleNewButtonClicked"/>
-                        <MenuItem text="%button-edit-label" onAction="#handleEditButtonClicked"/>
-                        <MenuItem text="%button-delete-label" onAction="#handleDeleteButtonClicked"/>
+                        <MenuItem text="%button-new-label" onAction="#handleNewClicked"/>
+                        <MenuItem text="%button-edit-label" onAction="#handleEditClicked"/>
+                        <MenuItem text="%button-delete-label" onAction="#handleDeleteClicked"/>
                     </items>
                 </ContextMenu>
             </contextMenu>
@@ -139,13 +140,13 @@
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <Button mnemonicParsing="false" onAction="#handleNewButtonClicked" text="%button-new-label"
+            <Button mnemonicParsing="false" onAction="#handleNewClicked" text="%button-new-label"
                     textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
                     GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleEditButtonClicked" text="%button-edit-label"
+            <Button mnemonicParsing="false" onAction="#handleEditClicked" text="%button-edit-label"
                     textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"
                     GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleDeleteButtonClicked" text="%button-delete-label"
+            <Button mnemonicParsing="false" onAction="#handleDeleteClicked" text="%button-delete-label"
                     textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER"
                     GridPane.valignment="CENTER"/>
         </GridPane>

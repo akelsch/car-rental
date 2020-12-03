@@ -2,9 +2,8 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.CarRentalUiApplication;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,9 +16,10 @@ import javafx.scene.paint.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Super Controller for all other TableView controllers.
+ * Super controller for all other TableView controllers.
  *
- * @author Lukas Raubuch, Arthur Kelsch
+ * @author Lukas Raubuch
+ * @author Arthur Kelsch
  */
 public abstract class GenericTableViewController<T extends BaseEntity> {
 
@@ -29,10 +29,8 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
 
     @FXML
     public ComboBox<String> searchComboBoxField;
-
     @FXML
     public ComboBox<String> searchComboBoxComparator;
-
     @FXML
     public TextField searchTextField;
 
@@ -48,53 +46,38 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
      */
     public void handleKeyEvent(KeyEvent event) {
         if (event.getCode() == KeyCode.DELETE) {
-            handleDeleteButtonClicked();
+            handleDeleteClicked();
         }
     }
 
-    /**
-     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Car Car}.
-     */
     public void handleCarMenuItemClicked() {
         application.switchToCarTableView();
     }
 
-    /**
-     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Customer Customer}.
-     */
     public void handleCustomerMenuItemClicked() {
         application.switchToCustomerTableView();
     }
 
-    /**
-     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Employee Employee}.
-     */
     public void handleEmployeeMenuItemClicked() {
         application.switchToEmployeeTableView();
     }
 
-    /**
-     * Switch the primary stage scene for {@link de.htwsaar.prog3.carrental.model.Rental Rental}.
-     */
     public void handleRentalMenuItemClicked() {
         application.switchToRentalTableView();
     }
 
-    /**
-     * Closes the application.
-     *
-     * @see CarRentalUiApplication#stop()
-     */
     public void handleCloseMenuItemClicked() {
-        Platform.exit();
+        application.stop();
     }
 
-    /**
-     * Displays a dialog containing information about this software project.
-     */
+    public abstract void handleNewClicked();
+
+    public abstract void handleEditClicked();
+
+    public abstract void handleDeleteClicked();
+
     public void handleAboutMenuItemClicked() {
-        Alert aboutDialog = DialogUtil.createInformationDialog(I18nUtils.getDialogAboutText());
-        aboutDialog.show();
+        DialogUtils.createInformationDialog(I18nUtils.getDialogAboutText()).show();
     }
 
     /**
@@ -123,21 +106,6 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
         // TODO filter
 //        entities.setAll(service.findAll());
     }
-
-    /**
-     * Handle pressing the "New..." button.
-     */
-    public abstract void handleNewButtonClicked();
-
-    /**
-     * Handle pressing the "Edit..." button.
-     */
-    public abstract void handleEditButtonClicked();
-
-    /**
-     * Handle pressing the "Delete..." button.
-     */
-    public abstract void handleDeleteButtonClicked();
 
     /**
      * Clears the top two search ComboBox and TextField values.

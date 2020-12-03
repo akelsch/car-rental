@@ -9,7 +9,10 @@ import java.util.ResourceBundle;
  * <p>
  * Provides strings that are visible to the end user.
  *
- * @author Lukas Raubuch, Jens Thewes, Julian Quint, Arthur Kelsch
+ * @author Lukas Raubuch
+ * @author Jens Thewes
+ * @author Julian Quint
+ * @author Arthur Kelsch
  */
 public final class I18nUtils {
 

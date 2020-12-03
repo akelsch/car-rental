@@ -6,7 +6,7 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -15,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +24,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * This is the Controller for the "Rental Edit View" of the Carrental Application.
+ * JavaFX controller for the "Edit Rental" view.
  *
- * @author Hagen Schackmann, Michael Bös
+ * @author Hagen Schackmann
+ * @author Michael Bös
  */
 @Component
 public class RentalEditViewController extends GenericEditViewController<Rental> {
@@ -37,61 +39,42 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
     @FXML
     private Label carLabel;
-
     @FXML
     private ChoiceBox<Employee> employeeChoiceBox;
-
     @FXML
     private Label durationLabel;
-
     @FXML
     private Label dailyRateLabel;
-
     @FXML
     private TextField extraCostsTextField;
-
     @FXML
     private Label sumLabel;
-
     @FXML
     private DatePicker beginDatePicker;
-
     @FXML
     private DatePicker endDatePicker;
-
     @FXML
     private TextField driverLicenseIdTextField;
-
     @FXML
     private TextField firstNameTextField;
-
     @FXML
     private TextField lastNameTextField;
-
     @FXML
     private TextField idNumberTextField;
-
     @FXML
     private TextField dateOfBirthTextField;
-
     @FXML
     private TextField zipCodeTextField;
-
     @FXML
     private TextField cityTextField;
-
     @FXML
     private TextField streetTextField;
-
     @FXML
     private TextField houseNumberTextField;
-
     @FXML
     private TextField emailTextField;
-
     @FXML
     private TextField phoneNumberTextField;
-
     @FXML
     private TextArea noteTextArea;
 
@@ -160,7 +143,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
                 double sum = (dailyRate * duration) + extraCosts;
                 sumLabel.setText(String.format("%.2f %s", sum, I18nUtils.getRentalCurrencyLabel()));
             } catch (NumberFormatException e) {
-                Alert alert = DialogUtil.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
+                Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
                         I18nUtils.getDialogErrorInvalidFieldsText(),
                         I18nUtils.getRentalNoValidExtraCosts() + " " + I18nUtils.getDialogInvalidNumberText());
 
@@ -175,7 +158,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     public void handleSearchButtonClicked() {
         String driverLicenseId = driverLicenseIdTextField.getText();
 
-        if (driverLicenseId != null && !driverLicenseId.trim().isEmpty()) {
+        if (StringUtils.isNotBlank(driverLicenseId)) {
             Customer customer = findCustomerByDriverLicenseId(driverLicenseId);
             entity.setCustomer(customer);
 
@@ -253,32 +236,32 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
             sb.append(System.lineSeparator());
         }
 
-        if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(driverLicenseIdTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
         }
 
-        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(firstNameTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidFirstName());
             sb.append(System.lineSeparator());
         }
 
-        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(lastNameTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidLastName());
             sb.append(System.lineSeparator());
         }
 
-        if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(idNumberTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
         }
 
-        if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(dateOfBirthTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidDateOfBirth());
             sb.append(System.lineSeparator());
         }
 
-        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(zipCodeTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidZipCode());
             sb.append(System.lineSeparator());
         } else {
@@ -292,34 +275,34 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
             }
         }
 
-        if (cityTextField.getText() == null || cityTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(cityTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidCityName());
             sb.append(System.lineSeparator());
         }
 
-        if (streetTextField.getText() == null || streetTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(streetTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidStreetName());
             sb.append(System.lineSeparator());
         }
 
-        if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(houseNumberTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidHouseNumber());
             sb.append(System.lineSeparator());
         }
 
-        if (emailTextField.getText() == null || emailTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(emailTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidEmailAddress());
             sb.append(System.lineSeparator());
         }
 
-        if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(phoneNumberTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidPhoneNumber());
             sb.append(System.lineSeparator());
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
+            Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
                     I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 
@@ -350,7 +333,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     private StringConverter<LocalDate> getDatePickerConverter() {
         String pattern = "dd.MM.yyyy";
 
-        StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+        StringConverter<LocalDate> converter = new StringConverter<>() {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 
             @Override
@@ -382,7 +365,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     }
 
     private Callback<DatePicker, DateCell> getDayCellFactory() {
-        return new Callback<DatePicker, DateCell>() {
+        return new Callback<>() {
             @Override
             public DateCell call(final DatePicker datePicker) {
                 return new DateCell() {

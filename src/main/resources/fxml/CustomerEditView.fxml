@@ -4,9 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane onKeyPressed="#handleKeyEvent"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.CustomerEditViewController">
+            fx:controller="de.htwsaar.prog3.carrental.controller.CustomerEditViewController"
+            onKeyPressed="#handleKeyEvent">
     <top>
         <BorderPane BorderPane.alignment="CENTER">
             <left>

@@ -6,9 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.util.HashMap?>
-<BorderPane onKeyPressed="#handleKeyEvent"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.CarEditViewController">
+            fx:controller="de.htwsaar.prog3.carrental.controller.CarEditViewController"
+            onKeyPressed="#handleKeyEvent">
     <top>
         <BorderPane BorderPane.alignment="CENTER">
             <left>

@@ -2,7 +2,7 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * Controller for RentalTableView.
+ * JavaFX controller for the "Rental Table" view.
  *
  * @author Lukas Raubuch
  */
@@ -31,7 +31,6 @@ public class RentalTableViewController extends GenericTableViewController<Rental
 
     @FXML
     private TableView<Rental> rentalTableView;
-
     @FXML
     private TableColumn<Rental, Integer> id;
     @FXML
@@ -52,7 +51,6 @@ public class RentalTableViewController extends GenericTableViewController<Rental
     @Autowired
     public RentalTableViewController(RentalRepository rentalRepository) {
         this.rentalRepository = rentalRepository;
-        entities = FXCollections.observableArrayList(this.rentalRepository.findAll());
     }
 
     @Override
@@ -66,21 +64,22 @@ public class RentalTableViewController extends GenericTableViewController<Rental
         extraCosts.setCellValueFactory(new PropertyValueFactory<>("ExtraCosts"));
         note.setCellValueFactory(new PropertyValueFactory<>("Note"));
 
+        entities = FXCollections.observableArrayList(rentalRepository.findAll());
         rentalTableView.setItems(entities);
     }
 
     /**
-     * Rental view does not use a "New..." button.
+     * This view does not have a "New" button.
      *
-     * @see CarTableViewController#handleRentButtonClicked()
+     * @see CarTableViewController#handleRentClicked()
      */
     @Override
-    public void handleNewButtonClicked() {
+    public void handleNewClicked() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void handleEditButtonClicked() {
+    public void handleEditClicked() {
         Rental rental = rentalTableView.getSelectionModel().getSelectedItem();
 
         if (rental != null) {
@@ -93,16 +92,16 @@ public class RentalTableViewController extends GenericTableViewController<Rental
     }
 
     @Override
-    public void handleDeleteButtonClicked() {
+    public void handleDeleteClicked() {
         Rental rental = rentalTableView.getSelectionModel().getSelectedItem();
 
         if (null == rental) {
-            Alert info = DialogUtil.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
+            Alert info = DialogUtils.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
             info.show();
             return;
         }
 
-        Alert confirmation = DialogUtil.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
+        Alert confirmation = DialogUtils.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmation.showAndWait();
 
         if (result.orElse(null) == ButtonType.OK) {

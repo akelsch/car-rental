@@ -20,7 +20,9 @@ import org.springframework.context.support.GenericApplicationContext;
  * Entry point of the car rental application. Definition of primary stage and
  * building of the environment.
  *
- * @author Lukas Raubuch, Arthur Kelsch, Jens Thewes
+ * @author Lukas Raubuch
+ * @author Arthur Kelsch
+ * @author Jens Thewes
  */
 public class CarRentalUiApplication extends Application {
 

@@ -2,7 +2,7 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -21,9 +21,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * Controller for CustomerTableView.
+ * JavaFX controller for the "Customer Table" view.
  *
- * @author Lukas Raubuch, Jens Thewes
+ * @author Lukas Raubuch
+ * @author Jens Thewes
  */
 @Component
 public class CustomerTableViewController extends GenericTableViewController<Customer> implements Initializable {
@@ -32,7 +33,6 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
 
     @FXML
     private TableView<Customer> customerTableView;
-
     @FXML
     private TableColumn<Customer, Integer> id;
     @FXML
@@ -61,7 +61,6 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     @Autowired
     public CustomerTableViewController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        entities = FXCollections.observableArrayList(this.customerRepository.findAll());
     }
 
     @Override
@@ -79,11 +78,12 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
         street.setCellValueFactory(new PropertyValueFactory<>("Street"));
         zipCode.setCellValueFactory(new PropertyValueFactory<>("ZipCode"));
 
+        entities = FXCollections.observableArrayList(customerRepository.findAll());
         customerTableView.setItems(entities);
     }
 
     @Override
-    public void handleNewButtonClicked() {
+    public void handleNewClicked() {
         Customer customer = new Customer();
 
         boolean applyClicked = application.showCustomerEditView(customer);
@@ -94,7 +94,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     }
 
     @Override
-    public void handleEditButtonClicked() {
+    public void handleEditClicked() {
         Customer customer = customerTableView.getSelectionModel().getSelectedItem();
 
         if (customer != null) {
@@ -107,16 +107,16 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
     }
 
     @Override
-    public void handleDeleteButtonClicked() {
+    public void handleDeleteClicked() {
         Customer customer = customerTableView.getSelectionModel().getSelectedItem();
 
         if (null == customer) {
-            Alert info = DialogUtil.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
+            Alert info = DialogUtils.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
             info.show();
             return;
         }
 
-        Alert confirmation = DialogUtil.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
+        Alert confirmation = DialogUtils.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
         Optional<ButtonType> result = confirmation.showAndWait();
 
         if (result.orElse(null) == ButtonType.OK) {
@@ -125,7 +125,7 @@ public class CustomerTableViewController extends GenericTableViewController<Cust
                 entities.setAll(customerRepository.findAll());
             } catch (RollbackException e) {
                 // TODO i18n
-                Alert error = DialogUtil.createErrorDialog("Invalid Action", "Can't delete this customer",
+                Alert error = DialogUtils.createErrorDialog("Invalid Action", "Can't delete this customer",
                         "You must first delete the rental");
                 error.showAndWait();
             }

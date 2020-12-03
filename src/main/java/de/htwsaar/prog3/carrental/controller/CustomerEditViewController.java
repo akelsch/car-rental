@@ -2,16 +2,17 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * This is the Controller for the "Edit Customer View" of the Carrental Application.
+ * JavaFX controller for the "Edit Customer" view.
  *
  * @author Jens Thewes
  */
@@ -22,34 +23,24 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
     @FXML
     private TextField firstNameTextField;
-
     @FXML
     private TextField lastNameTextField;
-
     @FXML
     private TextField emailAddressTextField;
-
     @FXML
     private TextField phoneNumberTextField;
-
     @FXML
     private TextField dateOfBirthTextField;
-
     @FXML
     private TextField streetTextField;
-
     @FXML
     private TextField houseNumberTextField;
-
     @FXML
     private TextField cityTextField;
-
     @FXML
     private TextField zipCodeTextField;
-
     @FXML
     private TextField idNumberTextField;
-
     @FXML
     private TextField driverLicenseIdTextField;
 
@@ -97,47 +88,47 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
     boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
 
-        if (firstNameTextField.getText() == null || firstNameTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(firstNameTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidFirstName());
             sb.append(System.lineSeparator());
         }
 
-        if (lastNameTextField.getText() == null || lastNameTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(lastNameTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidLastName());
             sb.append(System.lineSeparator());
         }
 
-        if (emailAddressTextField.getText() == null || emailAddressTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(emailAddressTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidEmailAddress());
             sb.append(System.lineSeparator());
         }
 
-        if (phoneNumberTextField.getText() == null || phoneNumberTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(phoneNumberTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidPhoneNumber());
             sb.append(System.lineSeparator());
         }
 
-        if (dateOfBirthTextField.getText() == null || dateOfBirthTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(dateOfBirthTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidDateOfBirth());
             sb.append(System.lineSeparator());
         }
 
-        if (streetTextField.getText() == null || streetTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(streetTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidStreetName());
             sb.append(System.lineSeparator());
         }
 
-        if (houseNumberTextField.getText() == null || houseNumberTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(houseNumberTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidHouseNumber());
             sb.append(System.lineSeparator());
         }
 
-        if (cityTextField.getText() == null || cityTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(cityTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidCityName());
             sb.append(System.lineSeparator());
         }
 
-        if (zipCodeTextField.getText() == null || zipCodeTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(zipCodeTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidZipCode());
             sb.append(System.lineSeparator());
         } else {
@@ -151,7 +142,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             }
         }
 
-        if (idNumberTextField.getText() == null || idNumberTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(idNumberTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidIdNumber());
             sb.append(System.lineSeparator());
         } else {
@@ -161,7 +152,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
             }
         }
 
-        if (driverLicenseIdTextField.getText() == null || driverLicenseIdTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(driverLicenseIdTextField.getText())) {
             sb.append(I18nUtils.getCustomerNoValidDriverLicence());
             sb.append(System.lineSeparator());
         } else {
@@ -173,7 +164,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
+            Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
                     I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 

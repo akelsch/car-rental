@@ -2,17 +2,18 @@ package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * This is the Controller for the "Edit Car View" of the Carrental Application.
+ * JavaFX controller for the "Edit Car" view.
  *
  * @author Jens Thewes
  */
@@ -23,55 +24,38 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 
     @FXML
     private TextField brandTextField;
-
     @FXML
     private TextField modelTextField;
-
     @FXML
     private TextField categoryTextField;
-
     @FXML
     private TextField colorTextField;
-
     @FXML
     private TextField constructionYearTextField;
-
     @FXML
     private TextField drivenDistanceTextField;
-
     @FXML
     private ChoiceBox<String> gearBoxChoiceBox;
-
     @FXML
     private TextField horsePowerTextField;
-
     @FXML
     private ChoiceBox<String> fuelChoiceBox;
-
     @FXML
     private TextField doorCountTextField;
-
     @FXML
     private TextField tiresTextField;
-
     @FXML
     private TextField nextInspectionTextField;
-
     @FXML
     private TextField vinTextField;
-
     @FXML
     private TextField equipmentTextField;
-
     @FXML
     private TextField defectsTextField;
-
     @FXML
     private TextField licenceNumberTextField;
-
     @FXML
     private TextField dailyRateTextField;
-
     @FXML
     private TextField parkingLotTextField;
 
@@ -133,31 +117,32 @@ public class CarEditViewController extends GenericEditViewController<Car> {
     boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
 
-        if (brandTextField.getText() == null || brandTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(brandTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidBrand());
             sb.append(System.lineSeparator());
         }
 
-        if (modelTextField.getText() == null || modelTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(modelTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidModel());
             sb.append(System.lineSeparator());
         }
 
-        if (categoryTextField.getText() == null || categoryTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(categoryTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidCategory());
             sb.append(System.lineSeparator());
         }
 
-        if (colorTextField.getText() == null || colorTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(colorTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidColor());
             sb.append(System.lineSeparator());
         }
 
-        if (constructionYearTextField.getText() == null || constructionYearTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(constructionYearTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidConstructionYear());
             sb.append(System.lineSeparator());
         } else {
             try {
+                // TODO Use TextFormatter to ensure valid numbers -> https://stackoverflow.com/a/36436243
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
                 sb.append(I18nUtils.getCarNoValidConstructionYear());
@@ -167,7 +152,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        if (drivenDistanceTextField.getText() == null || drivenDistanceTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(drivenDistanceTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidDrivenDistance());
             sb.append(System.lineSeparator());
         } else {
@@ -186,7 +171,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(System.lineSeparator());
         }
 
-        if (horsePowerTextField.getText() == null || horsePowerTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(horsePowerTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidHorsepower());
             sb.append(System.lineSeparator());
         } else {
@@ -205,7 +190,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             sb.append(System.lineSeparator());
         }
 
-        if (doorCountTextField.getText() == null || doorCountTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(doorCountTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidDoorCount());
             sb.append(System.lineSeparator());
         } else {
@@ -219,17 +204,17 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        if (tiresTextField.getText() == null || tiresTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(tiresTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidTires());
             sb.append(System.lineSeparator());
         }
 
-        if (nextInspectionTextField.getText() == null || nextInspectionTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(nextInspectionTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidNextInspection());
             sb.append(System.lineSeparator());
         }
 
-        if (vinTextField.getText() == null || vinTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(vinTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidVin());
             sb.append(System.lineSeparator());
         } else {
@@ -239,7 +224,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        if (licenceNumberTextField.getText() == null || licenceNumberTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(licenceNumberTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidLicenceNumber());
             sb.append(System.lineSeparator());
         } else {
@@ -249,7 +234,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        if (dailyRateTextField.getText() == null || dailyRateTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(dailyRateTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidDailyRate());
             sb.append(System.lineSeparator());
         } else {
@@ -263,7 +248,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             }
         }
 
-        if (parkingLotTextField.getText() == null || parkingLotTextField.getText().trim().isEmpty()) {
+        if (StringUtils.isBlank(parkingLotTextField.getText())) {
             sb.append(I18nUtils.getCarNoValidParkingLot());
             sb.append(System.lineSeparator());
         } else {
@@ -275,7 +260,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtil.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
+            Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
                     I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
             alert.showAndWait();
 

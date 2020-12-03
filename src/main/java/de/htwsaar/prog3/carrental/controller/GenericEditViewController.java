@@ -1,11 +1,10 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.BaseEntity;
-import de.htwsaar.prog3.carrental.util.DialogUtil;
+import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -14,9 +13,10 @@ import lombok.Setter;
 import java.util.Optional;
 
 /**
- * Super Controller for all other EditView controllers.
+ * Super controller for all other EditView controllers.
  *
- * @author Jens Thewes, Arthur Kelsch
+ * @author Jens Thewes
+ * @author Arthur Kelsch
  */
 public abstract class GenericEditViewController<T extends BaseEntity> {
 
@@ -41,12 +41,9 @@ public abstract class GenericEditViewController<T extends BaseEntity> {
      * @param event the event that occurred also containing the button that was pressed
      */
     public void handleKeyEvent(KeyEvent event) {
-        KeyCode key = event.getCode();
-
-        if (key == KeyCode.ESCAPE) {
-            handleCancelButtonClicked();
-        } else if (key == KeyCode.ENTER) {
-            handleApplyButtonClicked();
+        switch (event.getCode()) {
+            case ESCAPE -> handleCancelButtonClicked();
+            case ENTER -> handleApplyButtonClicked();
         }
     }
 
@@ -54,12 +51,14 @@ public abstract class GenericEditViewController<T extends BaseEntity> {
      * Handle pressing the "Cancel" button.
      */
     public void handleCancelButtonClicked() {
-        Alert confirmationDialog = DialogUtil.createConfirmationDialog(I18nUtils.getDialogCancelConfirmationText());
+        Alert confirmationDialog = DialogUtils.createConfirmationDialog(I18nUtils.getDialogCancelConfirmationText());
 
         Optional<ButtonType> result = confirmationDialog.showAndWait();
-        if (result.orElse(null) == ButtonType.OK) {
-            modalStage.close();
-        }
+        result.ifPresent(buttonType -> {
+            if (buttonType == ButtonType.OK) {
+                modalStage.close();
+            }
+        });
     }
 
     /**
