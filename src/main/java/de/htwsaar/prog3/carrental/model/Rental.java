@@ -1,8 +1,12 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Rental object model (JPA entity).
@@ -10,14 +14,10 @@ import javax.persistence.*;
  * @author Julian Quint
  */
 @Entity
-@Table
-@Getter
-@Setter
-@ToString(callSuper = true)
+@Data
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor
 public class Rental extends BaseEntity {
+
     @Column(nullable = false)
     private String begin;
 
@@ -36,7 +36,7 @@ public class Rental extends BaseEntity {
     @Column(nullable = false)
     private String end;
 
-    @Column(name = "extra_costs")
+    @Column
     private int extraCosts;
 
     @Column

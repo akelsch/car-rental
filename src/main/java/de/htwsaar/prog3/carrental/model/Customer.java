@@ -1,10 +1,10 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * Customer object model (JPA entity).
@@ -12,48 +12,45 @@ import javax.persistence.Table;
  * @author Julian Quint
  */
 @Entity
-@Table
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor
 public class Customer extends BaseEntity {
+
     @Column(nullable = false)
     private String city;
 
-    @Column(name = "date_of_birth", nullable = false)
+    @Column(nullable = false)
     private String dateOfBirth;
 
-    @Column(name = "driver_license_id", nullable = false, unique = true, length = 11)
+    @Column(nullable = false, unique = true, length = 11)
     private String driverLicenseId;
 
-    @Column(name = "email_address", nullable = false)
+    @Column(nullable = false)
     private String emailAddress;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(nullable = false)
     private String firstName;
 
-    @Column(name = "house_number", nullable = false)
+    @Column(nullable = false)
     private String houseNumber;
 
-    @Column(name = "id_number", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String idNumber;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(nullable = false)
     private String lastName;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(nullable = false)
     private String phoneNumber;
 
     @Column(nullable = false)
     private String street;
 
-    @Column(name = "zip_code", nullable = false)
+    @Column(nullable = false)
     private int zipCode;
 
     @Override
     public String toString() {
-        return String.format("%s %s", firstName, lastName);
+        return "%s %s".formatted(firstName, lastName);
     }
 }

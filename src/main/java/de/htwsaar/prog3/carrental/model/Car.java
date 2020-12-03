@@ -1,10 +1,10 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * Car object model (JPA entity).
@@ -12,13 +12,10 @@ import javax.persistence.Table;
  * @author Arthur Kelsch
  */
 @Entity
-@Table
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor
 public class Car extends BaseEntity {
+
     @Column(nullable = false)
     private String brand;
 
@@ -28,19 +25,19 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private String color;
 
-    @Column(name = "construction_year", nullable = false)
+    @Column(nullable = false)
     private int constructionYear;
 
-    @Column(name = "daily_rate", nullable = false)
+    @Column(nullable = false)
     private int dailyRate;
 
     @Column
     private String defects;
 
-    @Column(name = "door_count", nullable = false)
+    @Column(nullable = false)
     private int doorCount;
 
-    @Column(name = "driven_distance", nullable = false)
+    @Column(nullable = false)
     private int drivenDistance;
 
     @Column
@@ -55,16 +52,16 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private int horsepower;
 
-    @Column(name = "license_number", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String licenseNumber;
 
     @Column(nullable = false)
     private String model;
 
-    @Column(name = "next_inspection", nullable = false)
+    @Column(nullable = false)
     private String nextInspection;
 
-    @Column(name = "parking_lot", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String parkingLot;
 
     @Column(nullable = false)
@@ -75,6 +72,6 @@ public class Car extends BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("%d %s %s", constructionYear, brand, model);
+        return "%d %s %s".formatted(constructionYear, brand, model);
     }
 }
