@@ -1,19 +1,28 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.CarRentalUiApplication;
-import de.htwsaar.prog3.carrental.model.BaseEntity;
+import de.htwsaar.prog3.carrental.model.*;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * Super controller for all other TableView controllers.
@@ -21,29 +30,56 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Lukas Raubuch
  * @author Arthur Kelsch
  */
-public abstract class GenericTableViewController<T extends BaseEntity> {
+public abstract class GenericTableViewController<T extends BaseEntity> implements Initializable {
 
-    ObservableList<T> entities;
+    private final PseudoClass error = PseudoClass.getPseudoClass("error");
 
-    CarRentalUiApplication application;
+    final ObservableList<T> entities = FXCollections.observableArrayList();
+    private FilteredList<T> filteredEntities;
 
     @FXML
-    public ComboBox<String> searchComboBoxField;
+    TableView<T> entityTable;
     @FXML
-    public ComboBox<String> searchComboBoxComparator;
+    private ComboBox<String> searchAttributeComboBox;
     @FXML
-    public TextField searchTextField;
+    private ComboBox<String> searchOperatorComboBox;
+    @FXML
+    private TextField searchValueTextField;
+
+    private CarRentalUiApplication application;
 
     @Autowired
     public final void setApplication(CarRentalUiApplication application) {
         this.application = application;
     }
 
-    /**
-     * Handles key presses within a TableView.
-     *
-     * @param event the event that occurred also containing the button that was pressed
-     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        filteredEntities = new FilteredList<>(entities);
+        SortedList<T> sortedEntities = filteredEntities.sorted();
+        sortedEntities.comparatorProperty().bind(entityTable.comparatorProperty());
+        entityTable.setItems(sortedEntities);
+        postInitialize();
+    }
+
+    abstract void postInitialize();
+
+    boolean showCarEditView(Car car) {
+        return application.showCarEditView(car);
+    }
+
+    boolean showCustomerEditView(Customer customer) {
+        return application.showCustomerEditView(customer);
+    }
+
+    boolean showEmployeeEditView(Employee employee) {
+        return application.showEmployeeEditView(employee);
+    }
+
+    boolean showRentalEditView(Rental rental) {
+        return application.showRentalEditView(rental);
+    }
+
     public void handleKeyEvent(KeyEvent event) {
         if (event.getCode() == KeyCode.DELETE) {
             handleDeleteClicked();
@@ -80,79 +116,56 @@ public abstract class GenericTableViewController<T extends BaseEntity> {
         DialogUtils.createInformationDialog(I18nUtils.getDialogAboutText()).show();
     }
 
-    /**
-     * Applies the selected filters to the current entity list.
-     */
-    public void handleApplyCurrentFilterButtonClicked() {
-        setSearchComboBoxAndTextFieldBordersIfEmpty();
+    public void handleSearchButtonClicked() {
+        String attribute = searchAttributeComboBox.getValue();
+        String operator = searchOperatorComboBox.getValue();
+        String value = searchValueTextField.getText();
 
-        String field = searchComboBoxField.getValue();
-        String comparator = searchComboBoxComparator.getValue();
-        String value = searchTextField.getText();
+        searchAttributeComboBox.pseudoClassStateChanged(error, attribute == null);
+        searchOperatorComboBox.pseudoClassStateChanged(error, operator == null);
+        searchValueTextField.pseudoClassStateChanged(error, StringUtils.isBlank(value));
 
-        if (field != null && comparator != null && !value.isEmpty()) {
-            // TODO filter
-//            entities.setAll(service.filter(field, comparator, value));
+        if (attribute != null && operator != null && StringUtils.isNotBlank(value)) {
+            filteredEntities.setPredicate(entity -> filter(entity, attribute, operator, value));
         }
     }
 
-    /**
-     * Removes the selected filters of the current entity list.
-     */
-    public void handleRemoveCurrentFilterButtonClicked() {
-        clearSearchComboBoxAndTextFieldBorders();
-        clearSearchComboBoxAndTextFieldValues();
+    private boolean filter(T entity, String attribute, String operator, String value) {
+        Optional<?> column = entityTable.getColumns().stream()
+                .filter(c -> c.getText().equals(attribute))
+                .map(c -> c.getCellObservableValue(entity))
+                .map(ObservableValue::getValue)
+                .findFirst();
 
-        // TODO filter
-//        entities.setAll(service.findAll());
-    }
+        if (column.isPresent()) {
+            Object columnValue = column.get();
 
-    /**
-     * Clears the top two search ComboBox and TextField values.
-     */
-    private void clearSearchComboBoxAndTextFieldValues() {
-        searchComboBoxField.getSelectionModel().clearSelection();
-        searchComboBoxComparator.getSelectionModel().clearSelection();
-        searchTextField.clear();
-    }
-
-    /**
-     * Clears the top two search ComboBox and TextField borders.
-     */
-    private void clearSearchComboBoxAndTextFieldBorders() {
-        searchComboBoxField.setBorder(null);
-        searchComboBoxComparator.setBorder(null);
-        searchTextField.setBorder(null);
-    }
-
-    /**
-     * Sets the top two search ComboBox and TextField borders if they are empty.
-     */
-    private void setSearchComboBoxAndTextFieldBordersIfEmpty() {
-        // Border radii taken from modena.css
-        Border border = new Border(new BorderStroke(
-                Color.RED,
-                BorderStrokeStyle.SOLID,
-                new CornerRadii(3.0, 3.0, 2.0, 1.0, false),
-                BorderWidths.DEFAULT
-        ));
-
-        if (searchComboBoxField.getSelectionModel().isEmpty()) {
-            searchComboBoxField.setBorder(border);
-        } else {
-            searchComboBoxField.setBorder(null);
+            if (columnValue instanceof Integer) {
+                int num = (int) columnValue;
+                // TODO exception handling
+                if ("=".equals(operator)) {
+                    return num == Integer.parseInt(value);
+                } else if (">".equals(operator)) {
+                    return num > Integer.parseInt(value);
+                } else if ("<".equals(operator)) {
+                    return num < Integer.parseInt(value);
+                }
+            } else {
+                if (operator.equals("="))
+                    return StringUtils.equalsIgnoreCase(columnValue.toString(), value);
+                else if (operator.equals("LIKE"))
+                    return StringUtils.containsIgnoreCase(columnValue.toString(), value);
+            }
         }
 
-        if (searchComboBoxComparator.getSelectionModel().isEmpty()) {
-            searchComboBoxComparator.setBorder(border);
-        } else {
-            searchComboBoxComparator.setBorder(null);
-        }
+        return false;
+    }
 
-        if (searchTextField.getText().isEmpty()) {
-            searchTextField.setBorder(border);
-        } else {
-            searchTextField.setBorder(null);
-        }
+    public void handleClearFilterButtonClicked() {
+        searchAttributeComboBox.pseudoClassStateChanged(error, false);
+        searchOperatorComboBox.pseudoClassStateChanged(error, false);
+        searchValueTextField.pseudoClassStateChanged(error, false);
+
+        filteredEntities.setPredicate(e -> true);
     }
 }

@@ -4,21 +4,13 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.I18nUtils;
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.RollbackException;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * JavaFX controller for the "Employee Table" view.
@@ -27,42 +19,21 @@ import java.util.ResourceBundle;
  * @author Jens Thewes
  */
 @Component
-public class EmployeeTableViewController extends GenericTableViewController<Employee> implements Initializable {
+@RequiredArgsConstructor
+public class EmployeeTableViewController extends GenericTableViewController<Employee> {
 
     private final EmployeeRepository employeeRepository;
 
-    @FXML
-    private TableView<Employee> employeeTableView;
-    @FXML
-    private TableColumn<Employee, Integer> id;
-    @FXML
-    private TableColumn<Employee, String> firstName;
-    @FXML
-    private TableColumn<Employee, String> lastName;
-    @FXML
-    private TableColumn<Employee, String> position;
-
-    @Autowired
-    public EmployeeTableViewController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
-
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        lastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        position.setCellValueFactory(new PropertyValueFactory<>("Position"));
-
-        entities = FXCollections.observableArrayList(employeeRepository.findAll());
-        employeeTableView.setItems(entities);
+    void postInitialize() {
+        entities.setAll(employeeRepository.findAll());
     }
 
     @Override
     public void handleNewClicked() {
         Employee employee = new Employee();
 
-        boolean applyClicked = application.showEmployeeEditView(employee);
+        boolean applyClicked = showEmployeeEditView(employee);
         if (applyClicked) {
             employeeRepository.save(employee);
             entities.setAll(employeeRepository.findAll());
@@ -71,10 +42,10 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
     @Override
     public void handleEditClicked() {
-        Employee employee = employeeTableView.getSelectionModel().getSelectedItem();
+        Employee employee = entityTable.getSelectionModel().getSelectedItem();
 
         if (employee != null) {
-            boolean applyClicked = application.showEmployeeEditView(employee);
+            boolean applyClicked = showEmployeeEditView(employee);
             if (applyClicked) {
                 employeeRepository.save(employee);
                 entities.setAll(employeeRepository.findAll());
@@ -84,7 +55,7 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
 
     @Override
     public void handleDeleteClicked() {
-        Employee employee = employeeTableView.getSelectionModel().getSelectedItem();
+        Employee employee = entityTable.getSelectionModel().getSelectedItem();
 
         if (null == employee) {
             Alert info = DialogUtils.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());

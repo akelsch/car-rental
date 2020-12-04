@@ -3,71 +3,75 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import java.util.HashMap?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.htwsaar.prog3.carrental.controller.CarTableViewController"
-            onKeyPressed="#handleKeyEvent">
+            onKeyPressed="#handleKeyEvent"
+            stylesheets="@styles.css">
+    <!-- TODO initialize in controller -->
+    <fx:define>
+        <HashMap fx:id="searchComboBoxFieldStrings"
+                 id="%car-id-label"
+                 brand="%car-brand-label"
+                 model="%car-model-label"
+                 category="%car-category-label"
+                 color="%car-color-label"
+                 constructionYear="%car-construction-year-label"
+                 drivenDistance="%car-driven-distance-label"
+                 gearbox="%car-gearbox-label"
+                 horsepower="%car-horsepower-label"
+                 fuel="%car-fuel-label"
+                 doorCount="%car-door-count-label"
+                 tires="%car-tires-label"
+                 nextInspection="%car-next-inspection-label"
+                 dailyRate="%car-daily-rate-label"
+                 licenseNumber="%car-licence-number-label"
+                 parkingLot="%car-parking-lot-label"
+                 vin="%car-vin-label"
+                 defects="%car-defects-label"/>
+    </fx:define>
+    <fx:define>
+        <HashMap fx:id="searchComboBoxComparatorStrings"
+                 equals="%search-combobox-equals"
+                 greater="%search-combobox-greater"
+                 smaller="%search-combobox-smaller"
+                 like="%search-combobox-like"/>
+    </fx:define>
     <top>
-        <GridPane BorderPane.alignment="CENTER">
+        <GridPane>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
             </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <MenuBar prefHeight="10.0" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="0">
-                <padding>
-                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                </padding>
+            <!-- Row 0 -->
+            <MenuBar GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="5">
                 <Menu text="%menubar-view-file">
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-cars" onAction="#handleCarMenuItemClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-customers" onAction="#handleCustomerMenuItemClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-employees" onAction="#handleEmployeeMenuItemClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-rentals" onAction="#handleRentalMenuItemClicked"/>
-                    <SeparatorMenuItem mnemonicParsing="false"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-close" onAction="#handleCloseMenuItemClicked"/>
+                    <MenuItem text="%menubar-operation-cars" onAction="#handleCarMenuItemClicked"/>
+                    <MenuItem text="%menubar-operation-customers" onAction="#handleCustomerMenuItemClicked"/>
+                    <MenuItem text="%menubar-operation-employees" onAction="#handleEmployeeMenuItemClicked"/>
+                    <MenuItem text="%menubar-operation-rentals" onAction="#handleRentalMenuItemClicked"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="%menubar-operation-close" onAction="#handleCloseMenuItemClicked"/>
                 </Menu>
                 <Menu text="%menubar-view-edit">
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-new" onAction="#handleNewClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-edit" onAction="#handleEditClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-delete" onAction="#handleDeleteClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-rent" onAction="#handleRentClicked"/>
+                    <MenuItem text="%menubar-operation-new" onAction="#handleNewClicked"/>
+                    <MenuItem text="%menubar-operation-edit" onAction="#handleEditClicked"/>
+                    <MenuItem text="%menubar-operation-delete" onAction="#handleDeleteClicked"/>
+                    <MenuItem text="%menubar-operation-rent" onAction="#handleRentClicked"/>
                 </Menu>
                 <Menu text="%menubar-view-help">
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-about" onAction="#handleAboutMenuItemClicked"/>
+                    <MenuItem text="%menubar-operation-about" onAction="#handleAboutMenuItemClicked"/>
                 </Menu>
             </MenuBar>
-            <fx:define>
-                <HashMap fx:id="searchComboBoxFieldStrings"
-                         id="%car-id-label"
-                         brand="%car-brand-label"
-                         model="%car-model-label"
-                         category="%car-category-label"
-                         color="%car-color-label"
-                         constructionYear="%car-construction-year-label"
-                         drivenDistance="%car-driven-distance-label"
-                         gearbox="%car-gearbox-label"
-                         horsepower="%car-horsepower-label"
-                         fuel="%car-fuel-label"
-                         doorCount="%car-door-count-label"
-                         tires="%car-tires-label"
-                         nextInspection="%car-next-inspection-label"
-                         dailyRate="%car-daily-rate-label"
-                         licenseNumber="%car-licence-number-label"
-                         parkingLot="%car-parking-lot-label"
-                         vin="%car-vin-label"
-                         defects="%car-defects-label"/>
-            </fx:define>
-            <ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
-                      promptText="%search-combobox-field-text" prefWidth="Infinity" GridPane.halignment="CENTER"
-                      GridPane.valignment="CENTER">
+            <!-- Row 1 -->
+            <ComboBox fx:id="searchAttributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"
+                      promptText="%search-combobox-field-text">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <fx:reference source="searchComboBoxFieldStrings.id"/>
@@ -91,16 +95,8 @@
                     </FXCollections>
                 </items>
             </ComboBox>
-            <fx:define>
-                <HashMap fx:id="searchComboBoxComparatorStrings"
-                         equals="%search-combobox-equals"
-                         greater="%search-combobox-greater"
-                         smaller="%search-combobox-smaller"
-                         like="%search-combobox-like"/>
-            </fx:define>
-            <ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1" GridPane.columnIndex="1"
-                      promptText="%search-combobox-comparator-text" prefWidth="Infinity" GridPane.halignment="CENTER"
-                      GridPane.valignment="CENTER">
+            <ComboBox fx:id="searchOperatorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"
+                      promptText="%search-combobox-comparator-text">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <fx:reference source="searchComboBoxComparatorStrings.equals"/>
@@ -110,37 +106,107 @@
                     </FXCollections>
                 </items>
             </ComboBox>
-            <TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
-                       promptText="%search-textfield-text" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleApplyCurrentFilterButtonClicked"
-                    text="%button-search-label" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3"
-                    prefWidth="Infinity" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleRemoveCurrentFilterButtonClicked"
-                    text="%button-clear-filter-label" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4"
-                    prefWidth="Infinity" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+            <TextField fx:id="searchValueTextField" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"
+                       promptText="%search-textfield-text"/>
+            <Button GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"
+                    text="%button-search-label" onAction="#handleSearchButtonClicked"/>
+            <Button GridPane.rowIndex="1" GridPane.columnIndex="4" maxWidth="Infinity"
+                    text="%button-clear-filter-label" onAction="#handleClearFilterButtonClicked"/>
         </GridPane>
     </top>
     <center>
-        <TableView fx:id="carTableView" prefHeight="400.0" prefWidth="487.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="entityTable">
             <columns>
-                <TableColumn fx:id="id" text="%car-id-label"/>
-                <TableColumn fx:id="brand" text="%car-brand-label"/>
-                <TableColumn fx:id="model" text="%car-model-label"/>
-                <TableColumn fx:id="category" text="%car-category-label"/>
-                <TableColumn fx:id="color" text="%car-color-label"/>
-                <TableColumn fx:id="constructionYear" text="%car-construction-year-label"/>
-                <TableColumn fx:id="drivenDistance" text="%car-driven-distance-label"/>
-                <TableColumn fx:id="gearbox" text="%car-gearbox-label"/>
-                <TableColumn fx:id="horsepower" text="%car-horsepower-label"/>
-                <TableColumn fx:id="fuel" text="%car-fuel-label"/>
-                <TableColumn fx:id="doorCount" text="%car-door-count-label"/>
-                <TableColumn fx:id="tires" text="%car-tires-label"/>
-                <TableColumn fx:id="nextInspection" text="%car-next-inspection-label"/>
-                <TableColumn fx:id="dailyRate" text="%car-daily-rate-label"/>
-                <TableColumn fx:id="licenseNumber" text="%car-licence-number-label"/>
-                <TableColumn fx:id="parkingLot" text="%car-parking-lot-label"/>
-                <TableColumn fx:id="vin" text="%car-vin-label"/>
-                <TableColumn fx:id="defects" text="%car-defects-label"/>
+                <TableColumn text="%car-id-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-brand-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="brand"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-model-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="model"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-category-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="category"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-color-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="color"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-construction-year-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="constructionYear"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-driven-distance-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="drivenDistance"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-gearbox-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="gearbox"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-horsepower-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="horsepower"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-fuel-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="fuel"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-door-count-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="doorCount"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-tires-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="tires"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-next-inspection-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nextInspection"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-daily-rate-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="dailyRate"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-licence-number-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="licenseNumber"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-parking-lot-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="parkingLot"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-vin-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="vin"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car-defects-label">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="defects"/>
+                    </cellValueFactory>
+                </TableColumn>
             </columns>
             <contextMenu>
                 <ContextMenu>
@@ -155,28 +221,25 @@
         </TableView>
     </center>
     <bottom>
-        <GridPane BorderPane.alignment="CENTER" prefHeight="25.0" prefWidth="1442.0">
+        <GridPane>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
+                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
             </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <Button mnemonicParsing="false" onAction="#handleNewClicked" text="%button-new-label"
-                    textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
-                    GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleEditClicked" text="%button-edit-label"
-                    textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"
-                    GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleDeleteClicked" text="%button-delete-label"
-                    textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER"
-                    GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleRentClicked" text="%button-rent-label"
-                    textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="CENTER"
-                    GridPane.valignment="CENTER"/>
+            <padding>
+                <Insets top="5.0" right="5.0" bottom="5.0" left="5.0"/>
+            </padding>
+            <!-- Row 0 -->
+            <Button GridPane.rowIndex="0" GridPane.columnIndex="0"
+                    text="%button-new-label" onAction="#handleNewClicked"/>
+            <Button GridPane.rowIndex="0" GridPane.columnIndex="1"
+                    text="%button-edit-label" onAction="#handleEditClicked"/>
+            <Button GridPane.rowIndex="0" GridPane.columnIndex="2"
+                    text="%button-delete-label" onAction="#handleDeleteClicked"/>
+            <Button GridPane.rowIndex="0" GridPane.columnIndex="3"
+                    text="%button-rent-label" onAction="#handleRentClicked"/>
         </GridPane>
     </bottom>
 </BorderPane>

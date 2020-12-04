@@ -1,0 +1,4 @@
+#searchComboBoxField:error, #searchComboBoxComparator:error, #searchTextField:error {
+    -fx-border-color: red;
+    -fx-border-radius: 3px; /* from modena.css */
+}
