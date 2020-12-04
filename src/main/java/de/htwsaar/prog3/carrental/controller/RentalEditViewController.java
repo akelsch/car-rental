@@ -365,20 +365,14 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     }
 
     private Callback<DatePicker, DateCell> getDayCellFactory() {
-        return new Callback<>() {
+        return datePicker -> new DateCell() {
             @Override
-            public DateCell call(final DatePicker datePicker) {
-                return new DateCell() {
-                    @Override
-                    public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-
-                        if (item.isBefore(beginDatePicker.getValue().plusDays(1))) {
-                            setDisable(true);
-                            setStyle("-fx-background-color: #ffc0cb;");
-                        }
-                    }
-                };
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item.isBefore(beginDatePicker.getValue().plusDays(1))) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
+                }
             }
         };
     }
