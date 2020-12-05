@@ -6,13 +6,13 @@
 <?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.CustomerEditViewController"
+            fx:controller="de.htwsaar.prog3.carrental.controller.edit.CustomerEditViewController"
             onKeyPressed="#handleKeyEvent">
     <top>
         <BorderPane BorderPane.alignment="CENTER">
             <left>
                 <GridPane alignment="center" hgap="10" vgap="10">
-                    <Label text="%customer-edit-title-label" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="%customer.label.edit-title" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <font>
                             <Font size="14.0"/>
                         </font>
@@ -26,27 +26,27 @@
     </top>
     <center>
         <GridPane alignment="center" hgap="10" vgap="10">
-            <Label text="%customer-first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label text="%customer.label.first-name" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
             <TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <Label text="%customer-last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="%customer.label.last-name" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
             <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="%customer-email-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label text="%customer.label.email" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
             <TextField fx:id="emailAddressTextField" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-            <Label text="%customer-phone-number-label" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="%customer.label.phone-number" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
             <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            <Label text="%customer-date-of-birth-label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <Label text="%customer.label.date-of-birth" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
             <TextField fx:id="dateOfBirthTextField" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-            <Label text="%customer-street-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <Label text="%customer.label.street" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
             <TextField fx:id="streetTextField" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <Label text="%customer-house-number-label" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <Label text="%customer.label.house-number" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
             <TextField fx:id="houseNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-            <Label text="%customer-city-label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+            <Label text="%customer.label.city" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
             <TextField fx:id="cityTextField" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-            <Label text="%customer-zip-code-label" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+            <Label text="%customer.label.zip-code" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
             <TextField fx:id="zipCodeTextField" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
-            <Label text="%customer-id-number-label" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <Label text="%customer.label.id-number" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
             <TextField fx:id="idNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-            <Label text="%customer-driver-license-id-label" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+            <Label text="%customer.label.driver-license-id" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
             <TextField fx:id="driverLicenseIdTextField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
         </GridPane>
     </center>
@@ -54,9 +54,9 @@
         <BorderPane BorderPane.alignment="CENTER">
             <right>
                 <GridPane alignment="center" hgap="10" vgap="10">
-                    <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button-cancel-label"
+                    <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button.cancel"
                             textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Button mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button-apply-label"
+                    <Button mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button.apply"
                             textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                 </GridPane>
             </right>

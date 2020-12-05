@@ -1,9 +1,8 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.table;
 
 import de.htwsaar.prog3.carrental.CarRentalUiApplication;
+import de.htwsaar.prog3.carrental.controller.BaseController;
 import de.htwsaar.prog3.carrental.model.*;
-import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,9 +29,7 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  * @author Arthur Kelsch
  */
-public abstract class GenericTableViewController<T extends BaseEntity> implements Initializable {
-
-    private final PseudoClass error = PseudoClass.getPseudoClass("error");
+public abstract class GenericTableViewController<T extends BaseEntity> extends BaseController implements Initializable {
 
     final ObservableList<T> entities = FXCollections.observableArrayList();
     private FilteredList<T> filteredEntities;
@@ -113,7 +110,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
     public abstract void handleDeleteClicked();
 
     public void handleAboutMenuItemClicked() {
-        DialogUtils.createInformationDialog(I18nUtils.getDialogAboutText()).show();
+        dialogUtils.showAboutDialog();
     }
 
     public void handleSearchButtonClicked() {
@@ -121,6 +118,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
         String operator = searchOperatorComboBox.getValue();
         String value = searchValueTextField.getText();
 
+        PseudoClass error = PseudoClass.getPseudoClass("error");
         searchAttributeComboBox.pseudoClassStateChanged(error, attribute == null);
         searchOperatorComboBox.pseudoClassStateChanged(error, operator == null);
         searchValueTextField.pseudoClassStateChanged(error, StringUtils.isBlank(value));
@@ -162,6 +160,7 @@ public abstract class GenericTableViewController<T extends BaseEntity> implement
     }
 
     public void handleClearFilterButtonClicked() {
+        PseudoClass error = PseudoClass.getPseudoClass("error");
         searchAttributeComboBox.pseudoClassStateChanged(error, false);
         searchOperatorComboBox.pseudoClassStateChanged(error, false);
         searchValueTextField.pseudoClassStateChanged(error, false);

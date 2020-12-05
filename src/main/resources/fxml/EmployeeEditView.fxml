@@ -6,13 +6,13 @@
 <?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.EmployeeEditViewController"
+            fx:controller="de.htwsaar.prog3.carrental.controller.edit.EmployeeEditViewController"
             onKeyPressed="#handleKeyEvent">
     <top>
         <BorderPane BorderPane.alignment="CENTER">
             <left>
                 <GridPane alignment="center" hgap="10" vgap="10">
-                    <Label text="%employee-edit-title-label" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="%employee.label.edit-title" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <font>
                             <Font size="14.0"/>
                         </font>
@@ -26,11 +26,11 @@
     </top>
     <center>
         <GridPane alignment="center" hgap="10" vgap="10">
-            <Label text="%employee-first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label text="%employee.label.first-name" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
             <TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <Label text="%employee-last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="%employee.label.last-name" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
             <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="%employee-position-label" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <Label text="%employee.label.position" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
             <TextField fx:id="positionTextField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
         </GridPane>
     </center>
@@ -38,9 +38,9 @@
         <BorderPane BorderPane.alignment="CENTER">
             <right>
                 <GridPane alignment="center" hgap="10" vgap="10">
-                    <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button-cancel-label"
+                    <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button.cancel"
                             textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Button mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button-apply-label"
+                    <Button mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button.apply"
                             textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                 </GridPane>
             </right>

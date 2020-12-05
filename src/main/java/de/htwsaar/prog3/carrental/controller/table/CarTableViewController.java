@@ -1,18 +1,13 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.table;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.RollbackException;
-import java.util.Optional;
 
 /**
  * JavaFX controller for the "Car Table" view (main).
@@ -59,26 +54,17 @@ public class CarTableViewController extends GenericTableViewController<Car> {
     public void handleDeleteClicked() {
         Car car = entityTable.getSelectionModel().getSelectedItem();
 
-        if (null == car) {
-            Alert info = DialogUtils.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
-            info.show();
-            return;
-        }
-
-        Alert confirmation = DialogUtils.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
-        Optional<ButtonType> result = confirmation.showAndWait();
-
-        if (result.orElse(null) == ButtonType.OK) {
-            try {
-                carRepository.delete(car);
-                entities.setAll(carRepository.findAll());
-            } catch (RollbackException e) {
-                // TODO choose different exception
-                // TODO i18n
-                Alert error = DialogUtils.createErrorDialog("Invalid Action", "Can't delete this car",
-                        "You must first delete the rental");
-                error.showAndWait();
-            }
+        if (car != null) {
+            dialogUtils.showDeleteConfirmationDialog().ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    try {
+                        carRepository.delete(car);
+                        entities.setAll(carRepository.findAll());
+                    } catch (DataIntegrityViolationException e) {
+                        dialogUtils.showDeleteErrorDialog();
+                    }
+                }
+            });
         }
     }
 

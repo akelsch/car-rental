@@ -1,9 +1,8 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.edit;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -53,7 +52,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
     @FXML
     private TextField defectsTextField;
     @FXML
-    private TextField licenceNumberTextField;
+    private TextField licenseNumberTextField;
     @FXML
     private TextField dailyRateTextField;
     @FXML
@@ -83,7 +82,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
         vinTextField.setText(entity.getVin());
         equipmentTextField.setText(entity.getEquipment());
         defectsTextField.setText(entity.getDefects());
-        licenceNumberTextField.setText(entity.getLicenseNumber());
+        licenseNumberTextField.setText(entity.getLicenseNumber());
         dailyRateTextField.setText(Integer.toString(entity.getDailyRate()));
         parkingLotTextField.setText(entity.getParkingLot());
     }
@@ -106,7 +105,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
             entity.setVin(vinTextField.getText());
             entity.setEquipment(equipmentTextField.getText());
             entity.setDefects(defectsTextField.getText());
-            entity.setLicenseNumber(licenceNumberTextField.getText());
+            entity.setLicenseNumber(licenseNumberTextField.getText());
             entity.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
             entity.setParkingLot(parkingLotTextField.getText());
             closeModalWithApply();
@@ -118,150 +117,150 @@ public class CarEditViewController extends GenericEditViewController<Car> {
         StringBuilder sb = new StringBuilder();
 
         if (StringUtils.isBlank(brandTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidBrand());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(modelTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidModel());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(categoryTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidCategory());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(colorTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidColor());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(constructionYearTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidConstructionYear());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             try {
                 // TODO Use TextFormatter to ensure valid numbers -> https://stackoverflow.com/a/36436243
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nUtils.getCarNoValidConstructionYear());
+                sb.append("TODO");
                 sb.append(" ");
-                sb.append(I18nUtils.getDialogInvalidNumberText());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (StringUtils.isBlank(drivenDistanceTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidDrivenDistance());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(constructionYearTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nUtils.getCarNoValidDrivenDistance());
+                sb.append("TODO");
                 sb.append(" ");
-                sb.append(I18nUtils.getDialogInvalidNumberText());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (gearBoxChoiceBox.getSelectionModel().isEmpty()) {
-            sb.append(I18nUtils.getCarNoValidGearbox());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(horsePowerTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidHorsepower());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(horsePowerTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nUtils.getCarNoValidHorsepower());
+                sb.append("TODO");
                 sb.append(" ");
-                sb.append(I18nUtils.getDialogInvalidNumberText());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (fuelChoiceBox.getSelectionModel().isEmpty()) {
-            sb.append(I18nUtils.getCarNoValidFuel());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(doorCountTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidDoorCount());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(doorCountTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nUtils.getCarNoValidDoorCount());
+                sb.append("TODO");
                 sb.append(" ");
-                sb.append(I18nUtils.getDialogInvalidNumberText());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (StringUtils.isBlank(tiresTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidTires());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(nextInspectionTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidNextInspection());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(vinTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidVin());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             if (carRepository.existsByIdNotAndVin(entity.getId(), vinTextField.getText())) {
-                sb.append(I18nUtils.getCarNoValidVinDuplicate());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
-        if (StringUtils.isBlank(licenceNumberTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidLicenceNumber());
+        if (StringUtils.isBlank(licenseNumberTextField.getText())) {
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
-            if (carRepository.existsByIdNotAndLicenseNumber(entity.getId(), licenceNumberTextField.getText())) {
-                sb.append(I18nUtils.getCarNoValidLicenceNumberDuplicate());
+            if (carRepository.existsByIdNotAndLicenseNumber(entity.getId(), licenseNumberTextField.getText())) {
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (StringUtils.isBlank(dailyRateTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidDailyRate());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(dailyRateTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nUtils.getCarNoValidDailyRate());
+                sb.append("TODO");
                 sb.append(" ");
-                sb.append(I18nUtils.getDialogInvalidNumberText());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (StringUtils.isBlank(parkingLotTextField.getText())) {
-            sb.append(I18nUtils.getCarNoValidParkingLot());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             if (carRepository.existsByIdNotAndParkingLot(entity.getId(), parkingLotTextField.getText())) {
-                sb.append(I18nUtils.getCarNoValidParkingLotDuplicate());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
-                    I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtils.createErrorDialog(
+                    "TODO", errorMessage);
             alert.showAndWait();
 
             return false;

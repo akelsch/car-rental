@@ -1,15 +1,10 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.table;
 
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 /**
  * JavaFX controller for the "Rental Table" view.
@@ -52,18 +47,13 @@ public class RentalTableViewController extends GenericTableViewController<Rental
     public void handleDeleteClicked() {
         Rental rental = entityTable.getSelectionModel().getSelectedItem();
 
-        if (null == rental) {
-            Alert info = DialogUtils.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
-            info.show();
-            return;
-        }
-
-        Alert confirmation = DialogUtils.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
-        Optional<ButtonType> result = confirmation.showAndWait();
-
-        if (result.orElse(null) == ButtonType.OK) {
-            rentalRepository.delete(rental);
-            entities.setAll(rentalRepository.findAll());
+        if (rental != null) {
+            dialogUtils.showDeleteConfirmationDialog().ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    rentalRepository.delete(rental);
+                    entities.setAll(rentalRepository.findAll());
+                }
+            });
         }
     }
 }

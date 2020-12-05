@@ -5,7 +5,6 @@ import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.util.FxmlUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -40,16 +39,17 @@ public class CarRentalUiApplication extends Application {
                 .initializers(initializer)
                 .run(getParameters().getRaw().toArray(new String[0]));
 
-        fxmlUtils = new FxmlUtils(applicationContext);
+        fxmlUtils = applicationContext.getBean(FxmlUtils.class);
     }
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+
         Parent root = fxmlUtils.loadView(FxmlUtils.FXML_CAR_TABLE);
         Scene scene = new Scene(root, 1440, 810);
         primaryStage.setScene(scene);
-        primaryStage.setTitle(I18nUtils.getStageTitle());
+        primaryStage.setTitle(fxmlUtils.getStageTitle());
         primaryStage.show();
     }
 

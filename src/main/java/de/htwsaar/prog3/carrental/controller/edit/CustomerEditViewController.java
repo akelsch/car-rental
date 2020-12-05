@@ -1,9 +1,8 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.edit;
 
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -89,83 +88,83 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
         StringBuilder sb = new StringBuilder();
 
         if (StringUtils.isBlank(firstNameTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidFirstName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(lastNameTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidLastName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(emailAddressTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidEmailAddress());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(phoneNumberTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidPhoneNumber());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(dateOfBirthTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidDateOfBirth());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(streetTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidStreetName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(houseNumberTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidHouseNumber());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(cityTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidCityName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(zipCodeTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidZipCode());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(zipCodeTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nUtils.getCustomerNoValidZipCode());
+                sb.append("TODO");
                 sb.append(" ");
-                sb.append(I18nUtils.getDialogInvalidNumberText());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (StringUtils.isBlank(idNumberTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidIdNumber());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             if (customerRepository.existsByIdNotAndIdNumber(entity.getId(), idNumberTextField.getText())) {
-                sb.append(I18nUtils.getCustomerNoValidIdNumberDuplicate());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (StringUtils.isBlank(driverLicenseIdTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidDriverLicence());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             if (customerRepository.existsByIdNotAndDriverLicenseId(entity.getId(), driverLicenseIdTextField.getText())) {
-                sb.append(I18nUtils.getCustomerNoValidDriverLicenceDuplicate());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
-                    I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtils.createErrorDialog(
+                    "TODO", errorMessage);
             alert.showAndWait();
 
             return false;

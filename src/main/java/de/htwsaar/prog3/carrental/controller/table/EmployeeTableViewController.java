@@ -1,16 +1,11 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.table;
 
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
-import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.RollbackException;
-import java.util.Optional;
 
 /**
  * JavaFX controller for the "Employee Table" view.
@@ -57,25 +52,17 @@ public class EmployeeTableViewController extends GenericTableViewController<Empl
     public void handleDeleteClicked() {
         Employee employee = entityTable.getSelectionModel().getSelectedItem();
 
-        if (null == employee) {
-            Alert info = DialogUtils.createInformationDialog(I18nUtils.getDialogDeleteNoSelectionText());
-            info.show();
-            return;
-        }
-
-        Alert confirmation = DialogUtils.createConfirmationDialog(I18nUtils.getDialogDeleteConfirmationText());
-        Optional<ButtonType> result = confirmation.showAndWait();
-
-        if (result.orElse(null) == ButtonType.OK) {
-            try {
-                employeeRepository.delete(employee);
-                entities.setAll(employeeRepository.findAll());
-            } catch (RollbackException e) {
-                // TODO i18n
-                Alert alert = DialogUtils.createErrorDialog("Invalid Action", "Can't delete this employee",
-                        "You must first delete the rental");
-                alert.showAndWait();
-            }
+        if (employee != null) {
+            dialogUtils.showDeleteConfirmationDialog().ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    try {
+                        employeeRepository.delete(employee);
+                        entities.setAll(employeeRepository.findAll());
+                    } catch (DataIntegrityViolationException e) {
+                        dialogUtils.showDeleteErrorDialog();
+                    }
+                }
+            });
         }
     }
 }

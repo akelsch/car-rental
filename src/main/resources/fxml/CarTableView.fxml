@@ -8,37 +8,37 @@
 <?import java.util.HashMap?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.CarTableViewController"
+            fx:controller="de.htwsaar.prog3.carrental.controller.table.CarTableViewController"
             onKeyPressed="#handleKeyEvent"
             stylesheets="@styles.css">
     <!-- TODO initialize in controller -->
     <fx:define>
         <HashMap fx:id="searchComboBoxFieldStrings"
-                 id="%car-id-label"
-                 brand="%car-brand-label"
-                 model="%car-model-label"
-                 category="%car-category-label"
-                 color="%car-color-label"
-                 constructionYear="%car-construction-year-label"
-                 drivenDistance="%car-driven-distance-label"
-                 gearbox="%car-gearbox-label"
-                 horsepower="%car-horsepower-label"
-                 fuel="%car-fuel-label"
-                 doorCount="%car-door-count-label"
-                 tires="%car-tires-label"
-                 nextInspection="%car-next-inspection-label"
-                 dailyRate="%car-daily-rate-label"
-                 licenseNumber="%car-licence-number-label"
-                 parkingLot="%car-parking-lot-label"
-                 vin="%car-vin-label"
-                 defects="%car-defects-label"/>
+                 id="%car.label.id"
+                 brand="%car.label.brand"
+                 model="%car.label.model"
+                 category="%car.label.category"
+                 color="%car.label.color"
+                 constructionYear="%car.label.construction-year"
+                 drivenDistance="%car.label.driven-distance"
+                 gearbox="%car.label.gearbox"
+                 horsepower="%car.label.horsepower"
+                 fuel="%car.label.fuel"
+                 doorCount="%car.label.door-count"
+                 tires="%car.label.tires"
+                 nextInspection="%car.label.next-inspection"
+                 dailyRate="%car.label.daily-rate"
+                 licenseNumber="%car.label.license-number"
+                 parkingLot="%car.label.parking-lot"
+                 vin="%car.label.vin"
+                 defects="%car.label.defects"/>
     </fx:define>
     <fx:define>
         <HashMap fx:id="searchComboBoxComparatorStrings"
-                 equals="%search-combobox-equals"
-                 greater="%search-combobox-greater"
-                 smaller="%search-combobox-smaller"
-                 like="%search-combobox-like"/>
+                 equals="%search.operator.equals"
+                 greater="%search.operator.greater-than"
+                 smaller="%search.operator.less-than"
+                 like="%search.operator.contains"/>
     </fx:define>
     <top>
         <GridPane>
@@ -51,27 +51,27 @@
             </columnConstraints>
             <!-- Row 0 -->
             <MenuBar GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="5">
-                <Menu text="%menubar-view-file">
-                    <MenuItem text="%menubar-operation-cars" onAction="#handleCarMenuItemClicked"/>
-                    <MenuItem text="%menubar-operation-customers" onAction="#handleCustomerMenuItemClicked"/>
-                    <MenuItem text="%menubar-operation-employees" onAction="#handleEmployeeMenuItemClicked"/>
-                    <MenuItem text="%menubar-operation-rentals" onAction="#handleRentalMenuItemClicked"/>
+                <Menu text="%menubar.file">
+                    <MenuItem text="%menubar.file.cars" onAction="#handleCarMenuItemClicked"/>
+                    <MenuItem text="%menubar.file.customers" onAction="#handleCustomerMenuItemClicked"/>
+                    <MenuItem text="%menubar.file.employees" onAction="#handleEmployeeMenuItemClicked"/>
+                    <MenuItem text="%menubar.file.rentals" onAction="#handleRentalMenuItemClicked"/>
                     <SeparatorMenuItem/>
-                    <MenuItem text="%menubar-operation-close" onAction="#handleCloseMenuItemClicked"/>
+                    <MenuItem text="%menubar.file.close" onAction="#handleCloseMenuItemClicked"/>
                 </Menu>
-                <Menu text="%menubar-view-edit">
-                    <MenuItem text="%menubar-operation-new" onAction="#handleNewClicked"/>
-                    <MenuItem text="%menubar-operation-edit" onAction="#handleEditClicked"/>
-                    <MenuItem text="%menubar-operation-delete" onAction="#handleDeleteClicked"/>
-                    <MenuItem text="%menubar-operation-rent" onAction="#handleRentClicked"/>
+                <Menu text="%menubar.edit">
+                    <MenuItem text="%menubar.edit.new" onAction="#handleNewClicked"/>
+                    <MenuItem text="%menubar.edit.edit" onAction="#handleEditClicked"/>
+                    <MenuItem text="%menubar.edit.delete" onAction="#handleDeleteClicked"/>
+                    <MenuItem text="%menubar.edit.rent" onAction="#handleRentClicked"/>
                 </Menu>
-                <Menu text="%menubar-view-help">
-                    <MenuItem text="%menubar-operation-about" onAction="#handleAboutMenuItemClicked"/>
+                <Menu text="%menubar.help">
+                    <MenuItem text="%menubar.help.about" onAction="#handleAboutMenuItemClicked"/>
                 </Menu>
             </MenuBar>
             <!-- Row 1 -->
             <ComboBox fx:id="searchAttributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"
-                      promptText="%search-combobox-field-text">
+                      promptText="%search.prompt.column">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <fx:reference source="searchComboBoxFieldStrings.id"/>
@@ -96,7 +96,7 @@
                 </items>
             </ComboBox>
             <ComboBox fx:id="searchOperatorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"
-                      promptText="%search-combobox-comparator-text">
+                      promptText="%search.prompt.operator">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <fx:reference source="searchComboBoxComparatorStrings.equals"/>
@@ -107,102 +107,102 @@
                 </items>
             </ComboBox>
             <TextField fx:id="searchValueTextField" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"
-                       promptText="%search-textfield-text"/>
+                       promptText="%search.prompt.value"/>
             <Button GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"
-                    text="%button-search-label" onAction="#handleSearchButtonClicked"/>
+                    text="%search.button.submit" onAction="#handleSearchButtonClicked"/>
             <Button GridPane.rowIndex="1" GridPane.columnIndex="4" maxWidth="Infinity"
-                    text="%button-clear-filter-label" onAction="#handleClearFilterButtonClicked"/>
+                    text="%search.button.reset" onAction="#handleClearFilterButtonClicked"/>
         </GridPane>
     </top>
     <center>
         <TableView fx:id="entityTable">
             <columns>
-                <TableColumn text="%car-id-label">
+                <TableColumn text="%car.label.id">
                     <cellValueFactory>
                         <PropertyValueFactory property="id"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-brand-label">
+                <TableColumn text="%car.label.brand">
                     <cellValueFactory>
                         <PropertyValueFactory property="brand"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-model-label">
+                <TableColumn text="%car.label.model">
                     <cellValueFactory>
                         <PropertyValueFactory property="model"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-category-label">
+                <TableColumn text="%car.label.category">
                     <cellValueFactory>
                         <PropertyValueFactory property="category"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-color-label">
+                <TableColumn text="%car.label.color">
                     <cellValueFactory>
                         <PropertyValueFactory property="color"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-construction-year-label">
+                <TableColumn text="%car.label.construction-year">
                     <cellValueFactory>
                         <PropertyValueFactory property="constructionYear"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-driven-distance-label">
+                <TableColumn text="%car.label.driven-distance">
                     <cellValueFactory>
                         <PropertyValueFactory property="drivenDistance"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-gearbox-label">
+                <TableColumn text="%car.label.gearbox">
                     <cellValueFactory>
                         <PropertyValueFactory property="gearbox"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-horsepower-label">
+                <TableColumn text="%car.label.horsepower">
                     <cellValueFactory>
                         <PropertyValueFactory property="horsepower"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-fuel-label">
+                <TableColumn text="%car.label.fuel">
                     <cellValueFactory>
                         <PropertyValueFactory property="fuel"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-door-count-label">
+                <TableColumn text="%car.label.door-count">
                     <cellValueFactory>
                         <PropertyValueFactory property="doorCount"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-tires-label">
+                <TableColumn text="%car.label.tires">
                     <cellValueFactory>
                         <PropertyValueFactory property="tires"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-next-inspection-label">
+                <TableColumn text="%car.label.next-inspection">
                     <cellValueFactory>
                         <PropertyValueFactory property="nextInspection"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-daily-rate-label">
+                <TableColumn text="%car.label.daily-rate">
                     <cellValueFactory>
                         <PropertyValueFactory property="dailyRate"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-licence-number-label">
+                <TableColumn text="%car.label.license-number">
                     <cellValueFactory>
                         <PropertyValueFactory property="licenseNumber"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-parking-lot-label">
+                <TableColumn text="%car.label.parking-lot">
                     <cellValueFactory>
                         <PropertyValueFactory property="parkingLot"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-vin-label">
+                <TableColumn text="%car.label.vin">
                     <cellValueFactory>
                         <PropertyValueFactory property="vin"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car-defects-label">
+                <TableColumn text="%car.label.defects">
                     <cellValueFactory>
                         <PropertyValueFactory property="defects"/>
                     </cellValueFactory>
@@ -211,10 +211,10 @@
             <contextMenu>
                 <ContextMenu>
                     <items>
-                        <MenuItem text="%button-new-label" onAction="#handleNewClicked"/>
-                        <MenuItem text="%button-edit-label" onAction="#handleEditClicked"/>
-                        <MenuItem text="%button-delete-label" onAction="#handleDeleteClicked"/>
-                        <MenuItem text="%button-rent-label" onAction="#handleRentClicked"/>
+                        <MenuItem text="%menubar.edit.new" onAction="#handleNewClicked"/>
+                        <MenuItem text="%menubar.edit.edit" onAction="#handleEditClicked"/>
+                        <MenuItem text="%menubar.edit.delete" onAction="#handleDeleteClicked"/>
+                        <MenuItem text="%menubar.edit.rent" onAction="#handleRentClicked"/>
                     </items>
                 </ContextMenu>
             </contextMenu>
@@ -233,13 +233,13 @@
             </padding>
             <!-- Row 0 -->
             <Button GridPane.rowIndex="0" GridPane.columnIndex="0"
-                    text="%button-new-label" onAction="#handleNewClicked"/>
+                    text="%button.new" onAction="#handleNewClicked"/>
             <Button GridPane.rowIndex="0" GridPane.columnIndex="1"
-                    text="%button-edit-label" onAction="#handleEditClicked"/>
+                    text="%button.edit" onAction="#handleEditClicked"/>
             <Button GridPane.rowIndex="0" GridPane.columnIndex="2"
-                    text="%button-delete-label" onAction="#handleDeleteClicked"/>
+                    text="%button.delete" onAction="#handleDeleteClicked"/>
             <Button GridPane.rowIndex="0" GridPane.columnIndex="3"
-                    text="%button-rent-label" onAction="#handleRentClicked"/>
+                    text="%button.rent" onAction="#handleRentClicked"/>
         </GridPane>
     </bottom>
 </BorderPane>

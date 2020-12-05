@@ -1,4 +1,4 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.edit;
 
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
@@ -7,7 +7,6 @@ import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -136,16 +135,16 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
 
         if (begin != null && end != null) {
             duration = Duration.between(begin.atStartOfDay(), end.atStartOfDay()).toDays();
-            durationLabel.setText(String.format("%d %s", duration, I18nUtils.getRentalDurationLabel()));
+            durationLabel.setText(String.format("%d %s", duration, "TODO"));
 
             try {
                 int extraCosts = Integer.parseInt(extraCostsTextField.getText());
                 double sum = (dailyRate * duration) + extraCosts;
-                sumLabel.setText(String.format("%.2f %s", sum, I18nUtils.getRentalCurrencyLabel()));
+                sumLabel.setText(String.format("%.2f %s", sum, "TODO"));
             } catch (NumberFormatException e) {
-                Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
-                        I18nUtils.getDialogErrorInvalidFieldsText(),
-                        I18nUtils.getRentalNoValidExtraCosts() + " " + I18nUtils.getDialogInvalidNumberText());
+                Alert alert = DialogUtils.createErrorDialog(
+                        "TODO",
+                        "TODO");
 
                 alert.showAndWait();
             }
@@ -227,83 +226,83 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
         StringBuilder sb = new StringBuilder();
 
         if (duration < 0.0) {
-            sb.append(I18nUtils.getRentalNoValidDuration());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (employeeChoiceBox.getValue() == null) {
-            sb.append(I18nUtils.getRentalNoValidEmployee());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(driverLicenseIdTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidDriverLicence());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(firstNameTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidFirstName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(lastNameTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidLastName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(idNumberTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidIdNumber());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(dateOfBirthTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidDateOfBirth());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(zipCodeTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidZipCode());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         } else {
             try {
                 Integer.parseInt(zipCodeTextField.getText());
             } catch (NumberFormatException e) {
-                sb.append(I18nUtils.getCustomerNoValidZipCode());
+                sb.append("TODO");
                 sb.append(" ");
-                sb.append(I18nUtils.getDialogInvalidNumberText());
+                sb.append("TODO");
                 sb.append(System.lineSeparator());
             }
         }
 
         if (StringUtils.isBlank(cityTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidCityName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(streetTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidStreetName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(houseNumberTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidHouseNumber());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(emailTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidEmailAddress());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(phoneNumberTextField.getText())) {
-            sb.append(I18nUtils.getCustomerNoValidPhoneNumber());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
-                    I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtils.createErrorDialog(
+                    "TODO", errorMessage);
             alert.showAndWait();
 
             return false;

@@ -1,8 +1,7 @@
-package de.htwsaar.prog3.carrental.controller;
+package de.htwsaar.prog3.carrental.controller.edit;
 
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
-import de.htwsaar.prog3.carrental.util.I18nUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -48,24 +47,24 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
         StringBuilder sb = new StringBuilder();
 
         if (StringUtils.isBlank(firstNameTextField.getText())) {
-            sb.append(I18nUtils.getEmployeeNoValidFirstName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(lastNameTextField.getText())) {
-            sb.append(I18nUtils.getEmployeeNoValidLastName());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         if (StringUtils.isBlank(positionTextField.getText())) {
-            sb.append(I18nUtils.getEmployeeNoValidPosition());
+            sb.append("TODO");
             sb.append(System.lineSeparator());
         }
 
         String errorMessage = sb.toString();
         if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtils.createErrorDialog(I18nUtils.getDialogErrorInvalidFieldsTitle(),
-                    I18nUtils.getDialogErrorInvalidFieldsText(), errorMessage);
+            Alert alert = DialogUtils.createErrorDialog(
+                    "TODO", errorMessage);
             alert.showAndWait();
 
             return false;
