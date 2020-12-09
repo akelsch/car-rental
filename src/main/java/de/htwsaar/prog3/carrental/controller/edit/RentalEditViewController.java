@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.edit;
 
+import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
@@ -29,7 +30,7 @@ import java.time.format.DateTimeFormatter;
  * @author Michael Bös
  */
 @Component
-public class RentalEditViewController extends GenericEditViewController<Rental> {
+public class RentalEditViewController extends EditViewController<Rental> {
 
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;
@@ -222,7 +223,7 @@ public class RentalEditViewController extends GenericEditViewController<Rental> 
     }
 
     @Override
-    boolean isInputValid() {
+    public boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
 
         if (duration < 0.0) {

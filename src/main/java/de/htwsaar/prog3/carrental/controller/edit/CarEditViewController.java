@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.edit;
 
+import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author Jens Thewes
  */
 @Component
-public class CarEditViewController extends GenericEditViewController<Car> {
+public class CarEditViewController extends EditViewController<Car> {
 
     private final CarRepository carRepository;
 
@@ -113,7 +114,7 @@ public class CarEditViewController extends GenericEditViewController<Car> {
     }
 
     @Override
-    boolean isInputValid() {
+    public boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
 
         if (StringUtils.isBlank(brandTextField.getText())) {

@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.table;
 
+import de.htwsaar.prog3.carrental.controller.TableViewController;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import javafx.scene.control.ButtonType;
@@ -15,12 +16,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class CustomerTableViewController extends GenericTableViewController<Customer> {
+public class CustomerTableViewController extends TableViewController<Customer> {
 
     private final CustomerRepository customerRepository;
 
     @Override
-    void postInitialize() {
+    public void postInitialize() {
         entities.setAll(customerRepository.findAll());
     }
 

@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.table;
 
+import de.htwsaar.prog3.carrental.controller.TableViewController;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import javafx.scene.control.ButtonType;
@@ -13,12 +14,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class RentalTableViewController extends GenericTableViewController<Rental> {
+public class RentalTableViewController extends TableViewController<Rental> {
 
     private final RentalRepository rentalRepository;
 
     @Override
-    void postInitialize() {
+    public void postInitialize() {
         entities.setAll(rentalRepository.findAll());
     }
 

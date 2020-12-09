@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.edit;
 
+import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @author Jens Thewes
  */
 @Component
-public class EmployeeEditViewController extends GenericEditViewController<Employee> {
+public class EmployeeEditViewController extends EditViewController<Employee> {
 
     @FXML
     private TextField firstNameTextField;
@@ -43,7 +44,7 @@ public class EmployeeEditViewController extends GenericEditViewController<Employ
     }
 
     @Override
-    boolean isInputValid() {
+    public boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
 
         if (StringUtils.isBlank(firstNameTextField.getText())) {

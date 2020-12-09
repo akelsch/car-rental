@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.table;
 
+import de.htwsaar.prog3.carrental.controller.TableViewController;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
@@ -16,13 +17,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class CarTableViewController extends GenericTableViewController<Car> {
+public class CarTableViewController extends TableViewController<Car> {
 
     private final CarRepository carRepository;
     private final RentalRepository rentalRepository;
 
     @Override
-    void postInitialize() {
+    public void postInitialize() {
         entities.setAll(carRepository.findAll());
     }
 

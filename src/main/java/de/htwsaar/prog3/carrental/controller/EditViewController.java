@@ -1,6 +1,5 @@
-package de.htwsaar.prog3.carrental.controller.edit;
+package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.controller.BaseController;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
@@ -14,9 +13,9 @@ import lombok.Setter;
  * @author Jens Thewes
  * @author Arthur Kelsch
  */
-public abstract class GenericEditViewController<T extends BaseEntity> extends BaseController {
+public abstract class EditViewController<T extends BaseEntity> extends BaseController {
 
-    T entity;
+    public T entity;
 
     @Setter
     private Stage modalStage;
@@ -65,9 +64,9 @@ public abstract class GenericEditViewController<T extends BaseEntity> extends Ba
      *
      * @return true if all inputs are valid, else false
      */
-    abstract boolean isInputValid();
+    public abstract boolean isInputValid();
 
-    void closeModalWithApply() {
+    public void closeModalWithApply() {
         applyClicked = true;
         modalStage.close();
     }

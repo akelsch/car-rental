@@ -1,6 +1,6 @@
 package de.htwsaar.prog3.carrental.util;
 
-import de.htwsaar.prog3.carrental.controller.edit.GenericEditViewController;
+import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.BaseEntity;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -51,7 +51,7 @@ public class FxmlUtils {
     public <T extends BaseEntity> boolean showModalView(Stage stage, String fxml, T entity) {
         FXMLLoader fxmlLoader = getFxmlLoader(fxml);
         Scene scene = new Scene(fxmlLoader.load());
-        GenericEditViewController<T> controller = fxmlLoader.getController();
+        EditViewController<T> controller = fxmlLoader.getController();
 
         Stage modalStage = new Stage();
         modalStage.initModality(Modality.WINDOW_MODAL);
@@ -60,8 +60,8 @@ public class FxmlUtils {
         modalStage.setTitle(getStageTitle());
         modalStage.setResizable(false);
 
-        controller.setModalStage(modalStage);
         controller.initialize(entity);
+        controller.setModalStage(modalStage);
 
         modalStage.showAndWait();
 

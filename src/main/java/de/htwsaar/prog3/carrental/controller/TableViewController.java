@@ -1,7 +1,6 @@
-package de.htwsaar.prog3.carrental.controller.table;
+package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.CarRentalUiApplication;
-import de.htwsaar.prog3.carrental.controller.BaseController;
 import de.htwsaar.prog3.carrental.model.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -29,13 +28,13 @@ import java.util.ResourceBundle;
  * @author Lukas Raubuch
  * @author Arthur Kelsch
  */
-public abstract class GenericTableViewController<T extends BaseEntity> extends BaseController implements Initializable {
+public abstract class TableViewController<T extends BaseEntity> extends BaseController implements Initializable {
 
-    final ObservableList<T> entities = FXCollections.observableArrayList();
+    public final ObservableList<T> entities = FXCollections.observableArrayList();
     private FilteredList<T> filteredEntities;
 
     @FXML
-    TableView<T> entityTable;
+    public TableView<T> entityTable;
     @FXML
     private ComboBox<String> searchAttributeComboBox;
     @FXML
@@ -59,21 +58,21 @@ public abstract class GenericTableViewController<T extends BaseEntity> extends B
         postInitialize();
     }
 
-    abstract void postInitialize();
+    public abstract void postInitialize();
 
-    boolean showCarEditView(Car car) {
+    public boolean showCarEditView(Car car) {
         return application.showCarEditView(car);
     }
 
-    boolean showCustomerEditView(Customer customer) {
+    public boolean showCustomerEditView(Customer customer) {
         return application.showCustomerEditView(customer);
     }
 
-    boolean showEmployeeEditView(Employee employee) {
+    public boolean showEmployeeEditView(Employee employee) {
         return application.showEmployeeEditView(employee);
     }
 
-    boolean showRentalEditView(Rental rental) {
+    public boolean showRentalEditView(Rental rental) {
         return application.showRentalEditView(rental);
     }
 

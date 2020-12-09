@@ -1,16 +1,23 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.util.DialogUtils;
+import de.htwsaar.prog3.carrental.util.MessageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class BaseController {
+abstract class BaseController {
 
     public DialogUtils dialogUtils;
+    public MessageUtils messageUtils;
 
     @Autowired
     final void setDialogUtils(DialogUtils dialogUtils) {
         this.dialogUtils = dialogUtils;
+    }
+
+    @Autowired
+    final void setMessageUtils(MessageUtils messageUtils) {
+        this.messageUtils = messageUtils;
     }
 }

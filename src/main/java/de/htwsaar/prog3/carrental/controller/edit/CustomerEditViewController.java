@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.edit;
 
+import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @author Jens Thewes
  */
 @Component
-public class CustomerEditViewController extends GenericEditViewController<Customer> {
+public class CustomerEditViewController extends EditViewController<Customer> {
 
     private final CustomerRepository customerRepository;
 
@@ -84,7 +85,7 @@ public class CustomerEditViewController extends GenericEditViewController<Custom
     }
 
     @Override
-    boolean isInputValid() {
+    public boolean isInputValid() {
         StringBuilder sb = new StringBuilder();
 
         if (StringUtils.isBlank(firstNameTextField.getText())) {
