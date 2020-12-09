@@ -7,8 +7,8 @@ import de.htwsaar.prog3.carrental.util.DialogUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
  * @author Jens Thewes
  */
 @Component
+@RequiredArgsConstructor
 public class CustomerEditViewController extends EditViewController<Customer> {
 
     private final CustomerRepository customerRepository;
@@ -43,11 +44,6 @@ public class CustomerEditViewController extends EditViewController<Customer> {
     private TextField idNumberTextField;
     @FXML
     private TextField driverLicenseIdTextField;
-
-    @Autowired
-    public CustomerEditViewController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     @Override
     public void initialize(Customer customer) {

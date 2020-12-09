@@ -15,8 +15,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -30,6 +30,7 @@ import java.time.format.DateTimeFormatter;
  * @author Michael Bös
  */
 @Component
+@RequiredArgsConstructor
 public class RentalEditViewController extends EditViewController<Rental> {
 
     private final CustomerRepository customerRepository;
@@ -77,12 +78,6 @@ public class RentalEditViewController extends EditViewController<Rental> {
     private TextField phoneNumberTextField;
     @FXML
     private TextArea noteTextArea;
-
-    @Autowired
-    public RentalEditViewController(CustomerRepository customerRepository, EmployeeRepository employeeRepository) {
-        this.customerRepository = customerRepository;
-        this.employeeRepository = employeeRepository;
-    }
 
     @Override
     public void initialize(Rental rental) {

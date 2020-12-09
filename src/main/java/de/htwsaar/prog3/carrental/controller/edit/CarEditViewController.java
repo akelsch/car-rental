@@ -8,8 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
  * @author Jens Thewes
  */
 @Component
+@RequiredArgsConstructor
 public class CarEditViewController extends EditViewController<Car> {
 
     private final CarRepository carRepository;
@@ -58,11 +59,6 @@ public class CarEditViewController extends EditViewController<Car> {
     private TextField dailyRateTextField;
     @FXML
     private TextField parkingLotTextField;
-
-    @Autowired
-    public CarEditViewController(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
 
     @Override
     public void initialize(Car car) {

@@ -1,6 +1,5 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.CarRentalUiApplication;
 import de.htwsaar.prog3.carrental.model.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URL;
 import java.util.Optional;
@@ -41,13 +39,6 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
     private ComboBox<String> searchOperatorComboBox;
     @FXML
     private TextField searchValueTextField;
-
-    private CarRentalUiApplication application;
-
-    @Autowired
-    public final void setApplication(CarRentalUiApplication application) {
-        this.application = application;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
