@@ -1,6 +1,8 @@
 package de.htwsaar.prog3.carrental.controller;
 
 import de.htwsaar.prog3.carrental.model.*;
+import de.htwsaar.prog3.carrental.util.filter.FilterPredicate;
+import de.htwsaar.prog3.carrental.util.filter.Operator;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +12,7 @@ import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumnBase;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -17,8 +20,8 @@ import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 /**
  * Super controller for all other TableView controllers.
@@ -36,20 +39,33 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
     @FXML
     private ComboBox<String> searchAttributeComboBox;
     @FXML
-    private ComboBox<String> searchOperatorComboBox;
+    private ComboBox<Operator> searchOperatorComboBox;
     @FXML
     private TextField searchValueTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Table
         filteredEntities = new FilteredList<>(entities);
         SortedList<T> sortedEntities = filteredEntities.sorted();
         sortedEntities.comparatorProperty().bind(entityTable.comparatorProperty());
         entityTable.setItems(sortedEntities);
         postInitialize();
+
+        // Search
+        searchAttributeComboBox.setItems(entityTable.getColumns().stream()
+                .map(TableColumnBase::getText)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableArrayList)));
+        searchOperatorComboBox.setItems(FXCollections.observableArrayList(Operator.class.getEnumConstants()));
     }
 
     public abstract void postInitialize();
+
+    public void handleKeyEvent(KeyEvent event) {
+        if (event.getCode() == KeyCode.DELETE) {
+            handleDeleteClicked();
+        }
+    }
 
     public boolean showCarEditView(Car car) {
         return application.showCarEditView(car);
@@ -65,12 +81,6 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
 
     public boolean showRentalEditView(Rental rental) {
         return application.showRentalEditView(rental);
-    }
-
-    public void handleKeyEvent(KeyEvent event) {
-        if (event.getCode() == KeyCode.DELETE) {
-            handleDeleteClicked();
-        }
     }
 
     public void handleCarMenuItemClicked() {
@@ -105,7 +115,7 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
 
     public void handleSearchButtonClicked() {
         String attribute = searchAttributeComboBox.getValue();
-        String operator = searchOperatorComboBox.getValue();
+        Operator operator = searchOperatorComboBox.getValue();
         String value = searchValueTextField.getText();
 
         PseudoClass error = PseudoClass.getPseudoClass("error");
@@ -118,35 +128,14 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
         }
     }
 
-    private boolean filter(T entity, String attribute, String operator, String value) {
-        Optional<?> column = entityTable.getColumns().stream()
+    private boolean filter(T entity, String attribute, Operator operator, String value) {
+        return entityTable.getColumns().stream()
                 .filter(c -> c.getText().equals(attribute))
                 .map(c -> c.getCellObservableValue(entity))
                 .map(ObservableValue::getValue)
-                .findFirst();
-
-        if (column.isPresent()) {
-            Object columnValue = column.get();
-
-            if (columnValue instanceof Integer) {
-                int num = (int) columnValue;
-                // TODO exception handling
-                if ("=".equals(operator)) {
-                    return num == Integer.parseInt(value);
-                } else if (">".equals(operator)) {
-                    return num > Integer.parseInt(value);
-                } else if ("<".equals(operator)) {
-                    return num < Integer.parseInt(value);
-                }
-            } else {
-                if (operator.equals("="))
-                    return StringUtils.equalsIgnoreCase(columnValue.toString(), value);
-                else if (operator.equals("LIKE"))
-                    return StringUtils.containsIgnoreCase(columnValue.toString(), value);
-            }
-        }
-
-        return false;
+                .findFirst()
+                .filter(FilterPredicate.of(operator, value))
+                .isPresent();
     }
 
     public void handleClearFilterButtonClicked() {

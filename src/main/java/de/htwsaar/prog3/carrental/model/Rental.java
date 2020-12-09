@@ -1,13 +1,16 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import java.time.LocalDate;
 
 /**
  * Rental object model (JPA entity).
@@ -16,31 +19,35 @@ import javax.validation.constraints.*;
  */
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Rental extends BaseEntity {
 
-    // TODO datum -> @FutureOrPresent
+    @NotNull
+    @FutureOrPresent
     @Column(nullable = false)
-    private String begin;
+    private LocalDate start;
+
+    @NotNull
+    @Future // TODO Jens: after start date validation
+    @Column(nullable = false)
+    private LocalDate end;
 
     @ManyToOne
-    @JoinColumn(name = "car_id", nullable = false)
+    @JoinColumn(name = "car_fk", nullable = false)
     private Car car;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_fk", nullable = false)
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "employee_fk", nullable = false)
     private Employee employee;
 
-    // TODO datum -> @FutureOrPresent
-    // TODO check after begin
-    @Column(nullable = false)
-    private String end;
-
-    @Min(0)
+    @PositiveOrZero
     @Column
     private int extraCosts;
 

@@ -1,12 +1,10 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * Employee object model (JPA entity).
@@ -15,6 +13,9 @@ import javax.validation.constraints.NotEmpty;
  */
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Employee extends BaseEntity {
 

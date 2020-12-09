@@ -26,12 +26,12 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
     @Getter
     private boolean applyClicked;
 
-    /**
-     * Fills all the text fields with the given entity fields.
-     *
-     * @param entity given entity of type {@link T}
-     */
-    public abstract void initialize(T entity);
+    public void initialize(T entity) {
+        this.entity = entity;
+        postInitialize();
+    }
+
+    public abstract void postInitialize();
 
     /**
      * Handles key presses within a EditView.
@@ -77,9 +77,10 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
 
         StringBuilder sb = new StringBuilder();
         for (ConstraintViolation<T> violation : violations) {
+            // TODO use custom i18n messages
             sb.append(violation.getPropertyPath());
             sb.append(" ");
-            sb.append(violation.getMessage()); // TODO use custom i18n messages
+            sb.append(violation.getMessage());
             sb.append(System.lineSeparator());
         }
 

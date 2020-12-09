@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<?import java.util.HashMap?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.htwsaar.prog3.carrental.controller.table.RentalTableViewController"
             onKeyPressed="#handleKeyEvent"
             stylesheets="@styles.css">
-    <fx:define>
-        <HashMap fx:id="searchComboBoxFieldStrings"
-                 id="%rental.label.id"
-                 car="%rental.label.car"
-                 customer="%rental.label.customer"
-                 employee="%rental.label.employee"
-                 begin="%rental.label.begin"
-                 end="%rental.label.end"
-                 extraCosts="%rental.label.extra-costs"
-                 note="%rental.label.note"/>
-    </fx:define>
-    <fx:define>
-        <HashMap fx:id="searchComboBoxComparatorStrings"
-                 equals="%search.operator.equals"
-                 greater="%search.operator.greater-than"
-                 smaller="%search.operator.less-than"
-                 like="%search.operator.contains"/>
-    </fx:define>
     <top>
         <GridPane>
             <columnConstraints>
@@ -58,31 +38,9 @@
             </MenuBar>
             <!-- Row 1 -->
             <ComboBox fx:id="searchAttributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"
-                      promptText="%search.prompt.column">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxFieldStrings.id"/>
-                        <fx:reference source="searchComboBoxFieldStrings.car"/>
-                        <fx:reference source="searchComboBoxFieldStrings.customer"/>
-                        <fx:reference source="searchComboBoxFieldStrings.employee"/>
-                        <fx:reference source="searchComboBoxFieldStrings.begin"/>
-                        <fx:reference source="searchComboBoxFieldStrings.end"/>
-                        <fx:reference source="searchComboBoxFieldStrings.extraCosts"/>
-                        <fx:reference source="searchComboBoxFieldStrings.note"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
+                      promptText="%search.prompt.column"/>
             <ComboBox fx:id="searchOperatorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"
-                      promptText="%search.prompt.operator">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxComparatorStrings.equals"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.greater"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.smaller"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.like"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
+                      promptText="%search.prompt.operator"/>
             <TextField fx:id="searchValueTextField" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"
                        promptText="%search.prompt.value"/>
             <Button GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"
@@ -99,6 +57,16 @@
                         <PropertyValueFactory property="id"/>
                     </cellValueFactory>
                 </TableColumn>
+                <TableColumn text="%rental.label.start">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="start"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.end">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="end"/>
+                    </cellValueFactory>
+                </TableColumn>
                 <TableColumn text="%rental.label.car">
                     <cellValueFactory>
                         <PropertyValueFactory property="car"/>
@@ -112,16 +80,6 @@
                 <TableColumn text="%rental.label.employee">
                     <cellValueFactory>
                         <PropertyValueFactory property="employee"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="%rental.label.begin">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="begin"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="%rental.label.end">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="end"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="%rental.label.extra-costs">

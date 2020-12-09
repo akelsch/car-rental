@@ -1,11 +1,15 @@
 package de.htwsaar.prog3.carrental.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import de.htwsaar.prog3.carrental.model.car.*;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
+import java.time.Year;
+import java.time.YearMonth;
 
 /**
  * Car object model (JPA entity).
@@ -14,8 +18,16 @@ import javax.validation.constraints.*;
  */
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Car extends BaseEntity {
+
+    @NotNull
+    @PastOrPresent
+    @Column(nullable = false)
+    private Year year;
 
     @NotBlank
     @Column(nullable = false)
@@ -23,76 +35,73 @@ public class Car extends BaseEntity {
 
     @NotBlank
     @Column(nullable = false)
-    private String category;
+    private String model;
 
-    @NotBlank
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String color;
+    private Type type;
 
-    @Min(0)
-    @Max(2020)
-    // TODO java.time.Year -> @PastOrPresent
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private int constructionYear;
+    private Color color;
 
-    @Min(0)
+    @Positive
     @Column(nullable = false)
     private int dailyRate;
 
-    @Column
-    private String defects;
-
-    @Min(1)
-    @Max(10)
+    @Positive
     @Column(nullable = false)
-    private int doorCount;
+    private int doors;
 
-    @Min(0)
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private int drivenDistance;
+    private Transmission transmission;
 
-    // TODO remove
-    @Column
-    private String equipment;
-
-    @NotBlank // TODO i18n -> Enum
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String fuel;
+    private Fuel fuel;
 
-    @NotBlank // TODO i18n -> Enum
-    @Column(nullable = false)
-    private String gearbox;
-
-    @Min(0)
+    @Positive
     @Column(nullable = false)
     private int horsepower;
 
-    @Pattern(regexp = "\\p{Alpha}{1,3} \\p{Alpha}{1,2} \\p{Digit}{1,4}") // TODO regex korrekt?
-    @Column(nullable = false, unique = true)
-    private String licenseNumber;
-
-    @NotBlank
+    @Positive
     @Column(nullable = false)
-    private String model;
+    private int mileage;
 
-    @NotBlank // TODO Datum
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String nextInspection;
+    private Tire tires;
 
     @NotBlank
     @Column(nullable = false, unique = true)
     private String parkingLot;
 
-    @NotBlank // TODO i18n -> Enum
-    @Column(nullable = false)
-    private String tires;
+    @NotNull
+    @Pattern(regexp = "\\p{Alpha}{1,3} \\p{Alpha}{1,2} \\p{Digit}{1,4}")
+    @Column(nullable = false, unique = true)
+    private String licenseNumber;
 
+    @NotNull
     @Pattern(regexp = "\\p{Alnum}{17}")
     @Column(nullable = false, unique = true)
     private String vin;
 
+    @NotNull
+    @FutureOrPresent
+    @Column(nullable = false)
+    private YearMonth nextInspection;
+
+    @Column
+    private String defects;
+
     @Override
     public String toString() {
-        return "%d %s %s".formatted(constructionYear, brand, model);
+        return "%d %s %s".formatted(year.getValue(), brand, model);
     }
 }

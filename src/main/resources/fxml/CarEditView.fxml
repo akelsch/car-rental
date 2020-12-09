@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
+<?import com.sun.javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<?import java.util.HashMap?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.htwsaar.prog3.carrental.controller.edit.CarEditViewController"
@@ -32,66 +31,36 @@
             <TextField fx:id="brandTextField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
             <Label text="%car.label.model" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
             <TextField fx:id="modelTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="%car.label.category" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <TextField fx:id="categoryTextField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <Label text="%car.label.type" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <ChoiceBox fx:id="typeChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="1" maxWidth="Infinity"/>
             <Label text="%car.label.color" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-            <TextField fx:id="colorTextField" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-            <Label text="%car.label.construction-year" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-            <TextField fx:id="constructionYearTextField" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-            <Label text="%car.label.driven-distance" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
-            <TextField fx:id="drivenDistanceTextField" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
-            <Label text="%car.label.gearbox" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <fx:define>
-                <HashMap fx:id="gearboxBundle"
-                         manual="%car.label.gearbox.manual"
-                         automatic="%car.label.gearbox.automatic"/>
-            </fx:define>
-            <ChoiceBox fx:id="gearBoxChoiceBox" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="gearboxBundle.manual"/>
-                        <fx:reference source="gearboxBundle.automatic"/>
-                    </FXCollections>
-                </items>
-            </ChoiceBox>
+            <ChoiceBox fx:id="colorChoiceBox" GridPane.columnIndex="3" GridPane.rowIndex="1" maxWidth="Infinity"/>
+            <Label text="%car.label.year" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+            <IntegerField fx:id="yearIntegerField" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+            <Label text="%car.label.mileage" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+            <IntegerField fx:id="mileageIntegerField" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+            <Label text="%car.label.transmission" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <ChoiceBox fx:id="transmissionChoiceBox" GridPane.columnIndex="0" GridPane.rowIndex="3" maxWidth="Infinity"/>
             <Label text="%car.label.horsepower" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            <TextField fx:id="horsePowerTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <IntegerField fx:id="horsepowerIntegerField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
             <Label text="%car.label.fuel" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-            <fx:define>
-                <HashMap fx:id="fuelBundle"
-                         gasoline="%car.label.fuel.gasoline"
-                         diesel="%car.label.fuel.diesel"
-                         hybrid="%car.label.fuel.hybrid"
-                         electric="%car.label.fuel.electric"/>
-            </fx:define>
-            <ChoiceBox fx:id="fuelChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="fuelBundle.gasoline"/>
-                        <fx:reference source="fuelBundle.diesel"/>
-                        <fx:reference source="fuelBundle.hybrid"/>
-                        <fx:reference source="fuelBundle.electric"/>
-                    </FXCollections>
-                </items>
-            </ChoiceBox>
-            <Label text="%car.label.door-count" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-            <TextField fx:id="doorCountTextField" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+            <ChoiceBox fx:id="fuelChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="3" maxWidth="Infinity"/>
+            <Label text="%car.label.doors" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+            <IntegerField fx:id="doorsIntegerField" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
             <Label text="%car.label.tires" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-            <TextField fx:id="tiresTextField" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+            <ChoiceBox fx:id="tiresChoiceBox" GridPane.columnIndex="4" GridPane.rowIndex="3" maxWidth="Infinity"/>
             <Label text="%car.label.next-inspection" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
-            <TextField fx:id="nextInspectionTextField" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+            <ChoiceBox fx:id="nextInspectionChoiceBox" GridPane.columnIndex="5" GridPane.rowIndex="3" maxWidth="Infinity"/>
             <Label text="%car.label.vin" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
             <TextField fx:id="vinTextField" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <Label text="%car.label.equipment" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-            <TextField fx:id="equipmentTextField" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="6"/>
-            <Label text="%car.label.defects" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-            <TextField fx:id="defectsTextField" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="6"/>
-            <Label text="%car.label.license-number" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
-            <TextField fx:id="licenseNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="11"/>
-            <Label text="%car.label.parking-lot" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
-            <TextField fx:id="parkingLotTextField" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
-            <Label text="%car.label.daily-rate" GridPane.columnIndex="2" GridPane.rowIndex="10"/>
-            <TextField fx:id="dailyRateTextField" GridPane.columnIndex="2" GridPane.rowIndex="11"/>
+            <Label text="%car.label.defects" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <TextField fx:id="defectsTextField" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="6"/>
+            <Label text="%car.label.license-number" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+            <TextField fx:id="licenseNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+            <Label text="%car.label.parking-lot" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+            <TextField fx:id="parkingLotTextField" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+            <Label text="%car.label.daily-rate" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+            <IntegerField fx:id="dailyRateIntegerField" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
         </GridPane>
     </center>
     <bottom>

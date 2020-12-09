@@ -1,13 +1,18 @@
 package de.htwsaar.prog3.carrental.controller.edit;
 
+import com.sun.javafx.scene.control.IntegerField;
 import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.car.*;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.time.Year;
+import java.time.YearMonth;
 
 /**
  * JavaFX controller for the "Edit Car" view.
@@ -21,86 +26,83 @@ public class CarEditViewController extends EditViewController<Car> {
     private final CarRepository carRepository;
 
     @FXML
+    private IntegerField yearIntegerField;
+    @FXML
     private TextField brandTextField;
     @FXML
     private TextField modelTextField;
     @FXML
-    private TextField categoryTextField;
+    private IntegerField dailyRateIntegerField;
     @FXML
-    private TextField colorTextField;
+    private ChoiceBox<Type> typeChoiceBox;
     @FXML
-    private TextField constructionYearTextField;
+    private ChoiceBox<Color> colorChoiceBox;
     @FXML
-    private TextField drivenDistanceTextField;
+    private IntegerField doorsIntegerField;
     @FXML
-    private ChoiceBox<String> gearBoxChoiceBox;
+    private ChoiceBox<Transmission> transmissionChoiceBox;
     @FXML
-    private TextField horsePowerTextField;
+    private ChoiceBox<Fuel> fuelChoiceBox;
     @FXML
-    private ChoiceBox<String> fuelChoiceBox;
+    private IntegerField horsepowerIntegerField;
     @FXML
-    private TextField doorCountTextField;
+    private IntegerField mileageIntegerField;
     @FXML
-    private TextField tiresTextField;
+    private ChoiceBox<Tire> tiresChoiceBox;
     @FXML
-    private TextField nextInspectionTextField;
-    @FXML
-    private TextField vinTextField;
-    @FXML
-    private TextField equipmentTextField;
-    @FXML
-    private TextField defectsTextField;
+    private TextField parkingLotTextField;
     @FXML
     private TextField licenseNumberTextField;
     @FXML
-    private TextField dailyRateTextField;
+    private TextField vinTextField;
     @FXML
-    private TextField parkingLotTextField;
+    private ChoiceBox<YearMonth> nextInspectionChoiceBox;
+    @FXML
+    private TextField defectsTextField;
 
     @Override
-    public void initialize(Car car) {
-        entity = car;
-
+    public void postInitialize() {
+        // TODO fill choice boxes
+        if (entity.getYear() != null) {
+            yearIntegerField.setValue(entity.getYear().getValue());
+        }
         brandTextField.setText(entity.getBrand());
         modelTextField.setText(entity.getModel());
-        categoryTextField.setText(entity.getCategory());
-        colorTextField.setText(entity.getColor());
-        constructionYearTextField.setText(Integer.toString(entity.getConstructionYear()));
-        drivenDistanceTextField.setText(Integer.toString(entity.getDrivenDistance()));
-        gearBoxChoiceBox.setValue(entity.getGearbox());
-        horsePowerTextField.setText(Integer.toString(entity.getHorsepower()));
+        dailyRateIntegerField.setValue(entity.getDailyRate());
+        typeChoiceBox.setValue(entity.getType());
+        colorChoiceBox.setValue(entity.getColor());
+        doorsIntegerField.setValue(entity.getDoors());
+        transmissionChoiceBox.setValue(entity.getTransmission());
         fuelChoiceBox.setValue(entity.getFuel());
-        doorCountTextField.setText(Integer.toString(entity.getDoorCount()));
-        tiresTextField.setText(entity.getTires());
-        nextInspectionTextField.setText(entity.getNextInspection());
-        vinTextField.setText(entity.getVin());
-        equipmentTextField.setText(entity.getEquipment());
-        defectsTextField.setText(entity.getDefects());
-        licenseNumberTextField.setText(entity.getLicenseNumber());
-        dailyRateTextField.setText(Integer.toString(entity.getDailyRate()));
+        horsepowerIntegerField.setValue(entity.getHorsepower());
+        mileageIntegerField.setValue(entity.getMileage());
+        tiresChoiceBox.setValue(entity.getTires());
         parkingLotTextField.setText(entity.getParkingLot());
+        licenseNumberTextField.setText(entity.getLicenseNumber());
+        vinTextField.setText(entity.getVin());
+        nextInspectionChoiceBox.setValue(entity.getNextInspection());
+        defectsTextField.setText(entity.getDefects());
     }
 
     @Override
     public void handleApplyButtonClicked() {
+        entity.setYear(Year.of(yearIntegerField.getValue()));
         entity.setBrand(brandTextField.getText());
         entity.setModel(modelTextField.getText());
-        entity.setCategory(categoryTextField.getText());
-        entity.setColor(colorTextField.getText());
-        entity.setConstructionYear(Integer.parseInt(constructionYearTextField.getText()));
-        entity.setDrivenDistance(Integer.parseInt(drivenDistanceTextField.getText()));
-        entity.setGearbox(gearBoxChoiceBox.getSelectionModel().getSelectedItem());
-        entity.setHorsepower(Integer.parseInt(horsePowerTextField.getText()));
-        entity.setFuel(fuelChoiceBox.getSelectionModel().getSelectedItem());
-        entity.setDoorCount(Integer.parseInt(doorCountTextField.getText()));
-        entity.setTires(tiresTextField.getText());
-        entity.setNextInspection(nextInspectionTextField.getText());
-        entity.setVin(vinTextField.getText());
-        entity.setEquipment(equipmentTextField.getText());
-        entity.setDefects(defectsTextField.getText());
-        entity.setLicenseNumber(licenseNumberTextField.getText());
-        entity.setDailyRate(Integer.parseInt(dailyRateTextField.getText()));
+        entity.setDailyRate(dailyRateIntegerField.getValue());
+        entity.setType(typeChoiceBox.getValue());
+        entity.setColor(colorChoiceBox.getValue());
+        entity.setDoors(doorsIntegerField.getValue());
+        entity.setTransmission(transmissionChoiceBox.getValue());
+        entity.setFuel(fuelChoiceBox.getValue());
+        entity.setHorsepower(horsepowerIntegerField.getValue());
+        entity.setMileage(mileageIntegerField.getValue());
+        entity.setTires(tiresChoiceBox.getValue());
         entity.setParkingLot(parkingLotTextField.getText());
+        entity.setLicenseNumber(licenseNumberTextField.getText());
+        entity.setVin(vinTextField.getText());
+        entity.setNextInspection(nextInspectionChoiceBox.getValue());
+        entity.setDefects(defectsTextField.getText());
 
         // TODO check unique constraints
         if (isInputValid(entity)) {

@@ -1,45 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<?import java.util.HashMap?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.htwsaar.prog3.carrental.controller.table.CarTableViewController"
             onKeyPressed="#handleKeyEvent"
             stylesheets="@styles.css">
-    <!-- TODO initialize in controller -->
-    <fx:define>
-        <HashMap fx:id="searchComboBoxFieldStrings"
-                 id="%car.label.id"
-                 brand="%car.label.brand"
-                 model="%car.label.model"
-                 category="%car.label.category"
-                 color="%car.label.color"
-                 constructionYear="%car.label.construction-year"
-                 drivenDistance="%car.label.driven-distance"
-                 gearbox="%car.label.gearbox"
-                 horsepower="%car.label.horsepower"
-                 fuel="%car.label.fuel"
-                 doorCount="%car.label.door-count"
-                 tires="%car.label.tires"
-                 nextInspection="%car.label.next-inspection"
-                 dailyRate="%car.label.daily-rate"
-                 licenseNumber="%car.label.license-number"
-                 parkingLot="%car.label.parking-lot"
-                 vin="%car.label.vin"
-                 defects="%car.label.defects"/>
-    </fx:define>
-    <fx:define>
-        <HashMap fx:id="searchComboBoxComparatorStrings"
-                 equals="%search.operator.equals"
-                 greater="%search.operator.greater-than"
-                 smaller="%search.operator.less-than"
-                 like="%search.operator.contains"/>
-    </fx:define>
     <top>
         <GridPane>
             <columnConstraints>
@@ -71,41 +40,9 @@
             </MenuBar>
             <!-- Row 1 -->
             <ComboBox fx:id="searchAttributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"
-                      promptText="%search.prompt.column">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxFieldStrings.id"/>
-                        <fx:reference source="searchComboBoxFieldStrings.brand"/>
-                        <fx:reference source="searchComboBoxFieldStrings.model"/>
-                        <fx:reference source="searchComboBoxFieldStrings.category"/>
-                        <fx:reference source="searchComboBoxFieldStrings.color"/>
-                        <fx:reference source="searchComboBoxFieldStrings.constructionYear"/>
-                        <fx:reference source="searchComboBoxFieldStrings.drivenDistance"/>
-                        <fx:reference source="searchComboBoxFieldStrings.gearbox"/>
-                        <fx:reference source="searchComboBoxFieldStrings.horsepower"/>
-                        <fx:reference source="searchComboBoxFieldStrings.fuel"/>
-                        <fx:reference source="searchComboBoxFieldStrings.doorCount"/>
-                        <fx:reference source="searchComboBoxFieldStrings.tires"/>
-                        <fx:reference source="searchComboBoxFieldStrings.nextInspection"/>
-                        <fx:reference source="searchComboBoxFieldStrings.dailyRate"/>
-                        <fx:reference source="searchComboBoxFieldStrings.licenseNumber"/>
-                        <fx:reference source="searchComboBoxFieldStrings.parkingLot"/>
-                        <fx:reference source="searchComboBoxFieldStrings.vin"/>
-                        <fx:reference source="searchComboBoxFieldStrings.defects"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
+                      promptText="%search.prompt.column"/>
             <ComboBox fx:id="searchOperatorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"
-                      promptText="%search.prompt.operator">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxComparatorStrings.equals"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.greater"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.smaller"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.like"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
+                      promptText="%search.prompt.operator"/>
             <TextField fx:id="searchValueTextField" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"
                        promptText="%search.prompt.value"/>
             <Button GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"
@@ -122,6 +59,11 @@
                         <PropertyValueFactory property="id"/>
                     </cellValueFactory>
                 </TableColumn>
+                <TableColumn text="%car.label.year">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="year"/>
+                    </cellValueFactory>
+                </TableColumn>
                 <TableColumn text="%car.label.brand">
                     <cellValueFactory>
                         <PropertyValueFactory property="brand"/>
@@ -132,9 +74,9 @@
                         <PropertyValueFactory property="model"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.category">
+                <TableColumn text="%car.label.type">
                     <cellValueFactory>
-                        <PropertyValueFactory property="category"/>
+                        <PropertyValueFactory property="type"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="%car.label.color">
@@ -142,24 +84,19 @@
                         <PropertyValueFactory property="color"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.construction-year">
+                <TableColumn text="%car.label.daily-rate">
                     <cellValueFactory>
-                        <PropertyValueFactory property="constructionYear"/>
+                        <PropertyValueFactory property="dailyRate"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.driven-distance">
+                <TableColumn text="%car.label.doors">
                     <cellValueFactory>
-                        <PropertyValueFactory property="drivenDistance"/>
+                        <PropertyValueFactory property="doors"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.gearbox">
+                <TableColumn text="%car.label.transmission">
                     <cellValueFactory>
-                        <PropertyValueFactory property="gearbox"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="%car.label.horsepower">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="horsepower"/>
+                        <PropertyValueFactory property="transmission"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="%car.label.fuel">
@@ -167,9 +104,14 @@
                         <PropertyValueFactory property="fuel"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.door-count">
+                <TableColumn text="%car.label.horsepower">
                     <cellValueFactory>
-                        <PropertyValueFactory property="doorCount"/>
+                        <PropertyValueFactory property="horsepower"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car.label.mileage">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="mileage"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="%car.label.tires">
@@ -177,14 +119,9 @@
                         <PropertyValueFactory property="tires"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.next-inspection">
+                <TableColumn text="%car.label.parking-lot">
                     <cellValueFactory>
-                        <PropertyValueFactory property="nextInspection"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="%car.label.daily-rate">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="dailyRate"/>
+                        <PropertyValueFactory property="parkingLot"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="%car.label.license-number">
@@ -192,14 +129,14 @@
                         <PropertyValueFactory property="licenseNumber"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.parking-lot">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="parkingLot"/>
-                    </cellValueFactory>
-                </TableColumn>
                 <TableColumn text="%car.label.vin">
                     <cellValueFactory>
                         <PropertyValueFactory property="vin"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%car.label.next-inspection">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nextInspection"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="%car.label.defects">

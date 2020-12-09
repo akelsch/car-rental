@@ -2,11 +2,8 @@ package de.htwsaar.prog3.carrental.controller.edit;
 
 import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.util.DialogUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,9 +22,7 @@ public class EmployeeEditViewController extends EditViewController<Employee> {
     private TextField positionTextField;
 
     @Override
-    public void initialize(Employee employee) {
-        entity = employee;
-
+    public void postInitialize() {
         firstNameTextField.setText(entity.getFirstName());
         lastNameTextField.setText(entity.getLastName());
         positionTextField.setText(entity.getPosition());

@@ -1,36 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<?import java.util.HashMap?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.htwsaar.prog3.carrental.controller.table.CustomerTableViewController"
             onKeyPressed="#handleKeyEvent"
             stylesheets="@styles.css">
-    <fx:define>
-        <HashMap fx:id="searchComboBoxFieldStrings"
-                 id="%customer.label.id"
-                 firstName="%customer.label.first-name"
-                 lastName="%customer.label.last-name"
-                 dateOfBirth="%customer.label.date-of-birth"
-                 emailAddress="%customer.label.email"
-                 phoneNumber="%customer.label.phone-number"
-                 street="%customer.label.street"
-                 houseNumber="%customer.label.house-number"
-                 zipCode="%customer.label.zip-code"
-                 city="%customer.label.city"
-                 idNumber="%customer.label.id-number"
-                 driverLicenseId="%customer.label.driver-license-id"/>
-    </fx:define>
-    <fx:define>
-        <HashMap fx:id="searchComboBoxComparatorStrings"
-                 equals="%search.operator.equals"
-                 like="%search.operator.contains"/>
-    </fx:define>
     <top>
         <GridPane>
             <columnConstraints>
@@ -61,33 +39,9 @@
             </MenuBar>
             <!-- Row 1 -->
             <ComboBox fx:id="searchAttributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"
-                      promptText="%search.prompt.column">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxFieldStrings.id"/>
-                        <fx:reference source="searchComboBoxFieldStrings.firstName"/>
-                        <fx:reference source="searchComboBoxFieldStrings.lastName"/>
-                        <fx:reference source="searchComboBoxFieldStrings.dateOfBirth"/>
-                        <fx:reference source="searchComboBoxFieldStrings.emailAddress"/>
-                        <fx:reference source="searchComboBoxFieldStrings.phoneNumber"/>
-                        <fx:reference source="searchComboBoxFieldStrings.street"/>
-                        <fx:reference source="searchComboBoxFieldStrings.houseNumber"/>
-                        <fx:reference source="searchComboBoxFieldStrings.zipCode"/>
-                        <fx:reference source="searchComboBoxFieldStrings.city"/>
-                        <fx:reference source="searchComboBoxFieldStrings.idNumber"/>
-                        <fx:reference source="searchComboBoxFieldStrings.driverLicenseId"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
+                      promptText="%search.prompt.column"/>
             <ComboBox fx:id="searchOperatorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"
-                      promptText="%search.prompt.operator">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxComparatorStrings.equals"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.like"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
+                      promptText="%search.prompt.operator"/>
             <TextField fx:id="searchValueTextField" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"
                        promptText="%search.prompt.value"/>
             <Button GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"
@@ -114,34 +68,14 @@
                         <PropertyValueFactory property="lastName"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%customer.label.date-of-birth">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="dateOfBirth"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="%customer.label.email">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="emailAddress"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="%customer.label.phone-number">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="phoneNumber"/>
-                    </cellValueFactory>
-                </TableColumn>
                 <TableColumn text="%customer.label.street">
                     <cellValueFactory>
                         <PropertyValueFactory property="street"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%customer.label.house-number">
+                <TableColumn text="%customer.label.zipcode">
                     <cellValueFactory>
-                        <PropertyValueFactory property="houseNumber"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="%customer.label.zip-code">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="zipCode"/>
+                        <PropertyValueFactory property="zipcode"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="%customer.label.city">
@@ -149,14 +83,29 @@
                         <PropertyValueFactory property="city"/>
                     </cellValueFactory>
                 </TableColumn>
+                <TableColumn text="%customer.label.phone">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="phone"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%customer.label.email">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%customer.label.date-of-birth">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="dateOfBirth"/>
+                    </cellValueFactory>
+                </TableColumn>
                 <TableColumn text="%customer.label.id-number">
                     <cellValueFactory>
                         <PropertyValueFactory property="idNumber"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%customer.label.driver-license-id">
+                <TableColumn text="%customer.label.driver-license-number">
                     <cellValueFactory>
-                        <PropertyValueFactory property="driverLicenseId"/>
+                        <PropertyValueFactory property="driverLicenseNumber"/>
                     </cellValueFactory>
                 </TableColumn>
             </columns>

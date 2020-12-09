@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.controller.edit;
 
+import com.sun.javafx.scene.control.IntegerField;
 import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
@@ -24,54 +25,50 @@ public class CustomerEditViewController extends EditViewController<Customer> {
     @FXML
     private TextField lastNameTextField;
     @FXML
-    private TextField emailAddressTextField;
-    @FXML
-    private TextField phoneNumberTextField;
-    @FXML
-    private TextField dateOfBirthTextField;
-    @FXML
     private TextField streetTextField;
     @FXML
-    private TextField houseNumberTextField;
+    private IntegerField zipcodeIntegerField;
     @FXML
     private TextField cityTextField;
     @FXML
-    private TextField zipCodeTextField;
+    private TextField phoneTextField;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private TextField dateOfBirthTextField; // TODO DatePicker?
     @FXML
     private TextField idNumberTextField;
     @FXML
-    private TextField driverLicenseIdTextField;
+    private TextField driverLicenseNumberTextField;
 
     @Override
-    public void initialize(Customer customer) {
-        entity = customer;
-
+    public void postInitialize() {
         firstNameTextField.setText(entity.getFirstName());
         lastNameTextField.setText(entity.getLastName());
-        emailAddressTextField.setText(entity.getEmailAddress());
-        phoneNumberTextField.setText(entity.getPhoneNumber());
-        dateOfBirthTextField.setText(entity.getDateOfBirth());
         streetTextField.setText(entity.getStreet());
-        houseNumberTextField.setText(entity.getHouseNumber());
+        zipcodeIntegerField.setValue(entity.getZipcode());
         cityTextField.setText(entity.getCity());
-        zipCodeTextField.setText(Integer.toString(entity.getZipCode()));
+        phoneTextField.setText(entity.getPhone());
+        emailTextField.setText(entity.getEmail());
+        if (entity.getDateOfBirth() != null) {
+            dateOfBirthTextField.setText(entity.getDateOfBirth().toString());
+        }
         idNumberTextField.setText(entity.getIdNumber());
-        driverLicenseIdTextField.setText(entity.getDriverLicenseId());
+        driverLicenseNumberTextField.setText(entity.getDriverLicenseNumber());
     }
 
     @Override
     public void handleApplyButtonClicked() {
         entity.setFirstName(firstNameTextField.getText());
         entity.setLastName(lastNameTextField.getText());
-        entity.setEmailAddress(emailAddressTextField.getText());
-        entity.setPhoneNumber(phoneNumberTextField.getText());
-        entity.setDateOfBirth(dateOfBirthTextField.getText());
         entity.setStreet(streetTextField.getText());
-        entity.setHouseNumber(houseNumberTextField.getText());
+        entity.setZipcode(zipcodeIntegerField.getValue());
         entity.setCity(cityTextField.getText());
-        entity.setZipCode(Integer.parseInt(zipCodeTextField.getText()));
+        entity.setPhone(phoneTextField.getText());
+        entity.setEmail(emailTextField.getText());
+//        entity.setDateOfBirth(dateOfBirthTextField.getText());
         entity.setIdNumber(idNumberTextField.getText());
-        entity.setDriverLicenseId(driverLicenseIdTextField.getText());
+        entity.setDriverLicenseNumber(driverLicenseNumberTextField.getText());
 
         // TODO check unique constraints
         if (isInputValid(entity)) {

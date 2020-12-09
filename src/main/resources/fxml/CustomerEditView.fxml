@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.sun.javafx.scene.control.IntegerField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -30,24 +31,22 @@
             <TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
             <Label text="%customer.label.last-name" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
             <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="%customer.label.email" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <TextField fx:id="emailAddressTextField" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-            <Label text="%customer.label.phone-number" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            <Label text="%customer.label.date-of-birth" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-            <TextField fx:id="dateOfBirthTextField" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-            <Label text="%customer.label.street" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <TextField fx:id="streetTextField" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <Label text="%customer.label.house-number" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-            <TextField fx:id="houseNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-            <Label text="%customer.label.city" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-            <TextField fx:id="cityTextField" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-            <Label text="%customer.label.zip-code" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
-            <TextField fx:id="zipCodeTextField" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+            <Label text="%customer.label.street" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="streetTextField" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label text="%customer.label.zipcode" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <IntegerField fx:id="zipcodeIntegerField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <Label text="%customer.label.city" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextField fx:id="cityTextField" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+            <Label text="%customer.label.phone" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="phoneTextField" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <Label text="%customer.label.email" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <Label text="%customer.label.date-of-birth" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+            <TextField fx:id="dateOfBirthTextField" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
             <Label text="%customer.label.id-number" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
             <TextField fx:id="idNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-            <Label text="%customer.label.driver-license-id" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-            <TextField fx:id="driverLicenseIdTextField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+            <Label text="%customer.label.driver-license-number" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+            <TextField fx:id="driverLicenseNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
         </GridPane>
     </center>
     <bottom>

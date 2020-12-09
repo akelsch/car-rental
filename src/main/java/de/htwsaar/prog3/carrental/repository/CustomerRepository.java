@@ -9,9 +9,9 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Optional<Customer> findByDriverLicenseId(String driverLicenseId);
+    Optional<Customer> findByDriverLicenseNumber(String driverLicenseNumber);
 
     boolean existsByIdNotAndIdNumber(Long id, String idNumber);
 
-    boolean existsByIdNotAndDriverLicenseId(Long id, String driverLicenseId);
+    boolean existsByIdNotAndDriverLicenseNumber(Long id, String driverLicenseNumber);
 }
