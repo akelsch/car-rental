@@ -6,6 +6,8 @@ import de.htwsaar.prog3.carrental.util.MessageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Validator;
+
 /**
  * Base controller used for dependency injection of commonly used fields.
  */
@@ -15,6 +17,7 @@ abstract class BaseController {
     public CarRentalUiApplication application;
     public DialogUtils dialogUtils;
     public MessageUtils messageUtils;
+    public Validator validator;
 
     @Autowired
     final void setApplication(CarRentalUiApplication application) {
@@ -29,5 +32,10 @@ abstract class BaseController {
     @Autowired
     final void setMessageUtils(MessageUtils messageUtils) {
         this.messageUtils = messageUtils;
+    }
+
+    @Autowired
+    final void setValidator(Validator validator) {
+        this.validator = validator;
     }
 }

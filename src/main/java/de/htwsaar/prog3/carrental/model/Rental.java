@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.*;
 
 /**
  * Rental object model (JPA entity).
@@ -18,6 +19,7 @@ import javax.persistence.ManyToOne;
 @EqualsAndHashCode(callSuper = true)
 public class Rental extends BaseEntity {
 
+    // TODO datum -> @FutureOrPresent
     @Column(nullable = false)
     private String begin;
 
@@ -33,9 +35,12 @@ public class Rental extends BaseEntity {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
+    // TODO datum -> @FutureOrPresent
+    // TODO check after begin
     @Column(nullable = false)
     private String end;
 
+    @Min(0)
     @Column
     private int extraCosts;
 

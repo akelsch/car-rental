@@ -32,7 +32,7 @@ public class DialogUtils {
         return confirmationDialog;
     }
 
-    public static Alert createErrorDialog(String headerText, String details) {
+    private static Alert createErrorDialog(String headerText, String details) {
         Alert errorDialog = new Alert(AlertType.ERROR);
         errorDialog.setHeaderText(headerText);
         errorDialog.setContentText(details);
@@ -60,6 +60,12 @@ public class DialogUtils {
     public void showDeleteErrorDialog() {
         String message = messageUtils.getMessage(MessageUtils.DIALOG_ERROR_DELETE);
         String details = messageUtils.getMessage(MessageUtils.DIALOG_ERROR_DELETE_DETAILS);
+        Alert errorDialog = DialogUtils.createErrorDialog(message, details);
+        errorDialog.show();
+    }
+
+    public void showValidationErrorDialog(String details) {
+        String message = messageUtils.getMessage(MessageUtils.DIALOG_ERROR_VALIDATION);
         Alert errorDialog = DialogUtils.createErrorDialog(message, details);
         errorDialog.show();
     }

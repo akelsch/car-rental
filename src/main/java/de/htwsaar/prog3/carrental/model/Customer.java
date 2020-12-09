@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.*;
 
 /**
  * Customer object model (JPA entity).
@@ -16,36 +17,47 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 public class Customer extends BaseEntity {
 
+    @NotBlank
     @Column(nullable = false)
     private String city;
 
+    @NotBlank // TODO datum -> 18+
     @Column(nullable = false)
     private String dateOfBirth;
 
-    @Column(nullable = false, unique = true, length = 11)
+    @Pattern(regexp = "\\p{Alnum}{11}")
+    @Column(nullable = false, unique = true)
     private String driverLicenseId;
 
+    @Email
     @Column(nullable = false)
     private String emailAddress;
 
+    @NotBlank
     @Column(nullable = false)
     private String firstName;
 
+    // TODO remove
     @Column(nullable = false)
     private String houseNumber;
 
+    @Pattern(regexp = "\\p{Alnum}{9}")
     @Column(nullable = false, unique = true)
     private String idNumber;
 
+    @NotBlank
     @Column(nullable = false)
     private String lastName;
 
+    @Pattern(regexp = "\\+\\p{Digit}+")
     @Column(nullable = false)
     private String phoneNumber;
 
+    @NotBlank
     @Column(nullable = false)
     private String street;
 
+    @Digits(integer = 5, fraction = 0)
     @Column(nullable = false)
     private int zipCode;
 

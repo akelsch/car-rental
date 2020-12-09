@@ -27,6 +27,7 @@ public class MessageUtils {
     public static final String DIALOG_CONFIRMATION_DELETE = "dialog.confirmation.delete";
     public static final String DIALOG_ERROR_DELETE = "dialog.error.delete";
     public static final String DIALOG_ERROR_DELETE_DETAILS = "dialog.error.delete.details";
+    public static final String DIALOG_ERROR_VALIDATION = "dialog.error.validation";
 
     private final MessageSourceAccessor messageSourceAccessor;
 

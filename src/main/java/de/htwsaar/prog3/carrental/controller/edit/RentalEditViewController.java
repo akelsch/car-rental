@@ -138,11 +138,8 @@ public class RentalEditViewController extends EditViewController<Rental> {
                 double sum = (dailyRate * duration) + extraCosts;
                 sumLabel.setText(String.format("%.2f %s", sum, "TODO"));
             } catch (NumberFormatException e) {
-                Alert alert = DialogUtils.createErrorDialog(
-                        "TODO",
-                        "TODO");
-
-                alert.showAndWait();
+                // TODO use IntegerField
+                dialogUtils.showValidationErrorDialog("TODO");
             }
         }
     }
@@ -187,7 +184,14 @@ public class RentalEditViewController extends EditViewController<Rental> {
 
     @Override
     public void handleApplyButtonClicked() {
-        if (isInputValid()) {
+        entity.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
+        entity.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
+        entity.setEmployee(employeeChoiceBox.getValue());
+        entity.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
+        entity.setExtraCosts(Integer.parseInt(extraCostsTextField.getText()));
+        entity.setNote(noteTextArea.getText());
+
+        if (isInputValid(entity)) {
             if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
                 Customer customer = new Customer();
 
@@ -206,105 +210,8 @@ public class RentalEditViewController extends EditViewController<Rental> {
                 customerRepository.save(customer);
                 entity.setCustomer(customer);
             }
-
-            entity.setBegin(getDatePickerConverter().toString(beginDatePicker.getValue()));
-            entity.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
-            entity.setEmployee(employeeChoiceBox.getValue());
-            entity.setEnd(getDatePickerConverter().toString(endDatePicker.getValue()));
-            entity.setExtraCosts(Integer.parseInt(extraCostsTextField.getText()));
-            entity.setNote(noteTextArea.getText());
             closeModalWithApply();
         }
-    }
-
-    @Override
-    public boolean isInputValid() {
-        StringBuilder sb = new StringBuilder();
-
-        if (duration < 0.0) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (employeeChoiceBox.getValue() == null) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(driverLicenseIdTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(firstNameTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(lastNameTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(idNumberTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(dateOfBirthTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(zipCodeTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        } else {
-            try {
-                Integer.parseInt(zipCodeTextField.getText());
-            } catch (NumberFormatException e) {
-                sb.append("TODO");
-                sb.append(" ");
-                sb.append("TODO");
-                sb.append(System.lineSeparator());
-            }
-        }
-
-        if (StringUtils.isBlank(cityTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(streetTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(houseNumberTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(emailTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        if (StringUtils.isBlank(phoneNumberTextField.getText())) {
-            sb.append("TODO");
-            sb.append(System.lineSeparator());
-        }
-
-        String errorMessage = sb.toString();
-        if (!errorMessage.isEmpty()) {
-            Alert alert = DialogUtils.createErrorDialog(
-                    "TODO", errorMessage);
-            alert.showAndWait();
-
-            return false;
-        }
-
-        return true;
     }
 
     private void fillCustomerTextFields() {

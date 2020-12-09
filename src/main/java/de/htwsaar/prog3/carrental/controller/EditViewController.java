@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.ConstraintViolation;
+import java.util.Set;
+
 /**
  * Super controller for all other EditView controllers.
  *
@@ -21,7 +24,7 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
     private Stage modalStage;
 
     @Getter
-    private boolean applyClicked = false;
+    private boolean applyClicked;
 
     /**
      * Fills all the text fields with the given entity fields.
@@ -49,6 +52,7 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
     public void handleCancelButtonClicked() {
         dialogUtils.showCancelDialog().ifPresent(buttonType -> {
             if (buttonType == ButtonType.OK) {
+                applyClicked = false;
                 modalStage.close();
             }
         });
@@ -64,7 +68,25 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
      *
      * @return true if all inputs are valid, else false
      */
-    public abstract boolean isInputValid();
+    public boolean isInputValid(T entity) {
+        Set<ConstraintViolation<T>> violations = validator.validate(entity);
+
+        if (violations.isEmpty()) {
+            return true;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (ConstraintViolation<T> violation : violations) {
+            sb.append(violation.getPropertyPath());
+            sb.append(" ");
+            sb.append(violation.getMessage()); // TODO use custom i18n messages
+            sb.append(System.lineSeparator());
+        }
+
+        dialogUtils.showValidationErrorDialog(sb.toString());
+
+        return false;
+    }
 
     public void closeModalWithApply() {
         applyClicked = true;
