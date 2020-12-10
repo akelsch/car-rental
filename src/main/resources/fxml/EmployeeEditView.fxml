@@ -3,52 +3,41 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<BorderPane onKeyPressed="#handleKeyEvent"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.EmployeeEditViewController">
+            fx:controller="de.htwsaar.prog3.carrental.controller.edit.EmployeeEditViewController"
+            onKeyPressed="#handleKeyEvent"
+            stylesheets="@styles.css">
     <top>
-        <BorderPane BorderPane.alignment="CENTER">
-            <left>
-                <GridPane alignment="center" hgap="10" vgap="10">
-                    <Label text="%employee-edit-title-label" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <font>
-                            <Font size="14.0"/>
-                        </font>
-                    </Label>
-                </GridPane>
-            </left>
-            <BorderPane.margin>
-                <Insets bottom="20"/>
-            </BorderPane.margin>
-        </BorderPane>
+        <Label text="%employee.label.edit-title" styleClass="edit-title"/>
     </top>
     <center>
-        <GridPane alignment="center" hgap="10" vgap="10">
-            <Label text="%employee-first-name-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <Label text="%employee-last-name-label" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="%employee-position-label" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <TextField fx:id="positionTextField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <GridPane hgap="15.0" vgap="3.0">
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+            <!-- Row 1 -->
+            <Label text="%employee.label.first-name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="firstNameTextField" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label text="%employee.label.last-name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <TextField fx:id="lastNameTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="%employee.label.position" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="positionTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <BorderPane.margin>
+                <Insets top="20.0" bottom="25.0"/>
+            </BorderPane.margin>
         </GridPane>
     </center>
     <bottom>
-        <BorderPane BorderPane.alignment="CENTER">
-            <right>
-                <GridPane alignment="center" hgap="10" vgap="10">
-                    <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button-cancel-label"
-                            textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Button mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button-apply-label"
-                            textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                </GridPane>
-            </right>
-            <BorderPane.margin>
-                <Insets top="20"/>
-            </BorderPane.margin>
-        </BorderPane>
+        <ButtonBar>
+            <buttons>
+                <Button text="%button.apply" onAction="#handleApplyButtonClicked"/>
+                <Button text="%button.cancel" onAction="#handleCancelButtonClicked"/>
+            </buttons>
+        </ButtonBar>
     </bottom>
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25"/>
+        <Insets top="25.0" right="30.0" bottom="30.0" left="30.0"/>
     </padding>
 </BorderPane>

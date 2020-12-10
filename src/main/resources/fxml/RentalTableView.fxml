@@ -1,139 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<?import java.util.HashMap?>
-<BorderPane onKeyPressed="#handleKeyEvent"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.htwsaar.prog3.carrental.controller.RentalTableViewController">
+            fx:controller="de.htwsaar.prog3.carrental.controller.table.RentalTableViewController"
+            onKeyPressed="#handleKeyEvent"
+            stylesheets="@styles.css">
     <top>
-        <GridPane BorderPane.alignment="CENTER">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <MenuBar prefHeight="10.0" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="0">
-                <padding>
-                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                </padding>
-                <Menu text="%menubar-view-file">
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-cars" onAction="#handleCarMenuItemClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-customers" onAction="#handleCustomerMenuItemClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-employees" onAction="#handleEmployeeMenuItemClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-rentals" onAction="#handleRentalMenuItemClicked"/>
-                    <SeparatorMenuItem mnemonicParsing="false"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-close" onAction="#handleCloseMenuItemClicked"/>
+        <VBox>
+            <MenuBar>
+                <Menu text="%menubar.file">
+                    <MenuItem text="%menubar.file.cars" onAction="#handleCarMenuItemClicked"/>
+                    <MenuItem text="%menubar.file.customers" onAction="#handleCustomerMenuItemClicked"/>
+                    <MenuItem text="%menubar.file.employees" onAction="#handleEmployeeMenuItemClicked"/>
+                    <MenuItem text="%menubar.file.rentals" onAction="#handleRentalMenuItemClicked"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="%menubar.file.close" onAction="#handleCloseMenuItemClicked"/>
                 </Menu>
-                <Menu text="%menubar-view-edit">
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-edit" onAction="#handleEditButtonClicked"/>
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-delete" onAction="#handleDeleteButtonClicked"/>
+                <Menu text="%menubar.edit">
+                    <MenuItem text="%menubar.edit.edit" onAction="#handleEditClicked"/>
+                    <MenuItem text="%menubar.edit.delete" onAction="#handleDeleteClicked"/>
                 </Menu>
-                <Menu text="%menubar-view-help">
-                    <MenuItem mnemonicParsing="false" text="%menubar-operation-about" onAction="#handleAboutMenuItemClicked"/>
+                <Menu text="%menubar.help">
+                    <MenuItem text="%menubar.help.about" onAction="#handleAboutMenuItemClicked"/>
                 </Menu>
             </MenuBar>
-            <fx:define>
-                <HashMap fx:id="searchComboBoxFieldStrings"
-                         id="%rental-id-label"
-                         car="%rental-car-label"
-                         customer="%rental-customer-label"
-                         employee="%rental-employee-label"
-                         begin="%rental-begin-label"
-                         end="%rental-end-label"
-                         extraCosts="%rental-extra-costs-label"
-                         note="%rental-note-label"/>
-            </fx:define>
-            <ComboBox fx:id="searchComboBoxField" GridPane.rowIndex="1" GridPane.columnIndex="0"
-                      promptText="%search-combobox-field-text" prefWidth="Infinity" GridPane.halignment="CENTER"
-                      GridPane.valignment="CENTER">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxFieldStrings.id"/>
-                        <fx:reference source="searchComboBoxFieldStrings.car"/>
-                        <fx:reference source="searchComboBoxFieldStrings.customer"/>
-                        <fx:reference source="searchComboBoxFieldStrings.employee"/>
-                        <fx:reference source="searchComboBoxFieldStrings.begin"/>
-                        <fx:reference source="searchComboBoxFieldStrings.end"/>
-                        <fx:reference source="searchComboBoxFieldStrings.extraCosts"/>
-                        <fx:reference source="searchComboBoxFieldStrings.note"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            <fx:define>
-                <HashMap fx:id="searchComboBoxComparatorStrings"
-                         equals="%search-combobox-equals"
-                         greater="%search-combobox-greater"
-                         smaller="%search-combobox-smaller"
-                         like="%search-combobox-like"/>
-            </fx:define>
-            <ComboBox fx:id="searchComboBoxComparator" GridPane.rowIndex="1" GridPane.columnIndex="1"
-                      promptText="%search-combobox-comparator-text" prefWidth="Infinity" GridPane.halignment="CENTER"
-                      GridPane.valignment="CENTER">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <fx:reference source="searchComboBoxComparatorStrings.equals"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.greater"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.smaller"/>
-                        <fx:reference source="searchComboBoxComparatorStrings.like"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            <TextField fx:id="searchTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"
-                       promptText="%search-textfield-text" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleApplyCurrentFilterButtonClicked"
-                    text="%button-search-label" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="3"
-                    prefWidth="Infinity" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleRemoveCurrentFilterButtonClicked"
-                    text="%button-clear-filter-label" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="4"
-                    prefWidth="Infinity" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-        </GridPane>
+            <HBox>
+                <ComboBox fx:id="searchAttributeComboBox" promptText="%search.prompt.column"
+                          HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <ComboBox fx:id="searchOperatorComboBox" promptText="%search.prompt.operator"
+                          HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <TextField fx:id="searchValueTextField" promptText="%search.prompt.value"
+                           HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <Button text="%search.button.submit" onAction="#handleSearchButtonClicked"
+                        HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <Button text="%search.button.reset" onAction="#handleClearFilterButtonClicked"
+                        HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+            </HBox>
+        </VBox>
     </top>
     <center>
-        <TableView fx:id="rentalTableView" prefHeight="400.0" prefWidth="487.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="entityTable">
             <columns>
-                <TableColumn fx:id="id" text="%rental-id-label"/>
-                <TableColumn fx:id="car" text="%rental-car-label"/>
-                <TableColumn fx:id="customer" text="%rental-customer-label"/>
-                <TableColumn fx:id="employee" text="%rental-employee-label"/>
-                <TableColumn fx:id="begin" text="%rental-begin-label"/>
-                <TableColumn fx:id="end" text="%rental-end-label"/>
-                <TableColumn fx:id="extraCosts" text="%rental-extra-costs-label"/>
-                <TableColumn fx:id="note" text="%rental-note-label"/>
+                <TableColumn text="%rental.label.id">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.start">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="start"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.end">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="end"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.car">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="car"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.customer">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="customer"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.employee">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="employee"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.extra-costs">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="extraCosts"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="%rental.label.note">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="note"/>
+                    </cellValueFactory>
+                </TableColumn>
             </columns>
             <contextMenu>
                 <ContextMenu>
                     <items>
-                        <MenuItem text="%button-edit-label" onAction="#handleEditButtonClicked"/>
-                        <MenuItem text="%button-delete-label" onAction="#handleDeleteButtonClicked"/>
+                        <MenuItem text="%menubar.edit.edit" onAction="#handleEditClicked"/>
+                        <MenuItem text="%menubar.edit.delete" onAction="#handleDeleteClicked"/>
                     </items>
                 </ContextMenu>
             </contextMenu>
         </TableView>
     </center>
     <bottom>
-        <GridPane BorderPane.alignment="CENTER" prefHeight="25.0" prefWidth="1442.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <Button mnemonicParsing="false" onAction="#handleEditButtonClicked" text="%button-edit-label"
-                    textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
-                    GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" onAction="#handleDeleteButtonClicked" text="%button-delete-label"
-                    textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"
-                    GridPane.valignment="CENTER"/>
-        </GridPane>
+        <HBox spacing="80.0" alignment="CENTER">
+            <Button text="%button.edit" onAction="#handleEditClicked" prefWidth="100.0"/>
+            <Button text="%button.delete" onAction="#handleDeleteClicked" prefWidth="100.0"/>
+            <padding>
+                <Insets top="7.0" bottom="7.0"/>
+            </padding>
+        </HBox>
     </bottom>
 </BorderPane>

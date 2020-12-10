@@ -4,7 +4,8 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 /**
  * Customer object model (JPA entity).
@@ -12,48 +13,60 @@ import javax.persistence.Table;
  * @author Julian Quint
  */
 @Entity
-@Table
-@Getter
-@Setter
-@EqualsAndHashCode(callSuper = true)
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Customer extends BaseEntity {
+
+    @NotBlank
     @Column(nullable = false)
-    private String city;
-
-    @Column(name = "date_of_birth", nullable = false)
-    private String dateOfBirth;
-
-    @Column(name = "driver_license_id", nullable = false, unique = true, length = 11)
-    private String driverLicenseId;
-
-    @Column(name = "email_address", nullable = false)
-    private String emailAddress;
-
-    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "house_number", nullable = false)
-    private String houseNumber;
-
-    @Column(name = "id_number", nullable = false, unique = true)
-    private String idNumber;
-
-    @Column(name = "last_name", nullable = false)
+    @NotBlank
+    @Column(nullable = false)
     private String lastName;
 
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
-
+    @NotBlank
     @Column(nullable = false)
     private String street;
 
-    @Column(name = "zip_code", nullable = false)
-    private int zipCode;
+    @Digits(integer = 5, fraction = 0)
+    @Column(nullable = false)
+    private int zipcode;
+
+    @NotBlank
+    @Column(nullable = false)
+    private String city;
+
+    @NotNull
+    @Pattern(regexp = "\\+\\p{Digit}+")
+    @Column(nullable = false)
+    private String phone;
+
+    @NotNull
+    @Email
+    @Column(nullable = false)
+    private String email;
+
+    @NotNull
+    @Past // TODO Jens: 18+ validation
+    @Column(nullable = false)
+    private LocalDate dateOfBirth;
+
+    @NotNull
+    @Pattern(regexp = "\\p{Alnum}{9}")
+    @Column(nullable = false, unique = true)
+    private String idNumber;
+
+    @NotNull
+    @Pattern(regexp = "\\p{Alnum}{11}")
+    @Column(nullable = false, unique = true)
+    private String driverLicenseNumber;
 
     @Override
     public String toString() {
-        return String.format("%s %s", firstName, lastName);
+        return "%s %s".formatted(firstName, lastName);
     }
 }

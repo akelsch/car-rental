@@ -1,10 +1,15 @@
 package de.htwsaar.prog3.carrental.model;
 
+import de.htwsaar.prog3.carrental.model.car.*;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.*;
+import java.time.Year;
+import java.time.YearMonth;
 
 /**
  * Car object model (JPA entity).
@@ -12,69 +17,91 @@ import javax.persistence.Table;
  * @author Arthur Kelsch
  */
 @Entity
-@Table
-@Getter
-@Setter
-@EqualsAndHashCode(callSuper = true)
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Car extends BaseEntity {
+
+    @NotNull
+    @PastOrPresent
+    @Column(nullable = false)
+    private Year year;
+
+    @NotBlank
     @Column(nullable = false)
     private String brand;
 
+    @NotBlank
     @Column(nullable = false)
-    private String category;
+    private String model;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String color;
+    private Type type;
 
-    @Column(name = "construction_year", nullable = false)
-    private int constructionYear;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Color color;
 
-    @Column(name = "daily_rate", nullable = false)
+    @Positive
+    @Column(nullable = false)
     private int dailyRate;
+
+    @Positive
+    @Column(nullable = false)
+    private int doors;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Transmission transmission;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Fuel fuel;
+
+    @Positive
+    @Column(nullable = false)
+    private int horsepower;
+
+    @Positive
+    @Column(nullable = false)
+    private int mileage;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Tire tires;
+
+    @NotBlank
+    @Column(nullable = false, unique = true)
+    private String parkingLot;
+
+    @NotNull
+    @Pattern(regexp = "\\p{Alpha}{1,3} \\p{Alpha}{1,2} \\p{Digit}{1,4}")
+    @Column(nullable = false, unique = true)
+    private String licenseNumber;
+
+    @NotNull
+    @Pattern(regexp = "\\p{Alnum}{17}")
+    @Column(nullable = false, unique = true)
+    private String vin;
+
+    @NotNull
+    @FutureOrPresent
+    @Column(nullable = false)
+    private YearMonth nextInspection;
 
     @Column
     private String defects;
 
-    @Column(name = "door_count", nullable = false)
-    private int doorCount;
-
-    @Column(name = "driven_distance", nullable = false)
-    private int drivenDistance;
-
-    @Column
-    private String equipment;
-
-    @Column(nullable = false)
-    private String fuel;
-
-    @Column(nullable = false)
-    private String gearbox;
-
-    @Column(nullable = false)
-    private int horsepower;
-
-    @Column(name = "license_number", nullable = false, unique = true)
-    private String licenseNumber;
-
-    @Column(nullable = false)
-    private String model;
-
-    @Column(name = "next_inspection", nullable = false)
-    private String nextInspection;
-
-    @Column(name = "parking_lot", nullable = false, unique = true)
-    private String parkingLot;
-
-    @Column(nullable = false)
-    private String tires;
-
-    @Column(nullable = false, unique = true)
-    private String vin;
-
     @Override
     public String toString() {
-        return String.format("%d %s %s", constructionYear, brand, model);
+        return "%d %s %s".formatted(year.getValue(), brand, model);
     }
 }

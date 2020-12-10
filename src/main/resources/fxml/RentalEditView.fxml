@@ -1,59 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.sun.javafx.scene.control.IntegerField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
-<Pane onKeyPressed="#handleKeyEvent"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.htwsaar.prog3.carrental.controller.RentalEditViewController">
-    <!-- TODO i18n -->
-    <Pane prefHeight="60.0" prefWidth="540.0">
-        <Label layoutX="30.0" layoutY="30.0" text="Car:"/>
-        <Label fx:id="carLabel" layoutX="53.0" layoutY="30.0" text="placeholder"/>
-        <Label layoutX="300.0" layoutY="30.0" text="Employee:"/>
-        <ChoiceBox fx:id="employeeChoiceBox" layoutX="364.0" layoutY="26.0" prefHeight="25.0" prefWidth="150.0"/>
-    </Pane>
-    <Pane layoutY="60.0" prefHeight="160.0" prefWidth="540.0">
-        <Label layoutX="30.0" layoutY="10.0" text="Begin renting on"/>
-        <DatePicker fx:id="beginDatePicker" layoutX="30.0" layoutY="28.0" prefHeight="25.0" prefWidth="150.0"/>
-        <Label layoutX="30.0" layoutY="65.0" text="End renting on"/>
-        <DatePicker fx:id="endDatePicker" layoutX="30.0" layoutY="83.0" prefHeight="25.0" prefWidth="150.0"/>
-        <Button layoutX="195.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleConfirmButtonClicked" text="Confirm"/>
-        <Label layoutX="30.0" layoutY="120.0" text="Duration:"/>
-        <Label fx:id="durationLabel" layoutX="84.0" layoutY="120.0"/>
-        <Label layoutX="300.0" layoutY="32.0" text="Daily Rate:"/>
-        <Label fx:id="dailyRateLabel" layoutX="363.0" layoutY="32.0"/>
-        <Label layoutX="300.0" layoutY="65.0" text="Extra Costs"/>
-        <TextField fx:id="extraCostsTextField" layoutX="300.0" layoutY="83.0" prefHeight="25.0" prefWidth="150.0" text="0"/>
-        <Label layoutX="300.0" layoutY="120.0" prefHeight="17.0" prefWidth="34.0" text="Sum:"/>
-        <Label fx:id="sumLabel" layoutX="332.0" layoutY="120.0"/>
-    </Pane>
-    <Pane layoutY="220.0" prefHeight="510.0" prefWidth="540.0">
-        <Label layoutX="30.0" layoutY="10.0" text="%customer-driver-license-id-label"/>
-        <TextField fx:id="driverLicenseIdTextField" layoutX="30.0" layoutY="30.0" prefHeight="25.0" prefWidth="150.0"/>
-        <Button layoutX="195.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleSearchButtonClicked" text="%button-search-label"/>
-        <Label layoutX="30.0" layoutY="70.0" text="%customer-first-name-label"/>
-        <TextField fx:id="firstNameTextField" layoutX="30.0" layoutY="90.0"/>
-        <Label layoutX="300.0" layoutY="70.0" text="%customer-last-name-label"/>
-        <TextField fx:id="lastNameTextField" layoutX="300.0" layoutY="90.0"/>
-        <Label layoutX="30.0" layoutY="130.0" text="%customer-id-number-label"/>
-        <TextField fx:id="idNumberTextField" layoutX="30.0" layoutY="150.0"/>
-        <Label layoutX="300.0" layoutY="130.0" text="%customer-date-of-birth-label"/>
-        <TextField fx:id="dateOfBirthTextField" layoutX="300.0" layoutY="150.0"/>
-        <Label layoutX="30.0" layoutY="190.0" text="%customer-zip-code-label"/>
-        <TextField fx:id="zipCodeTextField" layoutX="30.0" layoutY="210.0" text="0"/>
-        <Label layoutX="300.0" layoutY="190.0" text="%customer-city-label"/>
-        <TextField fx:id="cityTextField" layoutX="300.0" layoutY="210.0"/>
-        <Label layoutX="30.0" layoutY="250.0" text="%customer-street-label"/>
-        <TextField fx:id="streetTextField" layoutX="30.0" layoutY="270.0"/>
-        <Label layoutX="300.0" layoutY="250.0" text="%customer-house-number-label"/>
-        <TextField fx:id="houseNumberTextField" layoutX="300.0" layoutY="270.0"/>
-        <Label layoutX="30.0" layoutY="310.0" text="%customer-email-label"/>
-        <TextField fx:id="emailTextField" layoutX="30.0" layoutY="330.0"/>
-        <Label layoutX="300.0" layoutY="310.0" text="%customer-phone-number-label"/>
-        <TextField fx:id="phoneNumberTextField" layoutX="300.0" layoutY="330.0"/>
-        <Label layoutX="30.0" layoutY="370.0" text="%rental-note-label"/>
-        <TextArea fx:id="noteTextArea" layoutX="30.0" layoutY="390.0" prefHeight="100.0" prefWidth="250.0"/>
-        <Button layoutX="300.0" layoutY="463.0" mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button-cancel-label"/>
-        <Button layoutX="401.0" layoutY="463.0" mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button-apply-label"/>
-    </Pane>
-</Pane>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.htwsaar.prog3.carrental.controller.edit.RentalEditViewController"
+            onKeyPressed="#handleKeyEvent"
+            stylesheets="@styles.css">
+    <top>
+        <Label text="%rental.label.edit-title" styleClass="edit-title"/>
+    </top>
+    <center>
+        <VBox>
+            <GridPane hgap="15.0" vgap="3.0">
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                    <RowConstraints/>
+                    <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                    <RowConstraints/>
+                    <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+                <!-- Row 1 -->
+                <Label text="%rental.label.car" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="carTextField" GridPane.rowIndex="1" GridPane.columnIndex="0" disable="true"/>
+                <Label text="%rental.label.employee" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <ChoiceBox fx:id="employeeChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"/>
+                <!-- Row 2 -->
+                <Label text="%rental.label.start" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="startDatePicker" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#handleDateAndPriceChanges"/>
+                <Label text="%rental.label.end" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <DatePicker fx:id="endDatePicker" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#handleDateAndPriceChanges"/>
+                <!-- Row 3 -->
+                <Label text="%rental.label.duration" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="durationTextField" GridPane.rowIndex="5" GridPane.columnIndex="0" editable="false"/>
+                <Label text="%car.label.daily-rate" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <TextField fx:id="dailyRateTextField" GridPane.rowIndex="5" GridPane.columnIndex="1" editable="false"/>
+                <!-- Row 4 -->
+                <Label text="%rental.label.extra-costs" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <IntegerField fx:id="extraCostsIntegerField" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                <Label text="%rental.label.total" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                <TextField fx:id="sumTextField" GridPane.rowIndex="7" GridPane.columnIndex="1" editable="false"/>
+            </GridPane>
+            <!-- TODO -->
+            <GridPane visible="false">
+                <Label text="%customer.label.driver-license-number"/>
+                <TextField fx:id="driverLicenseIdTextField"/>
+                <Button text="%search.button.submit" onAction="#handleSearchButtonClicked"/>
+                <Label text="%customer.label.first-name"/>
+                <TextField fx:id="firstNameTextField"/>
+                <Label text="%customer.label.last-name"/>
+                <TextField fx:id="lastNameTextField"/>
+                <Label text="%customer.label.id-number"/>
+                <TextField fx:id="idNumberTextField"/>
+                <Label text="%customer.label.date-of-birth"/>
+                <TextField fx:id="dateOfBirthTextField"/>
+                <Label text="%customer.label.zipcode"/>
+                <IntegerField fx:id="zipcodeIntegerField"/>
+                <Label text="%customer.label.city"/>
+                <TextField fx:id="cityTextField"/>
+                <Label text="%customer.label.street"/>
+                <TextField fx:id="streetTextField"/>
+                <Label text="%customer.label.email"/>
+                <TextField fx:id="emailTextField"/>
+                <Label text="%customer.label.phone"/>
+                <TextField fx:id="phoneNumberTextField"/>
+                <Label text="%rental.label.note"/>
+                <TextArea fx:id="noteTextArea" prefHeight="20" prefWidth="50"/>
+            </GridPane>
+            <BorderPane.margin>
+                <Insets top="20.0" bottom="25.0"/>
+            </BorderPane.margin>
+        </VBox>
+    </center>
+    <bottom>
+        <ButtonBar>
+            <buttons>
+                <Button text="%button.apply" onAction="#handleApplyButtonClicked"/>
+                <Button text="%button.cancel" onAction="#handleCancelButtonClicked"/>
+            </buttons>
+        </ButtonBar>
+    </bottom>
+    <padding>
+        <Insets top="25.0" right="30.0" bottom="30.0" left="30.0"/>
+    </padding>
+</BorderPane>

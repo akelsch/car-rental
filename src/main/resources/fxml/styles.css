@@ -1,0 +1,9 @@
+*:error {
+    -fx-border-color: red;
+    -fx-border-radius: 3px; /* from modena.css */
+}
+
+.edit-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
