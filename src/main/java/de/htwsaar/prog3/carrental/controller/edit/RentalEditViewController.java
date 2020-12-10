@@ -8,18 +8,16 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
+import de.htwsaar.prog3.carrental.util.MessageUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.util.Callback;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 /**
@@ -35,24 +33,23 @@ public class RentalEditViewController extends EditViewController<Rental> {
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;
 
-    private long duration = -1;
-
     @FXML
-    private Label carLabel;
+    private TextField carTextField;
     @FXML
     private ChoiceBox<Employee> employeeChoiceBox;
-    @FXML
-    private Label durationLabel;
-    @FXML
-    private Label dailyRateLabel;
-    @FXML
-    private IntegerField extraCostsIntegerField;
-    @FXML
-    private Label sumLabel;
     @FXML
     private DatePicker startDatePicker;
     @FXML
     private DatePicker endDatePicker;
+    @FXML
+    private TextField durationTextField;
+    @FXML
+    private TextField dailyRateTextField;
+    @FXML
+    private IntegerField extraCostsIntegerField;
+    @FXML
+    private TextField sumTextField;
+
     @FXML
     private TextField driverLicenseIdTextField;
     @FXML
@@ -78,58 +75,48 @@ public class RentalEditViewController extends EditViewController<Rental> {
 
     @Override
     public void postInitialize() {
-        // Car fields
+        // Car
         Car car = entity.getCar();
         if (car != null) {
-            carLabel.setText(car.toString());
-            dailyRateLabel.setText(Integer.toString(car.getDailyRate()));
+            carTextField.setText(car.toString());
+            dailyRateTextField.setText(Integer.toString(car.getDailyRate()));
         }
 
-        // Customer fields
-        fillCustomerTextFields();
-
-        // Employee fields
+        // Employee
         employeeChoiceBox.setItems(FXCollections.observableArrayList(employeeRepository.findAll()));
         Employee employee = entity.getEmployee();
         if (employee != null) {
             employeeChoiceBox.setValue(employee);
         }
 
-        // Rental fields
-        startDatePicker.setValue(Objects.requireNonNullElseGet(entity.getStart(), LocalDate::now));
-
-        endDatePicker.setDayCellFactory(getDayCellFactory());
-        endDatePicker.setValue(entity.getEnd());
-
+        // Rental
+        initDatePickers();
+        extraCostsIntegerField.valueProperty().addListener((x, y, z) -> handleDateAndPriceChanges());
         extraCostsIntegerField.setValue(entity.getExtraCosts());
         noteTextArea.setText(entity.getNote());
 
-        // Focus
+        // Customer
+        fillCustomerTextFields();
         driverLicenseIdTextField.requestFocus();
     }
 
-    /**
-     * Handle pressing the "Confirm" button.
-     */
-    public void handleConfirmButtonClicked() {
-        setDatePickerBorderIfIsEmpty();
-
+    public void handleDateAndPriceChanges() {
         LocalDate start = startDatePicker.getValue();
         LocalDate end = endDatePicker.getValue();
 
         if (start != null && end != null) {
-            duration = Duration.between(start.atStartOfDay(), end.atStartOfDay()).toDays();
-            durationLabel.setText(String.format("%d %s", duration, "TODO"));
+            long duration = start.until(end, ChronoUnit.DAYS);
+            int dailyRate = entity.getCar().getDailyRate();
+            int extraCosts = extraCostsIntegerField.getValue();
+            long sum = (duration * dailyRate) + extraCosts;
 
-            try {
-                int dailyRate = entity.getCar().getDailyRate();
-                int extraCosts = extraCostsIntegerField.getValue();
-                double sum = (dailyRate * duration) + extraCosts;
-                sumLabel.setText(String.format("%.2f %s", sum, "TODO"));
-            } catch (NumberFormatException e) {
-                // TODO use IntegerField
-                dialogUtils.showValidationErrorDialog("TODO");
-            }
+            String durationText = "%d %s".formatted(duration, messageUtils.getMessage(MessageUtils.RENTAL_LABEL_DURATION_DAYS));
+            String sumText = "%d %s".formatted(sum, messageUtils.getMessage(MessageUtils.RENTAL_LABEL_TOTAL_CURRENCY));
+            durationTextField.setText(durationText);
+            sumTextField.setText(sumText);
+        } else {
+            durationTextField.setText(null);
+            sumTextField.setText(null);
         }
     }
 
@@ -200,6 +187,39 @@ public class RentalEditViewController extends EditViewController<Rental> {
         }
     }
 
+    private void initDatePickers() {
+        startDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            LocalDate endDate = endDatePicker.getValue();
+            if (endDate != null && endDate.isBefore(newValue.plusDays(1))) {
+                endDatePicker.setValue(null);
+            }
+        });
+        startDatePicker.setDayCellFactory(datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item.isBefore(LocalDate.now())) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
+                }
+            }
+        });
+        endDatePicker.setDayCellFactory(datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item.isBefore(startDatePicker.getValue().plusDays(1))) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
+                }
+            }
+        });
+
+        startDatePicker.setValue(Objects.requireNonNullElseGet(entity.getStart(), LocalDate::now));
+        endDatePicker.setValue(entity.getEnd());
+        handleDateAndPriceChanges();
+    }
+
     private void fillCustomerTextFields() {
         Customer customer = entity.getCustomer();
 
@@ -214,41 +234,6 @@ public class RentalEditViewController extends EditViewController<Rental> {
             streetTextField.setText(customer.getStreet());
             emailTextField.setText(customer.getEmail());
             phoneNumberTextField.setText(customer.getPhone());
-        }
-    }
-
-    private Callback<DatePicker, DateCell> getDayCellFactory() {
-        return datePicker -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item.isBefore(startDatePicker.getValue().plusDays(1))) {
-                    setDisable(true);
-                    setStyle("-fx-background-color: #ffc0cb;");
-                }
-            }
-        };
-    }
-
-    private void setDatePickerBorderIfIsEmpty() {
-        // Border radii taken from modena.css
-        Border border = new Border(new BorderStroke(
-                Color.RED,
-                BorderStrokeStyle.SOLID,
-                new CornerRadii(3.0, 3.0, 2.0, 1.0, false),
-                BorderWidths.DEFAULT
-        ));
-
-        if (startDatePicker.getValue() == null) {
-            startDatePicker.setBorder(border);
-        } else {
-            startDatePicker.setBorder(null);
-        }
-
-        if (endDatePicker.getValue() == null) {
-            endDatePicker.setBorder(border);
-        } else {
-            endDatePicker.setBorder(null);
         }
     }
 

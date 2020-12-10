@@ -10,16 +10,8 @@
             onKeyPressed="#handleKeyEvent"
             stylesheets="@styles.css">
     <top>
-        <GridPane>
-            <columnConstraints>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS"/>
-            </columnConstraints>
-            <!-- Row 0 -->
-            <MenuBar GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="5">
+        <VBox>
+            <MenuBar>
                 <Menu text="%menubar.file">
                     <MenuItem text="%menubar.file.cars" onAction="#handleCarMenuItemClicked"/>
                     <MenuItem text="%menubar.file.customers" onAction="#handleCustomerMenuItemClicked"/>
@@ -38,18 +30,19 @@
                     <MenuItem text="%menubar.help.about" onAction="#handleAboutMenuItemClicked"/>
                 </Menu>
             </MenuBar>
-            <!-- Row 1 -->
-            <ComboBox fx:id="searchAttributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="0" maxWidth="Infinity"
-                      promptText="%search.prompt.column"/>
-            <ComboBox fx:id="searchOperatorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity"
-                      promptText="%search.prompt.operator"/>
-            <TextField fx:id="searchValueTextField" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="Infinity"
-                       promptText="%search.prompt.value"/>
-            <Button GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"
-                    text="%search.button.submit" onAction="#handleSearchButtonClicked"/>
-            <Button GridPane.rowIndex="1" GridPane.columnIndex="4" maxWidth="Infinity"
-                    text="%search.button.reset" onAction="#handleClearFilterButtonClicked"/>
-        </GridPane>
+            <HBox>
+                <ComboBox fx:id="searchAttributeComboBox" promptText="%search.prompt.column"
+                          HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <ComboBox fx:id="searchOperatorComboBox" promptText="%search.prompt.operator"
+                          HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <TextField fx:id="searchValueTextField" promptText="%search.prompt.value"
+                           HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <Button text="%search.button.submit" onAction="#handleSearchButtonClicked"
+                        HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+                <Button text="%search.button.reset" onAction="#handleClearFilterButtonClicked"
+                        HBox.hgrow="ALWAYS" prefWidth="100.0" maxWidth="Infinity"/>
+            </HBox>
+        </VBox>
     </top>
     <center>
         <TableView fx:id="entityTable">
@@ -158,25 +151,14 @@
         </TableView>
     </center>
     <bottom>
-        <GridPane>
-            <columnConstraints>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
-                <ColumnConstraints prefWidth="100.0" hgrow="ALWAYS" halignment="CENTER"/>
-            </columnConstraints>
+        <HBox spacing="80.0" alignment="CENTER">
+            <Button text="%button.new" onAction="#handleNewClicked" prefWidth="100.0"/>
+            <Button text="%button.edit" onAction="#handleEditClicked" prefWidth="100.0"/>
+            <Button text="%button.delete" onAction="#handleDeleteClicked" prefWidth="100.0"/>
+            <Button text="%button.rent" onAction="#handleRentClicked" prefWidth="100.0"/>
             <padding>
-                <Insets top="5.0" right="5.0" bottom="5.0" left="5.0"/>
+                <Insets top="7.0" bottom="7.0"/>
             </padding>
-            <!-- Row 0 -->
-            <Button GridPane.rowIndex="0" GridPane.columnIndex="0"
-                    text="%button.new" onAction="#handleNewClicked"/>
-            <Button GridPane.rowIndex="0" GridPane.columnIndex="1"
-                    text="%button.edit" onAction="#handleEditClicked"/>
-            <Button GridPane.rowIndex="0" GridPane.columnIndex="2"
-                    text="%button.delete" onAction="#handleDeleteClicked"/>
-            <Button GridPane.rowIndex="0" GridPane.columnIndex="3"
-                    text="%button.rent" onAction="#handleRentClicked"/>
-        </GridPane>
+        </HBox>
     </bottom>
 </BorderPane>

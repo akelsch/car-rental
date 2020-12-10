@@ -4,67 +4,64 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.htwsaar.prog3.carrental.controller.edit.CustomerEditViewController"
-            onKeyPressed="#handleKeyEvent">
+            onKeyPressed="#handleKeyEvent"
+            stylesheets="@styles.css">
     <top>
-        <BorderPane BorderPane.alignment="CENTER">
-            <left>
-                <GridPane alignment="center" hgap="10" vgap="10">
-                    <Label text="%customer.label.edit-title" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <font>
-                            <Font size="14.0"/>
-                        </font>
-                    </Label>
-                </GridPane>
-            </left>
-            <BorderPane.margin>
-                <Insets bottom="20"/>
-            </BorderPane.margin>
-        </BorderPane>
+        <Label text="%customer.label.edit-title" styleClass="edit-title"/>
     </top>
     <center>
-        <GridPane alignment="center" hgap="10" vgap="10">
-            <Label text="%customer.label.first-name" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="firstNameTextField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <Label text="%customer.label.last-name" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="%customer.label.street" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <TextField fx:id="streetTextField" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-            <Label text="%customer.label.zipcode" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            <IntegerField fx:id="zipcodeIntegerField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            <Label text="%customer.label.city" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-            <TextField fx:id="cityTextField" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-            <Label text="%customer.label.phone" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <TextField fx:id="phoneTextField" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <Label text="%customer.label.email" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-            <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-            <Label text="%customer.label.date-of-birth" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-            <TextField fx:id="dateOfBirthTextField" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-            <Label text="%customer.label.id-number" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-            <TextField fx:id="idNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-            <Label text="%customer.label.driver-license-number" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-            <TextField fx:id="driverLicenseNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+        <GridPane hgap="15.0" vgap="3.0">
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                <RowConstraints/>
+                <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                <RowConstraints/>
+                <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+            <!-- Row 1 -->
+            <Label text="%customer.label.first-name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="firstNameTextField" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label text="%customer.label.last-name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <TextField fx:id="lastNameTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <!-- Row 2 -->
+            <Label text="%customer.label.street" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="streetTextField" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Label text="%customer.label.zipcode" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <IntegerField fx:id="zipcodeIntegerField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="%customer.label.city" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <TextField fx:id="cityTextField" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+            <!-- Row 3 -->
+            <Label text="%customer.label.phone" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="phoneTextField" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <Label text="%customer.label.email" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <TextField fx:id="emailTextField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="%customer.label.date-of-birth" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+            <TextField fx:id="dateOfBirthTextField" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+            <!-- Row 4 -->
+            <Label text="%customer.label.id-number" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="idNumberTextField" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <Label text="%customer.label.driver-license-number" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <TextField fx:id="driverLicenseNumberTextField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <BorderPane.margin>
+                <Insets top="20.0" bottom="25.0"/>
+            </BorderPane.margin>
         </GridPane>
     </center>
     <bottom>
-        <BorderPane BorderPane.alignment="CENTER">
-            <right>
-                <GridPane alignment="center" hgap="10" vgap="10">
-                    <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button.cancel"
-                            textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Button mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button.apply"
-                            textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                </GridPane>
-            </right>
-            <BorderPane.margin>
-                <Insets top="20"/>
-            </BorderPane.margin>
-        </BorderPane>
+        <ButtonBar>
+            <buttons>
+                <Button text="%button.apply" onAction="#handleApplyButtonClicked"/>
+                <Button text="%button.cancel" onAction="#handleCancelButtonClicked"/>
+            </buttons>
+        </ButtonBar>
     </bottom>
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25"/>
+        <Insets top="25.0" right="30.0" bottom="30.0" left="30.0"/>
     </padding>
 </BorderPane>

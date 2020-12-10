@@ -28,6 +28,8 @@ public class MessageUtils {
     public static final String DIALOG_ERROR_DELETE = "dialog.error.delete";
     public static final String DIALOG_ERROR_DELETE_DETAILS = "dialog.error.delete.details";
     public static final String DIALOG_ERROR_VALIDATION = "dialog.error.validation";
+    public static final String RENTAL_LABEL_DURATION_DAYS = "rental.label.duration.days";
+    public static final String RENTAL_LABEL_TOTAL_CURRENCY = "rental.label.total.currency";
 
     private final MessageSourceAccessor messageSourceAccessor;
 

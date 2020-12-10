@@ -39,7 +39,6 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
      * @param event the event that occurred also containing the button that was pressed
      */
     public void handleKeyEvent(KeyEvent event) {
-        // TODO https://riptutorial.com/javafx/example/28054/default-and-cancel-buttons
         switch (event.getCode()) {
             case ESCAPE -> handleCancelButtonClicked();
             case ENTER -> handleApplyButtonClicked();

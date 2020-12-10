@@ -4,81 +4,81 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.htwsaar.prog3.carrental.controller.edit.CarEditViewController"
-            onKeyPressed="#handleKeyEvent">
+            onKeyPressed="#handleKeyEvent"
+            stylesheets="@styles.css">
     <top>
-        <BorderPane BorderPane.alignment="CENTER">
-            <left>
-                <GridPane alignment="center" hgap="10" vgap="10">
-                    <Label text="%car.label.edit-title" style="-fx-font-weight: bold" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <font>
-                            <Font size="14.0"/>
-                        </font>
-                    </Label>
-                </GridPane>
-            </left>
-            <BorderPane.margin>
-                <Insets bottom="20"/>
-            </BorderPane.margin>
-        </BorderPane>
+        <Label text="%car.label.edit-title" styleClass="edit-title"/>
     </top>
     <center>
-        <GridPane alignment="center" hgap="10" vgap="10">
-            <Label text="%car.label.brand" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField fx:id="brandTextField" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <Label text="%car.label.model" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <TextField fx:id="modelTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="%car.label.type" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <ChoiceBox fx:id="typeChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="1" maxWidth="Infinity"/>
-            <Label text="%car.label.color" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-            <ChoiceBox fx:id="colorChoiceBox" GridPane.columnIndex="3" GridPane.rowIndex="1" maxWidth="Infinity"/>
-            <Label text="%car.label.year" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-            <IntegerField fx:id="yearIntegerField" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-            <Label text="%car.label.mileage" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
-            <IntegerField fx:id="mileageIntegerField" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
-            <Label text="%car.label.transmission" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-            <ChoiceBox fx:id="transmissionChoiceBox" GridPane.columnIndex="0" GridPane.rowIndex="3" maxWidth="Infinity"/>
-            <Label text="%car.label.horsepower" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            <IntegerField fx:id="horsepowerIntegerField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            <Label text="%car.label.fuel" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-            <ChoiceBox fx:id="fuelChoiceBox" GridPane.columnIndex="2" GridPane.rowIndex="3" maxWidth="Infinity"/>
-            <Label text="%car.label.doors" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-            <IntegerField fx:id="doorsIntegerField" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
-            <Label text="%car.label.tires" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-            <ChoiceBox fx:id="tiresChoiceBox" GridPane.columnIndex="4" GridPane.rowIndex="3" maxWidth="Infinity"/>
-            <Label text="%car.label.next-inspection" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
-            <ChoiceBox fx:id="nextInspectionChoiceBox" GridPane.columnIndex="5" GridPane.rowIndex="3" maxWidth="Infinity"/>
-            <Label text="%car.label.vin" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <TextField fx:id="vinTextField" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-            <Label text="%car.label.defects" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-            <TextField fx:id="defectsTextField" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="6"/>
-            <Label text="%car.label.license-number" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-            <TextField fx:id="licenseNumberTextField" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
-            <Label text="%car.label.parking-lot" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
-            <TextField fx:id="parkingLotTextField" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
-            <Label text="%car.label.daily-rate" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
-            <IntegerField fx:id="dailyRateIntegerField" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
+        <GridPane hgap="15.0" vgap="3.0">
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                <RowConstraints/>
+                <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                <RowConstraints/>
+                <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                <RowConstraints/>
+                <RowConstraints prefHeight="35.0" valignment="BASELINE"/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+            <!-- Row 1 -->
+            <Label text="%car.label.year" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <IntegerField fx:id="yearIntegerField" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label text="%car.label.brand" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <TextField fx:id="brandTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="%car.label.model" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="modelTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <Label text="%car.label.type" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <ChoiceBox fx:id="typeChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"/>
+            <Label text="%car.label.color" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+            <ChoiceBox fx:id="colorChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="4" maxWidth="Infinity"/>
+            <!-- Row 2 -->
+            <Label text="%car.label.doors" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <IntegerField fx:id="doorsIntegerField" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Label text="%car.label.transmission" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <ChoiceBox fx:id="transmissionChoiceBox" GridPane.rowIndex="3" GridPane.columnIndex="1" maxWidth="Infinity"/>
+            <Label text="%car.label.fuel" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <ChoiceBox fx:id="fuelChoiceBox" GridPane.rowIndex="3" GridPane.columnIndex="2" maxWidth="Infinity"/>
+            <Label text="%car.label.horsepower" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+            <IntegerField fx:id="horsepowerIntegerField" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+            <Label text="%car.label.mileage" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+            <IntegerField fx:id="mileageIntegerField" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
+            <!-- Row 3 -->
+            <Label text="%car.label.tires" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ChoiceBox fx:id="tiresChoiceBox" GridPane.rowIndex="5" GridPane.columnIndex="0" maxWidth="Infinity"/>
+            <Label text="%car.label.next-inspection" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <ChoiceBox fx:id="nextInspectionChoiceBox" GridPane.rowIndex="5" GridPane.columnIndex="1" maxWidth="Infinity"/>
+            <!-- Row 4 -->
+            <Label text="%car.label.defects" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="defectsTextField" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="5"/>
+            <!-- Row 5 -->
+            <Label text="%car.label.daily-rate" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <IntegerField fx:id="dailyRateIntegerField" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+            <Label text="%car.label.parking-lot" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+            <TextField fx:id="parkingLotTextField" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+            <Label text="%car.label.license-number" GridPane.rowIndex="8" GridPane.columnIndex="2"/>
+            <TextField fx:id="licenseNumberTextField" GridPane.rowIndex="9" GridPane.columnIndex="2"/>
+            <Label text="%car.label.vin" GridPane.rowIndex="8" GridPane.columnIndex="3"/>
+            <TextField fx:id="vinTextField" GridPane.rowIndex="9" GridPane.columnIndex="3"/>
+            <BorderPane.margin>
+                <Insets top="20.0" bottom="25.0"/>
+            </BorderPane.margin>
         </GridPane>
     </center>
     <bottom>
-        <BorderPane BorderPane.alignment="CENTER">
-            <right>
-                <GridPane alignment="center" hgap="10" vgap="10">
-                    <Button mnemonicParsing="false" onAction="#handleCancelButtonClicked" text="%button.cancel"
-                            textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Button mnemonicParsing="false" onAction="#handleApplyButtonClicked" text="%button.apply"
-                            textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                </GridPane>
-            </right>
-            <BorderPane.margin>
-                <Insets top="20"/>
-            </BorderPane.margin>
-        </BorderPane>
+        <ButtonBar>
+            <buttons>
+                <Button text="%button.apply" onAction="#handleApplyButtonClicked"/>
+                <Button text="%button.cancel" onAction="#handleCancelButtonClicked"/>
+            </buttons>
+        </ButtonBar>
     </bottom>
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25"/>
+        <Insets top="25.0" right="30.0" bottom="30.0" left="30.0"/>
     </padding>
 </BorderPane>
