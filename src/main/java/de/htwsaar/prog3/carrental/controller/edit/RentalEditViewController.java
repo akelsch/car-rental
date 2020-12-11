@@ -8,10 +8,12 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
+import de.htwsaar.prog3.carrental.util.DateUtils;
 import de.htwsaar.prog3.carrental.util.MessageUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Callback;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,7 @@ public class RentalEditViewController extends EditViewController<Rental> {
     @FXML
     private TextField carTextField;
     @FXML
-    private ChoiceBox<Employee> employeeChoiceBox;
+    private ComboBox<Employee> employeeComboBox;
     @FXML
     private DatePicker startDatePicker;
     @FXML
@@ -73,6 +75,12 @@ public class RentalEditViewController extends EditViewController<Rental> {
     @FXML
     private TextArea noteTextArea;
 
+    private final Callback<DatePicker, DateCell> beforeTodayDayCellFactory =
+            DateUtils.createDayCellFactory(date -> date.isBefore(LocalDate.now()));
+
+    private final Callback<DatePicker, DateCell> afterStartDayCellFactory =
+            DateUtils.createDayCellFactory(date -> date.isBefore(startDatePicker.getValue().plusDays(1)));
+
     @Override
     public void postInitialize() {
         // Car
@@ -83,14 +91,15 @@ public class RentalEditViewController extends EditViewController<Rental> {
         }
 
         // Employee
-        employeeChoiceBox.setItems(FXCollections.observableArrayList(employeeRepository.findAll()));
+        employeeComboBox.setItems(FXCollections.observableArrayList(employeeRepository.findAll()));
         Employee employee = entity.getEmployee();
         if (employee != null) {
-            employeeChoiceBox.setValue(employee);
+            employeeComboBox.setValue(employee);
         }
 
         // Rental
         initDatePickers();
+        handleDateAndPriceChanges();
         extraCostsIntegerField.valueProperty().addListener((x, y, z) -> handleDateAndPriceChanges());
         extraCostsIntegerField.setValue(entity.getExtraCosts());
         noteTextArea.setText(entity.getNote());
@@ -160,7 +169,7 @@ public class RentalEditViewController extends EditViewController<Rental> {
     public void handleApplyButtonClicked() {
         entity.setStart(startDatePicker.getValue());
         entity.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
-        entity.setEmployee(employeeChoiceBox.getValue());
+        entity.setEmployee(employeeComboBox.getValue());
         entity.setEnd(endDatePicker.getValue());
         entity.setExtraCosts(extraCostsIntegerField.getValue());
         entity.setNote(noteTextArea.getText());
@@ -188,36 +197,18 @@ public class RentalEditViewController extends EditViewController<Rental> {
     }
 
     private void initDatePickers() {
+        startDatePicker.setDayCellFactory(beforeTodayDayCellFactory);
+        endDatePicker.setDayCellFactory(afterStartDayCellFactory);
+
         startDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
             LocalDate endDate = endDatePicker.getValue();
             if (endDate != null && endDate.isBefore(newValue.plusDays(1))) {
                 endDatePicker.setValue(null);
             }
         });
-        startDatePicker.setDayCellFactory(datePicker -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item.isBefore(LocalDate.now())) {
-                    setDisable(true);
-                    setStyle("-fx-background-color: #ffc0cb;");
-                }
-            }
-        });
-        endDatePicker.setDayCellFactory(datePicker -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item.isBefore(startDatePicker.getValue().plusDays(1))) {
-                    setDisable(true);
-                    setStyle("-fx-background-color: #ffc0cb;");
-                }
-            }
-        });
 
         startDatePicker.setValue(Objects.requireNonNullElseGet(entity.getStart(), LocalDate::now));
         endDatePicker.setValue(entity.getEnd());
-        handleDateAndPriceChanges();
     }
 
     private void fillCustomerTextFields() {

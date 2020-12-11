@@ -42,7 +42,7 @@
             <Label text="%customer.label.email" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
             <TextField fx:id="emailTextField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
             <Label text="%customer.label.date-of-birth" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
-            <TextField fx:id="dateOfBirthTextField" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+            <DatePicker fx:id="dateOfBirthDatePicker" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
             <!-- Row 4 -->
             <Label text="%customer.label.id-number" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
             <TextField fx:id="idNumberTextField" GridPane.rowIndex="7" GridPane.columnIndex="0"/>

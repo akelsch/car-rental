@@ -34,25 +34,25 @@
             <Label text="%car.label.model" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
             <TextField fx:id="modelTextField" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
             <Label text="%car.label.type" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-            <ChoiceBox fx:id="typeChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="3" maxWidth="Infinity"/>
+            <ComboBox fx:id="typeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="3" visibleRowCount="5" maxWidth="Infinity"/>
             <Label text="%car.label.color" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
-            <ChoiceBox fx:id="colorChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="4" maxWidth="Infinity"/>
+            <ComboBox fx:id="colorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="4" visibleRowCount="5" maxWidth="Infinity"/>
             <!-- Row 2 -->
             <Label text="%car.label.doors" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             <IntegerField fx:id="doorsIntegerField" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
             <Label text="%car.label.transmission" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-            <ChoiceBox fx:id="transmissionChoiceBox" GridPane.rowIndex="3" GridPane.columnIndex="1" maxWidth="Infinity"/>
+            <ComboBox fx:id="transmissionComboBox" GridPane.rowIndex="3" GridPane.columnIndex="1" maxWidth="Infinity"/>
             <Label text="%car.label.fuel" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-            <ChoiceBox fx:id="fuelChoiceBox" GridPane.rowIndex="3" GridPane.columnIndex="2" maxWidth="Infinity"/>
+            <ComboBox fx:id="fuelComboBox" GridPane.rowIndex="3" GridPane.columnIndex="2" maxWidth="Infinity"/>
             <Label text="%car.label.horsepower" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
             <IntegerField fx:id="horsepowerIntegerField" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
             <Label text="%car.label.mileage" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
             <IntegerField fx:id="mileageIntegerField" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
             <!-- Row 3 -->
             <Label text="%car.label.tires" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <ChoiceBox fx:id="tiresChoiceBox" GridPane.rowIndex="5" GridPane.columnIndex="0" maxWidth="Infinity"/>
+            <ComboBox fx:id="tiresComboBox" GridPane.rowIndex="5" GridPane.columnIndex="0" maxWidth="Infinity"/>
             <Label text="%car.label.next-inspection" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-            <ChoiceBox fx:id="nextInspectionChoiceBox" GridPane.rowIndex="5" GridPane.columnIndex="1" maxWidth="Infinity"/>
+            <ComboBox fx:id="nextInspectionComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1" visibleRowCount="5" maxWidth="Infinity"/>
             <!-- Row 4 -->
             <Label text="%car.label.defects" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
             <TextField fx:id="defectsTextField" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="5"/>
