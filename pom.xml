@@ -15,22 +15,13 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <name>Car Rental</name>
-    <description>
-        Student project as part of the Programming 3 lecture at the
-        University of Applied Sciences in Saarbrücken.
-    </description>
+    <description>Car Rental JavaFX desktop application powered by Spring</description>
     <url>https://github.com/akelsch/car-rental</url>
     <inceptionYear>2018</inceptionYear>
 
     <properties>
         <java.version>15</java.version>
         <javafx.version>15.0.1</javafx.version>
-
-        <!-- Sonar -->
-        <sonar.projectKey>akelsch_car-rental</sonar.projectKey>
-        <sonar.organization>akelsch</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-
         <!-- Plugins -->
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
     </properties>
