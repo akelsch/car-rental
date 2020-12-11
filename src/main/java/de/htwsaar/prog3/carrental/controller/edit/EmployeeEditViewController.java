@@ -4,14 +4,14 @@ import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Employee;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 /**
  * JavaFX controller for the "Edit Employee" view.
  *
  * @author Jens Thewes
  */
-@Component
+@Controller
 public class EmployeeEditViewController extends EditViewController<Employee> {
 
     @FXML

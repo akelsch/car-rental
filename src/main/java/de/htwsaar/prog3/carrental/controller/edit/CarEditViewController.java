@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.time.Year;
 import java.time.YearMonth;
@@ -19,7 +19,7 @@ import java.time.YearMonth;
  *
  * @author Jens Thewes
  */
-@Component
+@Controller
 @RequiredArgsConstructor
 public class CarEditViewController extends EditViewController<Car> {
 

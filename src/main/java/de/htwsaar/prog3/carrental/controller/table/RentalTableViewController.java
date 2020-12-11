@@ -5,14 +5,14 @@ import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 /**
  * JavaFX controller for the "Rental Table" view.
  *
  * @author Lukas Raubuch
  */
-@Component
+@Controller
 @RequiredArgsConstructor
 public class RentalTableViewController extends TableViewController<Rental> {
 
@@ -49,7 +49,7 @@ public class RentalTableViewController extends TableViewController<Rental> {
         Rental rental = entityTable.getSelectionModel().getSelectedItem();
 
         if (rental != null) {
-            dialogUtils.showDeleteConfirmationDialog().ifPresent(buttonType -> {
+            getDialogUtils().showDeleteConfirmationDialog().ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     rentalRepository.delete(rental);
                     entities.setAll(rentalRepository.findAll());

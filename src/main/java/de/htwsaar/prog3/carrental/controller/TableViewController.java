@@ -3,6 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.*;
 import de.htwsaar.prog3.carrental.util.filter.FilterPredicate;
 import de.htwsaar.prog3.carrental.util.filter.Operator;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +11,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumnBase;
 import javafx.scene.control.TableView;
@@ -19,8 +19,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang3.StringUtils;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 /**
@@ -29,7 +27,7 @@ import java.util.stream.Collectors;
  * @author Lukas Raubuch
  * @author Arthur Kelsch
  */
-public abstract class TableViewController<T extends BaseEntity> extends BaseController implements Initializable {
+public abstract class TableViewController<T extends BaseEntity> extends BaseController {
 
     public final ObservableList<T> entities = FXCollections.observableArrayList();
     private FilteredList<T> filteredEntities;
@@ -43,8 +41,8 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
     @FXML
     private TextField searchValueTextField;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize() {
         // Table
         filteredEntities = new FilteredList<>(entities);
         SortedList<T> sortedEntities = filteredEntities.sorted();
@@ -68,39 +66,39 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
     }
 
     public boolean showCarEditView(Car car) {
-        return application.showCarEditView(car);
+        return getStageInitializer().showCarEditView(car);
     }
 
     public boolean showCustomerEditView(Customer customer) {
-        return application.showCustomerEditView(customer);
+        return getStageInitializer().showCustomerEditView(customer);
     }
 
     public boolean showEmployeeEditView(Employee employee) {
-        return application.showEmployeeEditView(employee);
+        return getStageInitializer().showEmployeeEditView(employee);
     }
 
     public boolean showRentalEditView(Rental rental) {
-        return application.showRentalEditView(rental);
+        return getStageInitializer().showRentalEditView(rental);
     }
 
     public void handleCarMenuItemClicked() {
-        application.switchToCarTableView();
+        getStageInitializer().switchToCarTableView();
     }
 
     public void handleCustomerMenuItemClicked() {
-        application.switchToCustomerTableView();
+        getStageInitializer().switchToCustomerTableView();
     }
 
     public void handleEmployeeMenuItemClicked() {
-        application.switchToEmployeeTableView();
+        getStageInitializer().switchToEmployeeTableView();
     }
 
     public void handleRentalMenuItemClicked() {
-        application.switchToRentalTableView();
+        getStageInitializer().switchToRentalTableView();
     }
 
     public void handleCloseMenuItemClicked() {
-        application.stop();
+        Platform.exit();
     }
 
     public abstract void handleNewClicked();
@@ -110,7 +108,7 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
     public abstract void handleDeleteClicked();
 
     public void handleAboutMenuItemClicked() {
-        dialogUtils.showAboutDialog();
+        getDialogUtils().showAboutDialog();
     }
 
     public void handleSearchButtonClicked() {

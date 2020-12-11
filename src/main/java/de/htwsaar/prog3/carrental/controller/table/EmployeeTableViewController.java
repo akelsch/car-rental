@@ -6,7 +6,7 @@ import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 /**
  * JavaFX controller for the "Employee Table" view.
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author Lukas Raubuch
  * @author Jens Thewes
  */
-@Component
+@Controller
 @RequiredArgsConstructor
 public class EmployeeTableViewController extends TableViewController<Employee> {
 
@@ -54,13 +54,13 @@ public class EmployeeTableViewController extends TableViewController<Employee> {
         Employee employee = entityTable.getSelectionModel().getSelectedItem();
 
         if (employee != null) {
-            dialogUtils.showDeleteConfirmationDialog().ifPresent(buttonType -> {
+            getDialogUtils().showDeleteConfirmationDialog().ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     try {
                         employeeRepository.delete(employee);
                         entities.setAll(employeeRepository.findAll());
                     } catch (DataIntegrityViolationException e) {
-                        dialogUtils.showDeleteErrorDialog();
+                        getDialogUtils().showDeleteErrorDialog();
                     }
                 }
             });

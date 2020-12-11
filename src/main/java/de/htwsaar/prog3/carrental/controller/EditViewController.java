@@ -49,7 +49,7 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
      * Handle pressing the "Cancel" button.
      */
     public void handleCancelButtonClicked() {
-        dialogUtils.showCancelDialog().ifPresent(buttonType -> {
+        getDialogUtils().showCancelDialog().ifPresent(buttonType -> {
             if (buttonType == ButtonType.OK) {
                 applyClicked = false;
                 modalStage.close();
@@ -68,7 +68,7 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
      * @return true if all inputs are valid, else false
      */
     public boolean isInputValid(T entity) {
-        Set<ConstraintViolation<T>> violations = validator.validate(entity);
+        Set<ConstraintViolation<T>> violations = getValidator().validate(entity);
 
         if (violations.isEmpty()) {
             return true;
@@ -83,7 +83,7 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
             sb.append(System.lineSeparator());
         }
 
-        dialogUtils.showValidationErrorDialog(sb.toString());
+        getDialogUtils().showValidationErrorDialog(sb.toString());
 
         return false;
     }

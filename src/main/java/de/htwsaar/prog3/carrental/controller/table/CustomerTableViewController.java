@@ -6,7 +6,7 @@ import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 /**
  * JavaFX controller for the "Customer Table" view.
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author Lukas Raubuch
  * @author Jens Thewes
  */
-@Component
+@Controller
 @RequiredArgsConstructor
 public class CustomerTableViewController extends TableViewController<Customer> {
 
@@ -54,13 +54,13 @@ public class CustomerTableViewController extends TableViewController<Customer> {
         Customer customer = entityTable.getSelectionModel().getSelectedItem();
 
         if (customer != null) {
-            dialogUtils.showDeleteConfirmationDialog().ifPresent(buttonType -> {
+            getDialogUtils().showDeleteConfirmationDialog().ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     try {
                         customerRepository.delete(customer);
                         entities.setAll(customerRepository.findAll());
                     } catch (DataIntegrityViolationException e) {
-                        dialogUtils.showDeleteErrorDialog();
+                        getDialogUtils().showDeleteErrorDialog();
                     }
                 }
             });

@@ -6,7 +6,10 @@ Car Rental JavaFX desktop application powered by Spring
 
 ## Background
 
-This project started out as an university project during our Bachelor studies as part of the *Programming 3* class at the [University of Applied Sciences in Saarbrücken](https://www.htwsaar.de/). We picked it up for our Master studies again, this time as part of the *Software Quality Engineering* class. Originally, the goal was to get familiar with UI programming but now we want to increase code quality and testability.
+This project started out as a university project during our Bachelor studies as part of the *Programming 3* class at
+the [University of Applied Sciences in Saarbrücken](https://www.htwsaar.de/). We picked it up for our Master studies
+again, this time as part of the *Software Quality Engineering* class. Originally, the goal was to get familiar with UI
+programming. Now, we want to leverage our experience and knowledge to increase the overall quality of the project.
 
 ## Technology Stack
 

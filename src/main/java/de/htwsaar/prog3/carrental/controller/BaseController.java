@@ -1,27 +1,27 @@
 package de.htwsaar.prog3.carrental.controller;
 
-import de.htwsaar.prog3.carrental.CarRentalUiApplication;
+import de.htwsaar.prog3.carrental.application.StageInitializer;
 import de.htwsaar.prog3.carrental.util.DialogUtils;
 import de.htwsaar.prog3.carrental.util.MessageUtils;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.validation.Validator;
 
 /**
  * Base controller used for dependency injection of commonly used fields.
  */
-@Component
+@Getter
 abstract class BaseController {
 
-    public CarRentalUiApplication application;
-    public DialogUtils dialogUtils;
-    public MessageUtils messageUtils;
-    public Validator validator;
+    private StageInitializer stageInitializer;
+    private DialogUtils dialogUtils;
+    private MessageUtils messageUtils;
+    private Validator validator;
 
     @Autowired
-    final void setApplication(CarRentalUiApplication application) {
-        this.application = application;
+    final void setStageInitializer(StageInitializer stageInitializer) {
+        this.stageInitializer = stageInitializer;
     }
 
     @Autowired

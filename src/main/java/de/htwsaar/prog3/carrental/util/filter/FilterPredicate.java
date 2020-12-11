@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 
 public class FilterPredicate {
 
+    private FilterPredicate() {
+    }
+
     public static Predicate<Object> of(Operator operator, String right) {
         return left -> {
             if (left instanceof Integer) {

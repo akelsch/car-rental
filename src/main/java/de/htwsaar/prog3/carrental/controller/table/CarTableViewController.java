@@ -8,14 +8,14 @@ import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 /**
  * JavaFX controller for the "Car Table" view (main).
  *
  * @author Lukas Raubuch
  */
-@Component
+@Controller
 @RequiredArgsConstructor
 public class CarTableViewController extends TableViewController<Car> {
 
@@ -56,13 +56,13 @@ public class CarTableViewController extends TableViewController<Car> {
         Car car = entityTable.getSelectionModel().getSelectedItem();
 
         if (car != null) {
-            dialogUtils.showDeleteConfirmationDialog().ifPresent(buttonType -> {
+            getDialogUtils().showDeleteConfirmationDialog().ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     try {
                         carRepository.delete(car);
                         entities.setAll(carRepository.findAll());
                     } catch (DataIntegrityViolationException e) {
-                        dialogUtils.showDeleteErrorDialog();
+                        getDialogUtils().showDeleteErrorDialog();
                     }
                 }
             });

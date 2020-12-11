@@ -7,14 +7,14 @@ import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 /**
  * JavaFX controller for the "Edit Customer" view.
  *
  * @author Jens Thewes
  */
-@Component
+@Controller
 @RequiredArgsConstructor
 public class CustomerEditViewController extends EditViewController<Customer> {
 

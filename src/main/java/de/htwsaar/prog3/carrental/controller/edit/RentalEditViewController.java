@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -26,7 +26,7 @@ import java.util.Objects;
  * @author Hagen Schackmann
  * @author Michael Bös
  */
-@Component
+@Controller
 @RequiredArgsConstructor
 public class RentalEditViewController extends EditViewController<Rental> {
 
@@ -110,8 +110,8 @@ public class RentalEditViewController extends EditViewController<Rental> {
             int extraCosts = extraCostsIntegerField.getValue();
             long sum = (duration * dailyRate) + extraCosts;
 
-            String durationText = "%d %s".formatted(duration, messageUtils.getMessage(MessageUtils.RENTAL_LABEL_DURATION_DAYS));
-            String sumText = "%d %s".formatted(sum, messageUtils.getMessage(MessageUtils.RENTAL_LABEL_TOTAL_CURRENCY));
+            String durationText = "%d %s".formatted(duration, getMessageUtils().getMessage(MessageUtils.RENTAL_LABEL_DURATION_DAYS));
+            String sumText = "%d %s".formatted(sum, getMessageUtils().getMessage(MessageUtils.RENTAL_LABEL_TOTAL_CURRENCY));
             durationTextField.setText(durationText);
             sumTextField.setText(sumText);
         } else {
