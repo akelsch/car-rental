@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.model;
 
+import de.htwsaar.prog3.carrental.model.validation.MinAge;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -51,7 +52,7 @@ public class Customer extends BaseEntity {
     private String email;
 
     @NotNull
-    @Past // TODO Jens: 18+ validation
+    @MinAge
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
