@@ -40,12 +40,12 @@ public class Customer extends BaseEntity {
     @Column(nullable = false)
     private String city;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\+\\p{Digit}+")
     @Column(nullable = false)
     private String phone;
 
-    @NotNull
+    @NotBlank
     @Email
     @Column(nullable = false)
     private String email;
@@ -55,12 +55,12 @@ public class Customer extends BaseEntity {
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\p{Alnum}{9}")
     @Column(nullable = false, unique = true)
     private String idNumber;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\p{Alnum}{11}")
     @Column(nullable = false, unique = true)
     private String driverLicenseNumber;

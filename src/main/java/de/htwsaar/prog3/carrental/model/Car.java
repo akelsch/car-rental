@@ -82,12 +82,12 @@ public class Car extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String parkingLot;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\p{Alpha}{1,3} \\p{Alpha}{1,2} \\p{Digit}{1,4}")
     @Column(nullable = false, unique = true)
     private String licenseNumber;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\p{Alnum}{17}")
     @Column(nullable = false, unique = true)
     private String vin;
