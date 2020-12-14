@@ -7,7 +7,7 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CustomerGenerator extends Generator<Customer> {
+public class CustomerGenerator implements Generatable<Customer> {
     private final String[] emailSuffix = {"@gmail.com", "@yahoo.com", "@hotmail.com", "@gmx.de", "@web.de", "@mail.de", "@freenet.de"};
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 

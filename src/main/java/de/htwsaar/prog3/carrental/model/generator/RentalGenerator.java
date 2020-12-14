@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RentalGenerator extends Generator<Rental> {
+public class RentalGenerator implements Generatable<Rental> {
     private final String[] noteList = {"", "Damaged two tires", "Damaged one tire", "Broke left wing mirror", "Broke right wing mirror"};
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 

@@ -5,11 +5,11 @@ import de.htwsaar.prog3.carrental.model.BaseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Generator<T extends BaseEntity> {
-    public abstract T generate();
+public interface Generatable<T extends BaseEntity> {
+    T generate();
 
-    public List<T> generate(final int quantity) {
-        final List<T> list = new ArrayList<T>();
+    default List<T> generate(final int quantity) {
+        final List<T> list = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             list.add(generate());
         }

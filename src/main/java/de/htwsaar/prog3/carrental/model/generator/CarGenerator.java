@@ -8,7 +8,7 @@ import java.time.YearMonth;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CarGenerator extends Generator<Car>{
+public class CarGenerator implements Generatable<Car> {
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
     private final String[] brandsList = {"BMW", "Audi", "Toyota", "Chevy", "Ford", "Dodge", "Lincoln", "Buick", "Honda", "Nissan"};
     private final HashMap<String, String[]> modelsByBrand = new HashMap<>();
@@ -30,10 +30,12 @@ public class CarGenerator extends Generator<Car>{
     public Car generate() {
         init();
         Car car = new Car();
+
         final String brand = brandsList[RANDOM.nextInt(brandsList.length)];
         final String[] modelsByOneBrand = modelsByBrand.get(brand);
         final String randomLicenceCity = RANDOM.nextBoolean() ? GeneratorUtil.generateUpperSequence(1) : GeneratorUtil.generateUpperSequence(3);
         final String randomLicenceName = RANDOM.nextBoolean() ? GeneratorUtil.generateUpperSequence(1) : GeneratorUtil.generateUpperSequence(2);
+
         car.setBrand(brand);
         car.setModel(modelsByOneBrand[RANDOM.nextInt(modelsByOneBrand.length)]);
         car.setType(Type.values()[RANDOM.nextInt(Type.values().length)]);

@@ -6,7 +6,7 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class EmployeeGenerator extends Generator<Employee> {
+public class EmployeeGenerator implements Generatable<Employee> {
     private final String[] positionList = {"CEO", "Customer Advisor"};
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
