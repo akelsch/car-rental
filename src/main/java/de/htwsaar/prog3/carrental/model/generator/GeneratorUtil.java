@@ -7,7 +7,7 @@ public class GeneratorUtil {
     private static final String UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final SecureRandom random = new SecureRandom();
 
-    private GeneratorUtil(){
+    private GeneratorUtil() {
     }
 
     public static String generateUpperSequence(int length) {
@@ -37,6 +37,6 @@ public class GeneratorUtil {
     }
 
     public static int getRandomInt(int min, int max) {
-        return random.nextInt((max - min) + 1) + max;
+        return random.nextInt((max - min) + 1) + min;
     }
 }
