@@ -4,7 +4,10 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.model.car.*;
+import de.htwsaar.prog3.carrental.model.generator.CarGenerator;
+import de.htwsaar.prog3.carrental.model.generator.CustomerGenerator;
+import de.htwsaar.prog3.carrental.model.generator.EmployeeGenerator;
+import de.htwsaar.prog3.carrental.model.generator.RentalGenerator;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
@@ -14,9 +17,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceSchemaCreatedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.Year;
-import java.time.YearMonth;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -29,58 +30,21 @@ public class DatabasePopulator implements ApplicationListener<DataSourceSchemaCr
 
     @Override
     public void onApplicationEvent(DataSourceSchemaCreatedEvent event) {
-        // TODO Jens: add generator for all entities
+        List<Car> cars = new CarGenerator().generate(100);
+        carRepository.saveAll(cars);
 
-        Car car = Car.builder()
-                .year(Year.of(2017))
-                .brand("BMW")
-                .model("M4")
-                .type(Type.COUPE)
-                .color(Color.WHITE)
-                .dailyRate(120)
-                .doors(2)
-                .transmission(Transmission.MANUAL)
-                .fuel(Fuel.PETROL)
-                .horsepower(480)
-                .mileage(25_000)
-                .tires(Tire.SUMMER)
-                .parkingLot("2A")
-                .licenseNumber("SB M 4")
-                .vin("M4BMW123412341234")
-                .nextInspection(YearMonth.of(2021, 6))
-                .build();
+        List<Customer> customers = new CustomerGenerator().generate(100);
+        customerRepository.saveAll(customers);
 
-        Customer customer = Customer.builder()
-                .firstName("Peter")
-                .lastName("Pan")
-                .street("Otto-Hahn-Straße 42")
-                .zipcode(66111)
-                .city("Saarbrücken")
-                .phone("+49123456789")
-                .email("peter@pan.de")
-                .dateOfBirth(LocalDate.now().minusYears(20))
-                .idNumber("T22000129")
-                .driverLicenseNumber("B072RRE2I55")
-                .build();
+        List<Employee> employees = new EmployeeGenerator().generate(100);
+        employeeRepository.saveAll(employees);
 
-        Employee employee = Employee.builder()
-                .firstName("Spongebob")
-                .lastName("Schwammkopf")
-                .position("Burgerbrater")
-                .build();
-
-        carRepository.save(car);
-        customerRepository.save(customer);
-        employeeRepository.save(employee);
-
-        Rental rental = Rental.builder()
-                .start(LocalDate.now())
-                .end(LocalDate.now().plusDays(5))
-                .car(car)
-                .customer(customer)
-                .employee(employee)
-                .build();
-
-        rentalRepository.save(rental);
+        List<Rental> rentals = new RentalGenerator().generate(100);
+        for (Rental rental : rentals) {
+            carRepository.save(rental.getCar());
+            customerRepository.save(rental.getCustomer());
+            employeeRepository.save(rental.getEmployee());
+            rentalRepository.save(rental);
+        }
     }
 }
