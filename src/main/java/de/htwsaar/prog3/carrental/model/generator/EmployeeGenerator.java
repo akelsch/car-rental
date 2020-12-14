@@ -12,12 +12,12 @@ public class EmployeeGenerator implements Generatable<Employee> {
 
     @Override
     public Employee generate() {
-        Employee employee = new Employee();
         Faker faker = new Faker(Locale.GERMAN);
 
-        employee.setFirstName(faker.name().firstName());
-        employee.setLastName(faker.name().lastName());
-        employee.setPosition(positionList[RANDOM.nextInt(positionList.length)]);
-        return employee;
+        return Employee.builder()
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .position(positionList[RANDOM.nextInt(positionList.length)])
+                .build();
     }
 }

@@ -15,7 +15,6 @@ public class RentalGenerator implements Generatable<Rental> {
 
     @Override
     public Rental generate() {
-        Rental rental = new Rental();
         Faker faker = new Faker(Locale.GERMAN);
 
         final Date startDate = faker.date().between(new Date(System.currentTimeMillis() - 2419200L), new Date(System.currentTimeMillis() + 2419200L));
@@ -23,14 +22,15 @@ public class RentalGenerator implements Generatable<Rental> {
         final Date endDate = faker.date().between(startDate, new Date(System.currentTimeMillis() + 2419200L));
         final LocalDate endLocalDate = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        rental.setCar(new CarGenerator().generate());
-        rental.setCustomer(new CustomerGenerator().generate());
-        rental.setEmployee(new EmployeeGenerator().generate());
-        rental.setStart(startLocalDate);
-        rental.setEnd(endLocalDate);
-        rental.setExtraCosts(GeneratorUtil.randomIntBetween(0, 500));
-        rental.setNote(noteList[RANDOM.nextInt(noteList.length)]);
-        return rental;
+        return Rental.builder()
+                .start(startLocalDate)
+                .end(endLocalDate)
+                .car(new CarGenerator().generate())
+                .customer(new CustomerGenerator().generate())
+                .employee(new EmployeeGenerator().generate())
+                .extraCosts(GeneratorUtil.randomIntBetween(0, 500))
+                .note(noteList[RANDOM.nextInt(noteList.length)])
+                .build();
     }
 }
 

@@ -29,29 +29,29 @@ public class CarGenerator implements Generatable<Car> {
     @Override
     public Car generate() {
         init();
-        Car car = new Car();
 
         final String brand = brandsList[RANDOM.nextInt(brandsList.length)];
         final String[] modelsByOneBrand = modelsByBrand.get(brand);
         final String randomLicenceCity = RANDOM.nextBoolean() ? GeneratorUtil.generateUpperSequence(1) : GeneratorUtil.generateUpperSequence(3);
         final String randomLicenceName = RANDOM.nextBoolean() ? GeneratorUtil.generateUpperSequence(1) : GeneratorUtil.generateUpperSequence(2);
 
-        car.setBrand(brand);
-        car.setModel(modelsByOneBrand[RANDOM.nextInt(modelsByOneBrand.length)]);
-        car.setType(Type.values()[RANDOM.nextInt(Type.values().length)]);
-        car.setColor(Color.values()[RANDOM.nextInt(Color.values().length)]);
-        car.setYear(Year.of(GeneratorUtil.randomIntBetween(1900, Calendar.getInstance().get(Calendar.YEAR))));
-        car.setMileage(GeneratorUtil.randomIntBetween(0, 250) * 1000);
-        car.setTransmission(Transmission.values()[RANDOM.nextInt(Transmission.values().length)]);
-        car.setHorsepower(GeneratorUtil.randomIntBetween(70, 600));
-        car.setFuel(Fuel.values()[RANDOM.nextInt(Fuel.values().length)]);
-        car.setDoors(GeneratorUtil.randomIntBetween(1, 5));
-        car.setTires(Tire.values()[RANDOM.nextInt(Tire.values().length)]);
-        car.setNextInspection(YearMonth.of(GeneratorUtil.randomIntBetween(Calendar.getInstance().get(Calendar.YEAR), 2050), GeneratorUtil.randomIntBetween(1, 12)));
-        car.setDailyRate(GeneratorUtil.randomIntBetween(50, 300));
-        car.setLicenseNumber(randomLicenceCity + " " + randomLicenceName + " " + GeneratorUtil.randomIntBetween(1, 9999));
-        car.setParkingLot(GeneratorUtil.generateUpperNumericSequence(2));
-        car.setVin(GeneratorUtil.generateUpperNumericSequence(17));
-        return car;
+        return Car.builder()
+                .brand(brand)
+                .model(modelsByOneBrand[RANDOM.nextInt(modelsByOneBrand.length)])
+                .type(Type.values()[RANDOM.nextInt(Type.values().length)])
+                .color(Color.values()[RANDOM.nextInt(Color.values().length)])
+                .year(Year.of(GeneratorUtil.randomIntBetween(1900, Calendar.getInstance().get(Calendar.YEAR))))
+                .mileage(GeneratorUtil.randomIntBetween(0, 250) * 1000)
+                .transmission(Transmission.values()[RANDOM.nextInt(Transmission.values().length)])
+                .fuel(Fuel.values()[RANDOM.nextInt(Fuel.values().length)])
+                .horsepower(GeneratorUtil.randomIntBetween(70, 600))
+                .doors(GeneratorUtil.randomIntBetween(1, 5))
+                .tires(Tire.values()[RANDOM.nextInt(Tire.values().length)])
+                .nextInspection(YearMonth.of(GeneratorUtil.randomIntBetween(Calendar.getInstance().get(Calendar.YEAR), 2050), GeneratorUtil.randomIntBetween(1, 12)))
+                .dailyRate(GeneratorUtil.randomIntBetween(50, 300))
+                .licenseNumber(randomLicenceCity + " " + randomLicenceName + " " + GeneratorUtil.randomIntBetween(1, 9999))
+                .parkingLot(GeneratorUtil.generateUpperNumericSequence(2))
+                .vin(GeneratorUtil.generateUpperNumericSequence(17))
+                .build();
     }
 }
