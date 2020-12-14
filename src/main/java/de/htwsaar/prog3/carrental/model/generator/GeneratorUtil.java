@@ -31,9 +31,4 @@ public class GeneratorUtil {
         }
         return new String(charSeq);
     }
-    public static int randomIntBetween(int min, int max) {
-        return RANDOM.nextInt(min, max + 1);
-    }
-
 }
-

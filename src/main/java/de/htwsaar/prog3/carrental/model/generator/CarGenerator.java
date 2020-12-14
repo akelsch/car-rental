@@ -3,6 +3,7 @@ package de.htwsaar.prog3.carrental.model.generator;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.car.*;
 
+import java.time.LocalDate;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.*;
@@ -32,25 +33,25 @@ public class CarGenerator implements Generatable<Car> {
 
         final String brand = brandsList[RANDOM.nextInt(brandsList.length)];
         final String[] modelsByOneBrand = modelsByBrand.get(brand);
-        final String randomLicenceCity = RANDOM.nextBoolean() ? GeneratorUtil.generateUpperSequence(1) : GeneratorUtil.generateUpperSequence(3);
-        final String randomLicenceName = RANDOM.nextBoolean() ? GeneratorUtil.generateUpperSequence(1) : GeneratorUtil.generateUpperSequence(2);
+        final String randomLicenceCity = GeneratorUtil.generateUpperSequence(RANDOM.nextInt(1,4));
+        final String randomLicenceName = GeneratorUtil.generateUpperSequence(RANDOM.nextInt(1,3));
 
         return Car.builder()
                 .brand(brand)
                 .model(modelsByOneBrand[RANDOM.nextInt(modelsByOneBrand.length)])
                 .type(Type.values()[RANDOM.nextInt(Type.values().length)])
                 .color(Color.values()[RANDOM.nextInt(Color.values().length)])
-                .year(Year.of(GeneratorUtil.randomIntBetween(1900, Calendar.getInstance().get(Calendar.YEAR))))
-                .mileage(GeneratorUtil.randomIntBetween(0, 250) * 1000)
+                .year(Year.of(RANDOM.nextInt(1900, Calendar.getInstance().get(Calendar.YEAR) + 1)))
+                .mileage(RANDOM.nextInt(1, 250001))
                 .transmission(Transmission.values()[RANDOM.nextInt(Transmission.values().length)])
                 .fuel(Fuel.values()[RANDOM.nextInt(Fuel.values().length)])
-                .horsepower(GeneratorUtil.randomIntBetween(70, 600))
-                .doors(GeneratorUtil.randomIntBetween(1, 5))
+                .horsepower(RANDOM.nextInt(70, 601))
+                .doors(RANDOM.nextInt(1, 6))
                 .tires(Tire.values()[RANDOM.nextInt(Tire.values().length)])
-                .nextInspection(YearMonth.of(GeneratorUtil.randomIntBetween(Calendar.getInstance().get(Calendar.YEAR), 2050), GeneratorUtil.randomIntBetween(1, 12)))
-                .dailyRate(GeneratorUtil.randomIntBetween(50, 300))
-                .licenseNumber(randomLicenceCity + " " + randomLicenceName + " " + GeneratorUtil.randomIntBetween(1, 9999))
-                .parkingLot(GeneratorUtil.generateUpperNumericSequence(2))
+                .nextInspection(YearMonth.from(LocalDate.now().plusMonths(RANDOM.nextInt(0,61))))
+                .dailyRate(RANDOM.nextInt(50, 301))
+                .licenseNumber(randomLicenceCity + " " + randomLicenceName + " " + RANDOM.nextInt(1, 10000))
+                .parkingLot(GeneratorUtil.generateUpperNumericSequence(4))
                 .vin(GeneratorUtil.generateUpperNumericSequence(17))
                 .build();
     }
