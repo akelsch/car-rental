@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.model;
 
+import de.htwsaar.prog3.carrental.model.validation.ValidRental;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -20,6 +21,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @Builder
+@ValidRental
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -31,7 +33,7 @@ public class Rental extends BaseEntity {
     private LocalDate start;
 
     @NotNull
-    @Future // TODO Jens: after start date validation
+    @Future
     @Column(nullable = false)
     private LocalDate end;
 

@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.model;
 
+import de.htwsaar.prog3.carrental.model.validation.MinAge;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -40,27 +41,27 @@ public class Customer extends BaseEntity {
     @Column(nullable = false)
     private String city;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\+\\p{Digit}+")
     @Column(nullable = false)
     private String phone;
 
-    @NotNull
+    @NotBlank
     @Email
     @Column(nullable = false)
     private String email;
 
     @NotNull
-    @Past // TODO Jens: 18+ validation
+    @MinAge
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\p{Alnum}{9}")
     @Column(nullable = false, unique = true)
     private String idNumber;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "\\p{Alnum}{11}")
     @Column(nullable = false, unique = true)
     private String driverLicenseNumber;
