@@ -23,13 +23,15 @@ public class GeneratorUtil {
     }
 
     private static String generateSequence(String symbols, int length) {
-        if (symbols.length() < 2) throw new IllegalArgumentException();
-        char[] charSeq = new char[length];
-        final char[] symbolsArr = symbols.toCharArray();
+        int symbolsLength = symbols.length();
+        if (symbolsLength < 2) throw new IllegalArgumentException();
+
+        StringBuilder sequence = new StringBuilder();
         for (int i = 0; i < length; i++) {
-            charSeq[i] = symbolsArr[random.nextInt(symbolsArr.length)];
+            sequence.append(symbols.charAt(getRandomInt(symbolsLength)));
         }
-        return new String(charSeq);
+
+        return sequence.toString();
     }
 
     public static int getRandomInt(int max) {

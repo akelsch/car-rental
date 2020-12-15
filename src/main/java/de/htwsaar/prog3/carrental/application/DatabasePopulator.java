@@ -30,16 +30,16 @@ public class DatabasePopulator implements ApplicationListener<DataSourceSchemaCr
 
     @Override
     public void onApplicationEvent(DataSourceSchemaCreatedEvent event) {
-        List<Car> cars = new CarGenerator().generate(100);
+        List<Car> cars = new CarGenerator().generate(50);
         carRepository.saveAll(cars);
 
-        List<Customer> customers = new CustomerGenerator().generate(100);
+        List<Customer> customers = new CustomerGenerator().generate(50);
         customerRepository.saveAll(customers);
 
-        List<Employee> employees = new EmployeeGenerator().generate(100);
+        List<Employee> employees = new EmployeeGenerator().generate(50);
         employeeRepository.saveAll(employees);
 
-        List<Rental> rentals = new RentalGenerator().generate(100);
+        List<Rental> rentals = new RentalGenerator().generate(50);
         for (Rental rental : rentals) {
             carRepository.save(rental.getCar());
             customerRepository.save(rental.getCustomer());
