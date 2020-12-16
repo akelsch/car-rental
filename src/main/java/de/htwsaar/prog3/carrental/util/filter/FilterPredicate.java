@@ -11,6 +11,7 @@ public class FilterPredicate {
 
     public static Predicate<Object> of(Operator operator, String right) {
         return left -> {
+            // TODO what about Long
             if (left instanceof Integer) {
                 int num = (int) left;
                 return switch (operator) {

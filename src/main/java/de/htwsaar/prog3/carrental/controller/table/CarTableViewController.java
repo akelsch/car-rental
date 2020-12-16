@@ -43,6 +43,7 @@ public class CarTableViewController extends TableViewController<Car> {
         Car car = entityTable.getSelectionModel().getSelectedItem();
 
         if (car != null) {
+            // TODO save in edit view
             boolean applyClicked = showCarEditView(car);
             if (applyClicked) {
                 carRepository.save(car);
