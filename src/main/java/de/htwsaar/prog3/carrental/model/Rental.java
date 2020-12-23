@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.model;
 
+import de.htwsaar.prog3.carrental.model.validation.AfterDefault;
 import de.htwsaar.prog3.carrental.model.validation.ValidRental;
 import lombok.*;
 
@@ -21,10 +22,10 @@ import java.time.LocalDate;
 @Entity
 @Data
 @Builder
-@ValidRental
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@ValidRental(groups = AfterDefault.class)
 public class Rental extends BaseEntity {
 
     @NotNull
@@ -37,14 +38,17 @@ public class Rental extends BaseEntity {
     @Column(nullable = false)
     private LocalDate end;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "car_fk", nullable = false)
     private Car car;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "customer_fk", nullable = false)
     private Customer customer;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "employee_fk", nullable = false)
     private Employee employee;

@@ -52,7 +52,7 @@ public class Customer extends BaseEntity {
     private String email;
 
     @NotNull
-    @MinAge
+    @MinAge(18)
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 

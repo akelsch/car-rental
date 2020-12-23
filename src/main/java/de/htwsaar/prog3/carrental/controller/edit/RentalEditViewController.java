@@ -16,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
@@ -38,9 +37,13 @@ public class RentalEditViewController extends EditViewController<Rental> {
     private final EmployeeRepository employeeRepository;
 
     @FXML
-    private TextField carTextField;
+    private ComboBox<Customer> customerComboBox;
     @FXML
     private ComboBox<Employee> employeeComboBox;
+    @FXML
+    private TextField carTextField;
+    @FXML
+    private TextField dailyRateTextField;
     @FXML
     private DatePicker startDatePicker;
     @FXML
@@ -48,32 +51,9 @@ public class RentalEditViewController extends EditViewController<Rental> {
     @FXML
     private TextField durationTextField;
     @FXML
-    private TextField dailyRateTextField;
-    @FXML
     private IntegerField extraCostsIntegerField;
     @FXML
     private TextField sumTextField;
-
-    @FXML
-    private TextField driverLicenseIdTextField;
-    @FXML
-    private TextField firstNameTextField;
-    @FXML
-    private TextField lastNameTextField;
-    @FXML
-    private TextField idNumberTextField;
-    @FXML
-    private TextField dateOfBirthTextField;
-    @FXML
-    private IntegerField zipcodeIntegerField;
-    @FXML
-    private TextField cityTextField;
-    @FXML
-    private TextField streetTextField;
-    @FXML
-    private TextField emailTextField;
-    @FXML
-    private TextField phoneNumberTextField;
     @FXML
     private TextArea noteTextArea;
 
@@ -85,11 +65,11 @@ public class RentalEditViewController extends EditViewController<Rental> {
 
     @Override
     public void postInitialize() {
-        // Car
-        Car car = entity.getCar();
-        if (car != null) {
-            carTextField.setText(car.toString());
-            dailyRateTextField.setText(Integer.toString(car.getDailyRate()));
+        // Customer
+        customerComboBox.setItems(FXCollections.observableArrayList(customerRepository.findAll()));
+        Customer customer = entity.getCustomer();
+        if (customer != null) {
+            customerComboBox.setValue(customer);
         }
 
         // Employee
@@ -99,16 +79,19 @@ public class RentalEditViewController extends EditViewController<Rental> {
             employeeComboBox.setValue(employee);
         }
 
+        // Car
+        Car car = entity.getCar();
+        if (car != null) {
+            carTextField.setText(car.toString());
+            dailyRateTextField.setText(Integer.toString(car.getDailyRate()));
+        }
+
         // Rental
         initDatePickers();
         handleDateAndPriceChanges();
         extraCostsIntegerField.valueProperty().addListener((x, y, z) -> handleDateAndPriceChanges());
         extraCostsIntegerField.setValue(entity.getExtraCosts());
         noteTextArea.setText(entity.getNote());
-
-        // Customer
-        fillCustomerTextFields();
-        driverLicenseIdTextField.requestFocus();
     }
 
     public void handleDateAndPriceChanges() {
@@ -131,70 +114,16 @@ public class RentalEditViewController extends EditViewController<Rental> {
         }
     }
 
-    /**
-     * Handle pressing the "Search" button.
-     */
-    public void handleSearchButtonClicked() {
-        String driverLicenseId = driverLicenseIdTextField.getText();
-
-        if (StringUtils.isNotBlank(driverLicenseId)) {
-            Customer customer = findCustomerByDriverLicenseId(driverLicenseId);
-            entity.setCustomer(customer);
-
-            fillCustomerTextFields();
-
-            if (customer.getId() != null) {
-                firstNameTextField.setDisable(true);
-                lastNameTextField.setDisable(true);
-                idNumberTextField.setDisable(true);
-                dateOfBirthTextField.setDisable(true);
-                zipcodeIntegerField.setDisable(true);
-                cityTextField.setDisable(true);
-                streetTextField.setDisable(true);
-                emailTextField.setDisable(true);
-                phoneNumberTextField.setDisable(true);
-            } else {
-                firstNameTextField.setDisable(false);
-                lastNameTextField.setDisable(false);
-                idNumberTextField.setDisable(false);
-                dateOfBirthTextField.setDisable(false);
-                zipcodeIntegerField.setDisable(false);
-                cityTextField.setDisable(false);
-                streetTextField.setDisable(false);
-                emailTextField.setDisable(false);
-                phoneNumberTextField.setDisable(false);
-            }
-        }
-    }
-
     @Override
     public void handleApplyButtonClicked() {
         entity.setStart(startDatePicker.getValue());
-        entity.setCustomer(findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()));
-        entity.setEmployee(employeeComboBox.getValue());
         entity.setEnd(endDatePicker.getValue());
+        entity.setCustomer(customerComboBox.getValue());
+        entity.setEmployee(employeeComboBox.getValue());
         entity.setExtraCosts(extraCostsIntegerField.getValue());
         entity.setNote(noteTextArea.getText());
 
         if (isInputValid(entity)) {
-            if (findCustomerByDriverLicenseId(driverLicenseIdTextField.getText()).getId() == null) {
-                Customer customer = new Customer();
-
-                customer.setDriverLicenseNumber(driverLicenseIdTextField.getText());
-                customer.setFirstName(firstNameTextField.getText());
-                customer.setLastName(lastNameTextField.getText());
-                customer.setIdNumber(idNumberTextField.getText());
-//                customer.setDateOfBirth(dateOfBirthTextField.getText());
-                customer.setZipcode(zipcodeIntegerField.getValue());
-                customer.setCity(cityTextField.getText());
-                customer.setStreet(streetTextField.getText());
-                customer.setEmail(emailTextField.getText());
-                customer.setPhone(phoneNumberTextField.getText());
-
-                customerRepository.save(customer);
-                entity.setCustomer(customer);
-            }
-
             rentalRepository.save(entity);
             closeModalWithApply();
         }
@@ -213,26 +142,5 @@ public class RentalEditViewController extends EditViewController<Rental> {
 
         startDatePicker.setValue(Objects.requireNonNullElseGet(entity.getStart(), LocalDate::now));
         endDatePicker.setValue(entity.getEnd());
-    }
-
-    private void fillCustomerTextFields() {
-        Customer customer = entity.getCustomer();
-
-        if (customer != null) {
-            driverLicenseIdTextField.setText(customer.getDriverLicenseNumber());
-            firstNameTextField.setText(customer.getFirstName());
-            lastNameTextField.setText(customer.getLastName());
-            idNumberTextField.setText(customer.getIdNumber());
-            dateOfBirthTextField.setText(customer.getDateOfBirth().toString());
-            zipcodeIntegerField.setValue(customer.getZipcode());
-            cityTextField.setText(customer.getCity());
-            streetTextField.setText(customer.getStreet());
-            emailTextField.setText(customer.getEmail());
-            phoneNumberTextField.setText(customer.getPhone());
-        }
-    }
-
-    private Customer findCustomerByDriverLicenseId(String driverLicenseId) {
-        return customerRepository.findByDriverLicenseNumber(driverLicenseId).orElseGet(Customer::new);
     }
 }

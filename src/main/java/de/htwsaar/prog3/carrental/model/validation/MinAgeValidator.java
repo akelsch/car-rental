@@ -5,11 +5,12 @@ import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
 
 public class MinAgeValidator implements ConstraintValidator<MinAge, LocalDate> {
+
     private int minimalAge;
 
     @Override
     public void initialize(MinAge minAge) {
-        this.minimalAge = minAge.age();
+        this.minimalAge = minAge.value();
     }
 
     @Override
