@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.sun.javafx.scene.control.IntegerField?>
+<?import de.htwsaar.prog3.carrental.util.fx.IntegerField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>

@@ -1,12 +1,12 @@
 package de.htwsaar.prog3.carrental.controller.edit;
 
-import com.sun.javafx.scene.control.IntegerField;
 import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.car.*;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.util.DateUtils;
 import de.htwsaar.prog3.carrental.util.MessageUtils;
+import de.htwsaar.prog3.carrental.util.fx.IntegerField;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
