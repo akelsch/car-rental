@@ -19,7 +19,7 @@ public class RentalTableViewController extends TableViewController<Rental> {
     private final RentalRepository rentalRepository;
 
     @Override
-    public void postInitialize() {
+    public void updateEntities() {
         entities.setAll(rentalRepository.findAll());
     }
 
@@ -38,8 +38,7 @@ public class RentalTableViewController extends TableViewController<Rental> {
         if (rental != null) {
             boolean applyClicked = showRentalEditView(rental);
             if (applyClicked) {
-                rentalRepository.save(rental);
-                entities.setAll(rentalRepository.findAll());
+                updateEntities();
             }
         }
     }
@@ -52,7 +51,7 @@ public class RentalTableViewController extends TableViewController<Rental> {
             getDialogUtils().showDeleteConfirmationDialog().ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     rentalRepository.delete(rental);
-                    entities.setAll(rentalRepository.findAll());
+                    updateEntities();
                 }
             });
         }

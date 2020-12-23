@@ -48,7 +48,7 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
         SortedList<T> sortedEntities = filteredEntities.sorted();
         sortedEntities.comparatorProperty().bind(entityTable.comparatorProperty());
         entityTable.setItems(sortedEntities);
-        postInitialize();
+        updateEntities();
 
         // Search
         searchAttributeComboBox.setItems(entityTable.getColumns().stream()
@@ -57,7 +57,7 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
         searchOperatorComboBox.setItems(FXCollections.observableArrayList(Operator.class.getEnumConstants()));
     }
 
-    public abstract void postInitialize();
+    public abstract void updateEntities();
 
     public void handleKeyEvent(KeyEvent event) {
         if (event.getCode() == KeyCode.DELETE) {

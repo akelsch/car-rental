@@ -8,6 +8,7 @@ import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
+import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import de.htwsaar.prog3.carrental.util.DateUtils;
 import de.htwsaar.prog3.carrental.util.MessageUtils;
 import javafx.collections.FXCollections;
@@ -32,6 +33,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class RentalEditViewController extends EditViewController<Rental> {
 
+    private final RentalRepository rentalRepository;
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;
 
@@ -192,6 +194,8 @@ public class RentalEditViewController extends EditViewController<Rental> {
                 customerRepository.save(customer);
                 entity.setCustomer(customer);
             }
+
+            rentalRepository.save(entity);
             closeModalWithApply();
         }
     }

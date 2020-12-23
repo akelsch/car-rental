@@ -4,7 +4,6 @@ import de.htwsaar.prog3.carrental.controller.TableViewController;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
-import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import javafx.scene.control.ButtonType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -20,10 +19,9 @@ import org.springframework.stereotype.Controller;
 public class CarTableViewController extends TableViewController<Car> {
 
     private final CarRepository carRepository;
-    private final RentalRepository rentalRepository;
 
     @Override
-    public void postInitialize() {
+    public void updateEntities() {
         entities.setAll(carRepository.findAll());
     }
 
@@ -33,8 +31,7 @@ public class CarTableViewController extends TableViewController<Car> {
 
         boolean applyClicked = showCarEditView(car);
         if (applyClicked) {
-            carRepository.save(car);
-            entities.setAll(carRepository.findAll());
+            updateEntities();
         }
     }
 
@@ -43,11 +40,9 @@ public class CarTableViewController extends TableViewController<Car> {
         Car car = entityTable.getSelectionModel().getSelectedItem();
 
         if (car != null) {
-            // TODO save in edit view
             boolean applyClicked = showCarEditView(car);
             if (applyClicked) {
-                carRepository.save(car);
-                entities.setAll(carRepository.findAll());
+                updateEntities();
             }
         }
     }
@@ -61,7 +56,7 @@ public class CarTableViewController extends TableViewController<Car> {
                 if (buttonType == ButtonType.OK) {
                     try {
                         carRepository.delete(car);
-                        entities.setAll(carRepository.findAll());
+                        updateEntities();
                     } catch (DataIntegrityViolationException e) {
                         getDialogUtils().showDeleteErrorDialog();
                     }
@@ -76,12 +71,7 @@ public class CarTableViewController extends TableViewController<Car> {
         if (car != null) {
             Rental rental = new Rental();
             rental.setCar(car);
-
-            boolean applyClicked = showRentalEditView(rental);
-            if (applyClicked) {
-                rentalRepository.save(rental);
-                entities.setAll(carRepository.findAll());
-            }
+            showRentalEditView(rental);
         }
     }
 }

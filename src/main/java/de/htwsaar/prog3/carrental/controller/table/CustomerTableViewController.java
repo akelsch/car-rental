@@ -21,7 +21,7 @@ public class CustomerTableViewController extends TableViewController<Customer> {
     private final CustomerRepository customerRepository;
 
     @Override
-    public void postInitialize() {
+    public void updateEntities() {
         entities.setAll(customerRepository.findAll());
     }
 
@@ -31,8 +31,7 @@ public class CustomerTableViewController extends TableViewController<Customer> {
 
         boolean applyClicked = showCustomerEditView(customer);
         if (applyClicked) {
-            customerRepository.save(customer);
-            entities.setAll(customerRepository.findAll());
+            updateEntities();
         }
     }
 
@@ -43,8 +42,7 @@ public class CustomerTableViewController extends TableViewController<Customer> {
         if (customer != null) {
             boolean applyClicked = showCustomerEditView(customer);
             if (applyClicked) {
-                customerRepository.save(customer);
-                entities.setAll(customerRepository.findAll());
+                updateEntities();
             }
         }
     }
@@ -58,7 +56,7 @@ public class CustomerTableViewController extends TableViewController<Customer> {
                 if (buttonType == ButtonType.OK) {
                     try {
                         customerRepository.delete(customer);
-                        entities.setAll(customerRepository.findAll());
+                        updateEntities();
                     } catch (DataIntegrityViolationException e) {
                         getDialogUtils().showDeleteErrorDialog();
                     }

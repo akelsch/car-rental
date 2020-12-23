@@ -30,6 +30,11 @@ public class MessageUtils {
     public static final String DIALOG_ERROR_VALIDATION = "dialog.error.validation";
     public static final String RENTAL_LABEL_DURATION_DAYS = "rental.label.duration.days";
     public static final String RENTAL_LABEL_TOTAL_CURRENCY = "rental.label.total.currency";
+    public static final String VALIDATION_CAR_PARKING_LOT_DUPLICATE = "validation.car.parking-lot.duplicate";
+    public static final String VALIDATION_CAR_LICENSE_NUMBER_DUPLICATE = "validation.car.license-number.duplicate";
+    public static final String VALIDATION_CAR_VIN_DUPLICATE = "validation.car.vin.duplicate";
+    public static final String VALIDATION_CUSTOMER_ID_NUMBER_DUPLICATE = "validation.customer.id-number.duplicate";
+    public static final String VALIDATION_CUSTOMER_LICENSE_DUPLICATE = "validation.customer.license.duplicate";
 
     private final MessageSourceAccessor messageSourceAccessor;
 

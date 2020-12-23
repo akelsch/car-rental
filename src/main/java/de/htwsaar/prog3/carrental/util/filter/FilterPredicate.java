@@ -11,14 +11,14 @@ public class FilterPredicate {
 
     public static Predicate<Object> of(Operator operator, String right) {
         return left -> {
-            // TODO what about Long
-            if (left instanceof Integer) {
-                int num = (int) left;
+            if (left instanceof Number) {
+                long num1 = ((Number) left).longValue();
+                long num2 = Long.parseLong(right);
                 return switch (operator) {
-                    case EQUAL -> num == Integer.parseInt(right);
-                    case NOT_EQUAL -> num != Integer.parseInt(right);
-                    case GREATER_THAN -> num > Integer.parseInt(right);
-                    case LESS_THAN -> num < Integer.parseInt(right);
+                    case EQUAL -> num1 == num2;
+                    case NOT_EQUAL -> num1 != num2;
+                    case GREATER_THAN -> num1 > num2;
+                    case LESS_THAN -> num1 < num2;
                     default -> false;
                 };
             }

@@ -21,7 +21,7 @@ public class EmployeeTableViewController extends TableViewController<Employee> {
     private final EmployeeRepository employeeRepository;
 
     @Override
-    public void postInitialize() {
+    public void updateEntities() {
         entities.setAll(employeeRepository.findAll());
     }
 
@@ -31,8 +31,7 @@ public class EmployeeTableViewController extends TableViewController<Employee> {
 
         boolean applyClicked = showEmployeeEditView(employee);
         if (applyClicked) {
-            employeeRepository.save(employee);
-            entities.setAll(employeeRepository.findAll());
+            updateEntities();
         }
     }
 
@@ -43,8 +42,7 @@ public class EmployeeTableViewController extends TableViewController<Employee> {
         if (employee != null) {
             boolean applyClicked = showEmployeeEditView(employee);
             if (applyClicked) {
-                employeeRepository.save(employee);
-                entities.setAll(employeeRepository.findAll());
+                updateEntities();
             }
         }
     }
@@ -58,7 +56,7 @@ public class EmployeeTableViewController extends TableViewController<Employee> {
                 if (buttonType == ButtonType.OK) {
                     try {
                         employeeRepository.delete(employee);
-                        entities.setAll(employeeRepository.findAll());
+                        updateEntities();
                     } catch (DataIntegrityViolationException e) {
                         getDialogUtils().showDeleteErrorDialog();
                     }

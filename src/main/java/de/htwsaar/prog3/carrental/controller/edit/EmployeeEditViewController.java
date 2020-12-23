@@ -2,8 +2,10 @@ package de.htwsaar.prog3.carrental.controller.edit;
 
 import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Employee;
+import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -12,7 +14,10 @@ import org.springframework.stereotype.Controller;
  * @author Jens Thewes
  */
 @Controller
+@RequiredArgsConstructor
 public class EmployeeEditViewController extends EditViewController<Employee> {
+
+    private final EmployeeRepository employeeRepository;
 
     @FXML
     private TextField firstNameTextField;
@@ -35,6 +40,7 @@ public class EmployeeEditViewController extends EditViewController<Employee> {
         entity.setPosition(positionTextField.getText());
 
         if (isInputValid(entity)) {
+            employeeRepository.save(entity);
             closeModalWithApply();
         }
     }

@@ -6,6 +6,7 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.car.*;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.util.DateUtils;
+import de.htwsaar.prog3.carrental.util.MessageUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 
 import java.time.Year;
 import java.time.YearMonth;
+import java.util.Objects;
 
 /**
  * JavaFX controller for the "Edit Car" view.
@@ -112,9 +114,38 @@ public class CarEditViewController extends EditViewController<Car> {
         entity.setNextInspection(nextInspectionComboBox.getValue());
         entity.setDefects(defectsTextField.getText());
 
-        // TODO check unique constraints
-        if (isInputValid(entity)) {
+        if (isInputValid(entity) && areFieldsUnique(entity)) {
+            carRepository.save(entity);
             closeModalWithApply();
         }
+    }
+
+    private boolean areFieldsUnique(Car car) {
+        StringBuilder sb = new StringBuilder();
+
+        Long id = Objects.requireNonNullElse(car.getId(), 0L);
+
+        if (carRepository.existsByIdNotAndParkingLot(id, car.getParkingLot())) {
+            sb.append(getMessageUtils().getMessage(MessageUtils.VALIDATION_CAR_PARKING_LOT_DUPLICATE));
+            sb.append(System.lineSeparator());
+        }
+
+        if (carRepository.existsByIdNotAndLicenseNumber(id, car.getLicenseNumber())) {
+            sb.append(getMessageUtils().getMessage(MessageUtils.VALIDATION_CAR_LICENSE_NUMBER_DUPLICATE));
+            sb.append(System.lineSeparator());
+        }
+
+        if (carRepository.existsByIdNotAndVin(id, car.getVin())) {
+            sb.append(getMessageUtils().getMessage(MessageUtils.VALIDATION_CAR_VIN_DUPLICATE));
+            sb.append(System.lineSeparator());
+        }
+
+        if (sb.isEmpty()) {
+            return true;
+        }
+
+        getDialogUtils().showValidationErrorDialog(sb.toString());
+
+        return false;
     }
 }

@@ -5,6 +5,7 @@ import de.htwsaar.prog3.carrental.controller.EditViewController;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.DateUtils;
+import de.htwsaar.prog3.carrental.util.MessageUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * JavaFX controller for the "Edit Customer" view.
@@ -78,9 +80,33 @@ public class CustomerEditViewController extends EditViewController<Customer> {
         entity.setIdNumber(idNumberTextField.getText());
         entity.setDriverLicenseNumber(driverLicenseNumberTextField.getText());
 
-        // TODO check unique constraints
-        if (isInputValid(entity)) {
+        if (isInputValid(entity) && areFieldsUnique(entity)) {
+            customerRepository.save(entity);
             closeModalWithApply();
         }
+    }
+
+    private boolean areFieldsUnique(Customer customer) {
+        StringBuilder sb = new StringBuilder();
+
+        Long id = Objects.requireNonNullElse(customer.getId(), 0L);
+
+        if (customerRepository.existsByIdNotAndIdNumber(id, customer.getIdNumber())) {
+            sb.append(getMessageUtils().getMessage(MessageUtils.VALIDATION_CUSTOMER_ID_NUMBER_DUPLICATE));
+            sb.append(System.lineSeparator());
+        }
+
+        if (customerRepository.existsByIdNotAndDriverLicenseNumber(id, customer.getDriverLicenseNumber())) {
+            sb.append(getMessageUtils().getMessage(MessageUtils.VALIDATION_CUSTOMER_LICENSE_DUPLICATE));
+            sb.append(System.lineSeparator());
+        }
+
+        if (sb.isEmpty()) {
+            return true;
+        }
+
+        getDialogUtils().showValidationErrorDialog(sb.toString());
+
+        return false;
     }
 }
