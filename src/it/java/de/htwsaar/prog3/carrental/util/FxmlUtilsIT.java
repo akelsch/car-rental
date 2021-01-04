@@ -1,5 +1,6 @@
 package de.htwsaar.prog3.carrental.util;
 
+import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.util.WaitForAsyncUtils;
 
+import java.io.IOException;
 import java.util.concurrent.Future;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,6 +58,11 @@ class FxmlUtilsIT {
     }
 
     @Test
+    void loadViewWithException() {
+        assertThrows(IOException.class, () -> fxmlUtils.loadView("some-non-existing-fxml-file"));
+    }
+
+    @Test
     void showModalView(FxRobot robot) throws Exception {
         Future<Boolean> isApplyClicked = WaitForAsyncUtils.asyncFx(() ->
                 fxmlUtils.showModalView(new Stage(), FxmlUtils.FXML_EMPLOYEE_EDIT, new Employee()));
@@ -73,5 +80,11 @@ class FxmlUtilsIT {
         robot.clickOn(robot.lookup(".alert").queryAs(DialogPane.class).lookupButton(ButtonType.OK));
 
         assertFalse(isApplyClicked.get());
+    }
+
+    @Test
+    void showModalViewWithException() throws Exception {
+        Stage stage = FxToolkit.registerPrimaryStage();
+        assertThrows(IOException.class, () -> fxmlUtils.showModalView(stage, "some-non-existing-fxml-file", new Car()));
     }
 }

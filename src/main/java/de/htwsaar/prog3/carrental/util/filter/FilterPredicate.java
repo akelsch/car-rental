@@ -16,7 +16,7 @@ public class FilterPredicate {
                 long num2;
                 try {
                     num2 = Long.parseLong(right);
-                } catch(NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     return false;
                 }
                 return switch (operator) {
