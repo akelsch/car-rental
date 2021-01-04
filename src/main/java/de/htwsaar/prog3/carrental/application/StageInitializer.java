@@ -23,7 +23,7 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
     public void onApplicationEvent(StageReadyEvent stageReadyEvent) {
         this.primaryStage = stageReadyEvent.getStage();
         Parent root = fxmlUtils.loadView(FxmlUtils.FXML_CAR_TABLE);
-        Scene scene = new Scene(root, 1440, 810);
+        Scene scene = new Scene(root, 1440, 900);
         primaryStage.setScene(scene);
         primaryStage.setTitle(fxmlUtils.getStageTitle());
         primaryStage.show();

@@ -188,6 +188,7 @@
                                 <testfx.headless>true</testfx.headless>
                                 <prism.verbose>true</prism.verbose>
                                 <prism.order>sw</prism.order>
+                                <headless.geometry>1440x900-32</headless.geometry>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -199,6 +200,7 @@
                                 <testfx.headless>true</testfx.headless>
                                 <prism.verbose>true</prism.verbose>
                                 <prism.order>sw</prism.order>
+                                <headless.geometry>1440x900-32</headless.geometry>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>

@@ -72,8 +72,6 @@ class FxmlUtilsIT {
         robot.press(KeyCode.ESCAPE);
         robot.clickOn(robot.lookup(".alert").queryAs(DialogPane.class).lookupButton(ButtonType.OK));
 
-        FxToolkit.cleanupStages(); // workaround for headless mode (monocle) not exiting
-
         assertFalse(isApplyClicked.get());
     }
 }
