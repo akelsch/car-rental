@@ -13,7 +13,12 @@ public class FilterPredicate {
         return left -> {
             if (left instanceof Number) {
                 long num1 = ((Number) left).longValue();
-                long num2 = Long.parseLong(right);
+                long num2;
+                try {
+                    num2 = Long.parseLong(right);
+                } catch(NumberFormatException e) {
+                    return false;
+                }
                 return switch (operator) {
                     case EQUAL -> num1 == num2;
                     case NOT_EQUAL -> num1 != num2;

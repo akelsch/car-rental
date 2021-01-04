@@ -17,8 +17,8 @@ class FilterPredicateTest {
 
     @Test
     void testIntegerEqualFalse() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "4711");
-        assertFalse(predicate.test(4712));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "4712");
+        assertFalse(predicate.test(4711));
     }
 
     @Test
@@ -28,9 +28,21 @@ class FilterPredicateTest {
     }
 
     @Test
+    void testNegativeIntegerEqual() {
+        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "-4711");
+        assertTrue(predicate.test(-4711));
+    }
+
+    @Test
+    void testNonIntegerEqual() {
+        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "abc");
+        assertFalse(predicate.test(4711));
+    }
+
+    @Test
     void testIntegerNotEqual() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.NOT_EQUAL, "4711");
-        assertTrue(predicate.test(4712));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.NOT_EQUAL, "4712");
+        assertTrue(predicate.test(4711));
     }
 
     @Test
@@ -41,8 +53,8 @@ class FilterPredicateTest {
 
     @Test
     void testIntegerGreaterThan() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.GREATER_THAN, "4711");
-        assertTrue(predicate.test(4712));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.GREATER_THAN, "4710");
+        assertTrue(predicate.test(4711));
     }
 
     @Test
@@ -53,8 +65,8 @@ class FilterPredicateTest {
 
     @Test
     void testIntegerLessThan() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.LESS_THAN, "4711");
-        assertTrue(predicate.test(4710));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.LESS_THAN, "4712");
+        assertTrue(predicate.test(4711));
     }
 
     @Test
@@ -77,20 +89,20 @@ class FilterPredicateTest {
 
     @Test
     void testStringEqualFalse() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "Cayman S");
-        assertFalse(predicate.test("Cayman"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "Cayman");
+        assertFalse(predicate.test("Cayman S"));
     }
 
     @Test
     void testStringEqualIgnoringCase() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "Cayman S");
-        assertTrue(predicate.test("cayman s"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.EQUAL, "cayman s");
+        assertTrue(predicate.test("Cayman S"));
     }
 
     @Test
     void testStringNotEqual() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.NOT_EQUAL, "Cayman S");
-        assertTrue(predicate.test("Cayman"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.NOT_EQUAL, "Cayman");
+        assertTrue(predicate.test("Cayman S"));
     }
 
     @Test
@@ -101,31 +113,31 @@ class FilterPredicateTest {
 
     @Test
     void testStringNotEqualIgnoringCase() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.NOT_EQUAL, "Cayman S");
-        assertTrue(predicate.test("cayman"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.NOT_EQUAL, "cayman");
+        assertTrue(predicate.test("Cayman S"));
     }
 
     @Test
     void testStringContains() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.CONTAINS, "Cayman S");
-        assertFalse(predicate.test("Cayman"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.CONTAINS, "Cayman");
+        assertTrue(predicate.test("Cayman S"));
     }
 
     @Test
     void testStringContainsFalse() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.CONTAINS, "Cayman S");
-        assertFalse(predicate.test("Cayman GT"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.CONTAINS, "GTS");
+        assertFalse(predicate.test("Cayman S"));
     }
 
     @Test
     void testStringContainsIgnoringCase() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.CONTAINS, "Cayman S");
-        assertFalse(predicate.test("cayman"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.CONTAINS, "cayman");
+        assertTrue(predicate.test("Cayman S"));
     }
 
     @Test
     void testStringInvalidOperator() {
-        Predicate<Object> predicate = FilterPredicate.of(Operator.GREATER_THAN, "Cayman S");
-        assertFalse(predicate.test("Cayman"));
+        Predicate<Object> predicate = FilterPredicate.of(Operator.GREATER_THAN, "Cayman");
+        assertFalse(predicate.test("Cayman S"));
     }
 }
