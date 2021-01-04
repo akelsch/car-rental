@@ -21,48 +21,48 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class Customer extends BaseEntity {
 
-    @NotBlank
+    @NotBlank(message = "{validation.customer.first-name}")
     @Column(nullable = false)
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "{validation.customer.last-name}")
     @Column(nullable = false)
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "{validation.customer.street}")
     @Column(nullable = false)
     private String street;
 
-    @Digits(integer = 5, fraction = 0)
+    @Digits(integer = 5, fraction = 0, message = "{validation.customer.zipcode}")
     @Column(nullable = false)
     private int zipcode;
 
-    @NotBlank
+    @NotBlank(message = "{validation.customer.city}")
     @Column(nullable = false)
     private String city;
 
-    @NotBlank
-    @Pattern(regexp = "\\+\\p{Digit}+")
+    @NotBlank(message = "{validation.customer.phone.blank}")
+    @Pattern(regexp = "\\+\\p{Digit}+", message = "{validation.customer.phone.pattern}")
     @Column(nullable = false)
     private String phone;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "{validation.customer.email.blank}")
+    @Email(message = "{validation.customer.email.format}")
     @Column(nullable = false)
     private String email;
 
-    @NotNull
-    @MinAge(18)
+    @NotNull(message = "{validation.customer.date-of-birth.null}")
+    @MinAge(value = 18, message = "{validation.customer.date-of-birth.adult}")
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    @NotBlank
-    @Pattern(regexp = "\\p{Alnum}{9}")
+    @NotBlank(message = "{validation.customer.id-number.blank}")
+    @Pattern(regexp = "\\p{Alnum}{9}", message = "{validation.customer.id-number.pattern}")
     @Column(nullable = false, unique = true)
     private String idNumber;
 
-    @NotBlank
-    @Pattern(regexp = "\\p{Alnum}{11}")
+    @NotBlank(message = "{validation.customer.driver-license-number.blank}")
+    @Pattern(regexp = "\\p{Alnum}{11}", message = "{validation.customer.driver-license-number.pattern}")
     @Column(nullable = false, unique = true)
     private String driverLicenseNumber;
 

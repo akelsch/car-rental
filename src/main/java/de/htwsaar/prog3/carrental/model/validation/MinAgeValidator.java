@@ -15,6 +15,6 @@ public class MinAgeValidator implements ConstraintValidator<MinAge, LocalDate> {
 
     @Override
     public boolean isValid(LocalDate localDate, ConstraintValidatorContext constraintValidatorContext) {
-        return localDate.isBefore(LocalDate.now().minusYears(minimalAge));
+        return localDate != null && localDate.isBefore(LocalDate.now().minusYears(minimalAge));
     }
 }

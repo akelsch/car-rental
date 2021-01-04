@@ -19,15 +19,15 @@ import javax.validation.constraints.NotBlank;
 @EqualsAndHashCode(callSuper = true)
 public class Employee extends BaseEntity {
 
-    @NotBlank
+    @NotBlank(message = "{validation.employee.first-name}")
     @Column(nullable = false)
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "{validation.employee.last-name}")
     @Column(nullable = false)
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "{validation.employee.position}")
     @Column(nullable = false)
     private String position;
 

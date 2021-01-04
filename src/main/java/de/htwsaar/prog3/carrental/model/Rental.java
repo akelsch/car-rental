@@ -28,32 +28,32 @@ import java.time.LocalDate;
 @ValidRental(groups = AfterDefault.class)
 public class Rental extends BaseEntity {
 
-    @NotNull
-    @FutureOrPresent
+    @NotNull(message = "{validation.rental.start.null}")
+    @FutureOrPresent(message = "{validation.rental.start.future}")
     @Column(nullable = false)
     private LocalDate start;
 
-    @NotNull
-    @Future
+    @NotNull(message = "{validation.rental.end.null}")
+    @Future(message = "{validation.rental.end.future}")
     @Column(nullable = false)
     private LocalDate end;
 
-    @NotNull
+    @NotNull(message = "{validation.rental.car}")
     @ManyToOne
     @JoinColumn(name = "car_fk", nullable = false)
     private Car car;
 
-    @NotNull
+    @NotNull(message = "{validation.rental.customer}")
     @ManyToOne
     @JoinColumn(name = "customer_fk", nullable = false)
     private Customer customer;
 
-    @NotNull
+    @NotNull(message = "{validation.rental.employee}")
     @ManyToOne
     @JoinColumn(name = "employee_fk", nullable = false)
     private Employee employee;
 
-    @PositiveOrZero
+    @PositiveOrZero(message = "{validation.rental.extra-costs}")
     @Column
     private int extraCosts;
 

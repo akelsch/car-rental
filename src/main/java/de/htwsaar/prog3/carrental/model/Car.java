@@ -24,76 +24,76 @@ import java.time.YearMonth;
 @EqualsAndHashCode(callSuper = true)
 public class Car extends BaseEntity {
 
-    @NotNull
-    @PastOrPresent
+    @NotNull(message = "{validation.car.year.null}")
+    @PastOrPresent(message = "{validation.car.year.past}")
     @Column(nullable = false)
     private Year year;
 
-    @NotBlank
+    @NotBlank(message = "{validation.car.brand}")
     @Column(nullable = false)
     private String brand;
 
-    @NotBlank
+    @NotBlank(message = "{validation.car.model}")
     @Column(nullable = false)
     private String model;
 
-    @NotNull
+    @NotNull(message = "{validation.car.type}")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Type type;
 
-    @NotNull
+    @NotNull(message = "{validation.car.color}")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Color color;
 
-    @Positive
+    @Positive(message = "{validation.car.daily-rate}")
     @Column(nullable = false)
     private int dailyRate;
 
-    @Positive
+    @Positive(message = "{validation.car.doors}")
     @Column(nullable = false)
     private int doors;
 
-    @NotNull
+    @NotNull(message = "{validation.car.transmission}")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Transmission transmission;
 
-    @NotNull
+    @NotNull(message = "{validation.car.fuel}")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Fuel fuel;
 
-    @Positive
+    @Positive(message = "{validation.car.horsepower}")
     @Column(nullable = false)
     private int horsepower;
 
-    @Positive
+    @Positive(message = "{validation.car.mileage}")
     @Column(nullable = false)
     private int mileage;
 
-    @NotNull
+    @NotNull(message = "{validation.car.tires}")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Tire tires;
 
-    @NotBlank
+    @NotBlank(message = "{validation.car.parking-lot}")
     @Column(nullable = false, unique = true)
     private String parkingLot;
 
-    @NotBlank
-    @Pattern(regexp = "\\p{Alpha}{1,3} \\p{Alpha}{1,2} \\p{Digit}{1,4}")
+    @NotBlank(message = "{validation.car.license-number.blank}")
+    @Pattern(regexp = "\\p{Alpha}{1,3} \\p{Alpha}{1,2} \\p{Digit}{1,4}", message = "{validation.car.license-number.pattern}")
     @Column(nullable = false, unique = true)
     private String licenseNumber;
 
-    @NotBlank
-    @Pattern(regexp = "\\p{Alnum}{17}")
+    @NotBlank(message = "{validation.car.vin.blank}")
+    @Pattern(regexp = "\\p{Alnum}{17}", message = "{validation.car.vin.pattern}")
     @Column(nullable = false, unique = true)
     private String vin;
 
-    @NotNull
-    @FutureOrPresent
+    @NotNull(message = "{validation.car.next-inspection.null}")
+    @FutureOrPresent(message = "{validation.car.next-inspection.future}")
     @Column(nullable = false)
     private YearMonth nextInspection;
 

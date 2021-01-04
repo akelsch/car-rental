@@ -76,9 +76,6 @@ public abstract class EditViewController<T extends BaseEntity> extends BaseContr
 
         StringBuilder sb = new StringBuilder();
         for (ConstraintViolation<T> violation : violations) {
-            // TODO use custom i18n messages
-            sb.append(violation.getPropertyPath());
-            sb.append(" ");
             sb.append(violation.getMessage());
             sb.append(System.lineSeparator());
         }

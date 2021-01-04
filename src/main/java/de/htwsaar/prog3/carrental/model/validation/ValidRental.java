@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = {StartBeforeEndValidator.class})
 public @interface ValidRental {
 
-    String message() default "{de.htwsaar.prog3.carrental.model.validation.constraints.rental.message}";
+    String message() default "de.htwsaar.prog3.carrental.model.validation.ValidRental";
 
     Class<?>[] groups() default {};
 

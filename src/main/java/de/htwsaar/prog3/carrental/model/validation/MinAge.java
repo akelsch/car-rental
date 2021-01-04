@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = {MinAgeValidator.class})
 public @interface MinAge {
 
-    String message() default "{de.htwsaar.prog3.carrental.model.validation.constraints.minage.message}";
+    String message() default "de.htwsaar.prog3.carrental.model.validation.MinAge";
 
     Class<?>[] groups() default {};
 

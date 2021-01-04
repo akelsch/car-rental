@@ -34,7 +34,7 @@ public class MessageUtils {
     public static final String VALIDATION_CAR_LICENSE_NUMBER_DUPLICATE = "validation.car.license-number.duplicate";
     public static final String VALIDATION_CAR_VIN_DUPLICATE = "validation.car.vin.duplicate";
     public static final String VALIDATION_CUSTOMER_ID_NUMBER_DUPLICATE = "validation.customer.id-number.duplicate";
-    public static final String VALIDATION_CUSTOMER_LICENSE_DUPLICATE = "validation.customer.license.duplicate";
+    public static final String VALIDATION_CUSTOMER_LICENSE_DUPLICATE = "validation.customer.driver-license-number.duplicate";
 
     private final MessageSourceAccessor messageSourceAccessor;
 
