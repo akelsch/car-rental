@@ -3,7 +3,11 @@ package de.htwsaar.prog3.carrental.util;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
@@ -65,15 +69,11 @@ class FxmlUtilsIT {
         assertFalse(stage.isResizable());
         assertEquals(messageUtils.getMessage("employee.label.edit-title"), label.getText());
 
-        Button cancelButton = robot.from(employeeEditView.getBottom()).queryAs(ButtonBar.class)
-                .getButtons().stream()
-                .map(Button.class::cast)
-                .filter(b -> b.getText().equals(messageUtils.getMessage("button.cancel")))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Could not find cancel button"));
-
-        robot.clickOn(cancelButton);
+        robot.press(KeyCode.ESCAPE);
         robot.clickOn(robot.lookup(".alert").queryAs(DialogPane.class).lookupButton(ButtonType.OK));
+
+        FxToolkit.cleanupStages(); // workaround for headless mode (monocle) not exiting
+
         assertFalse(isApplyClicked.get());
     }
 }
