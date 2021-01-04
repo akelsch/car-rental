@@ -3,6 +3,7 @@ package de.htwsaar.prog3.carrental.controller;
 import de.htwsaar.prog3.carrental.model.*;
 import de.htwsaar.prog3.carrental.util.filter.FilterPredicate;
 import de.htwsaar.prog3.carrental.util.filter.Operator;
+import de.htwsaar.prog3.carrental.util.fx.LabelableStringConverter;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -55,6 +56,12 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
                 .map(TableColumnBase::getText)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableArrayList)));
         searchOperatorComboBox.setItems(FXCollections.observableArrayList(Operator.class.getEnumConstants()));
+        searchOperatorComboBox.setConverter(new LabelableStringConverter<>(getMessageUtils()));
+
+        postInitialize();
+    }
+
+    public void postInitialize() {
     }
 
     public abstract void updateEntities();

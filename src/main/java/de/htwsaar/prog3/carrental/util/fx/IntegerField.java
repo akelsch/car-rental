@@ -29,6 +29,7 @@ public class IntegerField extends TextField {
         return getIntegerTextFormatter().valueProperty();
     }
 
+    @SuppressWarnings("unchecked")
     private TextFormatter<Integer> getIntegerTextFormatter() {
         return (TextFormatter<Integer>) getTextFormatter();
     }

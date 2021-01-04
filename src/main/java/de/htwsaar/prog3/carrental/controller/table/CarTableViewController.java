@@ -4,10 +4,16 @@ import de.htwsaar.prog3.carrental.controller.TableViewController;
 import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.repository.CarRepository;
+import de.htwsaar.prog3.carrental.util.fx.Labelable;
+import de.htwsaar.prog3.carrental.util.fx.LabelableCellFactory;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * JavaFX controller for the "Car Table" view (main).
@@ -19,6 +25,17 @@ import org.springframework.stereotype.Controller;
 public class CarTableViewController extends TableViewController<Car> {
 
     private final CarRepository carRepository;
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void postInitialize() {
+        List<TableColumn<Car, Labelable>> enumColumns = entityTable.getColumns().stream()
+                .filter(c -> c.getStyleClass().contains("labelable-enum"))
+                .map(c -> (TableColumn<Car, Labelable>) c)
+                .collect(Collectors.toList());
+
+        enumColumns.forEach(c -> c.setCellFactory(new LabelableCellFactory<>(getMessageUtils())));
+    }
 
     @Override
     public void updateEntities() {

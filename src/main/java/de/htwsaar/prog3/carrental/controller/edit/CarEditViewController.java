@@ -7,6 +7,7 @@ import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.util.DateUtils;
 import de.htwsaar.prog3.carrental.util.MessageUtils;
 import de.htwsaar.prog3.carrental.util.fx.IntegerField;
+import de.htwsaar.prog3.carrental.util.fx.LabelableStringConverter;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -72,6 +73,12 @@ public class CarEditViewController extends EditViewController<Car> {
         fuelComboBox.setItems(FXCollections.observableArrayList(Fuel.class.getEnumConstants()));
         tiresComboBox.setItems(FXCollections.observableArrayList(Tire.class.getEnumConstants()));
         nextInspectionComboBox.setItems(FXCollections.observableArrayList(DateUtils.createNextInspectionDates()));
+
+        typeComboBox.setConverter(new LabelableStringConverter<>(getMessageUtils()));
+        colorComboBox.setConverter(new LabelableStringConverter<>(getMessageUtils()));
+        transmissionComboBox.setConverter(new LabelableStringConverter<>(getMessageUtils()));
+        fuelComboBox.setConverter(new LabelableStringConverter<>(getMessageUtils()));
+        tiresComboBox.setConverter(new LabelableStringConverter<>(getMessageUtils()));
 
         if (entity.getYear() != null) {
             yearIntegerField.setValue(entity.getYear().getValue());

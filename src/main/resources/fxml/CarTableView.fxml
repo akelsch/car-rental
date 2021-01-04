@@ -67,12 +67,12 @@
                         <PropertyValueFactory property="model"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.type">
+                <TableColumn text="%car.label.type" styleClass="labelable-enum">
                     <cellValueFactory>
                         <PropertyValueFactory property="type"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.color">
+                <TableColumn text="%car.label.color" styleClass="labelable-enum">
                     <cellValueFactory>
                         <PropertyValueFactory property="color"/>
                     </cellValueFactory>
@@ -87,12 +87,12 @@
                         <PropertyValueFactory property="doors"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.transmission">
+                <TableColumn text="%car.label.transmission" styleClass="labelable-enum">
                     <cellValueFactory>
                         <PropertyValueFactory property="transmission"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.fuel">
+                <TableColumn text="%car.label.fuel" styleClass="labelable-enum">
                     <cellValueFactory>
                         <PropertyValueFactory property="fuel"/>
                     </cellValueFactory>
@@ -107,7 +107,7 @@
                         <PropertyValueFactory property="mileage"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="%car.label.tires">
+                <TableColumn text="%car.label.tires" styleClass="labelable-enum">
                     <cellValueFactory>
                         <PropertyValueFactory property="tires"/>
                     </cellValueFactory>
