@@ -59,4 +59,10 @@ public class Rental extends BaseEntity {
 
     @Column
     private String note;
+
+    public boolean isActive() {
+        LocalDate now = LocalDate.now();
+        return this.getStart().isBefore(now.plusDays(1))
+                && this.getEnd().isAfter(now);
+    }
 }

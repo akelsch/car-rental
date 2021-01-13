@@ -50,8 +50,12 @@ public class RentalTableViewController extends TableViewController<Rental> {
         if (rental != null) {
             getDialogUtils().showDeleteConfirmationDialog().ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
-                    rentalRepository.delete(rental);
-                    updateEntities();
+                    if (rental.isActive()) {
+                        getDialogUtils().showDeleteRentalErrorDialog();
+                    } else {
+                        rentalRepository.delete(rental);
+                        updateEntities();
+                    }
                 }
             });
         }

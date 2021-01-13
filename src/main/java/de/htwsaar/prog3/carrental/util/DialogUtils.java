@@ -64,6 +64,13 @@ public class DialogUtils {
         errorDialog.show();
     }
 
+    public void showDeleteRentalErrorDialog() {
+        String message = messageUtils.getMessage(MessageUtils.DIALOG_ERROR_DELETE);
+        String details = messageUtils.getMessage(MessageUtils.DIALOG_ERROR_DELETE_RENTAL);
+        Alert errorDialog = DialogUtils.createErrorDialog(message, details);
+        errorDialog.show();
+    }
+
     public void showValidationErrorDialog(String details) {
         String message = messageUtils.getMessage(MessageUtils.DIALOG_ERROR_VALIDATION);
         Alert errorDialog = DialogUtils.createErrorDialog(message, details);
