@@ -41,9 +41,11 @@
                 <TextField fx:id="dailyRateTextField" GridPane.rowIndex="3" GridPane.columnIndex="1" disable="true"/>
                 <!-- Row 3 -->
                 <Label text="%rental.label.start" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <DatePicker fx:id="startDatePicker" GridPane.rowIndex="5" GridPane.columnIndex="0" onAction="#handleDateAndPriceChanges"/>
+                <DatePicker fx:id="startDatePicker" GridPane.rowIndex="5" GridPane.columnIndex="0"
+                            onAction="#handleDateAndPriceChanges" editable="false"/>
                 <Label text="%rental.label.end" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-                <DatePicker fx:id="endDatePicker" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#handleDateAndPriceChanges"/>
+                <DatePicker fx:id="endDatePicker" GridPane.rowIndex="5" GridPane.columnIndex="1"
+                            onAction="#handleDateAndPriceChanges" editable="false"/>
                 <!-- Row 4 -->
                 <Label text="%rental.label.duration" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
                 <TextField fx:id="durationTextField" GridPane.rowIndex="7" GridPane.columnIndex="0" editable="false"/>

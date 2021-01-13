@@ -5,6 +5,7 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
+import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * JavaFX controller for the "Edit Rental" view.
@@ -35,6 +37,7 @@ public class RentalEditViewController extends EditViewController<Rental> {
     private final RentalRepository rentalRepository;
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;
+    private final CarRepository carRepository;
 
     @FXML
     private ComboBox<Customer> customerComboBox;
@@ -57,8 +60,7 @@ public class RentalEditViewController extends EditViewController<Rental> {
     @FXML
     private TextArea noteTextArea;
 
-    private final Callback<DatePicker, DateCell> beforeTodayDayCellFactory =
-            DateUtils.createDayCellFactory(date -> date.isBefore(LocalDate.now()));
+    private Predicate<LocalDate> startDatePickerPredicate = date -> date.isBefore(LocalDate.now());
 
     private final Callback<DatePicker, DateCell> afterStartDayCellFactory =
             DateUtils.createDayCellFactory(date -> date.isBefore(startDatePicker.getValue().plusDays(1)));
@@ -84,6 +86,15 @@ public class RentalEditViewController extends EditViewController<Rental> {
         if (car != null) {
             carTextField.setText(car.toString());
             dailyRateTextField.setText(Integer.toString(car.getDailyRate()));
+            startDatePickerPredicate = startDatePickerPredicate.or(date -> {
+                for (Rental rental : rentalRepository.findAllByCarId(car.getId())) {
+                    if (date.isAfter(rental.getStart().minusDays(1))
+                            && date.isBefore(rental.getEnd().plusDays(1))) {
+                        return true;
+                    }
+                }
+                return false;
+            });
         }
 
         // Rental
@@ -130,7 +141,7 @@ public class RentalEditViewController extends EditViewController<Rental> {
     }
 
     private void initDatePickers() {
-        startDatePicker.setDayCellFactory(beforeTodayDayCellFactory);
+        startDatePicker.setDayCellFactory(DateUtils.createDayCellFactory(startDatePickerPredicate));
         endDatePicker.setDayCellFactory(afterStartDayCellFactory);
 
         startDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
