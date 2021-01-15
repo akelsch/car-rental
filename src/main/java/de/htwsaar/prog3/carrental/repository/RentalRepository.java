@@ -10,4 +10,6 @@ import java.util.List;
 public interface RentalRepository extends JpaRepository<Rental, Long> {
 
     List<Rental> findAllByCarId(Long carId);
+
+    Rental findFirstByCarIdOrderByStart(Long carId);
 }

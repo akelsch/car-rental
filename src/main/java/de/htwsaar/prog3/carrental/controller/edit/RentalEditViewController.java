@@ -5,7 +5,6 @@ import de.htwsaar.prog3.carrental.model.Car;
 import de.htwsaar.prog3.carrental.model.Customer;
 import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.repository.CarRepository;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
@@ -14,8 +13,10 @@ import de.htwsaar.prog3.carrental.util.MessageUtils;
 import de.htwsaar.prog3.carrental.util.fx.IntegerField;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.util.Callback;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -37,7 +38,6 @@ public class RentalEditViewController extends EditViewController<Rental> {
     private final RentalRepository rentalRepository;
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;
-    private final CarRepository carRepository;
 
     @FXML
     private ComboBox<Customer> customerComboBox;
@@ -61,9 +61,7 @@ public class RentalEditViewController extends EditViewController<Rental> {
     private TextArea noteTextArea;
 
     private Predicate<LocalDate> startDatePickerPredicate = date -> date.isBefore(LocalDate.now());
-
-    private final Callback<DatePicker, DateCell> afterStartDayCellFactory =
-            DateUtils.createDayCellFactory(date -> date.isBefore(startDatePicker.getValue().plusDays(1)));
+    private Predicate<LocalDate> endDatePickerPredicate = date -> date.isBefore(startDatePicker.getValue().plusDays(1));
 
     @Override
     public void postInitialize() {
@@ -86,15 +84,8 @@ public class RentalEditViewController extends EditViewController<Rental> {
         if (car != null) {
             carTextField.setText(car.toString());
             dailyRateTextField.setText(Integer.toString(car.getDailyRate()));
-            startDatePickerPredicate = startDatePickerPredicate.or(date -> {
-                for (Rental rental : rentalRepository.findAllByCarId(car.getId())) {
-                    if (date.isAfter(rental.getStart().minusDays(1))
-                            && date.isBefore(rental.getEnd().plusDays(1))) {
-                        return true;
-                    }
-                }
-                return false;
-            });
+            startDatePickerPredicate = startDatePickerPredicate.or(excludeRentedDurations(car));
+            endDatePickerPredicate = endDatePickerPredicate.or(excludeFirstRentedDurationAfterStart(car));
         }
 
         // Rental
@@ -140,9 +131,32 @@ public class RentalEditViewController extends EditViewController<Rental> {
         }
     }
 
+    private Predicate<LocalDate> excludeRentedDurations(Car car) {
+        return date -> {
+            for (Rental rental : rentalRepository.findAllByCarId(car.getId())) {
+                if (date.isAfter(rental.getStart().minusDays(1))
+                        && date.isBefore(rental.getEnd().plusDays(1))) {
+                    return true;
+                }
+            }
+            return false;
+        };
+    }
+
+    private Predicate<LocalDate> excludeFirstRentedDurationAfterStart(Car car) {
+        return date -> {
+            Rental earliestRental = rentalRepository.findFirstByCarIdOrderByStart(car.getId());
+            if (earliestRental != null) {
+                return date.isAfter(earliestRental.getStart().minusDays(1))
+                        && earliestRental.getStart().isAfter(startDatePicker.getValue());
+            }
+            return false;
+        };
+    }
+
     private void initDatePickers() {
         startDatePicker.setDayCellFactory(DateUtils.createDayCellFactory(startDatePickerPredicate));
-        endDatePicker.setDayCellFactory(afterStartDayCellFactory);
+        endDatePicker.setDayCellFactory(DateUtils.createDayCellFactory(endDatePickerPredicate));
 
         startDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
             LocalDate endDate = endDatePicker.getValue();
