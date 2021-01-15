@@ -13,14 +13,17 @@ import de.htwsaar.prog3.carrental.util.MessageUtils;
 import de.htwsaar.prog3.carrental.util.fx.IntegerField;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.util.Callback;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * JavaFX controller for the "Edit Rental" view.
@@ -57,11 +60,8 @@ public class RentalEditViewController extends EditViewController<Rental> {
     @FXML
     private TextArea noteTextArea;
 
-    private final Callback<DatePicker, DateCell> beforeTodayDayCellFactory =
-            DateUtils.createDayCellFactory(date -> date.isBefore(LocalDate.now()));
-
-    private final Callback<DatePicker, DateCell> afterStartDayCellFactory =
-            DateUtils.createDayCellFactory(date -> date.isBefore(startDatePicker.getValue().plusDays(1)));
+    private Predicate<LocalDate> startDatePickerPredicate = date -> date.isBefore(LocalDate.now());
+    private Predicate<LocalDate> endDatePickerPredicate = date -> date.isBefore(startDatePicker.getValue().plusDays(1));
 
     @Override
     public void postInitialize() {
@@ -84,6 +84,8 @@ public class RentalEditViewController extends EditViewController<Rental> {
         if (car != null) {
             carTextField.setText(car.toString());
             dailyRateTextField.setText(Integer.toString(car.getDailyRate()));
+            startDatePickerPredicate = startDatePickerPredicate.or(excludeRentedDurations(car));
+            endDatePickerPredicate = endDatePickerPredicate.or(excludeFirstRentedDurationAfterStart(car));
         }
 
         // Rental
@@ -129,9 +131,32 @@ public class RentalEditViewController extends EditViewController<Rental> {
         }
     }
 
+    private Predicate<LocalDate> excludeRentedDurations(Car car) {
+        return date -> {
+            for (Rental rental : rentalRepository.findAllByCarId(car.getId())) {
+                if (date.isAfter(rental.getStart().minusDays(1))
+                        && date.isBefore(rental.getEnd().plusDays(1))) {
+                    return true;
+                }
+            }
+            return false;
+        };
+    }
+
+    private Predicate<LocalDate> excludeFirstRentedDurationAfterStart(Car car) {
+        return date -> {
+            Rental earliestRental = rentalRepository.findFirstByCarIdOrderByStart(car.getId());
+            if (earliestRental != null) {
+                return date.isAfter(earliestRental.getStart().minusDays(1))
+                        && earliestRental.getStart().isAfter(startDatePicker.getValue());
+            }
+            return false;
+        };
+    }
+
     private void initDatePickers() {
-        startDatePicker.setDayCellFactory(beforeTodayDayCellFactory);
-        endDatePicker.setDayCellFactory(afterStartDayCellFactory);
+        startDatePicker.setDayCellFactory(DateUtils.createDayCellFactory(startDatePickerPredicate));
+        endDatePicker.setDayCellFactory(DateUtils.createDayCellFactory(endDatePickerPredicate));
 
         startDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
             LocalDate endDate = endDatePicker.getValue();
