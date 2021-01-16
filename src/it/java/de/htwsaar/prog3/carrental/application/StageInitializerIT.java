@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +19,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.Stop;
 import org.testfx.util.WaitForAsyncUtils;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -28,8 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(ApplicationExtension.class)
 class StageInitializerIT {
 
-    private TestUiApplication application;
-
     @Autowired
     private ConfigurableApplicationContext applicationContext;
 
@@ -38,14 +36,11 @@ class StageInitializerIT {
 
     @BeforeEach
     void setUp() throws Exception {
-        if (application == null) {
-            application = new TestUiApplication(applicationContext);
-            FxToolkit.setupApplication(() -> application);
-        }
+        FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
     }
 
-    @Stop
-    void stop() throws Exception {
+    @AfterEach
+    void tearDown() throws Exception {
         FxToolkit.cleanupStages();
     }
 

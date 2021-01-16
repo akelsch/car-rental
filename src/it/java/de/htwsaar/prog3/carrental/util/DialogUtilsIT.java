@@ -1,6 +1,7 @@
 package de.htwsaar.prog3.carrental.util;
 
 import javafx.scene.control.DialogPane;
+import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 import org.testfx.framework.junit5.Stop;
 import org.testfx.util.WaitForAsyncUtils;
 
@@ -23,6 +25,11 @@ class DialogUtilsIT {
 
     @Autowired
     private MessageUtils messageUtils;
+
+    @Start
+    void start(Stage stage) {
+        // we do not need to show the stage as we test dialog pop-ups only
+    }
 
     @Stop
     void stop() throws Exception {

@@ -1,7 +1,9 @@
 package de.htwsaar.prog3.carrental;
 
 import javafx.stage.Stage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +16,6 @@ import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @ExtendWith(ApplicationExtension.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CarRentalUiApplicationIT {
 
     private TestUiApplication application;
@@ -24,21 +25,22 @@ class CarRentalUiApplicationIT {
 
     @BeforeEach
     void setUp() throws Exception {
-        if (application == null) {
-            application = new TestUiApplication(applicationContext);
-            FxToolkit.setupApplication(() -> application);
-        }
+        application = new TestUiApplication(applicationContext);
+        FxToolkit.setupApplication(() -> application);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        FxToolkit.cleanupStages();
     }
 
     @Test
-    @Order(1)
     void testStart() throws Exception {
         Stage primaryStage = FxToolkit.registerPrimaryStage();
         assertNotNull(primaryStage);
     }
 
     @Test
-    @Order(2)
     void testStop() {
         application.stop();
         verify(application.getTestApplicationContext()).close();

@@ -8,6 +8,7 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +18,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.Stop;
 import org.testfx.util.WaitForAsyncUtils;
 
 import java.time.LocalDate;
@@ -28,8 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(ApplicationExtension.class)
 class RentalTableViewControllerIT {
 
-    private TestUiApplication application;
-
     @Autowired
     private ConfigurableApplicationContext applicationContext;
 
@@ -38,17 +36,13 @@ class RentalTableViewControllerIT {
 
     @BeforeEach
     void setUp() throws Exception {
-        if (application == null) {
-            application = new TestUiApplication(applicationContext);
-            FxToolkit.setupApplication(() -> application);
-        }
-
+        FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
         stageInitializer.switchToRentalTableView();
         WaitForAsyncUtils.waitForFxEvents();
     }
 
-    @Stop
-    void stop() throws Exception {
+    @AfterEach
+    void tearDown() throws Exception {
         FxToolkit.cleanupStages();
     }
 
