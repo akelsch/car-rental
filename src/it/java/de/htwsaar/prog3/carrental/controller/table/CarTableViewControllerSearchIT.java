@@ -86,7 +86,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getId().toString()));
+        robot.write(knownCar.getId().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -113,7 +113,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getYear().toString()));
+        robot.write(knownCar.getYear().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -139,7 +139,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getBrand()));
+        robot.write(knownCar.getBrand());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -165,7 +165,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getModel()));
+        robot.write(knownCar.getModel());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -191,7 +191,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getType().toString()));
+        robot.write(knownCar.getType().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -217,7 +217,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getColor().toString()));
+        robot.write(knownCar.getColor().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -243,7 +243,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getDailyRate())));
+        robot.write(String.valueOf(knownCar.getDailyRate()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -269,7 +269,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getDoors())));
+        robot.write(String.valueOf(knownCar.getDoors()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -295,7 +295,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getTransmission().toString()));
+        robot.write(knownCar.getTransmission().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -321,7 +321,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getFuel().toString()));
+        robot.write(knownCar.getFuel().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -347,7 +347,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getHorsepower())));
+        robot.write(String.valueOf(knownCar.getHorsepower()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -373,7 +373,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getMileage())));
+        robot.write(String.valueOf(knownCar.getMileage()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -399,7 +399,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getTires().toString()));
+        robot.write(knownCar.getTires().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -425,7 +425,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getParkingLot()));
+        robot.write(knownCar.getParkingLot());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -452,7 +452,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getLicenseNumber()));
+        robot.write(knownCar.getLicenseNumber());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -479,7 +479,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getVin()));
+        robot.write(knownCar.getVin());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -506,7 +506,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getNextInspection().toString()));
+        robot.write(knownCar.getNextInspection().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -537,7 +537,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getId().toString()));
+        robot.write(knownCar.getId().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -564,7 +564,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getYear().toString()));
+        robot.write(knownCar.getYear().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -590,7 +590,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getBrand()));
+        robot.write(knownCar.getBrand());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -616,7 +616,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getModel()));
+        robot.write(knownCar.getModel());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -642,7 +642,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getType().toString()));
+        robot.write(knownCar.getType().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -668,7 +668,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getColor().toString()));
+        robot.write(knownCar.getColor().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -694,7 +694,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getDailyRate())));
+        robot.write(String.valueOf(knownCar.getDailyRate()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -720,7 +720,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getDoors())));
+        robot.write(String.valueOf(knownCar.getDoors()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -746,7 +746,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getTransmission().toString()));
+        robot.write(knownCar.getTransmission().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -772,7 +772,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getFuel().toString()));
+        robot.write(knownCar.getFuel().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -798,7 +798,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getHorsepower())));
+        robot.write(String.valueOf(knownCar.getHorsepower()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -824,7 +824,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(String.valueOf(knownCar.getMileage())));
+        robot.write(String.valueOf(knownCar.getMileage()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -850,7 +850,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getTires().toString()));
+        robot.write(knownCar.getTires().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -876,7 +876,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getParkingLot()));
+        robot.write(knownCar.getParkingLot());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -903,7 +903,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getLicenseNumber()));
+        robot.write(knownCar.getLicenseNumber());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -930,7 +930,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getVin()));
+        robot.write(knownCar.getVin());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -957,7 +957,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(TestUtils.toKeyCode(knownCar.getNextInspection().toString()));
+        robot.write(knownCar.getNextInspection().toString());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
