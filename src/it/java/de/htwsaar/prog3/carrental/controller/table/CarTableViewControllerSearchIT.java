@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -453,7 +452,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(KeyCode.S, KeyCode.B, KeyCode.SPACE, KeyCode.X, KeyCode.Y, KeyCode.SPACE, KeyCode.DIGIT1, KeyCode.DIGIT2, KeyCode.DIGIT3); // Keycode can't read raw space symbol :(
+        robot.type(TestUtils.toKeyCode(knownCar.getLicenseNumber()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -507,7 +506,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(KeyCode.DIGIT2, KeyCode.DIGIT0, KeyCode.DIGIT2, KeyCode.DIGIT2, KeyCode.MINUS, KeyCode.DIGIT0, KeyCode.DIGIT3); // Keycode can't read raw minus symbol :(
+        robot.type(TestUtils.toKeyCode(knownCar.getNextInspection().toString()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -904,7 +903,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(KeyCode.S, KeyCode.B, KeyCode.SPACE, KeyCode.X, KeyCode.Y, KeyCode.SPACE, KeyCode.DIGIT1, KeyCode.DIGIT2, KeyCode.DIGIT3); // Keycode can't read raw space symbol :(
+        robot.type(TestUtils.toKeyCode(knownCar.getLicenseNumber()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -958,7 +957,7 @@ class CarTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.type(KeyCode.DIGIT2, KeyCode.DIGIT0, KeyCode.DIGIT2, KeyCode.DIGIT2, KeyCode.MINUS, KeyCode.DIGIT0, KeyCode.DIGIT3); // Keycode can't read raw minus symbol :(
+        robot.type(TestUtils.toKeyCode(knownCar.getNextInspection().toString()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
