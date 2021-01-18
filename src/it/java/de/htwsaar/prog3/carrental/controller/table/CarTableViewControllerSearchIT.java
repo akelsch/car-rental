@@ -123,7 +123,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -145,7 +145,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -167,7 +167,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -189,7 +189,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -211,7 +211,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -233,7 +233,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -255,7 +255,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -277,7 +277,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -299,7 +299,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -321,7 +321,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -343,7 +343,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -365,7 +365,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -387,7 +387,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -410,7 +410,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -433,7 +433,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -456,7 +456,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(16)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(16));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -478,7 +478,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
@@ -500,7 +500,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -523,7 +523,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -546,7 +546,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -569,7 +569,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -592,7 +592,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -615,7 +615,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -638,7 +638,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -661,7 +661,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -684,7 +684,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -707,7 +707,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -730,7 +730,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
@@ -775,7 +775,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -797,7 +797,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -819,7 +819,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -841,7 +841,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -863,7 +863,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -885,7 +885,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -907,7 +907,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -929,7 +929,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -951,7 +951,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -973,7 +973,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -995,7 +995,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -1017,7 +1017,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -1039,7 +1039,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -1062,7 +1062,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -1085,7 +1085,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -1108,7 +1108,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(16)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(16));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -1130,7 +1130,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
@@ -1152,7 +1152,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(0)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(0));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
@@ -1175,7 +1175,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
@@ -1198,7 +1198,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
@@ -1221,7 +1221,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
@@ -1244,7 +1244,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
@@ -1267,7 +1267,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
@@ -1290,7 +1290,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
@@ -1313,7 +1313,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(0)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(0));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
@@ -1336,7 +1336,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
@@ -1359,7 +1359,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
@@ -1382,7 +1382,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
@@ -1405,7 +1405,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
@@ -1428,7 +1428,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
@@ -1451,7 +1451,7 @@ class CarTableViewControllerSearchIT {
         int beforeSize = table.getItems().size();
 
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
-        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11));
 
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
