@@ -122,20 +122,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getYear().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -148,20 +144,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getBrand());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -174,20 +166,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getModel());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -200,20 +188,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getType().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -226,20 +210,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getColor().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -252,20 +232,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getDailyRate()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -278,20 +254,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getDoors()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -304,20 +276,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getTransmission().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -330,20 +298,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getFuel().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -356,20 +320,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getHorsepower()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -382,20 +342,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getMileage()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -408,20 +364,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getTires().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -434,20 +386,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getParkingLot());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -461,20 +409,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getLicenseNumber());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -488,20 +432,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getVin());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -515,20 +455,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(16)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getNextInspection().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -538,38 +474,41 @@ class CarTableViewControllerSearchIT {
 
     @Test
     void testDefectsEqual(FxRobot robot) {
-        // TODO test for defects
+        TableView<Car> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17)); // FxRobot has no select :(
+
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(0));
+
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write(knownCar.getDefects());
+
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertTrue(table.getItems().contains(knownCar));
     }
-
-    //######################################################################################################
-    //######################################################################################################
-    //######################################################################################################
-    //############################################## ANFANG ################################################
-    //######################################################################################################
-    //######################################################################################################
-    //######################################################################################################
-    //######################################################################################################
-
 
     @Test
     void testBrandContains(FxRobot robot) {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getBrand().substring(1,2));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -583,20 +522,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getModel().charAt(0));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -610,20 +545,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getType().toString().substring(1,2));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -637,20 +568,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getColor().toString().substring(1,2));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -664,20 +591,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getTransmission().toString().substring(0,3));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -691,20 +614,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getFuel().toString().substring(1,4));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -718,20 +637,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getTires().toString().substring(1,4));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -745,25 +660,22 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getParkingLot().substring(3,4));
+        robot.write(knownCar.getParkingLot().substring(2,3));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().size() < beforeSize);
-        assertFalse(table.getItems().contains(knownCar));
+        assertTrue(table.getItems().contains(knownCar));
+        assertFalse(table.getItems().contains(otherKnownCar));
     }
 
     @Test
@@ -771,20 +683,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getLicenseNumber().substring(1,6));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -798,20 +706,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getVin().substring(1,3));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -822,30 +726,41 @@ class CarTableViewControllerSearchIT {
 
     @Test
     void testDefectsContains(FxRobot robot) {
-        // TODO test for defects
-    }
+        TableView<Car> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
 
-    //######################################################################################################
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17)); // FxRobot has no select :(
+
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(2));
+
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write(knownCar.getDefects().substring(1,3));
+
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertTrue(table.getItems().contains(knownCar));
+    }
 
     @Test
     void testIdNotEqual(FxRobot robot) {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(0));
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getId().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -859,20 +774,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getYear().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -885,20 +796,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(2)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getBrand());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -911,20 +818,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(3)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getModel());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -937,20 +840,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(4)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getType().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -963,20 +862,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(5)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getColor().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -989,20 +884,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getDailyRate()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1015,20 +906,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getDoors()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1041,20 +928,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(8)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getTransmission().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1067,20 +950,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(9)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getFuel().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1093,20 +972,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getHorsepower()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1119,20 +994,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getMileage()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1145,20 +1016,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(12)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getTires().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1171,20 +1038,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(13)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getParkingLot());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1198,20 +1061,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(14)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getLicenseNumber());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1225,20 +1084,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(15)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getVin());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1252,20 +1107,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(16)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getNextInspection().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1275,37 +1126,41 @@ class CarTableViewControllerSearchIT {
 
     @Test
     void testDefectsNotEqual(FxRobot robot) {
-        // TODO test for defects
-    }
+        TableView<Car> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
 
-    //######################################################################################################
-    //######################################################################################################
-    //######################################################################################################
-    //############################################## ENDE ##################################################
-    //######################################################################################################
-    //######################################################################################################
-    //######################################################################################################
-    //######################################################################################################
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(17)); // FxRobot has no select :(
+
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(1));
+
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write(knownCar.getDefects());
+
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertFalse(table.getItems().contains(knownCar));
+    }
 
     @Test
     void testIdGreaterThan(FxRobot robot) {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(0)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getId().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1319,20 +1174,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getYear().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1346,20 +1197,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getDailyRate()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1373,20 +1220,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getDoors()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1400,20 +1243,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getHorsepower()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1427,20 +1266,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownCar.getMileage()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1454,20 +1289,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(3));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCar.getNextInspection().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1481,20 +1312,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(0)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(otherKnownCar.getId().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1508,20 +1335,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(1)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(otherKnownCar.getYear().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1535,20 +1358,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(6)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(otherKnownCar.getDailyRate()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1562,20 +1381,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(7)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(otherKnownCar.getDoors()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1589,20 +1404,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(10)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(otherKnownCar.getHorsepower()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1616,20 +1427,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(otherKnownCar.getMileage()));
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
@@ -1643,20 +1450,16 @@ class CarTableViewControllerSearchIT {
         TableView<Car> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
-        // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
         robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(11)); // FxRobot has no select :(
 
-        // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
         robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(4));
 
-        // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(otherKnownCar.getNextInspection().toString());
 
-        // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
