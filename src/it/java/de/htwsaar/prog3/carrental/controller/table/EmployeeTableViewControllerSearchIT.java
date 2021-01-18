@@ -32,6 +32,7 @@ class EmployeeTableViewControllerSearchIT {
 	private static final int NOT_EQUAL_OPERATOR_COMBOBOX = 1;
 	private static final int CONTAINS_OPERATOR_COMBOBOX = 2;
 	private static final int GREATER_OPERATOR_COMBOBOX = 3;
+	private static final int LESS_OPERATOR_COMBOBOX = 4;
 	
 	private static final int ID_ATTRIBUTE_COMBOBOX = 0;
 	private static final int FIRST_NAME_ATTRIBUTE_COMBOBOX = 1;
@@ -378,5 +379,31 @@ class EmployeeTableViewControllerSearchIT {
 
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownEmployee));
+    }
+    
+    @Test
+    void testIdLess(FxRobot robot) {
+        TableView<Employee> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        // Attribute
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(ID_ATTRIBUTE_COMBOBOX));
+
+        // Operator
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(LESS_OPERATOR_COMBOBOX));
+
+        // Search string
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write("100");
+
+        // Search via button
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertFalse(table.getItems().contains(knownEmployee));
     }
 }
