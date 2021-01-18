@@ -28,8 +28,8 @@ import javafx.scene.control.TextField;
 @SpringBootTest
 @ExtendWith(ApplicationExtension.class)
 class EmployeeTableViewControllerSearchIT {
-	private static final int EQUALS_OPERATOR_COMBOBOX = 0;
-	private static final int NOT_EQUALS_OPERATOR_COMBOBOX = 1;
+	private static final int EQUAL_OPERATOR_COMBOBOX = 0;
+	private static final int NOT_EQUAL_OPERATOR_COMBOBOX = 1;
 	
 	private static final int ID_ATTRIBUTE_COMBOBOX = 0;
 	private static final int FIRST_NAME_ATTRIBUTE_COMBOBOX = 1;
@@ -76,7 +76,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
@@ -103,7 +103,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
@@ -130,7 +130,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
@@ -157,7 +157,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
@@ -183,7 +183,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
@@ -209,7 +209,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
@@ -235,7 +235,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
@@ -261,7 +261,7 @@ class EmployeeTableViewControllerSearchIT {
 
         // Operator
         ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
-        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUALS_OPERATOR_COMBOBOX));
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUAL_OPERATOR_COMBOBOX));
 
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
