@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -138,6 +139,7 @@ public abstract class TableViewController<T extends BaseEntity> extends BaseCont
                 .filter(c -> c.getText().equals(attribute))
                 .map(c -> c.getCellObservableValue(entity))
                 .map(ObservableValue::getValue)
+                .filter(Objects::nonNull)
                 .findFirst()
                 .filter(FilterPredicate.of(operator, value))
                 .isPresent();
