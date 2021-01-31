@@ -266,4 +266,16 @@ class CarValidationIT {
         assertEquals("nextInspection", violation.getPropertyPath().toString());
         assertEquals("{validation.car.next-inspection.null}", violation.getMessageTemplate());
     }
+
+    @Test
+    void testNextInspectionFutureOrPresent() {
+        testCar.setNextInspection(YearMonth.now().minusMonths(1));
+
+        Set<ConstraintViolation<Car>> violations = validator.validate(testCar);
+        assertEquals(1, violations.size());
+
+        ConstraintViolation<Car> violation = violations.stream().findFirst().get();
+        assertEquals("nextInspection", violation.getPropertyPath().toString());
+        assertEquals("{validation.car.next-inspection.future}", violation.getMessageTemplate());
+    }
 }
