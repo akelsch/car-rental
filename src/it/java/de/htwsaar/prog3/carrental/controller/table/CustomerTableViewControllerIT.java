@@ -50,7 +50,7 @@ class CustomerTableViewControllerIT {
         knownCustomer = Customer.builder()
                 .firstName("Rainer")
                 .lastName("Korn")
-                .dateOfBirth(LocalDate.of(1990,5,7))
+                .dateOfBirth(LocalDate.of(1990, 5, 7))
                 .email("rainer.zufall@mail.de")
                 .phone("+49420694242")
                 .idNumber("12EAS6789")
