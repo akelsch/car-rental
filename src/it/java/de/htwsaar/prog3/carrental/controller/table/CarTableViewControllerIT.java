@@ -2,7 +2,11 @@ package de.htwsaar.prog3.carrental.controller.table;
 
 import de.htwsaar.prog3.carrental.TestUiApplication;
 import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.model.Employee;
+import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.model.car.*;
+import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import de.htwsaar.prog3.carrental.util.fx.IntegerField;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -20,7 +24,9 @@ import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,6 +44,9 @@ class CarTableViewControllerIT {
     private static final int SUMMER_TIRES_COMBOBOX = 0;
     private static final int WINTER_TIRES_COMBOBOX = 1;
     private static final int TWO_YEAR_NEXT_INSPECTION_COMBOBOX = 14;
+
+    @Autowired
+    private RentalRepository rentalRepository;
 
     @Autowired
     private ConfigurableApplicationContext applicationContext;
@@ -146,7 +155,30 @@ class CarTableViewControllerIT {
     }
 
     @Test
-    void handleRentClicked() {
-        // TODO
+    void handleRentClicked(FxRobot robot) {
+        BorderPane carTableView = (BorderPane) robot.window(0).getScene().getRoot();
+        TableView<Car> table = (TableView<Car>) carTableView.getCenter();
+        table.getSelectionModel().selectFirst();
+
+        HBox bottom = (HBox) carTableView.getBottom();
+        ObservableList<Node> buttons = bottom.getChildrenUnmodifiable();
+        Button rentButton = robot.from(buttons.get(3)).queryButton();
+        robot.clickOn(rentButton);
+
+        ComboBox<Customer> customerComboBox = robot.lookup("#customerComboBox").queryAs(ComboBox.class);
+        ComboBox<Employee> employeeComboBox = robot.lookup("#employeeComboBox").queryAs(ComboBox.class);
+        DatePicker endDatePicker = robot.lookup("#endDatePicker").queryAs(DatePicker.class);
+        TextArea noteTextArea = robot.lookup("#noteTextArea").queryAs(TextArea.class);
+        TextField sumTextField = robot.lookup("#sumTextField").queryAs(TextField.class);
+        robot.interact(() -> customerComboBox.getSelectionModel().selectFirst());
+        robot.interact(() -> employeeComboBox.getSelectionModel().selectFirst());
+        robot.interact(() -> endDatePicker.setValue(LocalDate.now().plusDays(3)));
+        robot.clickOn(noteTextArea).write("TestFX bad");
+        robot.clickOn(sumTextField).press(KeyCode.ENTER); // de-select text area first as it captures ENTER key
+
+        Car car = table.getSelectionModel().getSelectedItem();
+        List<Rental> rentals = rentalRepository.findAllByCarId(car.getId());
+        assertEquals(1, rentals.size());
+        assertEquals(car, rentals.get(0).getCar());
     }
 }
