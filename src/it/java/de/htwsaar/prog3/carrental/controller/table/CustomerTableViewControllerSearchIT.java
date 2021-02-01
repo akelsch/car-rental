@@ -205,7 +205,7 @@ class CustomerTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write("" + knownCustomer.getZipcode());
+        robot.write(String.valueOf(knownCustomer.getZipcode()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
@@ -497,7 +497,7 @@ class CustomerTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write("" + knownCustomer.getZipcode());
+        robot.write(String.valueOf(knownCustomer.getZipcode()));
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
