@@ -20,6 +20,7 @@ import org.testfx.util.WaitForAsyncUtils;
 import de.htwsaar.prog3.carrental.TestUiApplication;
 import de.htwsaar.prog3.carrental.application.StageInitializer;
 import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.filter.Operator;
 import javafx.scene.control.Button;
@@ -39,7 +40,6 @@ class CustomerTableViewControllerSearchIT {
     private static final int ID_ATTRIBUTE_COMBOBOX = 0;
     private static final int FIRST_NAME_ATTRIBUTE_COMBOBOX = 1;
     private static final int LAST_NAME_ATTRIBUTE_COMBOBOX = 2;
-    private static final int POSITION_ATTRIBUTE_COMBOBOX = 3;
 
     private static Customer knownCustomer;
 
@@ -103,4 +103,31 @@ class CustomerTableViewControllerSearchIT {
         assertEquals(1, table.getItems().size());
         assertTrue(table.getItems().contains(knownCustomer));
     }
+    
+    @Test
+    void testFirstNameEqual(FxRobot robot) {
+        TableView<Customer> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        // Attribute
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(FIRST_NAME_ATTRIBUTE_COMBOBOX));
+
+        // Operator
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
+
+        // Search string
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write(knownCustomer.getFirstName());
+
+        // Search via button
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertTrue(table.getItems().contains(knownCustomer));
+    }
+    
 }
