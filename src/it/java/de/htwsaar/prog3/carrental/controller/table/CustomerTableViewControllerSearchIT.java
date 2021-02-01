@@ -662,4 +662,34 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
+    
+    /////////////////////////////
+    // CONTAINS TESTS TO FOLLOW /
+    /////////////////////////////
+    
+    @Test
+    void testFirstNameContains(FxRobot robot) {
+        TableView<Customer> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        // Attribute
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(FIRST_NAME_ATTRIBUTE_COMBOBOX));
+
+        // Operator
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(CONTAINS_OPERATOR_COMBOBOX));
+
+        // Search string
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write("ill");
+
+        // Search via button
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertTrue(table.getItems().contains(knownCustomer));
+    }
 }
