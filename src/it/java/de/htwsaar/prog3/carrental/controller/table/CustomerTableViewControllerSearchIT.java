@@ -816,7 +816,6 @@ class CustomerTableViewControllerSearchIT {
     @Test
     void testIdGreater(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
-        int beforeSize = table.getItems().size();
 
         // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
@@ -835,14 +834,12 @@ class CustomerTableViewControllerSearchIT {
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
-        assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
     
     @Test
     void testZipcodeGreater(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
-        int beforeSize = table.getItems().size();
 
         // Attribute
         ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
@@ -861,7 +858,6 @@ class CustomerTableViewControllerSearchIT {
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
-        assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
     
