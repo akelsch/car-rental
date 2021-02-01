@@ -64,6 +64,7 @@ class RentalTableViewControllerSearchIT {
 	private static final int ID_GREATER_TEST = 40; 
 	private static final LocalDate START_GREATER_TEST = LocalDate.now().plusDays(29);
 	private static final LocalDate END_GREATER_TEST = LocalDate.now().plusDays(35);
+	private static final int EXTRA_COSTS_GREATER_TEST = 250;
 
 	private static Rental knownRental;
 	private static Car knownCar;
@@ -544,6 +545,27 @@ class RentalTableViewControllerSearchIT {
 		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
 		robot.clickOn(searchValueTextField);
 		robot.write(END_GREATER_TEST.toString());
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
+				.queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+	
+	@Test
+	void testExtraCostsGreater(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(EXTRA_COSTS_ATTRIBUTE_COMBOBOX));
+
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(GREATER_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(String.valueOf(EXTRA_COSTS_GREATER_TEST));
 
 		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
 				.queryButton();
