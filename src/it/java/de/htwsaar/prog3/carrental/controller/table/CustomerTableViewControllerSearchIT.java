@@ -41,6 +41,7 @@ class CustomerTableViewControllerSearchIT {
     private static final int FIRST_NAME_ATTRIBUTE_COMBOBOX = 1;
     private static final int LAST_NAME_ATTRIBUTE_COMBOBOX = 2;
     private static final int STREET_ATTRIBUTE_COMBOBOX = 3;
+    private static final int ZIPCODE_ATTRIBUTE_COMBOBOX = 4;
 
     private static Customer knownCustomer;
 
@@ -174,6 +175,32 @@ class CustomerTableViewControllerSearchIT {
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCustomer.getStreet());
+
+        // Search via button
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertTrue(table.getItems().contains(knownCustomer));
+    }
+    
+    @Test
+    void testZipcodeEqual(FxRobot robot) {
+        TableView<Customer> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        // Attribute
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(ZIPCODE_ATTRIBUTE_COMBOBOX));
+
+        // Operator
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
+
+        // Search string
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write("" + knownCustomer.getZipcode());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
