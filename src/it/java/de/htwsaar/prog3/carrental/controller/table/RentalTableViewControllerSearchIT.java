@@ -56,7 +56,7 @@ class RentalTableViewControllerSearchIT {
 	private static final int CAR_ATTRIBUTE_COMBOBOX = 3;
 	private static final int CUSTOMER_ATTRIBUTE_COMBOBOX = 4;
 	private static final int EMPLOYEE_ATTRIBUTE_COMBOBOX = 5;
-	private static final int EXTRA_COST_ATTRIBUTE_COMBOBOX = 6;
+	private static final int EXTRA_COSTS_ATTRIBUTE_COMBOBOX = 6;
 	private static final int NOTE_ATTRIBUTE_COMBOBOX = 7;
 
 	private static Rental knownRental;
@@ -101,6 +101,10 @@ class RentalTableViewControllerSearchIT {
 		FxToolkit.cleanupStages();
 	}
 
+	//////////////////////////
+	// EQUAL TESTS TO FOLLOW /
+	//////////////////////////
+	
 	@Test
 	void testIdEqual(FxRobot robot) {
 		TableView<Rental> table = robot.lookup("#entityTable").query();
@@ -221,6 +225,46 @@ class RentalTableViewControllerSearchIT {
 		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
 		robot.clickOn(searchValueTextField);
 		robot.write(knownRental.getEmployee().toString());
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+	
+	@Test
+	void testExtraCostsEqual(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+		
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(EXTRA_COSTS_ATTRIBUTE_COMBOBOX)); 
+		
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(String.valueOf(knownRental.getExtraCosts()));
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+	
+	@Test
+	void testNoteEqual(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+		
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(NOTE_ATTRIBUTE_COMBOBOX)); 
+		
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(knownRental.getNote());
 
 		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
 		robot.clickOn(searchButton);
