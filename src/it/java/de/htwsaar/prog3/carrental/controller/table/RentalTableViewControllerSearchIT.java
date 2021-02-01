@@ -397,4 +397,24 @@ class RentalTableViewControllerSearchIT {
 
 		assertFalse(table.getItems().contains(knownRental));
 	}
+	
+	@Test
+	void testExtraCostsNotEqual(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();	
+		
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(EXTRA_COSTS_ATTRIBUTE_COMBOBOX)); 
+		
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUAL_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(String.valueOf(knownRental.getExtraCosts()));
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+		robot.clickOn(searchButton);
+
+		assertFalse(table.getItems().contains(knownRental));
+	}
 }
