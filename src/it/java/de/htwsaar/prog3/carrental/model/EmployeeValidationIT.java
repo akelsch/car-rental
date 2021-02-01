@@ -11,9 +11,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SuppressWarnings("OptionalGetWithoutIsPresent")
 @SpringBootTest
-public class EmployeeValidationIT {
+class EmployeeValidationIT {
 
     @Autowired
     private Validator validator;
