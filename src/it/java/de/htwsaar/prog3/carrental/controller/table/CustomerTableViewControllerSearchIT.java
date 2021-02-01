@@ -30,7 +30,7 @@ import javafx.scene.control.TextField;
 @SpringBootTest
 @ExtendWith(ApplicationExtension.class)
 class CustomerTableViewControllerSearchIT {
-	private static final int EQUAL_OPERATOR_COMBOBOX = 0;
+    private static final int EQUAL_OPERATOR_COMBOBOX = 0;
     private static final int NOT_EQUAL_OPERATOR_COMBOBOX = 1;
     private static final int CONTAINS_OPERATOR_COMBOBOX = 2;
     private static final int GREATER_OPERATOR_COMBOBOX = 3;
@@ -47,21 +47,21 @@ class CustomerTableViewControllerSearchIT {
     private static final int DATE_OF_BIRTH_ATTRIBUTE_COMBOBOX = 8;
     private static final int ID_NUMBER_ATTRIBUTE_COMBOBOX = 9;
     private static final int DRIVER_LICENSE_NUMBER_ATTRIBUTE_COMBOBOX = 10;
-    
+
     private static final String FIRST_NAME_CONTAINS_TEST = "ill";
     private static final String LAST_NAME_CONTAINS_TEST = "Gat";
     private static final String STREET_CONTAINS_TEST = "soft";
-    private static final String CITY_CONTAINS_TEST = "edm"; 
+    private static final String CITY_CONTAINS_TEST = "edm";
     private static final String EMAIL_CONTAINS_TEST = "billyg";
-    
+
     private static final int ID_GREATER_TEST = 80;
     private static final int ZIPCODE_GREATER_TEST = 44444;
     private static final LocalDate DATE_OF_BIRTH_GREATER_TEST = LocalDate.parse("1945-04-13");
-    
+
     private static final int ID_LESS_TEST = 120;
     private static final int ZIPCODE_LESS_TEST = 88888;
     private static final LocalDate DATE_OF_BIRTH_LESS_TEST = LocalDate.parse("1970-04-13");
-    
+
     private static Customer knownCustomer;
 
     @Autowired
@@ -85,7 +85,7 @@ class CustomerTableViewControllerSearchIT {
                 .driverLicenseNumber("ABCDEFG1234")
                 .build());
     }
-    
+
     @BeforeEach
     void setUp() throws Exception {
         FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
@@ -97,7 +97,7 @@ class CustomerTableViewControllerSearchIT {
     void tearDown() throws Exception {
         FxToolkit.cleanupStages();
     }
-    
+
     @Test
     void testIdEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -124,7 +124,7 @@ class CustomerTableViewControllerSearchIT {
         assertEquals(1, table.getItems().size());
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testFirstNameEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -176,7 +176,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testStreetEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -202,7 +202,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testZipcodeEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -228,7 +228,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testCityEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -254,7 +254,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testPhoneEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -280,7 +280,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testEmailEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -306,7 +306,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testDateOfBirthEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -332,7 +332,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testIdNumberEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -359,7 +359,7 @@ class CustomerTableViewControllerSearchIT {
         assertEquals(1, table.getItems().size());
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testDriverLicenseNumberEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -386,11 +386,11 @@ class CustomerTableViewControllerSearchIT {
         assertEquals(1, table.getItems().size());
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     //////////////////////////////
     // NOT EQUAL TESTS TO FOLLOW /
     //////////////////////////////
-    
+
     @Test
     void testIdNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -416,7 +416,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testFirstNameNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -442,7 +442,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testLastNameNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -468,7 +468,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testStreetNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -494,7 +494,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testZipcodeNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -520,7 +520,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testCityNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -546,7 +546,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testPhoneNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -570,7 +570,7 @@ class CustomerTableViewControllerSearchIT {
 
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testEmailNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -596,7 +596,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testDateOfBirthNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -622,7 +622,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testIdNumberNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -648,7 +648,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testDriverLicenseNumberNotEqual(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -674,11 +674,11 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertFalse(table.getItems().contains(knownCustomer));
     }
-    
+
     /////////////////////////////
     // CONTAINS TESTS TO FOLLOW /
     /////////////////////////////
-    
+
     @Test
     void testFirstNameContains(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -704,7 +704,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testLastNameContains(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -730,7 +730,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testStreetContains(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -756,7 +756,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testCityContains(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -782,7 +782,7 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testEmailContains(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -808,11 +808,11 @@ class CustomerTableViewControllerSearchIT {
         assertTrue(table.getItems().size() < beforeSize);
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     ////////////////////////////
     // GREATER TESTS TO FOLLOW /
     ////////////////////////////
-    
+
     @Test
     void testIdGreater(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -836,7 +836,7 @@ class CustomerTableViewControllerSearchIT {
 
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testZipcodeGreater(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -860,7 +860,7 @@ class CustomerTableViewControllerSearchIT {
 
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testDateOfBirthGreater(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -884,11 +884,11 @@ class CustomerTableViewControllerSearchIT {
 
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     /////////////////////////
     // LESS TESTS TO FOLLOW /
     /////////////////////////
-    
+
     @Test
     void testIdLess(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -912,7 +912,7 @@ class CustomerTableViewControllerSearchIT {
 
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testZipcodeLess(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
@@ -936,7 +936,7 @@ class CustomerTableViewControllerSearchIT {
 
         assertTrue(table.getItems().contains(knownCustomer));
     }
-    
+
     @Test
     void testDateOfBirthLess(FxRobot robot) {
         TableView<Customer> table = robot.lookup("#entityTable").query();
