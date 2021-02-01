@@ -28,7 +28,7 @@ public class CustomerGenerator implements Generatable<Customer> {
                 .phone("+" + GeneratorUtil.generateNumericSequence(GeneratorUtil.getRandomInt(9, 11)))
                 .idNumber(GeneratorUtil.generateUpperNumericSequence(9))
                 .driverLicenseNumber(GeneratorUtil.generateUpperNumericSequence(11))
-                .zipcode(Integer.parseInt(faker.address().zipCode()))
+                .zipcode(GeneratorUtil.getRandomInt(10000, 99999))
                 .city(faker.address().city())
                 .street(faker.address().streetAddress())
                 .build();

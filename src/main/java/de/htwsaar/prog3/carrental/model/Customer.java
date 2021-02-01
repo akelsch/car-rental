@@ -33,7 +33,8 @@ public class Customer extends BaseEntity {
     @Column(nullable = false)
     private String street;
 
-    @Digits(integer = 5, fraction = 0, message = "{validation.customer.zipcode}")
+    @Min(value = 10000, message = "{validation.customer.zipcode}")
+    @Max(value = 99999, message = "{validation.customer.zipcode}")
     @Column(nullable = false)
     private int zipcode;
 
