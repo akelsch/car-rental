@@ -95,7 +95,7 @@ class RentalValidationIT {
 
         ConstraintViolation<Rental> violation = violations.stream().findFirst().get();
         assertEquals("start", violation.getPropertyPath().toString());
-        assertEquals("{validation.rental.start.future}", violation.getMessageTemplate());
+        assertEquals("{validation.rental.start.null}", violation.getMessageTemplate());
     }
 
     @Test
@@ -119,7 +119,7 @@ class RentalValidationIT {
 
         ConstraintViolation<Rental> violation = violations.stream().findFirst().get();
         assertEquals("end", violation.getPropertyPath().toString());
-        assertEquals("{validation.rental.end.future}", violation.getMessageTemplate());
+        assertEquals("{validation.rental.end.null}", violation.getMessageTemplate());
     }
 
     @Test
