@@ -87,8 +87,32 @@ class RentalValidationIT {
     }
 
     @Test
+    void testStartNotNull() {
+        testRental.setStart(null);
+
+        Set<ConstraintViolation<Rental>> violations = validator.validate(testRental);
+        assertEquals(1, violations.size());
+
+        ConstraintViolation<Rental> violation = violations.stream().findFirst().get();
+        assertEquals("start", violation.getPropertyPath().toString());
+        assertEquals("{validation.rental.start.future}", violation.getMessageTemplate());
+    }
+
+    @Test
     void testEndFuture() {
         testRental.setEnd(LocalDate.now());
+
+        Set<ConstraintViolation<Rental>> violations = validator.validate(testRental);
+        assertEquals(1, violations.size());
+
+        ConstraintViolation<Rental> violation = violations.stream().findFirst().get();
+        assertEquals("end", violation.getPropertyPath().toString());
+        assertEquals("{validation.rental.end.future}", violation.getMessageTemplate());
+    }
+
+    @Test
+    void testEndNotNull() {
+        testRental.setEnd(null);
 
         Set<ConstraintViolation<Rental>> violations = validator.validate(testRental);
         assertEquals(1, violations.size());
