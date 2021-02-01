@@ -47,6 +47,12 @@ class CustomerTableViewControllerSearchIT {
     private static final int DATE_OF_BIRTH_ATTRIBUTE_COMBOBOX = 8;
     private static final int ID_NUMBER_ATTRIBUTE_COMBOBOX = 9;
     private static final int DRIVER_LICENSE_NUMBER_ATTRIBUTE_COMBOBOX = 10;
+    
+    private static final String FIRST_NAME_CONTAINS_TEST = "ill";
+    private static final String LAST_NAME_CONTAINS_TEST = "Gat";
+    private static final String STREET_CONTAINS_TEST = "soft";
+    private static final String CITY_CONTAINS_TEST = "edm"; 
+    private static final String EMAIL_CONTAINS_TEST = "billyg";
 
     private static Customer knownCustomer;
 
@@ -683,7 +689,33 @@ class CustomerTableViewControllerSearchIT {
         // Search string
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write("ill");
+        robot.write(FIRST_NAME_CONTAINS_TEST);
+
+        // Search via button
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertTrue(table.getItems().contains(knownCustomer));
+    }
+    
+    @Test
+    void testLastNameContains(FxRobot robot) {
+        TableView<Customer> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        // Attribute
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(LAST_NAME_ATTRIBUTE_COMBOBOX));
+
+        // Operator
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(CONTAINS_OPERATOR_COMBOBOX));
+
+        // Search string
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write(LAST_NAME_CONTAINS_TEST);
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
