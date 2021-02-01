@@ -20,7 +20,6 @@ import org.testfx.util.WaitForAsyncUtils;
 import de.htwsaar.prog3.carrental.TestUiApplication;
 import de.htwsaar.prog3.carrental.application.StageInitializer;
 import de.htwsaar.prog3.carrental.model.Customer;
-import de.htwsaar.prog3.carrental.model.Employee;
 import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.util.filter.Operator;
 import javafx.scene.control.Button;
@@ -373,4 +372,35 @@ class CustomerTableViewControllerSearchIT {
         assertEquals(1, table.getItems().size());
         assertTrue(table.getItems().contains(knownCustomer));
     }
+    
+    //////////////////////////////
+    // NOT EQUAL TESTS TO FOLLOW /
+    //////////////////////////////
+    
+    @Test
+    void testIdNotEqual(FxRobot robot) {
+        TableView<Customer> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        // Attribute
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(ID_ATTRIBUTE_COMBOBOX));
+
+        // Operator
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(NOT_EQUAL_OPERATOR_COMBOBOX));
+
+        // Search string
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write(knownCustomer.getId().toString());
+
+        // Search via button
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertFalse(table.getItems().contains(knownCustomer));
+    }
+    
 }
