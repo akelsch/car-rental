@@ -58,6 +58,8 @@ class RentalTableViewControllerSearchIT {
 	private static final int EMPLOYEE_ATTRIBUTE_COMBOBOX = 5;
 	private static final int EXTRA_COSTS_ATTRIBUTE_COMBOBOX = 6;
 	private static final int NOTE_ATTRIBUTE_COMBOBOX = 7;
+	
+	private static final String NOTE_CONTAINS_TEST = "First";
 
 	private static Rental knownRental;
 	private static Car knownCar;
@@ -437,4 +439,29 @@ class RentalTableViewControllerSearchIT {
 
 		assertFalse(table.getItems().contains(knownRental));
 	}
+	
+	/////////////////////////////
+	// CONTAINS TESTS TO FOLLOW /
+	/////////////////////////////
+	
+	@Test
+	void testNoteContains(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();	
+		
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(NOTE_ATTRIBUTE_COMBOBOX)); 
+		
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(CONTAINS_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(NOTE_CONTAINS_TEST);
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+	
 }
