@@ -167,4 +167,24 @@ class RentalTableViewControllerSearchIT {
 
 		assertTrue(table.getItems().contains(knownRental));
 	}
+	
+	@Test
+	void testCarEqual(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+		
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(CAR_ATTRIBUTE_COMBOBOX)); 
+		
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(knownRental.getCar().toString());
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
 }
