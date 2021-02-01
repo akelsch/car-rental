@@ -72,9 +72,6 @@ class RentalTableViewControllerSearchIT {
     private static final int EXTRA_COSTS_LESS_TEST = 400;
 
     private static Rental knownRental;
-    private static Car knownCar;
-    private static Employee knownEmployee;
-    private static Customer knownCustomer;
 
     @Autowired
     private StageInitializer stageInitializer;
@@ -85,7 +82,7 @@ class RentalTableViewControllerSearchIT {
     @BeforeAll
     static void beforeAll(@Autowired RentalRepository rentalRepository, @Autowired CarRepository carRepository,
                           @Autowired EmployeeRepository employeeRepository, @Autowired CustomerRepository customerRepository) {
-        knownCar = carRepository.save(Car.builder()
+        Car knownCar = carRepository.save(Car.builder()
                 .brand("BMW")
                 .model("M4")
                 .type(Type.COUPE)
@@ -103,7 +100,7 @@ class RentalTableViewControllerSearchIT {
                 .vin("1234123412341234X")
                 .defects("DAMAGE")
                 .build());
-        knownCustomer = customerRepository.save(Customer.builder()
+        Customer knownCustomer = customerRepository.save(Customer.builder()
                 .firstName("Bill")
                 .lastName("Gates")
                 .street("Microsoft, Ave")
@@ -115,7 +112,7 @@ class RentalTableViewControllerSearchIT {
                 .idNumber("ABC123456")
                 .driverLicenseNumber("ABCDEFG1234")
                 .build());
-        knownEmployee = employeeRepository.save(Employee.builder()
+        Employee knownEmployee = employeeRepository.save(Employee.builder()
                 .firstName("Björn")
                 .lastName("Scherer")
                 .position("Manager")
