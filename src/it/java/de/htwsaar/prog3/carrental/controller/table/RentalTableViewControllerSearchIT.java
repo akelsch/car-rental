@@ -60,11 +60,16 @@ class RentalTableViewControllerSearchIT {
 	private static final int NOTE_ATTRIBUTE_COMBOBOX = 7;
 
 	private static final String NOTE_CONTAINS_TEST = "First";
-	
-	private static final int ID_GREATER_TEST = 40; 
+
+	private static final int ID_GREATER_TEST = 40;
 	private static final LocalDate START_GREATER_TEST = LocalDate.now().plusDays(29);
 	private static final LocalDate END_GREATER_TEST = LocalDate.now().plusDays(35);
 	private static final int EXTRA_COSTS_GREATER_TEST = 250;
+	
+	private static final int ID_LESS_TEST = 60;
+	private static final LocalDate START_LESS_TEST = LocalDate.now().plusDays(36);
+	private static final LocalDate END_LESS_TEST = LocalDate.now().plusDays(40);
+	private static final int EXTRA_COSTS_LESS_TEST = 400;
 
 	private static Rental knownRental;
 	private static Car knownCar;
@@ -510,7 +515,7 @@ class RentalTableViewControllerSearchIT {
 
 		assertTrue(table.getItems().contains(knownRental));
 	}
-	
+
 	@Test
 	void testStartGreater(FxRobot robot) {
 		TableView<Rental> table = robot.lookup("#entityTable").query();
@@ -531,7 +536,7 @@ class RentalTableViewControllerSearchIT {
 
 		assertTrue(table.getItems().contains(knownRental));
 	}
-	
+
 	@Test
 	void testEndGreater(FxRobot robot) {
 		TableView<Rental> table = robot.lookup("#entityTable").query();
@@ -552,7 +557,7 @@ class RentalTableViewControllerSearchIT {
 
 		assertTrue(table.getItems().contains(knownRental));
 	}
-	
+
 	@Test
 	void testExtraCostsGreater(FxRobot robot) {
 		TableView<Rental> table = robot.lookup("#entityTable").query();
@@ -566,6 +571,94 @@ class RentalTableViewControllerSearchIT {
 		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
 		robot.clickOn(searchValueTextField);
 		robot.write(String.valueOf(EXTRA_COSTS_GREATER_TEST));
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
+				.queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+
+	/////////////////////////
+	// LESS TESTS TO FOLLOW /
+	/////////////////////////
+
+	@Test
+	void testIdLess(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(ID_ATTRIBUTE_COMBOBOX));
+
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(LESS_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(String.valueOf(ID_LESS_TEST));
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
+				.queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+
+	@Test
+	void testStartLess(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(START_ATTRIBUTE_COMBOBOX));
+
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(LESS_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(START_LESS_TEST.toString());
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
+				.queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+
+	@Test
+	void testEndLess(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(END_ATTRIBUTE_COMBOBOX));
+
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(LESS_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(END_LESS_TEST.toString());
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
+				.queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+
+	@Test
+	void testExtraCostsLess(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(EXTRA_COSTS_ATTRIBUTE_COMBOBOX));
+
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(LESS_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(String.valueOf(EXTRA_COSTS_LESS_TEST));
 
 		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
 				.queryButton();
