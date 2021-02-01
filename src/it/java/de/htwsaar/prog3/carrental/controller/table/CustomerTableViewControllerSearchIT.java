@@ -43,6 +43,7 @@ class CustomerTableViewControllerSearchIT {
     private static final int STREET_ATTRIBUTE_COMBOBOX = 3;
     private static final int ZIPCODE_ATTRIBUTE_COMBOBOX = 4;
     private static final int CITY_ATTRIBUTE_COMBOBOX = 5;
+    private static final int PHONE_ATTRIBUTE_COMBOBOX = 6;
 
     private static Customer knownCustomer;
 
@@ -228,6 +229,32 @@ class CustomerTableViewControllerSearchIT {
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
         robot.write(knownCustomer.getCity());
+
+        // Search via button
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+        robot.clickOn(searchButton);
+
+        assertTrue(table.getItems().size() < beforeSize);
+        assertTrue(table.getItems().contains(knownCustomer));
+    }
+    
+    @Test
+    void testPhoneEqual(FxRobot robot) {
+        TableView<Customer> table = robot.lookup("#entityTable").query();
+        int beforeSize = table.getItems().size();
+
+        // Attribute
+        ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+        robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(PHONE_ATTRIBUTE_COMBOBOX));
+
+        // Operator
+        ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+        robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
+
+        // Search string
+        TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+        robot.clickOn(searchValueTextField);
+        robot.write(knownCustomer.getPhone());
 
         // Search via button
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
