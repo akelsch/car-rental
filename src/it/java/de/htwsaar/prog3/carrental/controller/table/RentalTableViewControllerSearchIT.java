@@ -54,8 +54,8 @@ class RentalTableViewControllerSearchIT {
 	private static final int START_ATTRIBUTE_COMBOBOX = 1;
 	private static final int END_ATTRIBUTE_COMBOBOX = 2;
 	private static final int CAR_ATTRIBUTE_COMBOBOX = 3;
-	private static final int EMPLOYEE_ATTRIBUTE_COMBOBOX = 4;
-	private static final int CUSTOMER_ATTRIBUTE_COMBOBOX = 5;
+	private static final int CUSTOMER_ATTRIBUTE_COMBOBOX = 4;
+	private static final int EMPLOYEE_ATTRIBUTE_COMBOBOX = 5;
 	private static final int EXTRA_COST_ATTRIBUTE_COMBOBOX = 6;
 	private static final int NOTE_ATTRIBUTE_COMBOBOX = 7;
 
@@ -73,17 +73,17 @@ class RentalTableViewControllerSearchIT {
 	@BeforeAll
 	static void beforeAll(@Autowired RentalRepository rentalRepository, @Autowired CarRepository carRepository,
 			@Autowired EmployeeRepository employeeRepository, @Autowired CustomerRepository customerRepository) {
-		knownEmployee = employeeRepository
-				.save(Employee.builder().firstName("Björn").lastName("Scherer").position("Manager").build());
-		knownCustomer = customerRepository.save(Customer.builder().firstName("Bill").lastName("Gates")
-				.street("Microsoft, Ave").zipcode(54321).city("Redmond").phone("+12345678900")
-				.email("billyg@microsoft.com").dateOfBirth(LocalDate.parse("1955-10-28")).idNumber("ABC123456")
-				.driverLicenseNumber("ABCDEFG1234").build());
 		knownCar = carRepository.save(Car.builder().brand("BMW").model("M4").type(Type.COUPE).color(Color.WHITE)
 				.year(Year.of(2015)).mileage(25_000).transmission(Transmission.MANUAL).fuel(Fuel.PETROL).horsepower(333)
 				.doors(3).tires(Tire.SUMMER).nextInspection(YearMonth.from(LocalDate.now().plusMonths(14)))
 				.dailyRate(255).licenseNumber("SB XY 123").parkingLot("A23H").vin("1234123412341234X").defects("DAMAGE")
 				.build());
+		knownCustomer = customerRepository.save(Customer.builder().firstName("Bill").lastName("Gates")
+				.street("Microsoft, Ave").zipcode(54321).city("Redmond").phone("+12345678900")
+				.email("billyg@microsoft.com").dateOfBirth(LocalDate.parse("1955-10-28")).idNumber("ABC123456")
+				.driverLicenseNumber("ABCDEFG1234").build());
+		knownEmployee = employeeRepository
+				.save(Employee.builder().firstName("Björn").lastName("Scherer").position("Manager").build());
 		knownRental = rentalRepository.save(Rental.builder().start(LocalDate.now().plusDays(30))
 				.end(LocalDate.now().plusDays(37)).car(knownCar).customer(knownCustomer).employee(knownEmployee)
 				.extraCosts(300).note("First rental of customer").build());
@@ -181,6 +181,26 @@ class RentalTableViewControllerSearchIT {
 		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
 		robot.clickOn(searchValueTextField);
 		robot.write(knownRental.getCar().toString());
+
+		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
+		robot.clickOn(searchButton);
+
+		assertTrue(table.getItems().contains(knownRental));
+	}
+	
+	@Test
+	void testCustomerEqual(FxRobot robot) {
+		TableView<Rental> table = robot.lookup("#entityTable").query();
+		
+		ComboBox<String> searchAttributeComboBox = robot.lookup("#searchAttributeComboBox").query();
+		robot.interact(() -> searchAttributeComboBox.getSelectionModel().select(CUSTOMER_ATTRIBUTE_COMBOBOX)); 
+		
+		ComboBox<Operator> searchOperatorComboBox = robot.lookup("#searchOperatorComboBox").query();
+		robot.interact(() -> searchOperatorComboBox.getSelectionModel().select(EQUAL_OPERATOR_COMBOBOX));
+
+		TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
+		robot.clickOn(searchValueTextField);
+		robot.write(knownRental.getCustomer().toString());
 
 		Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
 		robot.clickOn(searchButton);
