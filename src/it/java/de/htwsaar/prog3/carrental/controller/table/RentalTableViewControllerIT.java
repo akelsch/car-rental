@@ -37,7 +37,7 @@ class RentalTableViewControllerIT {
     @BeforeEach
     void setUp() throws Exception {
         FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-        stageInitializer.switchToRentalTableView();
+        WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToRentalTableView());
         WaitForAsyncUtils.waitForFxEvents();
     }
 
