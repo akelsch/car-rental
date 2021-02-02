@@ -1,11 +1,21 @@
 package de.htwsaar.prog3.carrental.controller.table;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.time.LocalDate;
-import java.time.Year;
-import java.time.YearMonth;
-
+import de.htwsaar.prog3.carrental.TestUiApplication;
+import de.htwsaar.prog3.carrental.application.StageInitializer;
+import de.htwsaar.prog3.carrental.model.Car;
+import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.model.Employee;
+import de.htwsaar.prog3.carrental.model.Rental;
+import de.htwsaar.prog3.carrental.model.car.*;
+import de.htwsaar.prog3.carrental.repository.CarRepository;
+import de.htwsaar.prog3.carrental.repository.CustomerRepository;
+import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
+import de.htwsaar.prog3.carrental.repository.RentalRepository;
+import de.htwsaar.prog3.carrental.util.filter.Operator;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,26 +29,11 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.util.WaitForAsyncUtils;
 
-import de.htwsaar.prog3.carrental.TestUiApplication;
-import de.htwsaar.prog3.carrental.application.StageInitializer;
-import de.htwsaar.prog3.carrental.model.Car;
-import de.htwsaar.prog3.carrental.model.Customer;
-import de.htwsaar.prog3.carrental.model.Employee;
-import de.htwsaar.prog3.carrental.model.Rental;
-import de.htwsaar.prog3.carrental.model.car.Color;
-import de.htwsaar.prog3.carrental.model.car.Fuel;
-import de.htwsaar.prog3.carrental.model.car.Tire;
-import de.htwsaar.prog3.carrental.model.car.Transmission;
-import de.htwsaar.prog3.carrental.model.car.Type;
-import de.htwsaar.prog3.carrental.repository.CarRepository;
-import de.htwsaar.prog3.carrental.repository.CustomerRepository;
-import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
-import de.htwsaar.prog3.carrental.repository.RentalRepository;
-import de.htwsaar.prog3.carrental.util.filter.Operator;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ExtendWith(ApplicationExtension.class)
@@ -59,18 +54,6 @@ class RentalTableViewControllerSearchIT {
     private static final int EXTRA_COSTS_ATTRIBUTE_COMBOBOX = 6;
     private static final int NOTE_ATTRIBUTE_COMBOBOX = 7;
 
-    private static final String NOTE_CONTAINS_TEST = "First";
-
-    private static final int ID_GREATER_TEST = 40;
-    private static final LocalDate START_GREATER_TEST = LocalDate.now().plusDays(29);
-    private static final LocalDate END_GREATER_TEST = LocalDate.now().plusDays(35);
-    private static final int EXTRA_COSTS_GREATER_TEST = 250;
-
-    private static final int ID_LESS_TEST = 60;
-    private static final LocalDate START_LESS_TEST = LocalDate.now().plusDays(36);
-    private static final LocalDate END_LESS_TEST = LocalDate.now().plusDays(40);
-    private static final int EXTRA_COSTS_LESS_TEST = 400;
-
     private static Rental knownRental;
 
     @Autowired
@@ -80,9 +63,9 @@ class RentalTableViewControllerSearchIT {
     private ConfigurableApplicationContext applicationContext;
 
     @BeforeAll
-    static void beforeAll(@Autowired RentalRepository rentalRepository, @Autowired CarRepository carRepository,
-                          @Autowired EmployeeRepository employeeRepository, @Autowired CustomerRepository customerRepository) {
-        Car knownCar = carRepository.save(Car.builder()
+    static void beforeAll(@Autowired CarRepository carRepository, @Autowired CustomerRepository customerRepository,
+                          @Autowired EmployeeRepository employeeRepository, @Autowired RentalRepository rentalRepository) {
+        Car car = carRepository.save(Car.builder()
                 .brand("BMW")
                 .model("M4")
                 .type(Type.COUPE)
@@ -100,7 +83,8 @@ class RentalTableViewControllerSearchIT {
                 .vin("1234123412341234X")
                 .defects("DAMAGE")
                 .build());
-        Customer knownCustomer = customerRepository.save(Customer.builder()
+
+        Customer customer = customerRepository.save(Customer.builder()
                 .firstName("Bill")
                 .lastName("Gates")
                 .street("Microsoft, Ave")
@@ -112,17 +96,19 @@ class RentalTableViewControllerSearchIT {
                 .idNumber("ABC123456")
                 .driverLicenseNumber("ABCDEFG1234")
                 .build());
-        Employee knownEmployee = employeeRepository.save(Employee.builder()
+
+        Employee employee = employeeRepository.save(Employee.builder()
                 .firstName("Björn")
                 .lastName("Scherer")
                 .position("Manager")
                 .build());
+
         knownRental = rentalRepository.save(Rental.builder()
                 .start(LocalDate.now().plusDays(30))
                 .end(LocalDate.now().plusDays(37))
-                .car(knownCar)
-                .customer(knownCustomer)
-                .employee(knownEmployee)
+                .car(car)
+                .customer(customer)
+                .employee(employee)
                 .extraCosts(300)
                 .note("First rental of customer")
                 .build());
@@ -163,8 +149,7 @@ class RentalTableViewControllerSearchIT {
         robot.write(knownRental.getId().toString());
 
         // Search via button
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().size() < beforeSize);
@@ -186,8 +171,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getStart().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -207,8 +191,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getEnd().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -228,8 +211,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getCar().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -249,8 +231,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getCustomer().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -270,8 +251,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getEmployee().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -291,8 +271,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownRental.getExtraCosts()));
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -312,8 +291,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getNote());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -338,8 +316,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getId().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().size() < beforeSize);
@@ -360,8 +337,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getStart().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertFalse(table.getItems().contains(knownRental));
@@ -381,8 +357,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getEnd().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertFalse(table.getItems().contains(knownRental));
@@ -402,8 +377,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getCar().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertFalse(table.getItems().contains(knownRental));
@@ -423,8 +397,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getCustomer().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertFalse(table.getItems().contains(knownRental));
@@ -444,8 +417,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getEmployee().toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertFalse(table.getItems().contains(knownRental));
@@ -465,8 +437,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(String.valueOf(knownRental.getExtraCosts()));
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertFalse(table.getItems().contains(knownRental));
@@ -486,8 +457,7 @@ class RentalTableViewControllerSearchIT {
         robot.clickOn(searchValueTextField);
         robot.write(knownRental.getNote());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertFalse(table.getItems().contains(knownRental));
@@ -509,10 +479,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(NOTE_CONTAINS_TEST);
+        robot.write("First");
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -534,10 +503,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(String.valueOf(ID_GREATER_TEST));
+        robot.write("40");
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -555,10 +523,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(START_GREATER_TEST.toString());
+        robot.write(LocalDate.now().plusDays(29).toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -576,10 +543,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(END_GREATER_TEST.toString());
+        robot.write(LocalDate.now().plusDays(35).toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -597,10 +563,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(String.valueOf(EXTRA_COSTS_GREATER_TEST));
+        robot.write("250");
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -622,10 +587,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(String.valueOf(ID_LESS_TEST));
+        robot.write("60");
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -643,10 +607,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(START_LESS_TEST.toString());
+        robot.write(LocalDate.now().plusDays(36).toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -664,10 +627,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(END_LESS_TEST.toString());
+        robot.write(LocalDate.now().plusDays(40).toString());
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
@@ -685,10 +647,9 @@ class RentalTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(String.valueOf(EXTRA_COSTS_LESS_TEST));
+        robot.write("400");
 
-        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3)
-                .queryButton();
+        Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
 
         assertTrue(table.getItems().contains(knownRental));
