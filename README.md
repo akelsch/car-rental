@@ -34,3 +34,11 @@ We can make use of Springs Maven plugin to start the application like so:
 ```sh
 mvn spring-boot:run
 ```
+
+#### Changing Languages
+
+To change the language of the application you can replace the JVM locale like so:
+
+```sh
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Duser.language=de -Duser.country=DE"
+```
