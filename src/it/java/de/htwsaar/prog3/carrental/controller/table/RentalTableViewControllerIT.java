@@ -4,16 +4,14 @@ import de.htwsaar.prog3.carrental.TestUiApplication;
 import de.htwsaar.prog3.carrental.application.StageInitializer;
 import de.htwsaar.prog3.carrental.model.Rental;
 import de.htwsaar.prog3.carrental.util.fx.IntegerField;
+import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +27,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ExtendWith(ApplicationExtension.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@SuppressWarnings("unchecked")
 class RentalTableViewControllerIT {
 
     @Autowired
@@ -37,15 +38,21 @@ class RentalTableViewControllerIT {
     @Autowired
     private StageInitializer stageInitializer;
 
+    private Application application;
+
     @BeforeEach
     void setUp() throws Exception {
-        FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-        WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToRentalTableView());
-        WaitForAsyncUtils.waitForFxEvents();
+        if (application == null) {
+            // FxToolkit does not work with static @BeforeAll, hence @BeforeEach
+            application = FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
+            WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToRentalTableView());
+            WaitForAsyncUtils.waitForFxEvents();
+        }
     }
 
     @AfterEach
     void tearDown() {
+        // do not cleanup stages but reuse stage in the assigned test order
     }
 
     @Test
@@ -70,7 +77,7 @@ class RentalTableViewControllerIT {
 
     @Test
     @Order(2)
-    void testRegularDelete(FxRobot robot) {
+    void handleDeleteClicked(FxRobot robot) {
         TableView<Rental> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
@@ -84,8 +91,7 @@ class RentalTableViewControllerIT {
     }
 
     @Test
-    @Order(3)
-    void testActiveDelete(FxRobot robot) {
+    void handleDeleteClickedForActiveRental(FxRobot robot) {
         TableView<Rental> table = robot.lookup("#entityTable").query();
         int beforeSize = table.getItems().size();
 
