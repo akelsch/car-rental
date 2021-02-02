@@ -37,6 +37,8 @@
         <testfx.version>4.0.16-alpha</testfx.version>
         <monocle.version>jdk-12.0.1+2</monocle.version>
         <!-- Plugins -->
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
     </properties>
 
