@@ -27,11 +27,18 @@
         <sonar.organization>akelsch</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.junit.reportPaths>${project.build.directory}/surefire-reports,${project.build.directory}/failsafe-reports</sonar.junit.reportPaths>
+        <!-- Tests -->
+        <tests.testfx.headless>true</tests.testfx.headless>
+        <tests.prism.verbose>true</tests.prism.verbose>
+        <tests.prism.order>sw</tests.prism.order>
+        <tests.headless.geometry>1920x1080-32</tests.headless.geometry>
         <!-- Dependencies -->
         <javafaker.version>1.0.2</javafaker.version>
         <testfx.version>4.0.16-alpha</testfx.version>
         <monocle.version>jdk-12.0.1+2</monocle.version>
         <!-- Plugins -->
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
     </properties>
 
@@ -160,7 +167,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables>
-                        <testfx.headless>true</testfx.headless>
+                        <testfx.headless>${tests.testfx.headless}</testfx.headless>
+                        <prism.verbose>${tests.prism.verbose}</prism.verbose>
+                        <headless.geometry>${tests.headless.geometry}</headless.geometry>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -169,7 +178,9 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables>
-                        <testfx.headless>true</testfx.headless>
+                        <testfx.headless>${tests.testfx.headless}</testfx.headless>
+                        <prism.verbose>${tests.prism.verbose}</prism.verbose>
+                        <headless.geometry>${tests.headless.geometry}</headless.geometry>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -186,10 +197,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <systemPropertyVariables>
-                                <testfx.headless>true</testfx.headless>
-                                <prism.verbose>true</prism.verbose>
-                                <prism.order>sw</prism.order>
-                                <headless.geometry>1440x900-32</headless.geometry>
+                                <prism.order>${tests.prism.order}</prism.order>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -198,10 +206,7 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
                             <systemPropertyVariables>
-                                <testfx.headless>true</testfx.headless>
-                                <prism.verbose>true</prism.verbose>
-                                <prism.order>sw</prism.order>
-                                <headless.geometry>1440x900-32</headless.geometry>
+                                <prism.order>${tests.prism.order}</prism.order>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
