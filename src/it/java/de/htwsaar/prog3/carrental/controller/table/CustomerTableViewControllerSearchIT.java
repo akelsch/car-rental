@@ -90,7 +90,7 @@ class CustomerTableViewControllerSearchIT {
     @BeforeEach
     void setUp() throws Exception {
         FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-        stageInitializer.switchToCustomerTableView();
+        WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToCustomerTableView());
         WaitForAsyncUtils.waitForFxEvents();
     }
 

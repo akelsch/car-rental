@@ -61,7 +61,7 @@ class EmployeeTableViewControllerSearchIT {
     @BeforeEach
     void setUp() throws Exception {
         FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-        stageInitializer.switchToEmployeeTableView();
+        WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToEmployeeTableView());
         WaitForAsyncUtils.waitForFxEvents();
     }
 

@@ -66,7 +66,7 @@ class CustomerTableViewControllerIT {
         if (application == null) {
             // FxToolkit does not work with static @BeforeAll, hence @BeforeEach
             application = FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-            stageInitializer.switchToCustomerTableView();
+            WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToCustomerTableView());
             WaitForAsyncUtils.waitForFxEvents();
         }
     }
