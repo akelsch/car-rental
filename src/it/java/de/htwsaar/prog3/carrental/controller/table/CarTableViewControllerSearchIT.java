@@ -931,7 +931,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getBrand().substring(1,2));
+        robot.write(knownCar.getBrand().substring(1, 2));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -977,7 +977,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getType().toString().substring(1,2));
+        robot.write(knownCar.getType().toString().substring(1, 2));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1000,7 +1000,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getColor().toString().substring(1,2));
+        robot.write(knownCar.getColor().toString().substring(1, 2));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1023,7 +1023,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getTransmission().toString().substring(0,3));
+        robot.write(knownCar.getTransmission().toString().substring(0, 3));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1046,7 +1046,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getFuel().toString().substring(1,4));
+        robot.write(knownCar.getFuel().toString().substring(1, 4));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1069,7 +1069,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getTires().toString().substring(1,4));
+        robot.write(knownCar.getTires().toString().substring(1, 4));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1092,7 +1092,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getParkingLot().substring(2,3));
+        robot.write(knownCar.getParkingLot().substring(2, 3));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1115,7 +1115,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getLicenseNumber().substring(1,6));
+        robot.write(knownCar.getLicenseNumber().substring(1, 6));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1138,7 +1138,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getVin().substring(1,3));
+        robot.write(knownCar.getVin().substring(1, 3));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);
@@ -1161,7 +1161,7 @@ class CarTableViewControllerSearchIT {
 
         TextField searchValueTextField = robot.lookup("#searchValueTextField").query();
         robot.clickOn(searchValueTextField);
-        robot.write(knownCar.getDefects().substring(1,3));
+        robot.write(knownCar.getDefects().substring(1, 3));
 
         Button searchButton = robot.from(searchAttributeComboBox.getParent().getChildrenUnmodifiable()).nth(3).queryButton();
         robot.clickOn(searchButton);

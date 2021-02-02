@@ -1,9 +1,14 @@
 package de.htwsaar.prog3.carrental.controller.table;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.time.LocalDate;
-
+import de.htwsaar.prog3.carrental.TestUiApplication;
+import de.htwsaar.prog3.carrental.application.StageInitializer;
+import de.htwsaar.prog3.carrental.model.Customer;
+import de.htwsaar.prog3.carrental.repository.CustomerRepository;
+import de.htwsaar.prog3.carrental.util.filter.Operator;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,15 +22,9 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.util.WaitForAsyncUtils;
 
-import de.htwsaar.prog3.carrental.TestUiApplication;
-import de.htwsaar.prog3.carrental.application.StageInitializer;
-import de.htwsaar.prog3.carrental.model.Customer;
-import de.htwsaar.prog3.carrental.repository.CustomerRepository;
-import de.htwsaar.prog3.carrental.util.filter.Operator;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ExtendWith(ApplicationExtension.class)
