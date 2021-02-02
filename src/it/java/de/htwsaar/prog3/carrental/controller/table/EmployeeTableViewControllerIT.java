@@ -56,7 +56,7 @@ class EmployeeTableViewControllerIT {
         if (application == null) {
             // FxToolkit does not work with static @BeforeAll, hence @BeforeEach
             application = FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-            stageInitializer.switchToEmployeeTableView();
+            WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToEmployeeTableView());
             WaitForAsyncUtils.waitForFxEvents();
         }
     }

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.test.annotation.DirtiesContext;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
@@ -25,6 +26,7 @@ import org.testfx.util.WaitForAsyncUtils;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@DirtiesContext
 @ExtendWith(ApplicationExtension.class)
 class EmployeeTableViewControllerSearchIT {
 
@@ -59,7 +61,7 @@ class EmployeeTableViewControllerSearchIT {
     @BeforeEach
     void setUp() throws Exception {
         FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-        stageInitializer.switchToEmployeeTableView();
+        WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToEmployeeTableView());
         WaitForAsyncUtils.waitForFxEvents();
     }
 

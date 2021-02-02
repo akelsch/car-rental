@@ -17,6 +17,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.test.annotation.DirtiesContext;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
@@ -27,6 +28,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@DirtiesContext
 @ExtendWith(ApplicationExtension.class)
 class CustomerTableViewControllerSearchIT {
     private static final int EQUAL_OPERATOR_COMBOBOX = 0;
@@ -88,7 +90,7 @@ class CustomerTableViewControllerSearchIT {
     @BeforeEach
     void setUp() throws Exception {
         FxToolkit.setupApplication(() -> new TestUiApplication(applicationContext));
-        stageInitializer.switchToCustomerTableView();
+        WaitForAsyncUtils.asyncFx(() -> stageInitializer.switchToCustomerTableView());
         WaitForAsyncUtils.waitForFxEvents();
     }
 
