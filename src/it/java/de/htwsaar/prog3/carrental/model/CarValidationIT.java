@@ -17,7 +17,6 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SuppressWarnings("OptionalGetWithoutIsPresent")
 @SpringBootTest
 class CarValidationIT {
 

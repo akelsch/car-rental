@@ -63,7 +63,7 @@ class EmployeeTableViewControllerIT {
 
     @AfterEach
     void tearDown() {
-        // do not cleanup Stages but reuse it in the assigned test order
+        // do not cleanup stages but reuse stage in the assigned test order
     }
 
     @Test
