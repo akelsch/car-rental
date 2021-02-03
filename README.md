@@ -21,10 +21,18 @@ programming. Now, we want to leverage our experience and knowledge to increase t
 
 ### Building from Source
 
-We use Maven for building the source code. Run the following command to compile sources:
+We use Maven for building the source code. Run the following command to compile with tests:
 
 ```sh
-mvn clean compile
+mvn clean verify
+```
+
+#### Using headful mode
+
+By default, the JavaFX tests run in headless mode. Use the following property if you want to run in headful mode:
+
+```sh
+mvn clean verify -Dtests.testfx.headless=false
 ```
 
 ### Running the Application
