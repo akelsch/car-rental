@@ -38,11 +38,11 @@ class FxmlUtilsIT {
     private MessageUtils messageUtils;
 
     @Test
-    void setView() throws Exception {
+    void setView(FxRobot robot) throws Exception {
         Stage stage = FxToolkit.setupStage(s -> s.setScene(new Scene(new StackPane())));
         FxToolkit.showStage();
 
-        fxmlUtils.setView(stage, FxmlUtils.FXML_CUSTOMER_TABLE);
+        robot.interact(() -> fxmlUtils.setView(stage, FxmlUtils.FXML_CUSTOMER_TABLE));
 
         BorderPane customerTableView = (BorderPane) stage.getScene().getRoot();
         TableView<?> table = (TableView<?>) customerTableView.getCenter();
