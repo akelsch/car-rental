@@ -4,6 +4,8 @@
 
 Car Rental JavaFX desktop application powered by Spring
 
+![Screenshot](screenshot.png)
+
 ## Background
 
 This project started out as a university project during our Bachelor studies as part of the *Programming 3* class at
