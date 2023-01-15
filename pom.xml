@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
+        <version>2.7.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -20,8 +20,8 @@
     <inceptionYear>2018</inceptionYear>
 
     <properties>
-        <java.version>15</java.version>
-        <javafx.version>15.0.1</javafx.version>
+        <java.version>17</java.version>
+        <javafx.version>17.0.2</javafx.version>
         <!-- Sonar -->
         <sonar.projectKey>akelsch_car-rental</sonar.projectKey>
         <sonar.organization>akelsch</sonar.organization>
@@ -38,16 +38,26 @@
         <testfx.version>4.0.16-alpha</testfx.version>
         <monocle.version>jdk-12.0.1+2</monocle.version>
         <!-- Plugins -->
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
-        <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     </properties>
 
     <dependencies>
         <!-- Compile -->
         <dependency>
             <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
             <version>${javafx.version}</version>
         </dependency>
         <dependency>

@@ -13,7 +13,7 @@ import de.htwsaar.prog3.carrental.repository.CustomerRepository;
 import de.htwsaar.prog3.carrental.repository.EmployeeRepository;
 import de.htwsaar.prog3.carrental.repository.RentalRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceSchemaCreatedEvent;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class DatabasePopulator implements ApplicationListener<DataSourceSchemaCreatedEvent> {
+public class DatabasePopulator implements ApplicationListener<ApplicationStartedEvent> {
 
     private final CarRepository carRepository;
     private final CustomerRepository customerRepository;
@@ -29,7 +29,7 @@ public class DatabasePopulator implements ApplicationListener<DataSourceSchemaCr
     private final RentalRepository rentalRepository;
 
     @Override
-    public void onApplicationEvent(DataSourceSchemaCreatedEvent event) {
+    public void onApplicationEvent(ApplicationStartedEvent event) {
         List<Car> cars = new CarGenerator().generate(50);
         carRepository.saveAll(cars);
 
