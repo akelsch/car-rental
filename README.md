@@ -15,7 +15,7 @@ programming. Now, we want to leverage our experience and knowledge to increase t
 
 ## Technology Stack
 
-- Java 15
+- Java 17
 - JavaFX
 - Spring Boot
 
