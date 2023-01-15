@@ -20,6 +20,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
+@SuppressWarnings("unchecked")
 class DateUtilsTest {
 
     @Test
